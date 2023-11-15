@@ -1,0 +1,7350 @@
+[
+ {
+  "productName": "Pampers Large Rs.28",
+  "code": "P26",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4987176071347
+ },
+ {
+  "productName": "Bulb 100W Wipro Rs16",
+  "code": "BP100",
+  "brandId": 20,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 200050
+ },
+ {
+  "productName": "Whisper Rs32",
+  "code": "W32",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4987176139955
+ },
+ {
+  "productName": "Whisper Choice XL Rs40",
+  "code": "W40",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4987176184849
+ },
+ {
+  "productName": "PARACHUTE AYURVEDIC RS.93",
+  "code": "P93",
+  "brandId": 59,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 200070
+ },
+ {
+  "productName": "Idayam G Oil 500ML",
+  "code": "I167",
+  "brandId": 22,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904001800268
+ },
+ {
+  "productName": "MINIKUTTY BEEDI RS.10",
+  "code": "MK10",
+  "brandId": 33,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 200117
+ },
+ {
+  "productName": "Bran Bell 50Kg",
+  "code": "Bb",
+  "brandId": 340,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 200156
+ },
+ {
+  "productName": "Sensodyne Frsh Gel Rs80",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901571004089
+ },
+ {
+  "productName": "Swapnam Soap Thulasi Rs20",
+  "code": "SNM20",
+  "brandId": 53,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904077700455
+ },
+ {
+  "productName": "Nirma Bath Soap Pink Rs10",
+  "code": "N10",
+  "brandId": 53,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901108171123
+ },
+ {
+  "productName": "POPPINS RS.2",
+  "code": "PP2",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901719117688
+ },
+ {
+  "productName": "Ariel Matic 1Ltr TL Rs230",
+  "code": "A230",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4987176126641
+ },
+ {
+  "productName": "Brita Britta Rs25",
+  "code": "Bb25",
+  "brandId": 200,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901063021037
+ },
+ {
+  "productName": "Vim Drop Anti Grm Btl 500M Rs120",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030489860
+ },
+ {
+  "productName": "Bru Ins Cof 100g Jar Rs350",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030904578
+ },
+ {
+  "productName": "Huggies W.Pant Med 50 No",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904009601003
+ },
+ {
+  "productName": "Axe Signature Champion DeoRs70",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030873386
+ },
+ {
+  "productName": "Lux Soft Glow Soap Rs10",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030859526
+ },
+ {
+  "productName": "Rin Bar 80gm Rs5",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030773884
+ },
+ {
+  "productName": "Three Roses Dust [C] 100g",
+  "code": "t80",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030194122
+ },
+ {
+  "productName": "Kissan Pinple Jam 500G",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030535079
+ },
+ {
+  "productName": "Rin Fabric Whitner Ala 200ml",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030761188
+ },
+ {
+  "productName": "Lifebuoy Lemon Fresh Rs10",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030922985
+ },
+ {
+  "productName": "Surf Excel Bar 95G Rs10",
+  "code": "se10",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030875908
+ },
+ {
+  "productName": "Pears FaceWash Oil Clear Glow",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030818240
+ },
+ {
+  "productName": "Bru Gold 25g Jar",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030373886
+ },
+ {
+  "productName": "Bru Gold 50g Jar",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030373916
+ },
+ {
+  "productName": "Vim Drop Pouch 225ml Rs40",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030760617
+ },
+ {
+  "productName": "Pepsodent Easy Clean TB Rs14",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030787577
+ },
+ {
+  "productName": "Pepsodent Exp TB Mdm B2G1 Rs130",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030450648
+ },
+ {
+  "productName": "REXONA SOAP 100G Rs33",
+  "code": "r24",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 45454554654
+ },
+ {
+  "productName": "Quality Turmeric Powder 100gm",
+  "brandId": 10,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906017760048
+ },
+ {
+  "productName": "Quality Chilli Powder 100gm Rs28",
+  "brandId": 10,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906017760192
+ },
+ {
+  "productName": "Quality Coriander Powder 100g Rs23",
+  "brandId": 10,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906017760604
+ },
+ {
+  "productName": "Everyday Dw 20GM PKT Rs10",
+  "code": "ey",
+  "brandId": 354,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058901030
+ },
+ {
+  "productName": "Cerelac S2 W.\/App\/Cher Rs205",
+  "brandId": 1,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058867435
+ },
+ {
+  "productName": "Cerelac 6-24 Wheat Rs229",
+  "brandId": 1,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058905649
+ },
+ {
+  "productName": "Kit Kat 4 Finger Rs20",
+  "brandId": 354,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058904727
+ },
+ {
+  "productName": "POLO MINT ROLL Rs5",
+  "brandId": 354,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058850741
+ },
+ {
+  "productName": "Nan Pro 1 400Gm",
+  "brandId": 1,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058891799
+ },
+ {
+  "productName": "Nestum 10-24 RF",
+  "brandId": 1,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058861419
+ },
+ {
+  "productName": "Nescafe Classic Jar 25Gm Rs80",
+  "code": "n80",
+  "brandId": 354,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 89006733
+ },
+ {
+  "productName": "Milkybar Choo",
+  "brandId": 1,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 89008478
+ },
+ {
+  "productName": "Kit Kat 2 Finger Rs10",
+  "brandId": 354,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058873412
+ },
+ {
+  "productName": "Maggi Tomato Pichkoo Rs15",
+  "brandId": 1,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058904963
+ },
+ {
+  "productName": "Kit Kat 1 Finger Rs5",
+  "brandId": 1,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058873412
+ },
+ {
+  "productName": "Maggi Hot&Sweet TCS 200Gm Rs65",
+  "brandId": 1,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 89000687
+ },
+ {
+  "productName": "Maggi Tomato Sauce 500Gm RS105",
+  "code": "m105",
+  "brandId": 1,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058117752
+ },
+ {
+  "productName": "Munch(24pc)Rs5",
+  "brandId": 354,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058890136
+ },
+ {
+  "productName": "Pavithram Gingelly Oil 100Ml",
+  "code": "pn30",
+  "brandId": 370,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904093600012
+ },
+ {
+  "productName": "Swarnam Gingelly Oil 500Ml",
+  "brandId": 390,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8908010770024
+ },
+ {
+  "productName": "Swarnam Gingelly Oil 1Ltr",
+  "brandId": 2,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8908010770017
+ },
+ {
+  "productName": "Pavithram Gingelly Oil 200Ml",
+  "code": "p57",
+  "brandId": 4,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904093600029
+ },
+ {
+  "productName": "Pavithram Gingelly Oil 1Ltr",
+  "brandId": 4,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904093600067
+ },
+ {
+  "productName": "Kera Coconut Oil 1\/2Ltr Rs90",
+  "brandId": 52,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 257597
+ },
+ {
+  "productName": "Milma Ghee 1L",
+  "code": "m1",
+  "brandId": 5,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906033400119
+ },
+ {
+  "productName": "Milma Ghee 500Ml",
+  "code": "m500",
+  "brandId": 5,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906137050111
+ },
+ {
+  "productName": "Milma Ghee 100Ml",
+  "code": "m66",
+  "brandId": 5,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906137050098
+ },
+ {
+  "productName": "Milma Ghee 50Ml",
+  "code": "m36",
+  "brandId": 5,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906137050081
+ },
+ {
+  "productName": "Pears Soap 75g",
+  "code": "p47",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030766947
+ },
+ {
+  "productName": "Pepsodent T.Clean Sft TB Rs",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030398438
+ },
+ {
+  "productName": "Wheel Lmn&Jas 500g",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030641657
+ },
+ {
+  "productName": "Avt Flat 1kg Rs325",
+  "code": "af",
+  "brandId": 6,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902042111084
+ },
+ {
+  "productName": "Avt 500gm Rs160",
+  "code": "AVT5",
+  "brandId": 28,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902042111077
+ },
+ {
+  "productName": "Avt 250gm Rs80",
+  "code": "avt25",
+  "brandId": 28,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902042111060
+ },
+ {
+  "productName": "Avt 100gm Rs33",
+  "code": "AVT1",
+  "brandId": 28,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902042111053
+ },
+ {
+  "productName": "Avt 30G Rs10",
+  "code": "avt50",
+  "brandId": 28,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902042111183
+ },
+ {
+  "productName": "Avt 500gm Jar",
+  "brandId": 28,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902042112074
+ },
+ {
+  "productName": "Avt 250gm Jar",
+  "brandId": 28,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902042112067
+ },
+ {
+  "productName": "Avt Coffee 500gm",
+  "brandId": 28,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902042211616
+ },
+ {
+  "productName": "Avt Coffee 200gm Rs72-7Off",
+  "brandId": 28,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902042211548
+ },
+ {
+  "productName": "Dove Intense Repair 335ml",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030861390
+ },
+ {
+  "productName": "Huggies W.Pant Lar 5No Rs70",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904009601270
+ },
+ {
+  "productName": "Horlicks Lite 450Gm Jar Regul",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030824937
+ },
+ {
+  "productName": "Horlicks JR CHOC 500Gm",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030820052
+ },
+ {
+  "productName": "Horlicks Jar choc 500g",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030825668
+ },
+ {
+  "productName": "Boost 500Gm Jar",
+  "code": "b5",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030818660
+ },
+ {
+  "productName": "Boost 200gm RS114",
+  "code": "bj",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030817182
+ },
+ {
+  "productName": "Horlicks Biscuit Rs10",
+  "code": "h10",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030823312
+ },
+ {
+  "productName": "Horlicks Biscuit 300GM",
+  "code": "h30",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030823503
+ },
+ {
+  "productName": "Eastern Palada Mix 300gm Rs69.50",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440203414
+ },
+ {
+  "productName": "Eastern Payasam Mix 300gm Rs78",
+  "code": "ep30",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440003366
+ },
+ {
+  "productName": "Eastern Biriyani Masala 100gm",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440013020
+ },
+ {
+  "productName": "Eastern Chicken Masala 100gm",
+  "code": "ECM",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440013099
+ },
+ {
+  "productName": "Eastern Turmeric Powder 250gm",
+  "code": "ETP25",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440023227
+ },
+ {
+  "productName": "Eastern Coriander Powdr 1Kg",
+  "code": "EM1",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440023128
+ },
+ {
+  "productName": "Eastern Pepper Powdr 100gm Rs105.5",
+  "code": "EKP",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440023029
+ },
+ {
+  "productName": "Eastern Turmeric Pow 100gm",
+  "code": "ETP",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440023142
+ },
+ {
+  "productName": "Eastern Sambar Pow 100gm",
+  "code": "ESP",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440013044
+ },
+ {
+  "productName": "Eastern Pepper Powdr 50gm Rs45.5",
+  "code": "EKP5",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440023012
+ },
+ {
+  "productName": "Eastern Rasam Pow 100gm",
+  "code": "ERP",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440013068
+ },
+ {
+  "productName": "Eastern Pickle Powdr 100gm",
+  "code": "EPP",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440013150
+ },
+ {
+  "productName": "Eastern Fish Masala 100gm Rs41",
+  "code": "EFM",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440013136
+ },
+ {
+  "productName": "Eastern Coriander Pow 500gm Rs103",
+  "code": "EM5",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440023111
+ },
+ {
+  "productName": "Eastern Chilly Pow 500gm Rs135.50",
+  "code": "ECP5",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440023067
+ },
+ {
+  "productName": "Eastern Chilly Powdr 250gm",
+  "code": "ECP25",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440023395
+ },
+ {
+  "productName": "Eastern Coriander Pow 100gm",
+  "code": "EM",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440023098
+ },
+ {
+  "productName": "Eastern Coriander Pow 250gm Rs52",
+  "code": "EM25",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440023180
+ },
+ {
+  "productName": "Eastern Meat Masala 100gm",
+  "code": "EMM",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440013280
+ },
+ {
+  "productName": "Eastern Chilly Pow 1Kg Rs",
+  "code": "EC1",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440023074
+ },
+ {
+  "productName": "Eastern Vege Masala 100gm Rs",
+  "code": "EVM",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440013570
+ },
+ {
+  "productName": "Eastern Chilly Pow 100gm",
+  "code": "ecp",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440023043
+ },
+ {
+  "productName": "Eastern Garam Masala 50gm",
+  "code": "ML50",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440013372
+ },
+ {
+  "productName": "Cerelac Wheat Rice Veg Rs295",
+  "brandId": 1,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058897326
+ },
+ {
+  "productName": "Ujala Supreme 75ml",
+  "code": "US32",
+  "brandId": 228,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102194927
+ },
+ {
+  "productName": "Exo Safai Scrub",
+  "code": "SB",
+  "brandId": 228,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102198833
+ },
+ {
+  "productName": "Ujala Washing Powder 4Kg",
+  "brandId": 12,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102300700
+ },
+ {
+  "productName": "Ujala Supreme 30ml Rs8",
+  "brandId": 228,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102194910
+ },
+ {
+  "productName": "Exo Round 700g",
+  "brandId": 228,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102160656
+ },
+ {
+  "productName": "Prill Liquid Tamarind 225ml",
+  "brandId": 228,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102162292
+ },
+ {
+  "productName": "Prill Bar 110g",
+  "brandId": 228,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102160854
+ },
+ {
+  "productName": "Prill Liquid Tamarind Shine 750mL",
+  "brandId": 228,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102162308
+ },
+ {
+  "productName": "Prill Liquid 425ml Green",
+  "brandId": 228,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102160694
+ },
+ {
+  "productName": "Prill Liquid 425Ml Blue",
+  "brandId": 228,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102160731
+ },
+ {
+  "productName": "Ujala Detergent 1Kg",
+  "code": "u85",
+  "brandId": 12,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102300670
+ },
+ {
+  "productName": "Ujala Detergent 500gm",
+  "code": "u50",
+  "brandId": 228,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102300687
+ },
+ {
+  "productName": "Ujala Detergent 115gm Rs10",
+  "code": "u10",
+  "brandId": 228,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102300830
+ },
+ {
+  "productName": "Maxo Coil 10N Rs28",
+  "brandId": 228,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102197508
+ },
+ {
+  "productName": "Maxo Genius Combo",
+  "brandId": 355,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102162391
+ },
+ {
+  "productName": "Maxo A Grade Coil 8hrs Red Rs27",
+  "brandId": 355,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102197461
+ },
+ {
+  "productName": "Exo Safai Scrub 20gm Rs25",
+  "code": "ESB",
+  "brandId": 228,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102198321
+ },
+ {
+  "productName": "Exo DW Bar 10gm Free Rs5",
+  "code": "e5",
+  "brandId": 23,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102161592
+ },
+ {
+  "productName": "Exo Liquid 100Gm",
+  "brandId": 355,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102163213
+ },
+ {
+  "productName": "Kuthuvilakku Ada 250 Rs25",
+  "code": "kva",
+  "brandId": 202,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8908001782012
+ },
+ {
+  "productName": "Dalda Vanaspathi 1L Rs200",
+  "code": "dld",
+  "brandId": 202,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906014640053
+ },
+ {
+  "productName": "Dalda Vanaspati 500ml",
+  "code": "d5",
+  "brandId": 202,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906014640046
+ },
+ {
+  "productName": "Dalda Vanaspati 200ml Rs42",
+  "code": "d2",
+  "brandId": 202,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906014640039
+ },
+ {
+  "productName": "Dalda Vanaspati 100ml Rs24",
+  "code": "d100",
+  "brandId": 202,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906014640022
+ },
+ {
+  "productName": "Brita Tiger100gm",
+  "code": "BT",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901063163348
+ },
+ {
+  "productName": "Brita 50-50 Rs10",
+  "brandId": 200,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901063016811
+ },
+ {
+  "productName": "Brita milk Rusk  Rs10",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901063325647
+ },
+ {
+  "productName": "Brita Rusk Rs30",
+  "code": "R30",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901063325609
+ },
+ {
+  "productName": "Brita Rusk 250g",
+  "code": "br40",
+  "brandId": 200,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901063325036
+ },
+ {
+  "productName": "Brita Good Day Cashew 200g",
+  "code": "BG50",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901063093287
+ },
+ {
+  "productName": "Brita Good Day Cashew",
+  "code": "g20",
+  "brandId": 200,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901063093409
+ },
+ {
+  "productName": "Tang Orange 750G Rs.220",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 7622201674113
+ },
+ {
+  "productName": "No 1 Kesarmilk 3+170g*4 Rs40",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901023028632
+ },
+ {
+  "productName": "No 1 Coco Neem 3+1 Rs40",
+  "code": "n140",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901023028618
+ },
+ {
+  "productName": "No 1 Jasmin Milk Cream3+1 Rs40",
+  "code": "NO1",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901023028625
+ },
+ {
+  "productName": "No 1 Sandal 3+1 70g*4 Rs40",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901023028670
+ },
+ {
+  "productName": "No 1 Lime AloeVera3+1 Rs40",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901023024955
+ },
+ {
+  "productName": "Hit Cik Red 200ml",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901157025071
+ },
+ {
+  "productName": "Hit Fik Black 200ml",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901023014284
+ },
+ {
+  "productName": "Hit Cik  Black 320ml",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901157025019
+ },
+ {
+  "productName": "Hit Fik Red 320ml",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901157025057
+ },
+ {
+  "productName": "Hit Fik Black 400ml",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901157025217
+ },
+ {
+  "productName": "GK Activ+Cartridge Rs75",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901157001143
+ },
+ {
+  "productName": "GK Silver Power Rs72",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901157001143
+ },
+ {
+  "productName": "GK Mini Jumpo Coil",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901157004281
+ },
+ {
+  "productName": "Godrej Exp Hair Color Rs33",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 454656
+ },
+ {
+  "productName": "Godrej Exp Liq Hair Dye Rs85",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901023005404
+ },
+ {
+  "productName": "Godrej Exp Liq Hair Dye Rs55",
+  "code": "g55",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901023005411
+ },
+ {
+  "productName": "Godrej Kali Mehandi Rs96",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901023007552
+ },
+ {
+  "productName": "Cinthol health soap",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901023010453
+ },
+ {
+  "productName": "Cinthol Talc 21rs Off Cool Rs135",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901023003790
+ },
+ {
+  "productName": "Cinthol orig Talc 2in1 Rs55",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901023006647
+ },
+ {
+  "productName": "Godrej Shaving Cream Lime 78g",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901023001789
+ },
+ {
+  "productName": "Godrej Shaving Cream Lime Fresh Rs25",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901023001734
+ },
+ {
+  "productName": "Godrej Shaving Cream Sensitive Rs25",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901023001796
+ },
+ {
+  "productName": "Glucon D 200gm",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901542001673
+ },
+ {
+  "productName": "Glucon D  200gm",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901542017667
+ },
+ {
+  "productName": "Glucon D Nimbu 100gm",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901542017629
+ },
+ {
+  "productName": "Kpl Shudhi Co.oil 1Ltr Bott Rs219",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906005451132
+ },
+ {
+  "productName": "Maveli Agarbathy",
+  "code": "ma",
+  "brandId": 16,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906010180010
+ },
+ {
+  "productName": "Triveni 3in1 (6pc)",
+  "brandId": 16,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906010180133
+ },
+ {
+  "productName": "KPN Thali Shampoo 100ml Rs60",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906007750264
+ },
+ {
+  "productName": "KPN AD Shampoo",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906007750318
+ },
+ {
+  "productName": "KPN Herb Paste 50g Rs20",
+  "code": "k20",
+  "brandId": 26,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906007750677
+ },
+ {
+  "productName": "Chandrika Buy3Get1 Rs",
+  "brandId": 317,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901399009037
+ },
+ {
+  "productName": "Chandrika Soap Ori 75gm Rs29",
+  "code": "c27",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901399009020
+ },
+ {
+  "productName": "KPN Dantadhavanachoornam Rs28",
+  "brandId": 26,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906007750042
+ },
+ {
+  "productName": "KPN Ayu TPDR 80gm Strong Rs48",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906007750356
+ },
+ {
+  "productName": "KPN Herb Paste 150gm Rs75",
+  "code": "kpn75",
+  "brandId": 26,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906007750127
+ },
+ {
+  "productName": "KPN Herb Paste 100g Rs50",
+  "brandId": 26,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906007750103
+ },
+ {
+  "productName": "KPN Herb Paste 150gm Gel Mint",
+  "brandId": 26,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906007750288
+ },
+ {
+  "productName": "KPN Herb Paste 80gm Gel Mint 80g",
+  "brandId": 26,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906007750158
+ },
+ {
+  "productName": "KPN Pathimugham 15gm Rs12",
+  "code": "KPP",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906007750387
+ },
+ {
+  "productName": "KPN Dahamukthi 25g [10no]",
+  "code": "kpd",
+  "brandId": 26,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906007750080
+ },
+ {
+  "productName": "Lia Agarbathy Jasmin",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901751016062
+ },
+ {
+  "productName": "Gold Winner SF Oil 1Ltr Jar Rs199",
+  "brandId": 111,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906010261085
+ },
+ {
+  "productName": "Gold Winner SF Oil 1 Ltr Poch Rs193",
+  "code": "GW1",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906010261078
+ },
+ {
+  "productName": "Gold Winner SF Oil 1\/2Ltr Pou Rs98",
+  "code": "gw5",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906010261047
+ },
+ {
+  "productName": "Bru Ins 100gm Jar Rs180",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030465321
+ },
+ {
+  "productName": "Surf XL Bar Rs15",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030885716
+ },
+ {
+  "productName": "Lia Agarbathy Natures Gift Rs15",
+  "code": "L15",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901751016819
+ },
+ {
+  "productName": "Lia Agarbathy Prime Rose Rs15",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901751016826
+ },
+ {
+  "productName": "Lia Agarbathy Rinbow",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901751016833
+ },
+ {
+  "productName": "Lia Agarbathy Samtrupti Rs15",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901751016840
+ },
+ {
+  "productName": "Lia Agarbathy Chandanam Rs15",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901751016796
+ },
+ {
+  "productName": "Lia Agarbathy Jas",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901751017090
+ },
+ {
+  "productName": "Lia Agarbathy Chandanam",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901751017083
+ },
+ {
+  "productName": "Lia Agarbathy Prime Rose",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901751017113
+ },
+ {
+  "productName": "Lia Agarbathy Samtrupti",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901751017137
+ },
+ {
+  "productName": "Colgate Max Fresh 80g",
+  "brandId": 18,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901314014528
+ },
+ {
+  "productName": "Colgate Visible White 100g",
+  "brandId": 18,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901314077790
+ },
+ {
+  "productName": "Colgate Visible White 50gm",
+  "brandId": 18,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901314077783
+ },
+ {
+  "productName": "Colgate Paste 40g",
+  "brandId": 18,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901314649003
+ },
+ {
+  "productName": "Colgate Sensitive 40g Rs64",
+  "brandId": 18,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901314012913
+ },
+ {
+  "productName": "Colgate Paste.",
+  "brandId": 18,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901314310057
+ },
+ {
+  "productName": "Colgate Plax Cplete Care 250Ml",
+  "brandId": 18,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901314077141
+ },
+ {
+  "productName": "Colgate Acive Salt 100g",
+  "brandId": 18,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901314009517
+ },
+ {
+  "productName": "Colgate Mouth Wash 100ml",
+  "brandId": 18,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901314077509
+ },
+ {
+  "productName": "Colgate Paste 115g",
+  "code": 100,
+  "brandId": 18,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901314714299
+ },
+ {
+  "productName": "Colgate Super Flexi Brush Rs20",
+  "code": "c18",
+  "brandId": 18,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901314200044
+ },
+ {
+  "productName": "Colgate Barbie Paste 80g",
+  "brandId": 18,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901314022653
+ },
+ {
+  "productName": "Colgate Cibaca Supme Hard Brush.",
+  "brandId": 18,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901314088574
+ },
+ {
+  "productName": "Stayfree Secure 6 Pad",
+  "brandId": 19,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901012165836
+ },
+ {
+  "productName": "Stayfree Secure Cottony 20no",
+  "brandId": 208,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901012165256
+ },
+ {
+  "productName": "Stayfree Sec Dry 18No XL",
+  "brandId": 208,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901012165829
+ },
+ {
+  "productName": "Johnson B.Wipes 20No",
+  "brandId": 208,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901012119112
+ },
+ {
+  "productName": "Johnson B.Hair Oil 60ml",
+  "brandId": 19,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901012118108
+ },
+ {
+  "productName": "Johnson B.Hair Oil 100ml Rs75",
+  "brandId": 19,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901012118085
+ },
+ {
+  "productName": "Johnson B.Lotion 50ml Rs50",
+  "brandId": 19,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901012116838
+ },
+ {
+  "productName": "Johnson B.Lotion 100ml",
+  "brandId": 19,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901012116845
+ },
+ {
+  "productName": "Johnson B.Hair Oil 200ml Rs110",
+  "brandId": 19,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901012118092
+ },
+ {
+  "productName": "Clean&Clear Daily Scrub 80g Rs",
+  "brandId": 19,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901012186077
+ },
+ {
+  "productName": "Johnsons Buds Gentle Rs28",
+  "brandId": 208,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901012155011
+ },
+ {
+  "productName": "Johnson B.Cream 50g",
+  "brandId": 208,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901012116814
+ },
+ {
+  "productName": "Johnson Buds Gentle 30no Rs50",
+  "brandId": 208,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901012155028
+ },
+ {
+  "productName": "Johnson B.Brush Rs33",
+  "brandId": 19,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901012139103
+ },
+ {
+  "productName": "Listerine MW Orig 250ml",
+  "code": "lm",
+  "brandId": 208,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901012132050
+ },
+ {
+  "productName": "Band Aid Jar",
+  "brandId": 208,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901012121726
+ },
+ {
+  "productName": "Eastern Chicken Masala 200gm Jar",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440207658
+ },
+ {
+  "productName": "Eastern Sambar Pow 200gm Jar",
+  "code": "ESP2",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440207566
+ },
+ {
+  "productName": "Eastern Crushed Chilly100gm Rs36",
+  "code": "ECC",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440023234
+ },
+ {
+  "productName": "Eastern Adimali Kappi 35g Rs10",
+  "code": "EC5",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440204855
+ },
+ {
+  "productName": "Eastern Adimali Kappi 100g Rs35.5",
+  "code": "EC",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440003373
+ },
+ {
+  "productName": "Eastern Chicken Fry 100gm",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440204770
+ },
+ {
+  "productName": "Cinthol Soap lime 100g",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901023010484
+ },
+ {
+  "productName": "Santoor 3x125+Get 1 Free",
+  "brandId": 20,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 6666666643773
+ },
+ {
+  "productName": "Santoor 4x150 Exlu Pack Rs172",
+  "brandId": 20,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901399105166
+ },
+ {
+  "productName": "Santoor white 100gm+spoon",
+  "brandId": 20,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901399010019
+ },
+ {
+  "productName": "Cycle Agarbathy Rs50",
+  "brandId": 20,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901751016666
+ },
+ {
+  "productName": "Cycle Agarbathy Rs20",
+  "brandId": 20,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901751012446
+ },
+ {
+  "productName": "Cycle Agarbathy Rs10",
+  "code": "cy10",
+  "brandId": 20,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901751016710
+ },
+ {
+  "productName": "Cycle Agarbathy Rs15",
+  "brandId": 20,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901751012439
+ },
+ {
+  "productName": "Nirma Bath Soap White Rs10",
+  "brandId": 53,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901108174124
+ },
+ {
+  "productName": "Swapnam Soap Beauty RS.20",
+  "brandId": 53,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904077700387
+ },
+ {
+  "productName": "Swapnam Soap Lavender RS20",
+  "brandId": 53,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904077700400
+ },
+ {
+  "productName": "Kopiko Packet Rs115",
+  "code": "kpk",
+  "brandId": 206,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8907459000594
+ },
+ {
+  "productName": "Maya Supreme Agarbathy Rs10",
+  "code": "msa10",
+  "brandId": 26,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906005800091
+ },
+ {
+  "productName": "Pulari Rice Brand Oil 200ml",
+  "brandId": 29,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8908003678023
+ },
+ {
+  "productName": "Dr Wash 200g",
+  "code": "dr",
+  "brandId": 307,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906002419579
+ },
+ {
+  "productName": "A1 SKC Ghee 2littr",
+  "brandId": 28,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906001590200
+ },
+ {
+  "productName": "A1 SKC Ghee 1 littr",
+  "brandId": 28,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906001590194
+ },
+ {
+  "productName": "A1 SKC Ghee 500ml",
+  "brandId": 458,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906001590224
+ },
+ {
+  "productName": "A1 SKC Ghee 200ml",
+  "brandId": 458,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906001590231
+ },
+ {
+  "productName": "A1 SKC Ghee 100ml",
+  "brandId": 458,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906001590248
+ },
+ {
+  "productName": "A1 SKC Ghee 50ml",
+  "brandId": 458,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906001590255
+ },
+ {
+  "productName": "RKG Ghee 5LTR",
+  "brandId": 22,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901745100050
+ },
+ {
+  "productName": "RKG Ghee 2ltr",
+  "brandId": 22,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901745100029
+ },
+ {
+  "productName": "RKG Ghee 1Ltr",
+  "brandId": 22,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901745100012
+ },
+ {
+  "productName": "RKG Ghee 500ml",
+  "brandId": 22,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901745115009
+ },
+ {
+  "productName": "RKG Ghee 200ML",
+  "brandId": 22,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901745112008
+ },
+ {
+  "productName": "RKG Ghee 100ml",
+  "brandId": 22,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901745121000
+ },
+ {
+  "productName": "RKG Ghee 50ml",
+  "brandId": 22,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901745120508
+ },
+ {
+  "productName": "Idayam G Oil 1ltr",
+  "brandId": 73,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904001800237
+ },
+ {
+  "productName": "Idayam G Oil 200ml",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904001800282
+ },
+ {
+  "productName": "Aashirvad Atta 500g",
+  "brandId": 33,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725121754
+ },
+ {
+  "productName": "Sunfeast Dream Cream cho-vanla Rs20",
+  "brandId": 33,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725003272
+ },
+ {
+  "productName": "Sunfeast Bounce Orange 82g Rs10",
+  "brandId": 357,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725003098
+ },
+ {
+  "productName": "Sunfeast Dream Cream B scotch Rs20",
+  "brandId": 33,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725134181
+ },
+ {
+  "productName": "Sunfeast Nice 150g Rs25",
+  "brandId": 357,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725134327
+ },
+ {
+  "productName": "Sunfeast Bounce ChocoCreme",
+  "code": "sbn",
+  "brandId": 357,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725003074
+ },
+ {
+  "productName": "Sunfeast Marie Light 200g Rs20",
+  "brandId": 357,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725131975
+ },
+ {
+  "productName": "Nivea Creme 100ml Rs175",
+  "brandId": 348,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 42204251
+ },
+ {
+  "productName": "Nivea Creme 30ml",
+  "brandId": 348,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4005808327676
+ },
+ {
+  "productName": "Nivea Oil Ctrl FaceWash 50g Rs99",
+  "brandId": 348,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4005808535439
+ },
+ {
+  "productName": "Nivea Totl Face Clnup 50ml Rs120",
+  "brandId": 348,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4005808918362
+ },
+ {
+  "productName": "Nivea Soft Lght Moistr 50ml Rs",
+  "brandId": 348,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 42204169
+ },
+ {
+  "productName": "Nivea Soft Lght Moisturiser 100ml",
+  "brandId": 34,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 42204091
+ },
+ {
+  "productName": "Nivea Dark Spot F Wash 50g Rs99",
+  "brandId": 348,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4005808231423
+ },
+ {
+  "productName": "Nivea Creme 60ml",
+  "brandId": 34,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 42204244
+ },
+ {
+  "productName": "Harpic Power 200ml Rs40",
+  "code": "h36",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901396152002
+ },
+ {
+  "productName": "Lizol Citrus 500ml Rs",
+  "code": "l93",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901396112006
+ },
+ {
+  "productName": "Lizol Floral 500ml",
+  "code": "lf103",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901396113003
+ },
+ {
+  "productName": "Lizol Lavender 500ml Rs103",
+  "code": "l103",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901396117407
+ },
+ {
+  "productName": "Dettol Frsh Fragrnce 200ml Rs98",
+  "code": "d98",
+  "brandId": 35,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901396348108
+ },
+ {
+  "productName": "Colin Glass Clnr 250ml",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901396465003
+ },
+ {
+  "productName": "Colin Glass Clnr 500ml",
+  "brandId": 35,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901396476009
+ },
+ {
+  "productName": "Cherry Blossom Dark Tan Rs33",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901396054009
+ },
+ {
+  "productName": "Cherry Blosom Wax Black",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901396051008
+ },
+ {
+  "productName": "Dettol Antisptc Liq  Rs60.50",
+  "brandId": 35,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901396350200
+ },
+ {
+  "productName": "Dettol Orgnl Soap 75g",
+  "code": "d30",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901396393603
+ },
+ {
+  "productName": "Cuticura Lavender 400g Rs265",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904018300072
+ },
+ {
+  "productName": "Medimix HandMade 75g",
+  "code": "mx",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906057530854
+ },
+ {
+  "productName": "Nature Power Papaya Soap",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906001232384
+ },
+ {
+  "productName": "Cuticura Glycerine Org 75g",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904018301864
+ },
+ {
+  "productName": "Cuticura Lavender 100gm Rs95",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904018300300
+ },
+ {
+  "productName": "Cuticura Original 100g Rs95",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904018300348
+ },
+ {
+  "productName": "Corn Flakes Real Honey 300gm",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901499008312
+ },
+ {
+  "productName": "Corn Flakes Orginal",
+  "code": "cfo",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901499008183
+ },
+ {
+  "productName": "Corn Flakes Original 100g",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901499008176
+ },
+ {
+  "productName": "Apsara Platinum Pencils Rs50",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901324013849
+ },
+ {
+  "productName": "Apsara 6 W.Colors Rs",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901324243321
+ },
+ {
+  "productName": "Apsara Pencil Cutter Rs5",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901324003369
+ },
+ {
+  "productName": "Apsara Non Dust Eraser Rs3",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901324010664
+ },
+ {
+  "productName": "Nataraj Pencil 621 Sharpner 20XRs3",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 12
+ },
+ {
+  "productName": "Lexi Pen Blue",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 836449006613
+ },
+ {
+  "productName": "Fogg Royal Body Spray120ml",
+  "brandId": 327,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8908001158312
+ },
+ {
+  "productName": "Fogg Imperial 120ml",
+  "brandId": 327,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8908001158480
+ },
+ {
+  "productName": "Yardley Jasmine 100g Rs61",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8903105011518
+ },
+ {
+  "productName": "Yardley Eng Lvr Soap 100g",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8903105011501
+ },
+ {
+  "productName": "Yardley English Rose Talc 250g",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8903105010436
+ },
+ {
+  "productName": "Yardley Red Roses 250g Talc",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8903105010412
+ },
+ {
+  "productName": "Yardley Elegance 100g Talc Rs",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8903105010115
+ },
+ {
+  "productName": "Vega Nail Clipper Rs 45",
+  "brandId": 37,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904086330490
+ },
+ {
+  "productName": "Supermax Swift 3 Rs50",
+  "brandId": 37,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904055131813
+ },
+ {
+  "productName": "SuperMax Hatrick 3 Rs 20",
+  "brandId": 37,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904055104909
+ },
+ {
+  "productName": "Eva Doll 125ml Rs115",
+  "brandId": 37,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902618000101
+ },
+ {
+  "productName": "Enchanteur Charm B M 150ml Rs190",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8888202000767
+ },
+ {
+  "productName": "Enchanteur Romantic 150ml",
+  "brandId": 421,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8888202000880
+ },
+ {
+  "productName": "Yardley Elegance AftrShv Lotn 50ml",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8903105020107
+ },
+ {
+  "productName": "Yardley Gold AftrShv Lotn 50ml",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8903105020015
+ },
+ {
+  "productName": "Yardley Elegance Shvng Cream 39g",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8903105020442
+ },
+ {
+  "productName": "Enchanteur Charming Tal 125g",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 88821191
+ },
+ {
+  "productName": "Enchanteur Charming Talc 75g",
+  "brandId": 37,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8888202028297
+ },
+ {
+  "productName": "Enchanteur Body Lotion Charming 100ml",
+  "brandId": 317,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8888202054494
+ },
+ {
+  "productName": "Enchanteur Body Lotion Romantic100gm",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8888202054500
+ },
+ {
+  "productName": "Enchanteur Rom B Lotn",
+  "brandId": 317,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8888202054524
+ },
+ {
+  "productName": "EverYuth Neem F Wash  Rs25",
+  "code": "E25",
+  "brandId": 37,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901548146866
+ },
+ {
+  "productName": "Ayur Xtra Soft 100ml Rs50",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 808042000152
+ },
+ {
+  "productName": "Fem Saffron Creme Bleach Rs30",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901103101262
+ },
+ {
+  "productName": "Good H.Room Sandal 160g",
+  "brandId": 37,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902618001047
+ },
+ {
+  "productName": "Good H.Room Rose 160g",
+  "brandId": 37,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902618001023
+ },
+ {
+  "productName": "Black Rose Kali Mehendi Rs60",
+  "brandId": 124,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 815865000122
+ },
+ {
+  "productName": "Black Gold K.Mehendi Rs60",
+  "brandId": 37,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8908004020005
+ },
+ {
+  "productName": "Vitaaz Mango 500g Rs135",
+  "brandId": 306,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906048121115
+ },
+ {
+  "productName": "Z Deo 45ml Rs75",
+  "brandId": 128,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906015120042
+ },
+ {
+  "productName": "Z Deo Icon 120ml Rs155",
+  "brandId": 39,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906015120240
+ },
+ {
+  "productName": "Quaker Oats 1.5kg Puch",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901491702188
+ },
+ {
+  "productName": "Quaker Oats  1kg Jar",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901491103770
+ },
+ {
+  "productName": "Quaker  Oats 500G Jar Rs135",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901491702027
+ },
+ {
+  "productName": "Gold Winner 5ltr Can Rs799",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906010261139
+ },
+ {
+  "productName": "Vicks Vaporub 10ml",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202188
+ },
+ {
+  "productName": "Vicks Vaporub 5ml",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202189
+ },
+ {
+  "productName": "Vicks Babyrub",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8987110012692
+ },
+ {
+  "productName": "Pantene Advanced Hairfall Shmp 180ml",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4902430899215
+ },
+ {
+  "productName": "Tide bar White 125g",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4987176161666
+ },
+ {
+  "productName": "Gillete Guard3 Rs180",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4987176151667
+ },
+ {
+  "productName": "Gillete Mach3 Sens.2Catrg Rs330",
+  "code": 330,
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4902430921893
+ },
+ {
+  "productName": "Gillete 7Clock Su.Pltnm Bl.Set Rs55",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4902430817295
+ },
+ {
+  "productName": "Aashirvad Atta 10Kg",
+  "brandId": 33,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725121716
+ },
+ {
+  "productName": "Kores Dustless Chalk White Rs65",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902635515657
+ },
+ {
+  "productName": "Kores Dustless Chalk Rs10",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902635515688
+ },
+ {
+  "productName": "Eveready A1050 Battery",
+  "brandId": 46,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901691008837
+ },
+ {
+  "productName": "Eveready AAA 1012",
+  "code": 1012,
+  "brandId": 46,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901691010526
+ },
+ {
+  "productName": "Parachute Ayur Oil 50ml Rs35",
+  "brandId": 46,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901088056571
+ },
+ {
+  "productName": "Parachute Jas 45ml Rs20",
+  "brandId": 360,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 89006542
+ },
+ {
+  "productName": "Parachute Jas Oil 90ml Rs44",
+  "brandId": 46,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901088076104
+ },
+ {
+  "productName": "Parachute Jas Oil 200ml Rs92",
+  "brandId": 46,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901088045674
+ },
+ {
+  "productName": "Engage Urge deo 165ml",
+  "brandId": 33,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725950200
+ },
+ {
+  "productName": "Engage Frost 165ml",
+  "brandId": 33,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725950309
+ },
+ {
+  "productName": "Engage Mate 165ml",
+  "brandId": 33,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725950101
+ },
+ {
+  "productName": "Engage Tease deo 165ml",
+  "brandId": 33,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725951207
+ },
+ {
+  "productName": "Engage Drizzle 165ml",
+  "brandId": 33,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725951306
+ },
+ {
+  "productName": "Vivel Soap 100g Rs30",
+  "brandId": 33,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725937188
+ },
+ {
+  "productName": "Vivel Cool MintRs10",
+  "brandId": 329,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725931803
+ },
+ {
+  "productName": "Metilda Estimate Book 45",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202487
+ },
+ {
+  "productName": "Fevi Gum Lime 50ml Rs10",
+  "brandId": 220,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901860633396
+ },
+ {
+  "productName": "Raj 2inch CelloTape Rs60",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202501
+ },
+ {
+  "productName": "Raj 2inch Tape Brown Rs60",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202502
+ },
+ {
+  "productName": "Raj 3inch Brown Tape",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202503
+ },
+ {
+  "productName": "Oddy Double Foaming Tap",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906044235359
+ },
+ {
+  "productName": "Youva Single Line Dairy 160p",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902442219694
+ },
+ {
+  "productName": "Exam papper plain Rs80",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4581
+ },
+ {
+  "productName": "Steel Scale Intex Rs15",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906025880110
+ },
+ {
+  "productName": "Kores Saphire Carbon Paper Blue Rs1.90",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902635403008
+ },
+ {
+  "productName": "Camilin Correction Pen Rs25",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901425000267
+ },
+ {
+  "productName": "Reynolds Lumino Gel",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904379404006
+ },
+ {
+  "productName": "Classm.Maths Note 172pg Sft 1141 Rs28",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902519011411
+ },
+ {
+  "productName": "Classm.Note Singl Lin 172pg 205 Rs30",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902519002051
+ },
+ {
+  "productName": "Classm.Singl Lin Note 92pg 207 Rs18",
+  "code": "cm17",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902519002075
+ },
+ {
+  "productName": "Classm.Plain Note Lng 180pg sft222",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902519002228
+ },
+ {
+  "productName": "Classm.Plain Note 172pg sft 206 Rs30",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902519002068
+ },
+ {
+  "productName": "Classm.Scrap Note 36 pg sft1078 Rs40",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902519010780
+ },
+ {
+  "productName": "Classm.Drawng Note 36 pg sft194 Rs25",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902519001948
+ },
+ {
+  "productName": "Classm.Singline Note 140 pg sft199 Rs55",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902519001993
+ },
+ {
+  "productName": "Nataraj Pen Rs3",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202637
+ },
+ {
+  "productName": "Doms Ball Pen Red Rs4",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8908000034587
+ },
+ {
+  "productName": "Kangaru S.mini Stapler+K.chain",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901057308168
+ },
+ {
+  "productName": "Kangaru Punch 1Hole Rs",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901057200011
+ },
+ {
+  "productName": "Kangaru Munix Stapler Rs60",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901057310062
+ },
+ {
+  "productName": "Kangaru Staple Pin 24\/6 Rs",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901057524421
+ },
+ {
+  "productName": "Kangaru Staple Pin 10-1m",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901057510028
+ },
+ {
+  "productName": "Doms Color 12 Pencil Rs25",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8908000034433
+ },
+ {
+  "productName": "Doms Pencil Sharpner",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8908000034242
+ },
+ {
+  "productName": "Nataraj Sharpner Rs3",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901324520224
+ },
+ {
+  "productName": "Fevicol MR 45g Rs",
+  "brandId": 220,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901860630432
+ },
+ {
+  "productName": "Fevi Gum Lime 200ml Rs35",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901860633433
+ },
+ {
+  "productName": "Fevicol MR 8g Rs5",
+  "brandId": 220,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901860630005
+ },
+ {
+  "productName": "Fevicol MR 100g Rs",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901860630500
+ },
+ {
+  "productName": "Fevicol MR 22.5g Rs10",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901860630241
+ },
+ {
+  "productName": "Anjali Mat Rs125",
+  "brandId": 195,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202716
+ },
+ {
+  "productName": "Suthali Ball pkt (Plastic Colour Valli)",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202719
+ },
+ {
+  "productName": "Wash Brush big",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202727
+ },
+ {
+  "productName": "Round Seeling Brush Rs135",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202739
+ },
+ {
+  "productName": "Rotat Mop Cottan Steel Rs180",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202749
+ },
+ {
+  "productName": "Floor Brush Black & Gray",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202756
+ },
+ {
+  "productName": "1 Side Brush Steel Rs70",
+  "brandId": 97,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202764
+ },
+ {
+  "productName": "Hard Brush Big Rs 125",
+  "brandId": 195,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202765
+ },
+ {
+  "productName": "Doms Color Pencil  12 Shds Rs50",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8908000034457
+ },
+ {
+  "productName": "Chandrika Soap 75g",
+  "code": "c32",
+  "brandId": 317,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901399009020
+ },
+ {
+  "productName": "Enchanteur Romantic Talc",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8888202005069
+ },
+ {
+  "productName": "Elite Choclate cake",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906009990712
+ },
+ {
+  "productName": "Dates Crown Buman Rs140",
+  "brandId": 54,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 6291100212606
+ },
+ {
+  "productName": "zzzzArul Upperi 200g",
+  "code": "zx",
+  "brandId": 56,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202940
+ },
+ {
+  "productName": "Arul Maduraseva200g Rs50",
+  "code": "AMV",
+  "brandId": 56,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202941
+ },
+ {
+  "productName": "Arul Mixture200gm Rs50",
+  "code": "am32",
+  "brandId": 56,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202942
+ },
+ {
+  "productName": "Arul Andheri Murukku Rs50",
+  "code": "aam",
+  "brandId": 56,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202943
+ },
+ {
+  "productName": "Arul Payar Mixture200g",
+  "brandId": 56,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202944
+ },
+ {
+  "productName": "Arul Pottato Chips Rs40",
+  "code": "ap28",
+  "brandId": 56,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202948
+ },
+ {
+  "productName": "Arul Pappada Vada Rs50",
+  "brandId": 56,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202951
+ },
+ {
+  "productName": "Arul KaraSeva200g Rs45",
+  "code": "AKV",
+  "brandId": 56,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202953
+ },
+ {
+  "productName": "Arul Swt CornFlks Mixture",
+  "brandId": 56,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202954
+ },
+ {
+  "productName": "Arul Sweet Mixture 200g Rs45",
+  "brandId": 56,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202955
+ },
+ {
+  "productName": "Arul Pakka Vada200g Rs50",
+  "code": "ap32",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202956
+ },
+ {
+  "productName": "Arul Mixture500g Rs110",
+  "code": "A110",
+  "brandId": 56,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202957
+ },
+ {
+  "productName": "Carrot",
+  "code": "vc",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202959
+ },
+ {
+  "productName": "Beans",
+  "code": "bns",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202960
+ },
+ {
+  "productName": "Cabbage",
+  "code": "cbg",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202976
+ },
+ {
+  "productName": "Mathan",
+  "code": "mtn",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202979
+ },
+ {
+  "productName": "Cheana",
+  "code": "cna",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202982
+ },
+ {
+  "productName": "Venda",
+  "code": "VV",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202985
+ },
+ {
+  "productName": "Valli payar",
+  "code": "vvp",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202986
+ },
+ {
+  "productName": "Salad Vellari",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202987
+ },
+ {
+  "productName": "Beetroot",
+  "code": "vb",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202988
+ },
+ {
+  "productName": "Paaval",
+  "code": "pv",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202989
+ },
+ {
+  "productName": "Padavalam",
+  "code": "pdm",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202990
+ },
+ {
+  "productName": "Kaay",
+  "code": "ky",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202991
+ },
+ {
+  "productName": "Tomatto A",
+  "code": "vtt",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202992
+ },
+ {
+  "productName": "Amaraika",
+  "code": "VA",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202993
+ },
+ {
+  "productName": "Kari Mulaku",
+  "code": "Vm",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202994
+ },
+ {
+  "productName": "Muringa",
+  "code": "mga",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202995
+ },
+ {
+  "productName": "Kariveppila",
+  "code": "kpa",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202996
+ },
+ {
+  "productName": "Malliyila",
+  "code": "my",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 202999
+ },
+ {
+  "productName": "Amul Tricone Chocolate Rs30",
+  "brandId": 84,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901262177139
+ },
+ {
+  "productName": "Payar A1 50kg",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203022
+ },
+ {
+  "productName": "Uzhunnu Thodan Tig 1",
+  "code": "UT",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203023
+ },
+ {
+  "productName": "Payarparupp",
+  "code": "PP",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203026
+ },
+ {
+  "productName": "Redkadala",
+  "code": "RK",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203028
+ },
+ {
+  "productName": "Vanpayar",
+  "code": "BP",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203029
+ },
+ {
+  "productName": "Mulak Loose 40kg A",
+  "code": "c",
+  "brandId": 184,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203043
+ },
+ {
+  "productName": "KS",
+  "code": "KS",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203049
+ },
+ {
+  "productName": "Ulli.B",
+  "code": "O",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203050
+ },
+ {
+  "productName": "Savala B",
+  "code": "B",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203055
+ },
+ {
+  "productName": "Kizhang",
+  "code": "P",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203056
+ },
+ {
+  "productName": "NALLENNA TIN 1 GANAPATHI LOOSE",
+  "code": "nl",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203059
+ },
+ {
+  "productName": "Chauwary",
+  "code": "CY",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203062
+ },
+ {
+  "productName": "Uppupodi(Velavan)",
+  "code": "UP",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8908001941105
+ },
+ {
+  "productName": "SODAPODI",
+  "code": "SDP",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203065
+ },
+ {
+  "productName": "Perumjeerakam",
+  "code": "PJM",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203066
+ },
+ {
+  "productName": "Vadaparupp",
+  "code": "VP",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203067
+ },
+ {
+  "productName": "COCONUT OIL LOOSE TIN",
+  "code": "cl",
+  "brandId": 81,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203068
+ },
+ {
+  "productName": "THAKID ELLU IDHAYAM 50kG",
+  "code": "TE",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203073
+ },
+ {
+  "productName": "PIRIYAN MULAKU",
+  "code": "pc",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203077
+ },
+ {
+  "productName": "Kaduk Loose",
+  "code": "KL",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203079
+ },
+ {
+  "productName": "Uluva Loose",
+  "code": "UL",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203080
+ },
+ {
+  "productName": "Jeerakam Loose",
+  "code": "JL",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203081
+ },
+ {
+  "productName": "Venus BT",
+  "code": "VBT",
+  "brandId": 179,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203085
+ },
+ {
+  "productName": "THINA",
+  "code": "TN",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203089
+ },
+ {
+  "productName": "Kera Sudhi COil 1Ltr",
+  "code": "CS1",
+  "brandId": 81,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906040620678
+ },
+ {
+  "productName": "Palm Oil Yentop 1Ltr",
+  "code": "py1",
+  "brandId": 180,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203092
+ },
+ {
+  "productName": "Palm Oil Yentop 500ML",
+  "code": "py5",
+  "brandId": 180,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203093
+ },
+ {
+  "productName": "Kera Sudhi COil 1\/2 Ltr",
+  "code": "CS5",
+  "brandId": 81,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 25680
+ },
+ {
+  "productName": "Greenpeas",
+  "code": "GP",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203095
+ },
+ {
+  "productName": "Manjal Katta",
+  "code": "MK",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203098
+ },
+ {
+  "productName": "PERIYAR SORTEX RICE50kg",
+  "code": "PSR",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203099
+ },
+ {
+  "productName": "SABEENA POWDER RS.15",
+  "code": "s8",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901523111025
+ },
+ {
+  "productName": "Kuvarak",
+  "code": "K",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203104
+ },
+ {
+  "productName": "Vellakadala A",
+  "code": "WK",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203105
+ },
+ {
+  "productName": "NIRMAL SORTEX RICE 50kg",
+  "code": "NSR",
+  "brandId": 201,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203107
+ },
+ {
+  "productName": "Kadalappinnakku Idayam Mandra50",
+  "code": "KP1",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203108
+ },
+ {
+  "productName": "PERIYAR VADI KIT 10KG",
+  "code": "PR10",
+  "brandId": 50,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203112
+ },
+ {
+  "productName": "CHAITHANYA BT",
+  "code": "btc",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203119
+ },
+ {
+  "productName": "SUREKHA GREEN LEAF 50KG",
+  "code": "sGL",
+  "brandId": 294,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203121
+ },
+ {
+  "productName": "Uruttu Uzhunnu B",
+  "code": "UD",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203124
+ },
+ {
+  "productName": "Pandiparupp",
+  "code": "PPP",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203125
+ },
+ {
+  "productName": "Payar Australia30",
+  "code": "paA",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203126
+ },
+ {
+  "productName": "Kadalaparupp",
+  "code": "KP",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203128
+ },
+ {
+  "productName": "CHANAM",
+  "code": "CNM",
+  "brandId": 2,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203130
+ },
+ {
+  "productName": "Brita Rusk50gm",
+  "code": "R12",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901063325654
+ },
+ {
+  "productName": "Mulak Loose B",
+  "code": "C2",
+  "brandId": 184,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203140
+ },
+ {
+  "productName": "Niranazhi Maida 50Kg",
+  "code": "NML",
+  "brandId": 154,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203159
+ },
+ {
+  "productName": "Niranazhi Atta 50Kg",
+  "code": "NAL",
+  "brandId": 154,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203160
+ },
+ {
+  "productName": "Sambar Paripp A",
+  "code": "SP",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203183
+ },
+ {
+  "productName": "TIRU KALLUPP IODISED (Velavan)",
+  "code": "TKP",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203189
+ },
+ {
+  "productName": "SUREKHA Diamond 50kg",
+  "code": "srd",
+  "brandId": 294,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203191
+ },
+ {
+  "productName": "Mulak 20Kg Bag A",
+  "code": "C15",
+  "brandId": 184,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203196
+ },
+ {
+  "productName": "Bran Thavidu Niranazhi",
+  "code": "bd",
+  "brandId": 154,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203199
+ },
+ {
+  "productName": "Sugar 50Kg",
+  "code": "S",
+  "brandId": 179,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203210
+ },
+ {
+  "productName": "Basmathi Postman Royal 25Kg",
+  "code": "BPR",
+  "brandId": 168,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203214
+ },
+ {
+  "productName": "Niranazhi Atta 30Kg",
+  "code": "NA25",
+  "brandId": 154,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203230
+ },
+ {
+  "productName": "Vellulli Loose I",
+  "code": "g",
+  "brandId": 179,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203237
+ },
+ {
+  "productName": "Total Wash Big Rs110",
+  "code": "TW",
+  "brandId": 59,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8908003526232
+ },
+ {
+  "productName": "PACHARI FINE 50Kg",
+  "code": "PC5",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203259
+ },
+ {
+  "productName": "GREEN LEAF JAYA RICE50kg",
+  "code": "GLR",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203265
+ },
+ {
+  "productName": "PARUTHI PINNAKKU PEA COCK 50kg",
+  "code": "Pkk",
+  "brandId": 376,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203266
+ },
+ {
+  "productName": "Paruthipinnakku Annakkili50kg",
+  "code": "ppkk",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203289
+ },
+ {
+  "productName": "Offer Vegitable Kit Rs89",
+  "code": "kv89",
+  "brandId": 16,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203295
+ },
+ {
+  "productName": "CHAMPA PACHARI 50KG.",
+  "code": "NRR5",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203305
+ },
+ {
+  "productName": "Puliyarippodi Chidhambar[meen] 50Kg",
+  "code": "ppm",
+  "brandId": 104,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203306
+ },
+ {
+  "productName": "Total Wash Small",
+  "code": "TW5",
+  "brandId": 59,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8908003526096
+ },
+ {
+  "productName": "Sarkkara 30Kg",
+  "code": "sr",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203311
+ },
+ {
+  "productName": "INDIA GATE WHITE SELLA 30Kg",
+  "code": "iws",
+  "brandId": 247,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203313
+ },
+ {
+  "productName": "Malli A",
+  "code": "M",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 203327
+ },
+ {
+  "productName": "GOAT FEED ENERGY [20KG]",
+  "code": "GF3",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203330
+ },
+ {
+  "productName": "DOPPY RICE BELL[ponni] 26KG",
+  "brandId": 487,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203338
+ },
+ {
+  "productName": "Khaima BT Rose 50Kg",
+  "code": "KBR",
+  "brandId": 192,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203347
+ },
+ {
+  "productName": "Kismis loose",
+  "code": "kls",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203359
+ },
+ {
+  "productName": "PACHARI DIAMOND 50KG",
+  "code": "pca",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203366
+ },
+ {
+  "productName": "Mammootea  500gm Rs160",
+  "code": "MM5",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906081530073
+ },
+ {
+  "productName": "Himalaya Baby Gift PacK",
+  "brandId": 187,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901138513207
+ },
+ {
+  "productName": "Himalaya B.Pow 200gm+soap",
+  "brandId": 187,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901138513153
+ },
+ {
+  "productName": "Himalaya B.Pow 400g Rs200",
+  "brandId": 187,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901138824037
+ },
+ {
+  "productName": "Himalaya B.Care Gift Jar Rs225",
+  "brandId": 187,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901138819729
+ },
+ {
+  "productName": "Himalaya B.Shmp 200ml Rs170",
+  "brandId": 187,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901138511456
+ },
+ {
+  "productName": "Himalaya B.Lotion 100ml",
+  "brandId": 187,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901138511463
+ },
+ {
+  "productName": "Enchanteur Charm talc 250gm",
+  "brandId": 317,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8888202005076
+ },
+ {
+  "productName": "Gold Winner 2 ltr Jar Rs385",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906010261092
+ },
+ {
+  "productName": "Himalaya B.Lotion 200ml",
+  "brandId": 187,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901138511470
+ },
+ {
+  "productName": "Himalaya B.Shmp100ml",
+  "brandId": 187,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901138511449
+ },
+ {
+  "productName": "Himalaya B.Cream S&G100ml",
+  "brandId": 187,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901138511494
+ },
+ {
+  "productName": "Himalaya Ref B.Soap 125g",
+  "brandId": 187,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901138825881
+ },
+ {
+  "productName": "Himalaya Gentle B.Soap",
+  "brandId": 21,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901138512606
+ },
+ {
+  "productName": "Himalaya B.Massage Oil Rs100",
+  "brandId": 21,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901138511739
+ },
+ {
+  "productName": "Himalaya Baby  Gift Pack",
+  "brandId": 187,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901138818845
+ },
+ {
+  "productName": "Himalaya Gentle B.Wipes Rs48",
+  "brandId": 187,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901138817756
+ },
+ {
+  "productName": "Himalaya Dper Rash cream Rs75",
+  "brandId": 21,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901138511432
+ },
+ {
+  "productName": "Kathirika",
+  "code": "VK",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203421
+ },
+ {
+  "productName": "Jeeram Pkt 50gm",
+  "code": "J5",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203426
+ },
+ {
+  "productName": "Kaduku Pkt 100g",
+  "code": "KKU",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203427
+ },
+ {
+  "productName": "Uluva Pkt 100g",
+  "code": "UL1",
+  "brandId": 503,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203428
+ },
+ {
+  "productName": "Masala Board Rs.30",
+  "code": "ml30",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203429
+ },
+ {
+  "productName": "EALAM PKT RS.20",
+  "code": "EP5",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203431
+ },
+ {
+  "productName": "Eveready Battery 950D Rs30",
+  "brandId": 46,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901691009445
+ },
+ {
+  "productName": "Himalaya B.Cream 50ml",
+  "brandId": 21,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901138511487
+ },
+ {
+  "productName": "Himalaya B.Wipes 72N Rs200",
+  "brandId": 187,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901138513184
+ },
+ {
+  "productName": "Surf Excel Matic 500g  WP TL Rs112",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030555992
+ },
+ {
+  "productName": "Palmolive Foming HW Raspb 250ml",
+  "brandId": 18,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901314006158
+ },
+ {
+  "productName": "Tiger Dhum Biriyani Flavour 18ml",
+  "code": "TDB",
+  "brandId": 100,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904057501508
+ },
+ {
+  "productName": "Tiger Orange Red F 10g",
+  "brandId": 67,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904057500105
+ },
+ {
+  "productName": "Kismis Board Rs30",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203491
+ },
+ {
+  "productName": "True Vermicelli 350gm Rs 35",
+  "code": "t35",
+  "brandId": 202,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 89060010395131
+ },
+ {
+  "productName": "Coconut",
+  "code": "co",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203495
+ },
+ {
+  "productName": "Parle G Rs10",
+  "code": "pg",
+  "brandId": 361,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901719119132
+ },
+ {
+  "productName": "Umikari",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203500
+ },
+ {
+  "productName": "Tiger Vanilla Essence Rs32",
+  "brandId": 100,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904057500211
+ },
+ {
+  "productName": "Vilaku Thiri",
+  "code": "vt",
+  "brandId": 2,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203502
+ },
+ {
+  "productName": "Sodapodi Pkt 100g",
+  "code": "sd",
+  "brandId": 108,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203507
+ },
+ {
+  "productName": "Suja Pappadam Rs.24",
+  "brandId": 96,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203511
+ },
+ {
+  "productName": "Elite Chakki Atta 1kg",
+  "brandId": 17,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906007240031
+ },
+ {
+  "productName": "EALAM LOOSE",
+  "code": "ea",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203520
+ },
+ {
+  "productName": "PATTA",
+  "code": "PTA",
+  "brandId": 108,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203523
+ },
+ {
+  "productName": "GRAMPU LOOSE",
+  "code": "GU",
+  "brandId": 108,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203524
+ },
+ {
+  "productName": "THAKKOLAM",
+  "code": "TM",
+  "brandId": 108,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203525
+ },
+ {
+  "productName": "Kasakasa Loose",
+  "code": "KSK",
+  "brandId": 108,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203526
+ },
+ {
+  "productName": "KTR ROSE WATER RS67",
+  "code": "KTR40",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8501400325592
+ },
+ {
+  "productName": "TIGER PINAPPLE ESSANCE",
+  "code": "PE",
+  "brandId": 100,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904057500204
+ },
+ {
+  "productName": "Kalkkand White Crystal Loose",
+  "brandId": 11,
+  "categoryId": 2,
+  "primaryUnitId": 1,
+  "barCode": 203531
+ },
+ {
+  "productName": "Lg Kayam Katta 100G",
+  "code": "lg142",
+  "brandId": 503,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 840222000118
+ },
+ {
+  "productName": "Lg Kayampodi 50g",
+  "code": 75,
+  "brandId": 503,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 840222000149
+ },
+ {
+  "productName": "Lg Kayam Katta 50g",
+  "code": 78,
+  "brandId": 503,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 840222000101
+ },
+ {
+  "productName": "Lg Kayampodi 100g",
+  "code": "lg",
+  "brandId": 503,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 840222000156
+ },
+ {
+  "productName": "Lg Kayampodi 200g",
+  "code": 246,
+  "brandId": 503,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 840222000163
+ },
+ {
+  "productName": "Charminar filter Rs40",
+  "code": "cf",
+  "brandId": 190,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901647026311
+ },
+ {
+  "productName": "Omam",
+  "code": "om",
+  "brandId": 108,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203545
+ },
+ {
+  "productName": "Jathi pathri",
+  "code": "jp",
+  "brandId": 108,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203549
+ },
+ {
+  "productName": "Sajeerakam",
+  "code": "sjm",
+  "brandId": 108,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203550
+ },
+ {
+  "productName": "Leaf Big(JIO)",
+  "code": "lb",
+  "brandId": 103,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203553
+ },
+ {
+  "productName": "Eastern Kashmiri Chilli 250g Rs",
+  "code": "ekc25",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440023432
+ },
+ {
+  "productName": "Five Star Tea 250g Rs80",
+  "code": "fs25",
+  "brandId": 76,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906081530028
+ },
+ {
+  "productName": "Lifebuoy Natural HW 3No Combo",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030904479
+ },
+ {
+  "productName": "Suja Rs.240",
+  "code": "sp140",
+  "brandId": 96,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203577
+ },
+ {
+  "productName": "Parle Krack Jack Rs.10",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901719120954
+ },
+ {
+  "productName": "Haldirams Soan Papdi Cardamom 250g",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904004405415
+ },
+ {
+  "productName": "Haldirams Soan Papdi Coconut 250g",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904004405019
+ },
+ {
+  "productName": "Winkies Novo Choco Muffins Rs.60",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906005618412
+ },
+ {
+  "productName": "Parle Melody Chocolatey Rs.50",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901719127786
+ },
+ {
+  "productName": "Parle Kacha Mango Bite Rs.50",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901719127748
+ },
+ {
+  "productName": "Parle Orange Bite Rs.50",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901719119293
+ },
+ {
+  "productName": "Avt Tea Bag Rs140",
+  "brandId": 28,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902042113439
+ },
+ {
+  "productName": "Candyman Eclairs Rs.50",
+  "brandId": 33,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725004262
+ },
+ {
+  "productName": "Soyaball Loose",
+  "code": "sy",
+  "brandId": 108,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203624
+ },
+ {
+  "productName": "Mammootea 1Kg Rs 320",
+  "code": "mm1",
+  "brandId": 76,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906081530066
+ },
+ {
+  "productName": "Brita GoodDay Cashiew Rs50",
+  "code": "g50",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901063093294
+ },
+ {
+  "productName": "Nallenna 5L Kannas",
+  "code": "nlk",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203630
+ },
+ {
+  "productName": "Hit Cik Red 125ml Rs75",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901157025255
+ },
+ {
+  "productName": "Hit Cik Black 625ml",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901157025170
+ },
+ {
+  "productName": "No 1 Rose WaterAlmond 3+1 Fre Rs40",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901023028663
+ },
+ {
+  "productName": "Radhas Ays Soap 100g Rs30",
+  "brandId": 53,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906001031215
+ },
+ {
+  "productName": "Arafa Cha.PuttuPodi 4 1\/2K Rs390",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203651
+ },
+ {
+  "productName": "Anu’s Health Mix Pkt",
+  "code": "hm88",
+  "brandId": 179,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904406126475
+ },
+ {
+  "productName": "Fruti Fruiti Loose",
+  "code": "ff",
+  "brandId": 108,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203654
+ },
+ {
+  "productName": "Kayes Vinager  500ml Rs.23",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203656
+ },
+ {
+  "productName": "Eastern Kashmiri Chilli 100g Rs",
+  "code": "ekc",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440023210
+ },
+ {
+  "productName": "Unibic Cashew Cookies 150g",
+  "brandId": 73,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906009072906
+ },
+ {
+  "productName": "Pampers BD S9pads Rs99",
+  "code": "S99",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4902430899499
+ },
+ {
+  "productName": "Periyar Vadi Kit 5kg",
+  "code": "pvr5",
+  "brandId": 50,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203689
+ },
+ {
+  "productName": "Triveni 3in1",
+  "code": "ta10",
+  "brandId": 16,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906010180119
+ },
+ {
+  "productName": "Fiama Men Set Soap Rs225",
+  "brandId": 329,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8905110001287
+ },
+ {
+  "productName": "Haldirams Gulab Jamun",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904004405934
+ },
+ {
+  "productName": "Winkies SwissRoll Choco 185g Rs90",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906005618030
+ },
+ {
+  "productName": "Winkies SwissRoll Strwbry 185g Rs90",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906005618238
+ },
+ {
+  "productName": "Haldirams Orng Soan Treat 250g",
+  "brandId": 25,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904004405514
+ },
+ {
+  "productName": "Parle Hide&seek 200g Rs40",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901719100079
+ },
+ {
+  "productName": "Nivea Men All In1FW Rs.125",
+  "brandId": 348,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4005808919604
+ },
+ {
+  "productName": "Exo Round 250g",
+  "code": "e30",
+  "brandId": 23,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102160137
+ },
+ {
+  "productName": "Cadbry Dairy milk Chocolate Rs40",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 7622201725211
+ },
+ {
+  "productName": "Cadbry Dairymilk Rs10",
+  "code": "cd10",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901233030548
+ },
+ {
+  "productName": "Cadbry FiveStar Rs10",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 7622201494476
+ },
+ {
+  "productName": "Kinder Joy Natoons Rs45",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 80916628
+ },
+ {
+  "productName": "Parle Monaco Rs.10",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901719121432
+ },
+ {
+  "productName": "WinkesMarble Sliced Cake Rs30",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906005618177
+ },
+ {
+  "productName": "Winkies Chocolate Cake Rs30",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906005618368
+ },
+ {
+  "productName": "Winkies Fruit Cake Rs30",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906005618351
+ },
+ {
+  "productName": "Winkies Centre Filled Cho",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906005618153
+ },
+ {
+  "productName": "Lizol neem 200ml",
+  "code": "l38",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901396147008
+ },
+ {
+  "productName": "Lizol floral 200ml Rs40",
+  "code": "l40",
+  "brandId": 35,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901396147008
+ },
+ {
+  "productName": "Tissue  polo Papper Rs26",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8908004656273
+ },
+ {
+  "productName": "Candle Mary 20*6 Rs9",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203815
+ },
+ {
+  "productName": "Khaima BT Rice 50kg [3 Deer]",
+  "code": "kbt",
+  "brandId": 192,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203818
+ },
+ {
+  "productName": "Candle Cow Brand Rs95 [Mrp3]",
+  "brandId": 79,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203827
+ },
+ {
+  "productName": "Pampers Pants Small Rs20",
+  "code": "p20",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4987176071323
+ },
+ {
+  "productName": "Rubber Band",
+  "code": "ru",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203843
+ },
+ {
+  "productName": "Elite Rich Plum Cake Rs190",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906009991160
+ },
+ {
+  "productName": "Asian Sweet bread Rs35",
+  "brandId": 80,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203859
+ },
+ {
+  "productName": "Asian Bread Long Loaf Rs45",
+  "brandId": 80,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203860
+ },
+ {
+  "productName": "Big Shoper Eco Friendely",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203864
+ },
+ {
+  "productName": "Arul Masala Kappalandi Rs50",
+  "brandId": 56,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203868
+ },
+ {
+  "productName": "Gold Flake Kings Blue Rs165",
+  "code": "gfb",
+  "brandId": 33,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725014612
+ },
+ {
+  "productName": "Sunfeast Dark Fantasy Bourbon Rs20",
+  "brandId": 33,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725114367
+ },
+ {
+  "productName": "Brita Good Day Butter Rs25",
+  "brandId": 200,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901063092495
+ },
+ {
+  "productName": "Wash Brush spoon Big35",
+  "brandId": 195,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203891
+ },
+ {
+  "productName": "Emami Fair&Handsome Crm Rs30",
+  "brandId": 38,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901248253161
+ },
+ {
+  "productName": "Yardley EnglishLavndr 3X100g",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8903105011600
+ },
+ {
+  "productName": "Emami Fair&Handsome Rs80",
+  "brandId": 38,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901248253109
+ },
+ {
+  "productName": "Amul Mithai Mate 200G",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901262120005
+ },
+ {
+  "productName": "Amul Strawbery Magic 1L",
+  "brandId": 84,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901262175135
+ },
+ {
+  "productName": "Amul Frostic Rs12",
+  "brandId": 84,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901262177047
+ },
+ {
+  "productName": "Amul Zafrani Rs120",
+  "brandId": 84,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901262173742
+ },
+ {
+  "productName": "Amul Orange Salsa Rs200",
+  "brandId": 84,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901262174121
+ },
+ {
+  "productName": "Amul Vanila 40ml Cup Rs10",
+  "brandId": 84,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 203948
+ },
+ {
+  "productName": "Nutrine Lollipop Rs 350",
+  "code": "NL350",
+  "brandId": 226,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901071702751
+ },
+ {
+  "productName": "Lora Misty Musk 125g Rs25",
+  "brandId": 86,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906059040641
+ },
+ {
+  "productName": "Lora Jasmine 125g Rs 25",
+  "brandId": 86,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 155
+ },
+ {
+  "productName": "Lora Neem & Tulsi 100g",
+  "brandId": 86,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906059040665
+ },
+ {
+  "productName": "Swish Blade Rs200",
+  "code": "sbd",
+  "brandId": 86,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901106102310
+ },
+ {
+  "productName": "Tiger Balm Red  Rs47",
+  "brandId": 327,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8888650419029
+ },
+ {
+  "productName": "Tang Orange 75G Rs30",
+  "code": 30,
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 7622201781033
+ },
+ {
+  "productName": "Swapnam Soap Sandal  Rs20",
+  "brandId": 53,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904077700417
+ },
+ {
+  "productName": "Nirma Bath Soap Saffron Rs10",
+  "code": "NSS",
+  "brandId": 53,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901108173127
+ },
+ {
+  "productName": "Thanima Orange Concentrate Rs42",
+  "code": "toc",
+  "brandId": 42,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204028
+ },
+ {
+  "productName": "Thanima Mango Concentrate Rs42",
+  "code": "tmc",
+  "brandId": 42,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204029
+ },
+ {
+  "productName": "Thanima Pinapple Concentrate Rs40",
+  "brandId": 42,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204030
+ },
+ {
+  "productName": "Amul Mawamalai Rs20",
+  "brandId": 84,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901262176477
+ },
+ {
+  "productName": "Amul Pista Koolfi Rs20",
+  "brandId": 84,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901262176446
+ },
+ {
+  "productName": "Amul novelties Tub Rs150",
+  "brandId": 84,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901262178082
+ },
+ {
+  "productName": "Amul ice cream Rs15",
+  "brandId": 84,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204043
+ },
+ {
+  "productName": "Thayiru Mulak Pkt Rs 12",
+  "brandId": 88,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204048
+ },
+ {
+  "productName": "Lizol Sandal 500 ml",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901396112501
+ },
+ {
+  "productName": "Yardley Sandal wood 250g Talc",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8903105010429
+ },
+ {
+  "productName": "Kelloggs Corn Flakes Strbry",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901499008381
+ },
+ {
+  "productName": "Medimix Herbal HW all Rs.70",
+  "code": "mh70",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906057531233
+ },
+ {
+  "productName": "Cuticura Pink Passion 100g Rs95",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904018300799
+ },
+ {
+  "productName": "Apsara Pl. Rs60",
+  "code": "a60",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901324055795
+ },
+ {
+  "productName": "Nataraj Picture Pencil Rs.35",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901324006971
+ },
+ {
+  "productName": "Vim Liquid Lemons 250ml",
+  "code": "V55",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030760624
+ },
+ {
+  "productName": "Haldirams Soan Papadi Cardamom 250G",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904004405316
+ },
+ {
+  "productName": "Tang Mango 100G Rs30",
+  "code": "tm30",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 7622201780678
+ },
+ {
+  "productName": "Lora Milky Almond 100gm",
+  "brandId": 320,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906059040603
+ },
+ {
+  "productName": "Lora Sandal Soap100gm",
+  "brandId": 86,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906059040658
+ },
+ {
+  "productName": "STar Plus LotionLiquid Rs70",
+  "brandId": 93,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906088051144
+ },
+ {
+  "productName": "Banjaras Multani Mitti FacePack",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906050590015
+ },
+ {
+  "productName": "Banjaras Black Henna",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906050592460
+ },
+ {
+  "productName": "Jeeram Pkt 100gm",
+  "code": "j1",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204214
+ },
+ {
+  "productName": "Yardley Jasmine Body Spray Rs209",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8903105000055
+ },
+ {
+  "productName": "7UP Bottle 2Ltr Rs99",
+  "brandId": 94,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902080304080
+ },
+ {
+  "productName": "Malar Pooja 10kg Bag",
+  "code": "mlr",
+  "brandId": 8,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204270
+ },
+ {
+  "productName": "Kazhuthan",
+  "code": "ktn",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204271
+ },
+ {
+  "productName": "Mango",
+  "code": "mng",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204272
+ },
+ {
+  "productName": "Nellikka",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204273
+ },
+ {
+  "productName": "Chemb",
+  "code": "cmb",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204274
+ },
+ {
+  "productName": "Brita Milk Bikis 160g",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901063012592
+ },
+ {
+  "productName": "Oreo Choco Cream Rs 35",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 7622201762742
+ },
+ {
+  "productName": "Perk Rs 10",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 7622201150440
+ },
+ {
+  "productName": "Vicks Vaporub 50ml",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4987176123916
+ },
+ {
+  "productName": "Vilaku Thiri Big",
+  "code": "vtb",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204287
+ },
+ {
+  "productName": "Naranga loose",
+  "code": "cn",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204288
+ },
+ {
+  "productName": "Soyaball 20pkt Rs12",
+  "brandId": 108,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906065400125
+ },
+ {
+  "productName": "Cherrry Loose",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204314
+ },
+ {
+  "productName": "Tide Bar Rs 20",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4987176072214
+ },
+ {
+  "productName": "Tide Bar Blue Rs10",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4987176161673
+ },
+ {
+  "productName": "Oral B  Brush Rs49",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4987176138835
+ },
+ {
+  "productName": "Maggi Noodles 280gm",
+  "code": "M44",
+  "brandId": 1,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058891430
+ },
+ {
+  "productName": "Maggi Noodles",
+  "code": "m11",
+  "brandId": 354,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058891416
+ },
+ {
+  "productName": "Bhasmam Pkt Rs.10",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204358
+ },
+ {
+  "productName": "Capsica",
+  "code": "cp",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204359
+ },
+ {
+  "productName": "Vellari",
+  "code": "vvv",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204360
+ },
+ {
+  "productName": "Apple B",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204361
+ },
+ {
+  "productName": "Orange A",
+  "code": "of",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204362
+ },
+ {
+  "productName": "Mango Pulp 3.1Kg TP",
+  "brandId": 74,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906063510093
+ },
+ {
+  "productName": "Sunfeast Bounce PineAple Rs10",
+  "brandId": 357,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725003104
+ },
+ {
+  "productName": "Sunfeast Bounce P&Zing 100g Rs10",
+  "brandId": 33,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725134785
+ },
+ {
+  "productName": "Cobra Eau De Perfum 30ml Rs150",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906010081195
+ },
+ {
+  "productName": "Thondan Mulaku",
+  "code": "VTM",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204373
+ },
+ {
+  "productName": "Mathala Naranga",
+  "code": "mn",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204375
+ },
+ {
+  "productName": "Dabur Herbal TP 200gm",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901207001215
+ },
+ {
+  "productName": "Pacha Thakkali",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204396
+ },
+ {
+  "productName": "Vazhuthana",
+  "code": "vz",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204397
+ },
+ {
+  "productName": "Dabur Herbal TP 100gm Rs50",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901207000775
+ },
+ {
+  "productName": "Dabur Herbal TP 50gm Rs20",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901207000768
+ },
+ {
+  "productName": "Dabur Red P Teeth & Gum100g",
+  "brandId": 102,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901207027253
+ },
+ {
+  "productName": "Dabur Babool TP 60gm Rs 10",
+  "brandId": 102,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901207040719
+ },
+ {
+  "productName": "Dabur Amla Hair Oil 275ml",
+  "code": 138,
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901207038396
+ },
+ {
+  "productName": "Dabur Amla Hair Oil 180ml Rs90",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901207038389
+ },
+ {
+  "productName": "Dabur Amla Hair Oil 90 ml Rs47",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 89009550
+ },
+ {
+  "productName": "Dabur Almond HairOil  Rs20",
+  "code": "da20",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 89009499
+ },
+ {
+  "productName": "Dabur Honey 500gm Rs",
+  "brandId": 102,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901207025372
+ },
+ {
+  "productName": "Dabur Honey 1kg Rs430",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901207025389
+ },
+ {
+  "productName": "Dabur Honey 100gm Rs",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901207005374
+ },
+ {
+  "productName": "Dabur Honey 50gm Rs",
+  "code": "d38",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901207045370
+ },
+ {
+  "productName": "Dabur Chyawanprash 500gm Rs195",
+  "brandId": 102,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901207036989
+ },
+ {
+  "productName": "Dabur Almond Hair Oil Rs 65",
+  "code": "D65",
+  "brandId": 102,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901207026485
+ },
+ {
+  "productName": "Dabur Gulabari Rose water250ml",
+  "brandId": 102,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901207040801
+ },
+ {
+  "productName": "Dabur Gulabari Rose water 120ml",
+  "brandId": 102,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901207040795
+ },
+ {
+  "productName": "Apple Golden(Fruits)",
+  "code": "FAB",
+  "brandId": 99,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204433
+ },
+ {
+  "productName": "Colgate Zig Zag Buy 2 Get 1 Rs70",
+  "brandId": 18,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901314116420
+ },
+ {
+  "productName": "Colgate Cibaca 1-2-3 Rs",
+  "brandId": 18,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901314088024
+ },
+ {
+  "productName": "Colgate Sensitive Buy 2 Get 1 Rs110",
+  "brandId": 18,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901314117250
+ },
+ {
+  "productName": "Lux Soap",
+  "code": "lx30",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030837906
+ },
+ {
+  "productName": "Fair&Lovely Soap Rs10",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030823381
+ },
+ {
+  "productName": "JO Lime Set Soap Rs30",
+  "brandId": 226,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904027306249
+ },
+ {
+  "productName": "Pril Active Liquid 140ml",
+  "brandId": 228,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102161202
+ },
+ {
+  "productName": "Suraj Palada Rs35",
+  "brandId": 438,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8908004252000
+ },
+ {
+  "productName": "Leaf Big camel",
+  "brandId": 103,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204457
+ },
+ {
+  "productName": "Candle Cow Karthika Rs30(16x20)",
+  "code": "cc30",
+  "brandId": 79,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204480
+ },
+ {
+  "productName": "Amul King Alfonso Gold 1Lt Rs235",
+  "brandId": 331,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901262175029
+ },
+ {
+  "productName": "Amul fruit nut 500ml Rs110",
+  "brandId": 84,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 1567
+ },
+ {
+  "productName": "Mathalam (Fruits)",
+  "brandId": 99,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204493
+ },
+ {
+  "productName": "KPN Dantadhavanachoornam Rs10",
+  "brandId": 26,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906007750172
+ },
+ {
+  "productName": "Candyman Cho Duble Eclairs Rs100",
+  "brandId": 33,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725144104
+ },
+ {
+  "productName": "Dish Gold 500gm+free scrubber Rs48",
+  "brandId": 67,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8908014162061
+ },
+ {
+  "productName": "Act Popcorn Classic Salted",
+  "brandId": 345,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901512540102
+ },
+ {
+  "productName": "Act Popcorn Golden Sizzle",
+  "brandId": 345,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901512540201
+ },
+ {
+  "productName": "Act popcorn chilly surprise",
+  "brandId": 345,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901512540409
+ },
+ {
+  "productName": "Seevakizhagu loose",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204518
+ },
+ {
+  "productName": "Eastern Chukku Kappi 100g Rs",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440201458
+ },
+ {
+  "productName": "Eastern Dry Ginger Powdr 100g",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440023425
+ },
+ {
+  "productName": "Eastern Fish Fry masala Rs10",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440206088
+ },
+ {
+  "productName": "Eastern Meat Ularthu masala 100g Rs36",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440206293
+ },
+ {
+  "productName": "Eastern Fennel Powdr 100g Rs",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440023364
+ },
+ {
+  "productName": "Eastern Masala powder Rs 10",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440205029
+ },
+ {
+  "productName": "Eastern fenugreek powder 100g Rs24",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440023388
+ },
+ {
+  "productName": "Eastern Chilly Chicken Masala 100G",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440206309
+ },
+ {
+  "productName": "Eastern Egg masala 100g",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440013594
+ },
+ {
+  "productName": "Eastern Pepper Chiken Masala 100g Rs44",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440206286
+ },
+ {
+  "productName": "Eastern muttan masala 50gm Rs 18.50",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440013822
+ },
+ {
+  "productName": "Eastern Brahmin Sambar Powder 100g",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440206958
+ },
+ {
+  "productName": "Eastern Chana masala 100g Rs49.5",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440013167
+ },
+ {
+  "productName": "Eastern Cumin Powdr 100g",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440023258
+ },
+ {
+  "productName": "Dish Gold 250gm+free scrubber Rs 30",
+  "code": "dg30",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8908014162023
+ },
+ {
+  "productName": "Crust &Crumb Custard Pwdr Vnla",
+  "brandId": 352,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906034900212
+ },
+ {
+  "productName": "Crust&Crumb Pista ice cream mix Rs40",
+  "brandId": 352,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906034900038
+ },
+ {
+  "productName": "Crust&crumb Strawberry Ice cream Mix Rs40",
+  "brandId": 352,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906034900021
+ },
+ {
+  "productName": "Poppins Rs5",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901719210129
+ },
+ {
+  "productName": "Ujala Crisp & Shine FB 500g",
+  "brandId": 228,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102125655
+ },
+ {
+  "productName": "Prill Liq Green 225ml Rs55",
+  "brandId": 12,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102163688
+ },
+ {
+  "productName": "Prill Liquid Lime 225ml",
+  "brandId": 12,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102160687
+ },
+ {
+  "productName": "Colgate Extra Clean Brush Rs20",
+  "brandId": 18,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901314117236
+ },
+ {
+  "productName": "Coli Flower",
+  "code": "cr",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204603
+ },
+ {
+  "productName": "Red Egg",
+  "code": "re",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204614
+ },
+ {
+  "productName": "Athakkai",
+  "code": "aka",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204619
+ },
+ {
+  "productName": "Amul Combo GreenPista750ml(1+1)",
+  "brandId": 84,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 890262171588
+ },
+ {
+  "productName": "Amul Mango Icecreame 1+1",
+  "brandId": 84,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901262172424
+ },
+ {
+  "productName": "Lux Set Soap 150g",
+  "code": 160,
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030836725
+ },
+ {
+  "productName": "PINAPPLE [Fruits]",
+  "code": "FPI",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204668
+ },
+ {
+  "productName": "Exo Bar 300g",
+  "brandId": 23,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102195269
+ },
+ {
+  "productName": "Lora Lavendersoap 100gm",
+  "code": "L20",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906059040634
+ },
+ {
+  "productName": "Sankaran Cake 800gm+400g Rs 260",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204696
+ },
+ {
+  "productName": "Kozhi  Theeta Starter(Krishi)",
+  "code": 1,
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204697
+ },
+ {
+  "productName": "Kozhi Theeta Layar mash(Krishi)",
+  "code": "kt",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204698
+ },
+ {
+  "productName": "Kozhi Theeta Grower (Krishi)",
+  "code": "ktg",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204699
+ },
+ {
+  "productName": "Kozhi Theeta Layar Pellet (Krishi)",
+  "code": "kt1",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204700
+ },
+ {
+  "productName": "Goat & Sheep (Krishi)",
+  "code": "gf1",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204701
+ },
+ {
+  "productName": "Cadbry Dairmilk SW Hazelnut Rs.85",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 7622201761738
+ },
+ {
+  "productName": "Cadbry FiveStar Rs.5",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901233020273
+ },
+ {
+  "productName": "Cadbry FiveStar Rs20",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 7622201150419
+ },
+ {
+  "productName": "Lifebouy Color Chng HW 200ml Rs95",
+  "code": "l95",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030840791
+ },
+ {
+  "productName": "Parle Melody Cho Pkt Rs100",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901719127793
+ },
+ {
+  "productName": "Ujala Crisp & Shine FB 100gm",
+  "code": "ss30",
+  "brandId": 228,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102125648
+ },
+ {
+  "productName": "Candyman Fruitee fun Pkt Rs 50",
+  "brandId": 33,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725106782
+ },
+ {
+  "productName": "Himalaya Gentle Baby Wipes Rs85",
+  "brandId": 21,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901138513177
+ },
+ {
+  "productName": "Kissan Mixed Fruit Jam 700gm",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030831720
+ },
+ {
+  "productName": "Knor Tomatto Chatpata Soup Rs10",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030757501
+ },
+ {
+  "productName": "Knor Sweet Corn Veg Soup Rs10",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030518232
+ },
+ {
+  "productName": "Knor Hot & Sour Soup Rs10",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030555442
+ },
+ {
+  "productName": "Knor Manchow Veg Soup Rs10",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030530333
+ },
+ {
+  "productName": "Kismiss Boad Rs12 [10NO]",
+  "code": "K10",
+  "brandId": 2,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204763
+ },
+ {
+  "productName": "Fair & lovely Fairness FW Rs60",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030538728
+ },
+ {
+  "productName": "Frames Mixed",
+  "code": "FM",
+  "brandId": 28,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204783
+ },
+ {
+  "productName": "Paaval White",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204785
+ },
+ {
+  "productName": "Grapes Sarath (Fruits)",
+  "code": "FG",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204786
+ },
+ {
+  "productName": "Nice Day Badam Milk Shake Rs147",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204792
+ },
+ {
+  "productName": "Tiger Badam Mix Rs35",
+  "brandId": 334,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904057500143
+ },
+ {
+  "productName": "Tiger Pista Elachi Mix 20ML",
+  "brandId": 334,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904057500150
+ },
+ {
+  "productName": "Crust&Crumb Vanila Icecream mix 100g Rs40",
+  "brandId": 352,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906034900007
+ },
+ {
+  "productName": "Cream Cake 1Kg",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204821
+ },
+ {
+  "productName": "Parachute Advanced Aloe Vera Rs40",
+  "brandId": 360,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901088080262
+ },
+ {
+  "productName": "Gillete Guard Rs 50",
+  "code": "gg50",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4902430666589
+ },
+ {
+  "productName": "Milma Butter 100g Rs51",
+  "brandId": 5,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906033400218
+ },
+ {
+  "productName": "Amul ice cream Rs45",
+  "brandId": 84,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901262177191
+ },
+ {
+  "productName": "Ujala Crisp & Shine FF 100g",
+  "brandId": 228,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102125709
+ },
+ {
+  "productName": "Whisper UC XL40Pads RS290",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4987176126207
+ },
+ {
+  "productName": "REd Bannana",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204858
+ },
+ {
+  "productName": "Stayfree Dry Max XL 7 Pads Rs78",
+  "brandId": 19,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901012165683
+ },
+ {
+  "productName": "Pepsodent Superior Power 200g",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030837982
+ },
+ {
+  "productName": "Pepsodent Clove&Salt 100g Rs52",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030862076
+ },
+ {
+  "productName": "Bru Ins Rs5",
+  "code": "bru",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030907104
+ },
+ {
+  "productName": "Crust & Crumb Corn Flour 100g",
+  "brandId": 352,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906034901011
+ },
+ {
+  "productName": "Crust&Crumb Baking Powder 100g",
+  "brandId": 352,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906034900281
+ },
+ {
+  "productName": "Thanni Mathan Kiran [Fruits]",
+  "code": "FTM",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204929
+ },
+ {
+  "productName": "Odonil Jasmine Mist",
+  "code": "od50",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901207029912
+ },
+ {
+  "productName": "Odonil Lavender Meadows",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901207029899
+ },
+ {
+  "productName": "Odonil Lavender  Rs 80",
+  "brandId": 102,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901207030079
+ },
+ {
+  "productName": "Odonil Rose Garden Room Spray171ml",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901207027932
+ },
+ {
+  "productName": "Cheeni Mavu [Avaloose podi] Loose",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204955
+ },
+ {
+  "productName": "JO Almond & Cream Rs 10",
+  "brandId": 85,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904027306058
+ },
+ {
+  "productName": "Kuthuvilakku Maida 30Kg",
+  "code": "km25",
+  "brandId": 183,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204968
+ },
+ {
+  "productName": "Amulya DW 1kg Rs",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901262090315
+ },
+ {
+  "productName": "Pups Egg",
+  "brandId": 120,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204983
+ },
+ {
+  "productName": "Pups Banana",
+  "brandId": 120,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 204984
+ },
+ {
+  "productName": "Kera Coconut Oil 1\/2Ltr Rs95",
+  "code": "kr5",
+  "brandId": 52,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205005
+ },
+ {
+  "productName": "masala Pkt 12\/[Deepam]",
+  "code": "ml10",
+  "brandId": 88,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205012
+ },
+ {
+  "productName": "Banjara’s Natural Henna 100g",
+  "brandId": 120,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906050593528
+ },
+ {
+  "productName": "Horlicks Pkt RS5",
+  "code": "h6",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030824128
+ },
+ {
+  "productName": "Ullipoo",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205029
+ },
+ {
+  "productName": "Amul king alfonsa Mango  Rs 230",
+  "code": "m230",
+  "brandId": 84,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901262174144
+ },
+ {
+  "productName": "Brita Dairy Whit 400g Rs180",
+  "code": "b174",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901063402270
+ },
+ {
+  "productName": "Dates Al Gerian Loose 5kg",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205055
+ },
+ {
+  "productName": "Surf Excel Easy Wash 500G",
+  "code": "sx",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030850479
+ },
+ {
+  "productName": "Lifebouy Soap Blue",
+  "code": "ls10",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030853692
+ },
+ {
+  "productName": "LifeLine Sugarfree Vanila Biscuits Rs50",
+  "brandId": 112,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 749666296722
+ },
+ {
+  "productName": "Pulari Rice Bran Oil 100ml Rs23",
+  "brandId": 29,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4854896
+ },
+ {
+  "productName": "Wills Rs110",
+  "code": "w",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205086
+ },
+ {
+  "productName": "Whisper Choice Ultra 6pads Rs42",
+  "code": "w42",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4987176076816
+ },
+ {
+  "productName": "Peraykka [Fruits] A",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205108
+ },
+ {
+  "productName": "PARUTHI PINNAKKU ANNAM 50KG",
+  "code": "ppk",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205109
+ },
+ {
+  "productName": "Rat Box Net med",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205117
+ },
+ {
+  "productName": "Table Wipper small",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205123
+ },
+ {
+  "productName": "Parachute Oil 25ml Rs10",
+  "code": "p10",
+  "brandId": 360,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 89007426
+ },
+ {
+  "productName": "Kozhi Theeta Finisher (Krishi)",
+  "code": "ktf",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205149
+ },
+ {
+  "productName": "Godrej Shaving Cream Cool Methol Rs25",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901023004445
+ },
+ {
+  "productName": "Gk Maha Jumbo Rs35",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901157004205
+ },
+ {
+  "productName": "Act Popcorn Magic Butter",
+  "brandId": 412,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901512540805
+ },
+ {
+  "productName": "Kovakai",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205158
+ },
+ {
+  "productName": "Arul Boodi Rs 50",
+  "brandId": 56,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205165
+ },
+ {
+  "productName": "Classm.2line Note 92 pg sft1004 Rs17",
+  "code": "cm15",
+  "brandId": 49,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902519010049
+ },
+ {
+  "productName": "Vegitable Kit Rs",
+  "code": "vk80",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205183
+ },
+ {
+  "productName": "Family Mat 1st.RS135",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205187
+ },
+ {
+  "productName": "Sukandhamallika Agarbathy Rs10",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901751003048
+ },
+ {
+  "productName": "Lays RED Tomato Rs5",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901491502047
+ },
+ {
+  "productName": "Lays YELLOW Classic Salted Rs 5",
+  "code": "y5",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901491502016
+ },
+ {
+  "productName": "Lays Hot & Sweet Chillies Rs5",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901491502054
+ },
+ {
+  "productName": "Lays  GREEN ASCO Rs5",
+  "code": "g5",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901491502030
+ },
+ {
+  "productName": "Lays BLUE Magic Masala Rs5",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901491502023
+ },
+ {
+  "productName": "Nambisan’s Ghee 200ml Rs195",
+  "brandId": 112,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904076000037
+ },
+ {
+  "productName": "Nambisan’s Ghee 50ml Rs55",
+  "brandId": 112,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904076000013
+ },
+ {
+  "productName": "Corn Flakes Real Almnd Hney",
+  "code": "C145",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901499008343
+ },
+ {
+  "productName": "Dyna Sandal& Saffrom  4 pc",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904000952098
+ },
+ {
+  "productName": "Dyna Milk & Real Rose set",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904000952203
+ },
+ {
+  "productName": "Palm Oil Yentop 5Kg",
+  "code": "PY15",
+  "brandId": 180,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205231
+ },
+ {
+  "productName": "Thayiru Mulak Loose",
+  "code": "tml",
+  "brandId": 108,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205235
+ },
+ {
+  "productName": "Perk Rs5",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901233024042
+ },
+ {
+  "productName": "Brita 50-50 Maska Chaska Rs10",
+  "brandId": 200,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901063017627
+ },
+ {
+  "productName": "KPN Herb Paste Gel Mint 40g",
+  "brandId": 26,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906007750141
+ },
+ {
+  "productName": "Rexona Men Roll Rs135",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030568114
+ },
+ {
+  "productName": "Lg Kayam Katta 200g",
+  "code": "lg282",
+  "brandId": 503,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 840222000125
+ },
+ {
+  "productName": "Kuthuvilakku Maida 50Kg",
+  "code": "KV50",
+  "brandId": 183,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205255
+ },
+ {
+  "productName": "Eyetex Dazller Talc 400g Rs150",
+  "brandId": 116,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906029309013
+ },
+ {
+  "productName": "Whisper Choice Exra Long Rs36",
+  "code": "w36",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4902430330572
+ },
+ {
+  "productName": "Whisper Hygiene+Comfort XL",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4987176136015
+ },
+ {
+  "productName": "Banjaras Rose Water( Rs",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906050591807
+ },
+ {
+  "productName": "Gillete 7Clock  Stainles Rs24",
+  "code": "g24",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4902430801591
+ },
+ {
+  "productName": "Gillete Mach 3 Turbo Rs610",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4902430921916
+ },
+ {
+  "productName": "Gillette Vector3 Rs 149",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4987176151643
+ },
+ {
+  "productName": "GilletteFusion Proglide Rs999",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4902430672597
+ },
+ {
+  "productName": "Mortein Powergard 8 Hrs",
+  "brandId": 35,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901396503002
+ },
+ {
+  "productName": "Dazller Deo FreshSani Cubes",
+  "brandId": 116,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906034950309
+ },
+ {
+  "productName": "Fem Gold Creme Bleach Rs65",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901103110240
+ },
+ {
+  "productName": "Fem Fairness Bleach Saffron",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901103101279
+ },
+ {
+  "productName": "Fem Fairness Bleach Turmeric Rs 57",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901103127064
+ },
+ {
+  "productName": "Fem Blue Bleach Rs57",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901103101323
+ },
+ {
+  "productName": "Big shopper Royal Look.RS50",
+  "brandId": 195,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205321
+ },
+ {
+  "productName": "Eastern Turmeric Pow 50gm Rs11.50",
+  "code": "etp5",
+  "brandId": 9,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901440023135
+ },
+ {
+  "productName": "Diamond Maida 50Kg",
+  "code": "dm",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205327
+ },
+ {
+  "productName": "Diamond Maida 30Kg",
+  "code": "DM30",
+  "brandId": 139,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205328
+ },
+ {
+  "productName": "zzzzSuja Papadam Rs55",
+  "code": "rty",
+  "brandId": 96,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 789325
+ },
+ {
+  "productName": "LORA Strawberry Soap Rs20",
+  "brandId": 86,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906059041075
+ },
+ {
+  "productName": "Ramacham Rs",
+  "brandId": 195,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205381
+ },
+ {
+  "productName": "Hard Brush Small 85",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205384
+ },
+ {
+  "productName": "Sprayar 1000 Big Rs75",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205385
+ },
+ {
+  "productName": "Ujala Crisp & Shine jasmine 100gm",
+  "code": "u28",
+  "brandId": 228,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102125679
+ },
+ {
+  "productName": "Ujala Crisp & Shine FB 200Gm",
+  "brandId": 228,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102125631
+ },
+ {
+  "productName": "Ujala Crisp & Shine JF 200GM",
+  "brandId": 228,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902102125662
+ },
+ {
+  "productName": "Dis glass Papper Payasam",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205402
+ },
+ {
+  "productName": "Boost Mala17gm Rs5",
+  "code": "b6",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030824227
+ },
+ {
+  "productName": "Dabur Red Paste 200g Rs",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901207027321
+ },
+ {
+  "productName": "Dabur Gulabari Rose Water 30ml",
+  "brandId": 102,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 89009611
+ },
+ {
+  "productName": "Baby Care Gift Pack",
+  "brandId": 187,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901138834470
+ },
+ {
+  "productName": "Himalaya B.Pow 50Gm",
+  "brandId": 60,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901138715069
+ },
+ {
+  "productName": "7UP Pet 250ML RS 20",
+  "brandId": 94,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902080334179
+ },
+ {
+  "productName": "Pepsi Cola 250ml RS20",
+  "brandId": 94,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902080105373
+ },
+ {
+  "productName": "Maggi Chicken Noodles 71g",
+  "code": "mc15",
+  "brandId": 1,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058890952
+ },
+ {
+  "productName": "Gillette Vector 3 Refills Rs230",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4902430655293
+ },
+ {
+  "productName": "Bru Gold Rs 5",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030563577
+ },
+ {
+  "productName": "Rin Bar Rs10",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030915734
+ },
+ {
+  "productName": "Rin Bar Rs15",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030915734
+ },
+ {
+  "productName": "Aer Spray Pink 220ml",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901157045093
+ },
+ {
+  "productName": "Pears Set Soap 75g*4",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030764172
+ },
+ {
+  "productName": "Harpic Organic act Rs89",
+  "brandId": 359,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901396174301
+ },
+ {
+  "productName": "Kit Kat Rs25",
+  "brandId": 1,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058896411
+ },
+ {
+  "productName": "Sensodyne Frsh Gel Rs210",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901571005666
+ },
+ {
+  "productName": "Engage man m1 Perfume 120ml",
+  "brandId": 33,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725958008
+ },
+ {
+  "productName": "Engage Woman W1 Perfume",
+  "brandId": 33,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725959005
+ },
+ {
+  "productName": "Classic Mat.RS165",
+  "brandId": 195,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205632
+ },
+ {
+  "productName": "Cottan mat 16x22",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205636
+ },
+ {
+  "productName": "Cottan mat Patta Rs50",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205638
+ },
+ {
+  "productName": "Slice Mango 1.2l Rs70",
+  "brandId": 94,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8902080404117
+ },
+ {
+  "productName": "Brita Good Day Butter Rs10",
+  "brandId": 200,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901063092686
+ },
+ {
+  "productName": "Brita Good Day Cashew 52.5gm",
+  "code": "g10",
+  "brandId": 200,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901063093522
+ },
+ {
+  "productName": "Cadbry Dairy milk Fruit&Nut Rs.45",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 7622201150181
+ },
+ {
+  "productName": "Tic Tac  Orange Rs 10",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8000500366783
+ },
+ {
+  "productName": "Oreo strwberry Cream Rs 10",
+  "code": "o10",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 7622201431631
+ },
+ {
+  "productName": "Kinder Joy Boys Rs45",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 80135890
+ },
+ {
+  "productName": "Drools Adult Ch&Egg Rs20",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906043143914
+ },
+ {
+  "productName": "Shamam ( Fruit)",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205678
+ },
+ {
+  "productName": "Boost Pkt 1kg Rs399",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 33112313
+ },
+ {
+  "productName": "Surf Excel 12 g Rs2",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030564208
+ },
+ {
+  "productName": "Mosambi (fruits)",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205693
+ },
+ {
+  "productName": "Amul Kool Chocolate Rs 30",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901262151313
+ },
+ {
+  "productName": "Parle Milk Rusk 182g",
+  "brandId": 429,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901719122927
+ },
+ {
+  "productName": "Glucon D Orginal  100g",
+  "brandId": 15,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901542016226
+ },
+ {
+  "productName": "Lays Classic Salted Rs20",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901491101837
+ },
+ {
+  "productName": "Lays Spanish Tomato Tango Rs20",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901491101820
+ },
+ {
+  "productName": "Lays Cream & Onion Rs20",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901491101813
+ },
+ {
+  "productName": "Kurkure Green Chutany Rs20",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901491103084
+ },
+ {
+  "productName": "Kurkure Naughty Tomato Rs20",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901491103442
+ },
+ {
+  "productName": "Kurkure Yummy cheese Rs 20",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901491366175
+ },
+ {
+  "productName": "Kurkure Masala Munch Rs20",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901491100519
+ },
+ {
+  "productName": "Kurkure Chilly Chatka Rs20",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901491100533
+ },
+ {
+  "productName": "Lays Magic Masala Rs20",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901491101844
+ },
+ {
+  "productName": "Kurkure Puffcorn Rs20",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901491366052
+ },
+ {
+  "productName": "Lays Maxx Sizzling Barbeque Rs20",
+  "brandId": 41,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901491982054
+ },
+ {
+  "productName": "Sunfeast Marie Light Veda",
+  "brandId": 33,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901725000554
+ },
+ {
+  "productName": "Savala kit 1kg+tomato1kg+beans1kg",
+  "code": "bk49",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205723
+ },
+ {
+  "productName": "Gulf Gloarex Rs47",
+  "brandId": 127,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4545787847
+ },
+ {
+  "productName": "Idayam G Oil 100ml",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8904001800299
+ },
+ {
+  "productName": "Brita Milk Bikis Rs",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901063035027
+ },
+ {
+  "productName": "Tang Lemon 125g Rs 30",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 7622201780692
+ },
+ {
+  "productName": "Surf Excel Quick Wash 500g",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030814150
+ },
+ {
+  "productName": "Vim Drop 500ml",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030760587
+ },
+ {
+  "productName": "Pepsodent Flexi Action Brush Rs25",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030486883
+ },
+ {
+  "productName": "Maggi Hot & Sweet Tomato Chilly Sauce",
+  "code": "mt20",
+  "brandId": 1,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058904031
+ },
+ {
+  "productName": "Amulya T Special DW Rs10",
+  "code": "ay",
+  "brandId": 69,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901262090469
+ },
+ {
+  "productName": "GilletteMach 3 Rs180",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4987176101990
+ },
+ {
+  "productName": "Tang Orange Rs 5",
+  "code": "t5",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 7622201780180
+ },
+ {
+  "productName": "Johnson Baby Milk+Rice Lotion 100ml",
+  "brandId": 208,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901012116968
+ },
+ {
+  "productName": "Whisper UN XL 7 Pads Rs83",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4987176091390
+ },
+ {
+  "productName": "Old Spice AfShv Lotin Musk 50ml Rs130",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4987176041630
+ },
+ {
+  "productName": "Sunrise Nescafe 50gm",
+  "brandId": 1,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 89009772
+ },
+ {
+  "productName": "Nescafe Sunrice 200gm Jar",
+  "brandId": 1,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058895643
+ },
+ {
+  "productName": "VJ Shaving Crm Green 125gm Rs50",
+  "brandId": 40,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906010080495
+ },
+ {
+  "productName": "Savorit Semia Toasted Vermiceli 200g",
+  "brandId": 112,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 870351002301
+ },
+ {
+  "productName": "Savorit Semia Toasted Vermicelli 500g",
+  "brandId": 484,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 870351002400
+ },
+ {
+  "productName": "Nescafe Sunrise2g Rs2",
+  "code": "NS2",
+  "brandId": 1,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 89009673
+ },
+ {
+  "productName": "Z Deodorant Soap 125g Rs",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906015120226
+ },
+ {
+  "productName": "Z Magic Talc 50gm",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8906015120011
+ },
+ {
+  "productName": "Nallenna Tin 1 Ayyappan15L",
+  "code": "NL1",
+  "brandId": 293,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205856
+ },
+ {
+  "productName": "zzzzzSabarjilli (Fruit)",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205867
+ },
+ {
+  "productName": "Arul Mixture 1kg Rs200",
+  "brandId": 56,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205869
+ },
+ {
+  "productName": "Sambar Paripp Red",
+  "code": "rsp",
+  "brandId": 104,
+  "categoryId": 3,
+  "primaryUnitId": 1,
+  "barCode": 205872
+ },
+ {
+  "productName": "Tic Tac Mint",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8000500257173
+ },
+ {
+  "productName": "Tic Tac Red Apple",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8000500257265
+ },
+ {
+  "productName": "Kaada Mutta",
+  "brandId": 107,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205882
+ },
+ {
+  "productName": "Milky Bar Rs10",
+  "code": "mb10",
+  "brandId": 354,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058893168
+ },
+ {
+  "productName": "Milky bar 6.5g",
+  "code": "mb5",
+  "brandId": 354,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901058852370
+ },
+ {
+  "productName": "Sapportta(Fruit)",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205904
+ },
+ {
+  "productName": "Palmolive all item HW 250 ml Rs99",
+  "code": "pal99",
+  "brandId": 18,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901314006172
+ },
+ {
+  "productName": "Colgate Plax Fesh Tea 250ml",
+  "brandId": 18,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901314077073
+ },
+ {
+  "productName": "Naranga Mitayi 1kg",
+  "brandId": 86,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205925
+ },
+ {
+  "productName": "Grapes DK (Green Fruit)",
+  "brandId": 11,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205930
+ },
+ {
+  "productName": "Kissan Mango Jam 188g",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030540691
+ },
+ {
+  "productName": "Kissan Mix Fruit Jam 200G",
+  "brandId": 3,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901030831690
+ },
+ {
+  "productName": "Brita GD pista.cashew",
+  "brandId": 14,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 8901063094154
+ },
+ {
+  "productName": "Lexi Pen Black Rs5",
+  "code": "LBB",
+  "brandId": 36,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 205959
+ },
+ {
+  "productName": "Old Spice AfShv Lotn Musk 100ml Rs199",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4902430785259
+ },
+ {
+  "productName": "Gillete 7 Clock Sterling Rs100",
+  "brandId": 44,
+  "categoryId": 1,
+  "primaryUnitId": 1,
+  "barCode": 4987176093875
+ }
+]

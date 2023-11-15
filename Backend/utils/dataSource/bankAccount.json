@@ -1,0 +1,50 @@
+[
+    {
+        "accountType": "Palode Supplier Account",
+        "bankName" : "Bank of Baroda",
+        "branchName" : "Nanniyodu",
+        "accountNo" : "58760500000375",
+        "ifscCode" : "BARB0NANNIY",
+        "openingBalance" : 500000
+    },
+    {   
+
+        "accountType": "Palode Customer Account",
+        "bankName" : "Bank of Baroda",
+        "branchName" : "Nanniyodu",
+        "accountNo" : "58760200000086",
+        "ifscCode" : "BARB0NANNIY",
+        "openingBalance" : 500000      
+    },
+    {
+
+        "accountType": "Palode Counter Gpay Account",
+        "bankName" : "Bank of Baroda",
+        "branchName" : "Nanniyodu",
+        "accountNo" : "58760200000009",
+        "ifscCode" : "BARB0NANNIY",
+        "openingBalance" : 500000   
+    },
+
+    {
+
+        "accountType": " Nedumangadu Supplier Account",
+        "bankName" : "Bank of Baroda",
+        "branchName" : "Nedumangadu",
+        "accountNo" : "44980200000195",
+        "ifscCode" : "BARB0NEDUMA",
+        "openingBalance" : 500000     
+    },
+    {
+
+        "accountType": " Nedumangadu Gpay Account",
+        "bankName" : "Bank of Baroda",
+        "branchName" : "Nedumangadu",
+        "accountNo" : "44980200000194",
+        "ifscCode" : "BARB0NEDUMA",
+        "openingBalance" : 500000
+    }
+
+
+
+]
