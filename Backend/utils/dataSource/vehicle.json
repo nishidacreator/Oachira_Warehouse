@@ -1,0 +1,112 @@
+[
+    {
+        "registrationNumber": "KL 21 K 6762",
+        "vehicleTypeId": 1,
+        "taxExpiry": "2023-09-30",
+        "insuranceExpiry": "2024-05-19",
+        "polutionExpiry": "2023-09-21",
+        "fitnessExpiry": "2023-10-07",
+        "permitExpiry": "2025-05-14",
+        "branchId": 1,
+        "capacity": ""
+    },
+    {
+        "registrationNumber": "KL 21 G 3214",
+        "vehicleTypeId": 2,
+        "taxExpiry": "2024-06-30",
+        "insuranceExpiry": "2024-02-29",
+        "polutionExpiry": "2023-09-21",
+        "fitnessExpiry": "2024-07-18",
+        "permitExpiry": "2028-03-27",
+        "branchId": 1,
+        "capacity": ""
+    },
+    {
+        "registrationNumber": "KL 21 Q 9592",
+        "vehicleTypeId": 3,
+        "taxExpiry": "2024-03-31",
+        "insuranceExpiry": "2024-04-19",
+        "polutionExpiry": "2024-06-29",
+        "fitnessExpiry": "2024-06-23",
+        "permitExpiry": "2028-05-04",
+        "branchId": 1,
+        "capacity": ""
+    },
+    {
+        "registrationNumber": "KL 21 V 5126",
+        "vehicleTypeId": 5,
+        "taxExpiry": "2024-03-31",
+        "insuranceExpiry": "2024-01-17",
+        "polutionExpiry": "2024-01-16",
+        "fitnessExpiry": "2025-01-22",
+        "permitExpiry": "2026-03-03",
+        "branchId": 1,
+        "capacity": ""
+    },
+    {
+        "registrationNumber": "KL 21 C 0222",
+        "vehicleTypeId": 6,
+        "taxExpiry": "2023-09-30",
+        "insuranceExpiry": "2024-06-01",
+        "polutionExpiry": "2023-10-25",
+        "fitnessExpiry": "2023-12-11",
+        "permitExpiry": "2025-11-16",
+        "branchId": 1,
+        "capacity": ""
+    },
+    {
+        "registrationNumber": "KL 21 P 5036",
+        "vehicleTypeId": 9,
+        "taxExpiry": "2027-06-30",
+        "insuranceExpiry": "2023-08-15",
+        "polutionExpiry": "2023-09-26",
+        "fitnessExpiry": "2023-09-19",
+        "permitExpiry": "2027-09-28",
+        "branchId": 1,
+        "capacity": ""
+    },
+    {
+        "registrationNumber": "KL 16 A 9898",
+        "vehicleTypeId": 10,
+        "taxExpiry": "2023-12-31",
+        "insuranceExpiry": "2024-01-08",
+        "polutionExpiry": "2023-10-04",
+        "fitnessExpiry": "2024-02-13",
+        "permitExpiry": "2025-06-07",
+        "branchId": 1,
+        "capacity": ""
+    },
+    {
+        "registrationNumber": "KL 21 Y 5611",
+        "vehicleTypeId": 4,
+        "taxExpiry": "2024-06-30",
+        "insuranceExpiry": "2024-08-10",
+        "polutionExpiry": "2024-08-13",
+        "fitnessExpiry": "2025-08-13",
+        "permitExpiry": "2028-08-15",
+        "branchId": 1,
+        "capacity": ""
+    },
+    {
+        "registrationNumber": "KL 21 V 5189",
+        "vehicleTypeId": 7,
+        "taxExpiry": "2025-12-31",
+        "insuranceExpiry": "2024-01-15",
+        "polutionExpiry": "2024-01-23",
+        "fitnessExpiry": "2025-01-23",
+        "permitExpiry": "2028-01-01",
+        "branchId": 1,
+        "capacity": ""
+    },
+    {
+        "registrationNumber": "KL 21 U 0942",
+        "vehicleTypeId": 8,
+        "taxExpiry": "2024-09-30",
+        "insuranceExpiry": "2023-10-02",
+        "polutionExpiry": "2023-11-04",
+        "fitnessExpiry": "2023-10-27",
+        "permitExpiry": "2028-08-15",
+        "branchId": 1,
+        "capacity": ""
+    }
+]
