@@ -26,6 +26,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {CdkMenuModule} from '@angular/cdk/menu';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [],
   imports: [
@@ -56,7 +58,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatAutocompleteModule,
     MatSlideToggleModule,
     MatStepperModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    CdkMenuModule,
+    MatMenuModule
   ],
 
   exports: [
@@ -87,7 +91,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatAutocompleteModule,
     MatSlideToggleModule,
     MatStepperModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    CdkMenuModule,
+    MatMenuModule
   ]
 })
 export class MaterialModule { }

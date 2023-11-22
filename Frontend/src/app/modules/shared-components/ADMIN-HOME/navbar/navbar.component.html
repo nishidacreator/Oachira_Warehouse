@@ -1,0 +1,179 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav-content>
+    <mat-toolbar class="bg-blue-900">
+      <img style="height: 100%;" src="../../../../../assets/img/oachira_logo.png" routerLink="home">
+      <div class="search-box">
+        <input type="text" #searchInput placeholder="Search part number">
+        <!-- <button class='bx bx-search' type="button" (click)="OpenMasterSearchPage(searchInput.value)"></button> -->
+      </div>
+
+      <!-- <div class="imgs">
+        <img src="../../../../../assets/img/ils.png" routerLink="home">
+        <img src="../../../../../assets/img/partsbase.png" routerLink="home">
+      </div> -->
+      <div class="nav_main">
+       {{ username }} &nbsp;
+        <div style="padding:5px;">
+        <span class="material-icons">notifications</span> &nbsp;
+        <mat-icon class="nav_username" routerLink="settings">settings</mat-icon> &nbsp;
+        <mat-icon class="nav_username" (click)="logout()">power_settings_new</mat-icon>
+        </div>
+      </div>
+    </mat-toolbar>
+    <div class="bg-blue-900 button-container">
+      <div class="dropdown">
+        <button class="dropbtn" [routerLink]="'/admin'"><span class="material-icons"
+            style="color:white; font-size: 25px; margin-right: 6px;">home</span><span
+            style="color: white; margin-right: 6px;">Home</span></button>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn"><span class="material-icons"
+            style="color:white; font-size: 25px; margin-right: 6px;">settings_suggest</span><span
+            style="color: white; margin-right: 6px;">Part</span></button>
+        <div class="dropdown-content">
+          <a [routerLink]="'part'">
+            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
+            Add
+          </a>
+          <a [routerLink]="'viewParts'">
+            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
+            View
+          </a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn"><span class="material-icons"
+            style="color:white; font-size: 25px; margin-right: 6px;">groups</span><span
+            style="color: white; margin-right: 6px;">Company</span></button>
+        <div class="dropdown-content">
+          <a [routerLink]="'company'">
+            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
+            Add
+          </a>
+          <a [routerLink]="'viewCompanies'">
+            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
+            View
+          </a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn"><span class="material-icons"
+            style="color:white; font-size: 25px; margin-right: 6px;">support_agent</span><span
+            style="color: white; margin-right: 6px;">RFQ</span></button>
+        <div class="dropdown-content">
+          <a [routerLink]="'RFQ'">
+            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
+            Add
+          </a>
+          <a [routerLink]="'viewRfqs'">
+            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
+            View
+          </a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn"><span class="material-icons"
+            style="color:white; font-size: 25px; margin-right: 6px;">request_quote</span><span
+            style="color: white; margin-right: 6px;">Quotation</span></button>
+        <div class="dropdown-content">
+          <!-- <a [routerLink]="'viewPendingRFQ'">
+            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
+            CREATE
+          </a> -->
+          <a [routerLink]="'viewPendingRFQ'">
+            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
+            VIEW
+          </a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn"><span class="material-icons"
+            style="color:white; font-size: 25px; margin-right: 6px;">assignment</span><span
+            style="color: white; margin-right: 6px;">Purchase Order</span></button>
+        <div class="dropdown-content">
+          <a [routerLink]="'purchaseOrder'">
+            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
+            Add
+          </a>
+          <a [routerLink]="'viewPurchaseOrder'">
+            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
+            View
+          </a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn"><span class="material-icons"
+            style="color:white; font-size: 25px; margin-right: 6px;">assignment</span><span
+            style="color: white; margin-right: 6px;">Purchase Entry</span></button>
+        <div class="dropdown-content">
+          <a [routerLink]="'pe'">
+            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
+            Add
+          </a>
+          <a [routerLink]="'viewPurchaseEntry'">
+            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
+            Verify PO
+          </a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn"><span class="material-icons"
+            style="color:white; font-size: 25px; margin-right: 6px;">assignment</span><span
+            style="color: white; margin-right: 6px;">Stock</span></button>
+        <div class="dropdown-content">
+          <a [routerLink]="'viewStockTransaction'">
+            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
+            Overview
+          </a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn"><span class="material-icons"
+            style="color:white; font-size: 25px; margin-right: 6px;">assignment</span><span
+            style="color: white; margin-right: 6px;">Sales</span></button>
+        <div class="dropdown-content">
+          <a [routerLink]="'addSale'">
+            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
+            Add
+          </a>
+          <a [routerLink]="'viewSales'">
+            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
+            View
+          </a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn"><span class="material-icons"
+            style="color:white; font-size: 25px; margin-right: 6px;">text_snippet</span><span
+            style="color: white; margin-right: 6px;">Invoice</span></button>
+        <div class="dropdown-content">
+          <a [routerLink]="'stock'">
+            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
+            Add
+          </a>
+          <a [routerLink]="'viewCompanies'">
+            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
+            View
+          </a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn"><span class="material-icons"
+            style="color:white; font-size: 25px; margin-right: 6px;">assignment</span><span
+            style="color: white; margin-right: 6px;">Reports</span></button>
+        <div class="dropdown-content">
+          <a [routerLink]="'report'">
+            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
+            Add
+          </a>
+          <a [routerLink]="'viewStockList'">
+            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
+            View
+          </a>
+        </div>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,28 @@
+<form [formGroup]="registerForm" action="submit()">
+    <section class="login">
+        <div class="container">
+            <h1>Register Form</h1>
+            <input type="text" formControlName="name" placeholder="Name">
+            <input type="text" formControlName="phoneNumber" placeholder="Phone Number">
+            <input type="password" formControlName="password" placeholder="password">
+            <div class="row">
+                <div class="col">
+                  <mat-form-field class="full-width">
+                    <mat-select placeholder="Role" formControlName="roleId">
+                      <mat-option *ngFor="let item of role$ | async" [value]="item.id">
+                        {{item.roleName}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <section class="example-section">
+                <mat-slide-toggle formControlName="status" class="example-margin" [checked]="checked" [disabled]="disabled">
+                  Status
+                </mat-slide-toggle>
+              </section>
+            <a (click)="submit()" id="loginBtn" class="hover_btn">Login</a>
+        </div>
+      </section>
+    </form>
