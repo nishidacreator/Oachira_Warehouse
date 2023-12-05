@@ -57,9 +57,10 @@
                 <mat-icon>close</mat-icon>
               </button>
             </div>
-            <button mat-raised-button type="button" (click)="addSubCategory()" style="background-color: rgb(56, 151, 86);">
-              <span class="material-icons">playlist_add</span>
-            </button>
+            SubCategory
+            <!-- <button mat-raised-button type="button" (click)="addSubCategory()" style="background-color: rgb(56, 151, 86);"> -->
+              <mat-icon style="color: rgb(56, 151, 86);">playlist_add</mat-icon>
+            <!-- </button> -->
           </div>
         </mat-card-content>
       </div>
@@ -79,14 +80,14 @@
 
     <mat-card-actions>
       <button *ngIf="isEdit == false" mat-raised-button  type="submit" [disabled]="productCategoryForm.pristine || !productCategoryForm.valid ">
-        <span class="material-icons" style="font-size: 25px;">save</span>
+        <mat-icon style="font-size: 25px;">save</mat-icon>
       </button>&nbsp;&nbsp;
       <button *ngIf="isEdit == true" mat-raised-button  type="button" [disabled]="!productCategoryForm.valid" (click)="editFunction()">
-        <span class="material-icons" style="font-size: 30px;">edit_note</span>
+        <mat-icon style="font-size: 30px;">edit_note</mat-icon>
       </button>&nbsp;&nbsp;
 
       <button *ngIf="addStatus === 'true'" type="button" class="cancel-button" (click)="onCancelClick()">
-        <span class="material-icons" style="font-size: 25px;">cancel_presentation</span>
+        <mat-icon style="font-size: 25px;">cancel_presentation</mat-icon>
       </button>
     </mat-card-actions>
   </mat-card>
