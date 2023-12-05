@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     ) { }
 
   loginForm = this.fb.group({
-    phoneNumber: [''],
+    userName: [''],
     password: [''],
   })
 
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       let user = JSON.parse(token)
       // this._http.setCurrentUser(user)
       let roleid = user.role
-        this.router.navigate(['products']);
+        this.router.navigate(['shared']);
       // })
 
     }

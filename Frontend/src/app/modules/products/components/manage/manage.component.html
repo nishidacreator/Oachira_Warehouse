@@ -9,8 +9,15 @@
         <div class="button_align">Home</div>
       </mat-grid-tile>
 
+      <!-- <mat-grid-tile class="container">
+        <button  class="btn btn" mat-fab aria-label="Example icon button with a bookmark icon" routerLink="subcategory">
+          <span class="material-icons" style="color: rgb(255, 255, 255); font-size: 45px;">category</span>
+        </button>
+        <div class="button_align">Category</div>
+      </mat-grid-tile> -->
+
       <mat-grid-tile class="container">
-        <button  class="btn btn" mat-fab aria-label="Example icon button with a bookmark icon" (click)="manageProductCategory()">
+        <button  class="btn btn" mat-fab aria-label="Example icon button with a bookmark icon" routerLink="category">
           <span class="material-icons" style="color: rgb(255, 255, 255); font-size: 45px;">category</span>
         </button>
         <div class="button_align">Category</div>
@@ -18,21 +25,21 @@
 
 
       <mat-grid-tile class="container">
-        <button mat-fab class="btn btn-3" aria-label="Example icon button with a bookmark icon" (click)="manageBrands()">
+        <button mat-fab class="btn btn-3" aria-label="Example icon button with a bookmark icon" routerLink="brand">
           <span class="material-icons" style="color: rgb(255, 255, 255); font-size: 45px;">book</span>
         </button>
         <div class="button_align">Brand</div>
       </mat-grid-tile>
 
       <mat-grid-tile class="container">
-        <button class="btn btn-4" mat-fab color="accent" aria-label="Example icon button with a bookmark icon" (click)="manageUnits()">
+        <button class="btn btn-4" mat-fab color="accent" aria-label="Example icon button with a bookmark icon" routerLink="unit">
           <span class="material-icons" style="color: rgb(255, 255, 255); font-size: 45px;">point_of_sale</span>
         </button>
         <div class="button_align">Unit</div>
       </mat-grid-tile>
 
       <mat-grid-tile class="container">
-        <button class="btn btn-5" mat-fab color="accent" aria-label="Example icon button with a bookmark icon" (click)="manageProducts()">
+        <button class="btn btn-5" mat-fab color="accent" aria-label="Example icon button with a bookmark icon" routerLink="add">
           <span class="material-icons" style="color: rgb(255, 255, 255); font-size: 45px;">fact_check</span>
         </button>
         <div class="button_align">Product</div>

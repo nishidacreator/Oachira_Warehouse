@@ -6,11 +6,13 @@ import { UsersRoutingModule } from './users-routing.module';
 
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { RoleComponent } from './components/role/role.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    RoleComponent
   ],
   imports: [
     CommonModule,

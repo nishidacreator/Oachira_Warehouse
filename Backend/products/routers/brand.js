@@ -6,9 +6,9 @@ const {Op} = require('sequelize');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
-            const {brandName} = req.body;
+            const {brandName, status} = req.body;
 
-            const brand = new Brand({brandName});
+            const brand = new Brand({brandName, status});
 
             await brand.save();
 

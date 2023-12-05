@@ -5,9 +5,9 @@ const authenticateToken = require('../../middleware/authorization');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
-            const {primaryUnitName, value} = req.body;
+            const {primaryUnitName, factor} = req.body;
 
-            const primaryUnit = new PrimaryUnit({primaryUnitName, value});
+            const primaryUnit = new PrimaryUnit({primaryUnitName, factor});
 
             await primaryUnit.save();
 

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AddComponent } from 'src/app/modules/products/components/add/add.component';
+import { Router } from '@angular/router';
 import { ManageComponent } from 'src/app/modules/products/components/manage/manage.component';
+import { ProductsModule } from 'src/app/modules/products/products.module';
 
 @Component({
   selector: 'app-setting-home',
@@ -10,19 +11,23 @@ import { ManageComponent } from 'src/app/modules/products/components/manage/mana
 })
 export class SettingHomeComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  manageProducts(){
-    const dialogRef = this.dialog.open(ManageComponent, {
+  manageProducts() {
+    // Open the dialog
+    const dialogRef = this.dialog.open(ProductsModule, {
       height: '200px',
       width: '800px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
-    })
+
+      // Navigate to the 'product' route after the dialog is closed
+      this.router.navigate(['product']);
+    });
   }
 }

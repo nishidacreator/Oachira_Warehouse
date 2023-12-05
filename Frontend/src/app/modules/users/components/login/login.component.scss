@@ -25,6 +25,7 @@
     height: 400px;
     justify-content: center;
     align-items: center;
+    background-color: #f4f5f7;
 }
 
 input{
@@ -69,6 +70,11 @@ input{
     border-radius: 8px;
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+#loginBtn:hover{
+  cursor: pointer;
+  transform: scale(1.2);
 }
 
 .sgnUp{

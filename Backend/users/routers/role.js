@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
     try {
-            const { roleName, status = 'true'} = req.body;
+            const { roleName, status } = req.body;
 
             const role = new Role({roleName, status});
 

@@ -6,16 +6,13 @@ const authenticateToken = require('../../middleware/authorization');
 const {Op} = require('sequelize');
 const cloudinary = require('../../utils/cloudinary');
 
-router.post('/', async (req, res) => {
+router.post('/', authenticateToken, async (req, res) => {
     try {
-            let category = {
-              categoryName : req.body.categoryName,
-              taxable : req.body.taxable,
-              file_url : req.body.file_url,
-              cloudinary_id : req.body.cloudinary_id
-            }
+      const {categoryName, taxable, status, hsnCode} = req.body;
 
-      const result = await Category.create(category);
+      const category = new Category({categoryName, taxable, status, hsnCode});
+
+      const result = await category.save();
 
       res.send(result);
   } catch (error) {

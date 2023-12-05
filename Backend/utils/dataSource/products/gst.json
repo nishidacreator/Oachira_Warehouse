@@ -1,0 +1,7 @@
+[
+    {"gstName" : "5% GST", "igst" : 5, "cgst" : 2.5, "sgst" : 2.5},
+    {"gstName" : "6% GST", "igst" : 6, "cgst" : 3, "sgst" : 3},
+    {"gstName" : "12% GST", "igst" : 12, "cgst" : 6, "sgst" : 6},
+    {"gstName" : "18% GST", "igst" : 18, "cgst" : 9, "sgst" : 9},
+    {"gstName" : "28% GST", "igst" : 28, "cgst" : 9, "sgst" : 9}
+]

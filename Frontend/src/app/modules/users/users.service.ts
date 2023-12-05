@@ -22,10 +22,6 @@ export class UsersService {
   private  currentUserSource = new ReplaySubject<User | null>(1)
   currentUser$ = this.currentUserSource.asObservable();
 
-  getRole():Observable<Role[]>{
-    return this._http.get<Role[]>(this.url + '/role')
-  }
-
   registerUser(data : any){
     return this._http.post(this.url + '/register', data)
   }
@@ -104,4 +100,21 @@ export class UsersService {
 //   }
 
 //   private storeJwtTokens(jwt : string){}
+
+// ROLE............................................................
+  addRole(data: any){
+    return this._http.post<Role[]>(this.url + '/role', data)
+  }
+
+  getRole():Observable<Role[]>{
+    return this._http.get<Role[]>(this.url + '/role')
+  }
+
+  deleteRole(id: number){
+    return this._http.get<Role[]>(this.url + '/role/' + id)
+  }
+
+  updateRole(data: any, id: number){
+    return this._http.patch<Role[]>(this.url + '/role/' + id, data)
+  }
 }

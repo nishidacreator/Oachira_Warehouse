@@ -4,141 +4,121 @@
     "phoneNumber": "1111111111",
     "password": "123456",
     "roleId": 1,
-    "status": true,
-    "branchId": 1
+    "status": true
     },
     {"name": "qwerty",
-    "phoneNumber": " ",
+    "phoneNumber": "2222222222",
     "password": "123456",
     "roleId": 6,
-    "status": true,
-    "branchId": 1
+    "status": true
     },
     {"name": "Suresh",
     "phoneNumber": "7560947505",
     "password": "123456",
     "roleId": 4,
-    "status": true,
-    "branchId": 1
+    "status": true
     },
     {"name": "Manu",
     "phoneNumber": "9567645018",
     "password": "123456",
     "roleId": 4,
-    "status": true,
-    "branchId": 1
+    "status": true
     },
     {"name": "Shafi",
     "phoneNumber": "9048232636",
     "password": "123456",
     "roleId": 4,
-    "status": true,
-    "branchId": 1
+    "status": true
     },
     {"name": "Muhammed",
     "phoneNumber": "9495909810",
     "password": "123456",
     "roleId": 4,
-    "status": true,
-    "branchId": 1
+    "status": true
     },
     {"name": "Jaleel",
     "phoneNumber": "8075484713",
     "password": "123456",
     "roleId": 4,
-    "status": true,
-    "branchId": 1
+    "status": true
     },
     {"name": "Sayip Shibu",
     "phoneNumber": "6238927945",
     "password": "123456",
     "roleId": 4,
-    "status": true,
-    "branchId": 1
+    "status": true
     },
     {"name": "Sharath",
     "phoneNumber": "7902595865",
     "password": "123456",
     "roleId": 3,
-    "status": true,
-    "branchId": 1
+    "status": true
     },
     {"name": "Rajesh",
     "phoneNumber": "8943929598",
     "password": "123456",
     "roleId": 3,
-    "status": true,
-    "branchId": 1
+    "status": true
     },
     {"name": "Achu",
     "phoneNumber": "8921361637",
     "password": "123456",
     "roleId": 3,
-    "status": true,
-    "branchId": 1
+    "status": true
     },
     {"name": "Sujith",
     "phoneNumber": "9946924669",
     "password": "123456",
     "roleId": 3,
-    "status": true,
-    "branchId": 1
+    "status": true
     },
     {"name": "Aromal",
     "phoneNumber": "9745402848",
     "password": "123456",
     "roleId": 3,
-    "status": true,
-    "branchId": 1
+    "status": true
     },
     {"name": "Mani",
     "phoneNumber": "8078590846",
     "password": "123456",
     "roleId": 3,
-    "status": true,
-    "branchId": 1
+    "status": true
     },
     {"name": "Vipin",
     "phoneNumber": "8547745486",
     "password": "123456",
     "roleId": 5,
-    "status": true,
-    "branchId": 1
+    "status": true
     },
     {"name": "Abhishek",
     "phoneNumber": "9946635037",
     "password": "123456",
     "roleId": 5,
-    "status": true,
-    "branchId": 1
+    "status": true
     },
     {"name": "Murukan",
     "phoneNumber": "9349465685",
     "password": "123456",
     "roleId": 5,
-    "status": true,
-    "branchId": 1
+    "status": true
     },
     {"name": "Unni",
     "phoneNumber": "7034257458",
     "password": "123456",
     "roleId": 5,
-    "status": true,
-    "branchId": 1
+    "status": true
     },
     {"name": "Satheesh",
     "phoneNumber": "9846914695",
     "password": "123456",
     "roleId": 5,
-    "status": true,
-    "branchId": 1
+    "status": true
     },
     {"name": "Santhosh",
     "phoneNumber": "7902487735",
     "password": "123456",
     "roleId": 5,
-    "status": true,
-    "branchId": 1
+    "status": true
     }
     
   ]

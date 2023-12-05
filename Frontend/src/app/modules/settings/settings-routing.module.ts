@@ -1,14 +1,13 @@
-import { AddComponent } from './../products/components/add/add.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from '../shared-components/ADMIN-HOME/dashboard/dashboard.component';
-import { NavbarComponent } from '../shared-components/ADMIN-HOME/navbar/navbar.component';
-import { AuthGuard } from '../shared-components/guards/auth.guard';
 import { SettingHomeComponent } from './components/setting-home/setting-home.component';
+import { CategoryComponent } from '../products/components/category/category.component';
+import { BrandComponent } from '../products/components/brand/brand.component';
+import { AuthGuard } from '../shared-components/guards/auth.guard';
 
 const routes: Routes = [
   {path: '', component: SettingHomeComponent},
-  {path: 'product', component: AddComponent},
+  {path:'product',loadChildren:()=>import('../../modules/products/products.module').then(x=>x.ProductsModule), canActivate: [AuthGuard]},
 ];
 
 @NgModule({

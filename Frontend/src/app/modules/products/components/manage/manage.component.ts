@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -10,15 +10,17 @@ import { Router } from '@angular/router';
 })
 export class ManageComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<ManageComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private router: Router){}
+  constructor(private fb: FormBuilder, private router: Router, @Optional() public dialogRef: MatDialogRef<ManageComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any){}
 
   ngOnDestroy(): void {
 
   }
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log("hiii")
+  }
 
   onSubmit(){}
 
@@ -28,8 +30,8 @@ export class ManageComponent implements OnInit {
   }
 
   manageProductCategory(){
-    this.router.navigateByUrl('admin/settings/product/category')
-    this.dialogRef.close();
+    this.router.navigateByUrl('products/settings/category')
+    // this.dialogRef.close();
   }
 
   manageUnits(){

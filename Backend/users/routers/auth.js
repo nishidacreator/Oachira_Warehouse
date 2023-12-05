@@ -9,17 +9,17 @@ const jwtTokens = require('../../utils/jsonWebToken');
 router.post('/', async(req, res)=> {
     try {
 
-        const { phoneNumber, password } = req.body;
+        const { userName, password } = req.body;
 
-        const user = await User.findOne({where: { phoneNumber: phoneNumber }});
+        const user = await User.findOne({where: { userName: userName }});
 
         if(!user){
-            return res.status(404).send({ message: 'User not found' });            
+            return res.status(404).send('User not found');            
         }
         const validPassword = await bcrypt.compare(password, user.password);
 
         if(!validPassword){
-            return res.status(401).send({ message: 'incorrect password' });
+            return res.status(401).send('incorrect password' );
         }
         
         let userToken = {id:user.id, name:user.name, phoneNumber: user.phoneNumber, role: user.roleId, branch: user.branchId};

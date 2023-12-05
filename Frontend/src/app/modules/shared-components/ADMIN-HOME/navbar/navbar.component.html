@@ -1,179 +1,138 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container autosize class="sidenav-container">
+  <!-- <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false"> -->
+  <mat-sidenav class="sidenav" [ngClass]="{'rotated': isExpanded}" #sidenav mode="side" opened="true">
+    <mat-toolbar>
+      <span *ngIf="isExpanded" style="margin-right: 8px;">
+        <img style="width: 100%; height: 100%;" src="../../../../assets/img/oachira_logo.png" routerLink="home">
+      </span>
+      <span *ngIf="!isExpanded" style="margin-right: 8px;">
+        <img style="width: 100%; height: 100%;" src="../../../../assets/img/oachira_small.png" routerLink="home">
+      </span>
+      <span class="material-icons chevron_icon" style="color: rgb(33,142,67); font-size: 25px;"
+      (click)="isExpanded = !isExpanded"[ngClass]="{'rotated': isExpanded}">chevron_right</span>
+    </mat-toolbar>
+    <mat-nav-list>
+
+      <mat-list-item style="margin-left: 9px;" [routerLinkActive]="['active']" routerLink="home">
+        <span class="material-icons" style="color: rgb(33,142,67); font-size: 25px; margin-right: 5px;">dashboard</span>
+        <a *ngIf="isExpanded">DASHBOARD</a>
+      </mat-list-item>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span class="material-icons" style="color: rgb(33,142,67); font-size: 25px; margin-right: 3px;">inventory</span>
+             <a *ngIf="isExpanded">INVENTORY</a>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <a mat-list-item routerLink="inventory/viewstock"  [routerLinkActive]="['active']">
+            <span class="material-icons" style="font-size: 25px; color: rgb(33,142,67); margin-right: 3px;">storage</span>
+            <div *ngIf="isExpanded">STOCK</div>
+          </a>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span class="material-icons" style="color: rgb(33,142,67); font-size: 25px; margin-right: 3px;">shopping_cart</span>
+               <a *ngIf="isExpanded">PURCHASES</a>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <a mat-list-item routerLink="purachases/purchaseorder"  [routerLinkActive]="['active']">
+            <span class="material-icons" style="font-size: 25px; color: rgb(33,142,67); margin-right: 3px;">format_list_bulleted</span>
+            <div *ngIf="isExpanded">ORDER</div>
+          </a>
+
+          <a mat-list-item routerLink="purachases/purchaseentry"  [routerLinkActive]="['active']">
+            <span class="material-icons" style="font-size: 25px; color: rgb(33,142,67); margin-right: 3px;">receipt_long</span>
+            <div *ngIf="isExpanded">ENTRY</div>
+          </a>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span class="material-icons" style=" color: rgb(33,142,67); font-size: 25px; margin-right: 3px;">price_check</span>
+              <a *ngIf="isExpanded">SALES</a>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <a mat-list-item routerLink="sales/viewpicklist" [routerLinkActive]="['active']">
+            <span class="material-icons" style="font-size: 25px; color: rgb(33,142,67); margin-right: 3px;">list_alt</span>
+            <div *ngIf="isExpanded">PICK LIST</div>
+          </a>
+          <!-- <a mat-list-item routerLink="addroom"  [routerLinkActive]="['active']"> Therapist</a>
+          <a mat-list-item routerLink="addroom"  [routerLinkActive]="['active']">Daily Expenses</a>
+          <a mat-list-item routerLink="addroom"  [routerLinkActive]="['active']">Reports</a> -->
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span class="material-icons" style="color: rgb(33,142,67); font-size: 25px; margin-right: 3px;">savings</span>
+              <a *ngIf="isExpanded">COLLECTIONS</a>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <a mat-list-item routerLink="collection/route/view" [routerLinkActive]="['active']">
+            <span class="material-icons" style="font-size: 25px; color: rgb(33,142,67); margin-right: 3px;">directions_bike</span>
+            <div *ngIf="isExpanded">ROUTE</div>
+          </a>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span class="material-icons" style="color: rgb(33,142,67); font-size: 25px; margin-right: 3px;">assignment</span>
+              <a *ngIf="isExpanded">REPORTS</a>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <!-- <a mat-list-item routerLink="addroom"  [routerLinkActive]="['active']">Session Fees </a>
+          <a mat-list-item routerLink="addroom"  [routerLinkActive]="['active']">Therapist</a>
+          <a mat-list-item routerLink="addroom"  [routerLinkActive]="['active']">Daily Expenses</a>
+          <a mat-list-item routerLink="addroom"  [routerLinkActive]="['active']">Reports</a> -->
+        </mat-expansion-panel>
+      </mat-accordion>
+
+    </mat-nav-list>
+  </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar class="bg-blue-900">
-      <img style="height: 100%;" src="../../../../../assets/img/oachira_logo.png" routerLink="home">
+    <mat-toolbar style="background-color: rgb(33,142,67); color: white;" >
+      <!-- <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button> -->
+      <!-- <span>OACHIRA TRADERS {{branchName}}</span><br> -->
       <div class="search-box">
         <input type="text" #searchInput placeholder="Search part number">
-        <!-- <button class='bx bx-search' type="button" (click)="OpenMasterSearchPage(searchInput.value)"></button> -->
+        <button class='bx bx-search' type="button" (click)="OpenMasterSearchPage(searchInput.value)"></button>
       </div>
-
-      <!-- <div class="imgs">
-        <img src="../../../../../assets/img/ils.png" routerLink="home">
-        <img src="../../../../../assets/img/partsbase.png" routerLink="home">
-      </div> -->
-      <div class="nav_main">
-       {{ username }} &nbsp;
-        <div style="padding:5px;">
-        <span class="material-icons">notifications</span> &nbsp;
-        <mat-icon class="nav_username" routerLink="settings">settings</mat-icon> &nbsp;
+      <!-- <div class="nav_main"> -->
+        <h6 class="nav_main"> Welcome {{userName}}</h6>
+        <span class="material-icons">notifications</span>
+        <mat-icon class="nav_username" routerLink="settings">settings</mat-icon>
         <mat-icon class="nav_username" (click)="logout()">power_settings_new</mat-icon>
-        </div>
-      </div>
+        <!-- <mat-icon>settings</mat-icon> -->
+        <!-- </div> -->
     </mat-toolbar>
-    <div class="bg-blue-900 button-container">
-      <div class="dropdown">
-        <button class="dropbtn" [routerLink]="'/admin'"><span class="material-icons"
-            style="color:white; font-size: 25px; margin-right: 6px;">home</span><span
-            style="color: white; margin-right: 6px;">Home</span></button>
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn"><span class="material-icons"
-            style="color:white; font-size: 25px; margin-right: 6px;">settings_suggest</span><span
-            style="color: white; margin-right: 6px;">Part</span></button>
-        <div class="dropdown-content">
-          <a [routerLink]="'part'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            Add
-          </a>
-          <a [routerLink]="'viewParts'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            View
-          </a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn"><span class="material-icons"
-            style="color:white; font-size: 25px; margin-right: 6px;">groups</span><span
-            style="color: white; margin-right: 6px;">Company</span></button>
-        <div class="dropdown-content">
-          <a [routerLink]="'company'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            Add
-          </a>
-          <a [routerLink]="'viewCompanies'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            View
-          </a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn"><span class="material-icons"
-            style="color:white; font-size: 25px; margin-right: 6px;">support_agent</span><span
-            style="color: white; margin-right: 6px;">RFQ</span></button>
-        <div class="dropdown-content">
-          <a [routerLink]="'RFQ'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            Add
-          </a>
-          <a [routerLink]="'viewRfqs'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            View
-          </a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn"><span class="material-icons"
-            style="color:white; font-size: 25px; margin-right: 6px;">request_quote</span><span
-            style="color: white; margin-right: 6px;">Quotation</span></button>
-        <div class="dropdown-content">
-          <!-- <a [routerLink]="'viewPendingRFQ'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            CREATE
-          </a> -->
-          <a [routerLink]="'viewPendingRFQ'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            VIEW
-          </a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn"><span class="material-icons"
-            style="color:white; font-size: 25px; margin-right: 6px;">assignment</span><span
-            style="color: white; margin-right: 6px;">Purchase Order</span></button>
-        <div class="dropdown-content">
-          <a [routerLink]="'purchaseOrder'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            Add
-          </a>
-          <a [routerLink]="'viewPurchaseOrder'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            View
-          </a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn"><span class="material-icons"
-            style="color:white; font-size: 25px; margin-right: 6px;">assignment</span><span
-            style="color: white; margin-right: 6px;">Purchase Entry</span></button>
-        <div class="dropdown-content">
-          <a [routerLink]="'pe'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            Add
-          </a>
-          <a [routerLink]="'viewPurchaseEntry'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            Verify PO
-          </a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn"><span class="material-icons"
-            style="color:white; font-size: 25px; margin-right: 6px;">assignment</span><span
-            style="color: white; margin-right: 6px;">Stock</span></button>
-        <div class="dropdown-content">
-          <a [routerLink]="'viewStockTransaction'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            Overview
-          </a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn"><span class="material-icons"
-            style="color:white; font-size: 25px; margin-right: 6px;">assignment</span><span
-            style="color: white; margin-right: 6px;">Sales</span></button>
-        <div class="dropdown-content">
-          <a [routerLink]="'addSale'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            Add
-          </a>
-          <a [routerLink]="'viewSales'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            View
-          </a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn"><span class="material-icons"
-            style="color:white; font-size: 25px; margin-right: 6px;">text_snippet</span><span
-            style="color: white; margin-right: 6px;">Invoice</span></button>
-        <div class="dropdown-content">
-          <a [routerLink]="'stock'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            Add
-          </a>
-          <a [routerLink]="'viewCompanies'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            View
-          </a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn"><span class="material-icons"
-            style="color:white; font-size: 25px; margin-right: 6px;">assignment</span><span
-            style="color: white; margin-right: 6px;">Reports</span></button>
-        <div class="dropdown-content">
-          <a [routerLink]="'report'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            Add
-          </a>
-          <a [routerLink]="'viewStockList'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            View
-          </a>
-        </div>
-      </div>
-    </div>
-    <router-outlet></router-outlet>
 
+
+   <div class="content-section">
+    <router-outlet></router-outlet>
+   </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
