@@ -3,19 +3,22 @@ const bcrypt = require('bcrypt');
 const { JSON } = require('sequelize');
 
 
-const Role = require('../models/User/role');
-const User = require('../models/User/user');
+const Role = require('../users/models/role');
+const User = require('../users/models/user');
 
-const Category = require('../models/Products/category');
-const Product = require('../models/Products/product');
-const PrimaryUnit = require('../models/Products/primayUnit');
-const SecondaryUnit = require('../models/Products/secondaryUnit');
-const Brand = require('../models/Products/brand');
+const Category = require('../products/models/category');
+const Product = require('../products/models/product');
+const PrimaryUnit = require('../products/models/primayUnit');
+const SecondaryUnit = require('../products/models/secondaryUnit');
+const Brand = require('../products/models/brand');
+const SubCategory = require('../products/models/subCategory');
+const Gst = require('../products/models/gst');
+const Location = require('../products/models/location');
+const Hsn = require('../products/models/hsn');
 
 // const CustomerCategory = require('../models/Customer/customerCategory');
 // const CustomerGrade = require('../models/Customer/customerGrade');
 // const Customer = require('../models/Customer/customer');
-// const Tax = require('../models/Products/tax');
 // const Vendor = require('../models/vendor');
 // const Branch = require('../models/branch');
 // const BankAccount = require('../models/bankAccount');
@@ -43,9 +46,15 @@ const Brand = require('../models/Products/brand');
 
 // // BULK CREATE
 const userData = require('./dataSource/user.json');
-const brandData = require('./dataSource/brandFirst.json');
-const productData = require('./dataSource/productsOachiraFirst.json');
-const categoryData = require('./dataSource/categoryFirst.json');
+
+const brandData = require('./dataSource/products/brandFirst.json');
+const categoryData = require('./dataSource/products/categoryFirst.json');
+const subCategoryData = require('./dataSource/products/subCategory.json');
+const hsnData = require('./dataSource/products/hsn.json');
+const gstData = require('./dataSource/products/gst.json');
+const locationData = require('./dataSource/products/location.json');
+const productData = require('./dataSource/products/productsOachiraFirst.json');
+
 const vehicleTypeData = require('./dataSource/vehicleType.json');
 const branchData = require('./dataSource/branch.json');
 const vehilceData = require('./dataSource/vehicle.json');
@@ -59,17 +68,30 @@ async function syncModel(){
     User.belongsTo(Role)
 
     //PRODUCT
+    
+    PrimaryUnit.hasMany(SecondaryUnit,{foreignKey : 'primaryUnitId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    SecondaryUnit.belongsTo(PrimaryUnit)
+
+    Category.hasMany(SubCategory,{foreignKey : 'categoryId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    SubCategory.belongsTo(Category)
+    
     Category.hasMany(Product,{foreignKey : 'categoryId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Product.belongsTo(Category)
+
+    SubCategory.hasMany(Product,{foreignKey : 'subCategoryId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Product.belongsTo(SubCategory)
     
     Brand.hasMany(Product,{foreignKey : 'brandId', onDelete : 'CASCADE', onUpdate : 'CASCADE'}) 
     Product.belongsTo(Brand)
     
-    PrimaryUnit.hasMany(Product,{foreignKey : 'primaryUnitId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    Product.belongsTo(PrimaryUnit)
+    Location.hasMany(Product,{foreignKey : 'locationId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Product.belongsTo(Location)
 
-    PrimaryUnit.hasMany(SecondaryUnit,{foreignKey : 'primaryUnitId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    SecondaryUnit.belongsTo(PrimaryUnit)
+    Gst.hasMany(Product,{foreignKey : 'gstId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Product.belongsTo(Gst)
+
+    Hsn.hasMany(Product,{foreignKey : 'hsnId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Product.belongsTo(Hsn)
 
     // CustomerGrade.hasMany(Customer, {foreignKey : 'customerGradeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     // Customer.belongsTo(CustomerGrade)
@@ -206,8 +228,8 @@ async function syncModel(){
     // SecondaryUnit.hasMany(PurchaseEntryDetails, {foreignKey : 'secondaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     // PurchaseEntryDetails.belongsTo(SecondaryUnit)
 
-    // Tax.hasMany(PurchaseEntryDetails, {foreignKey : 'taxId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // PurchaseEntryDetails.belongsTo(Tax)
+    // Gst.hasMany(PurchaseEntryDetails, {foreignKey : 'gstId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    // PurchaseEntryDetails.belongsTo(Gst)
 
 
     // // STOCK
@@ -234,19 +256,15 @@ async function syncModel(){
         ])
     }
 
-    // const branch = await Branch.findAll({})
-    // if(branch.length === 0){
-    //     for(let i = 0; i < branchData.length; i++){
-    //         Branch.bulkCreate([branchData[i]])
-    //     }
-    // }
-
     const user = await User.findAll({})
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash('123456', salt)
     if(user.length === 0){
         for(let i = 0; i < userData.length; i++){
+            const name = userData[i].phoneNumber;
             userData[i].password = hashedPassword
+            userData[i].userName = name
+            
             User.bulkCreate([userData[i]])
         }
     }
@@ -254,11 +272,11 @@ async function syncModel(){
     const pUnit = await PrimaryUnit.findAll({})
     if(pUnit.length === 0){
         PrimaryUnit.bulkCreate([
-            {primaryUnitName : 'Nos', value : 1},
-            {primaryUnitName : 'KG', value : 1},
-            {primaryUnitName : 'Litre', value : 1},
-            {primaryUnitName : 'Meter', value : 1},
-            {primaryUnitName : 'Gram', value : 1},
+            {primaryUnitName : 'Nos', factor : 1},
+            {primaryUnitName : 'KG', factor : 1},
+            {primaryUnitName : 'Litre', factor : 1},
+            {primaryUnitName : 'Meter', factor : 1},
+            {primaryUnitName : 'Gram', factor : 1},
         ])
     }
  
@@ -273,6 +291,34 @@ async function syncModel(){
     if(category.length == 0) {
         for(let i = 0; i < categoryData.length; i++){
             Category.bulkCreate([categoryData[i]])
+        }
+    }
+
+    const subCategory = await SubCategory.findAll({})
+    if(subCategory.length == 0) {
+        for(let i = 0; i < subCategoryData.length; i++){
+            SubCategory.bulkCreate([subCategoryData[i]])
+        }
+    }
+
+    const gst = await Gst.findAll({})
+    if(gst.length == 0){
+        for(let i = 0; i < gstData.length; i++){
+            Gst.bulkCreate([gstData[i]])
+        }
+    }
+
+    const hsn = await Hsn.findAll({})
+    if(hsn.length == 0){
+        for(let i = 0; i < hsnData.length; i++){
+            Hsn.bulkCreate([hsnData[i]])
+        }
+    }
+
+    const location = await Location.findAll({})
+    if(location.length == 0){
+        for(let i = 0; i < locationData.length; i++){
+            Location.bulkCreate([locationData[i]])
         }
     }
 
@@ -304,17 +350,6 @@ async function syncModel(){
     //     ])
     // }
     
-    // const tax = await Tax.findAll({})
-    // if(tax.length == 0){
-    //     Tax.bulkCreate([
-    //         {taxName : '5% GST', igst : 5, cgst : 2.5, sgst : 2.5},
-    //         {taxName : '6% GST', igst : 6, cgst : 3, sgst : 3},
-    //         {taxName : '12% GST', igst : 12, cgst : 6, sgst : 6},
-    //         {taxName : '18% GST', igst : 18, cgst : 9, sgst : 9},
-    //         {taxName : '28% GST', igst : 28, cgst : 9, sgst : 9}
-    //     ])
-
-    // }
 
     // const vehicleType = await VehicleType.findAll({})
     // if(vehicleType.length === 0){

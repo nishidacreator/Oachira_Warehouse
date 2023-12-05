@@ -1,0 +1,110 @@
+button:enabled {
+  background-color :rgb(56, 151, 86);
+  color : white
+}
+
+
+span {
+  cursor: pointer;
+}
+
+span:hover {
+background-position: right center;
+//background-color: #3e8e41/* change the direction of the change here */
+}
+
+span:active {
+//background-color: #3e8e41;
+box-shadow: 0 5px white;
+transform: translateY(5px);
+}
+
+//   //background-color: rgb(248, 252, 248);
+// }
+
+// .home_layout{
+//   //background: url(/assets/img/setting_bg_7.jpg);
+// }
+
+#section_bg{
+//background-image: url(/assets/img/setting_bg_7.jpg);
+}
+
+#section_bg.background-image{
+opacity: 0.5;
+}
+
+.button_align{
+position: absolute;
+justify-content: end;
+margin-top: 90px;
+color: black;
+}
+
+.button_color{
+background-color: #FFD700;
+}
+
+.button_color_home{
+background-color: blue($color: #c5dcea);
+}body{
+font-family: 'Montserrat', sans-serif;
+margin:0;
+}
+
+
+.btn {
+margin: 10px;
+padding: 30px;
+text-align: center;
+text-transform: uppercase;
+transition: 0.5s;
+background-size: 200% auto;
+color: white;
+/* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+box-shadow: 0 0 20px rgb(127, 125, 125);
+border-radius: 10px;
+}
+
+/* Demo Stuff End -> */
+
+/* <- Magic Stuff Start */
+
+.btn:hover {
+background-position: right center;
+//background-color: #3e8e41/* change the direction of the change here */
+}
+
+.btn:active {
+//background-color: #3e8e41;
+box-shadow: 0 5px #666;
+transform: translateY(4px);
+}
+
+
+.btn {
+background-image: linear-gradient(to right, #077781 0%, #7bf881 51%, #19e0fa 100%);
+}
+
+span{
+position:relative;
+top: -40px;
+right: 23px;
+}
+
+
+span {
+cursor: pointer;
+}
+
+span:hover {
+background-position: right center;
+//background-color: #3e8e41/* change the direction of the change here */
+}
+
+span:active {
+//background-color: #3e8e41;
+box-shadow: 0 5px white;
+transform: translateY(5px);
+}
+

@@ -1,0 +1,13 @@
+<form [formGroup]="loginForm" action="submit()">
+<section class="login">
+    <div class="container">
+        <h1>Login Form</h1>
+        <input type="text" formControlName="userName" placeholder="User Name">
+        <input type="password" formControlName="password" id="pass" placeholder="Pasword">
+        <div class="forget">
+            <a href="#" id="fgpass">Forgot Password</a>
+        </div>
+        <a (click)="submit()" id="loginBtn" class="hover_btn">Login</a>
+    </div>
+  </section>
+</form>

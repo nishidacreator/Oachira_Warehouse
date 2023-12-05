@@ -1,0 +1,187 @@
+.full-width{
+  width: 100%;
+}
+
+button:enabled {
+  background-color :rgb(56, 151, 86);
+  color : white
+}
+
+@media(max-width:784px)
+{
+    .background{
+        padding: 0px;
+        margin: 0px;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        // justify-content: center;
+        // align-items: center;
+    }
+}
+
+.example-radio-group {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.example-radio-button {
+  margin-left: 25px;
+}
+
+table{
+  width : 100%
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.col:last-child {
+  margin-right: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+label {
+  background-color: rgb(255, 255, 255);
+  border: solid 4px rgb(10, 112, 10);
+  border-radius: 10px;
+  color: green;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 6px 7px;
+  cursor: pointer;
+  width: 100px;
+  height: 15px;
+}
+
+
+span {
+  cursor: pointer;
+}
+
+span:hover {
+background-position: right center;
+//background-color: #3e8e41/* change the direction of the change here */
+}
+
+span:active {
+//background-color: #3e8e41;
+box-shadow: 0 5px white;
+transform: translateY(5px);
+}
+
+.upload-button{
+  width : 50px;
+}
+
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+}
+
+.styled-table thead tr {
+  background-color: #daeedf;
+  color: black;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #e0e7e6;
+}
+
+.styled-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+button:enabled {
+  background-color :rgb(56, 151, 86);
+  color : white
+}
+
+span:hover{
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+i:hover{
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+
+.material-icons:hover {
+  color: red;
+}
+
+.material-icons:active {
+  color: darkred;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.col:last-child {
+  margin-right: 0;
+}
+
+.cancel-button,
+.confirm-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.cancel-button {
+  margin-right: 8px;
+  background-color: #e57373;
+  color: #fff;
+  border: none;
+}
+
+.cancel-button:hover{
+  cursor: pointer;
+  transform: scale(1.2);
+}
