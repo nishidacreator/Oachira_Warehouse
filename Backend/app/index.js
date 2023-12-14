@@ -33,14 +33,14 @@ const subCategory = require('../products/routers/subCategory');
 const gst = require('../products/routers/gst');
 
 app.use('/product', product);
-app.use('/category',category);
-app.use('/brand',brand);
-app.use('/hsn',hsn);
-app.use('/location',location);
-app.use('/primaryunit',primaryUnit);
-app.use('/secondaryunit',secondaryUnit);
-app.use('/subcategory',subCategory);
-app.use('/gst',gst);
+app.use('/product/category',category);
+app.use('/product/brand',brand);
+app.use('/product/hsn',hsn);
+app.use('/product/location',location);
+app.use('/product/primaryunit',primaryUnit);
+app.use('/product/secondaryunit',secondaryUnit);
+app.use('/product/subcategory',subCategory);
+app.use('/product/gst',gst);
 
 
 const port = process.env.PORT;

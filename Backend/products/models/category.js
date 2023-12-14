@@ -7,8 +7,8 @@ const Category = sequelize.define('category',{
     status: {type: DataTypes.BOOLEAN, defaultValue : true},
     hsnCode: {type: DataTypes.STRING, defaultValue: 'NA'},
     
-    cloudinary_id : {type:DataTypes.STRING},
-    file_url : {type:DataTypes.STRING} 
+    cloudinaryId : {type:DataTypes.STRING},
+    fileUrl : {type:DataTypes.STRING} 
 },
 {
     freezeTableName: true,

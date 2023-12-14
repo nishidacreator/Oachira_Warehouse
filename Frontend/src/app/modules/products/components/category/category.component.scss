@@ -42,6 +42,7 @@ table{
 .col {
   flex: 1;
   margin-right: 20px;
+  width: 100%;
 }
 
 .col:last-child {
@@ -133,22 +134,11 @@ button:enabled {
   color : white
 }
 
-span:hover{
-  cursor: pointer;
-  transform: scale(1.2);
-}
-
-i:hover{
-  cursor: pointer;
-  transform: scale(1.2);
-}
-
-
-.material-icons:hover {
+mat-icon:hover {
   color: red;
 }
 
-.material-icons:active {
+mat-icon:active {
   color: darkred;
 }
 
@@ -205,3 +195,20 @@ i:hover{
 //   width:150px;
 // }
 
+@media(max-width:1000px)
+{
+    .box{
+        padding: 0px;
+        margin: 0px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+img {
+  transition: transform 0.3s; /* Add a smooth transition effect */
+}
+
+.enlarged {
+  transform: scale(10); /* Increase the size when the class is applied */
+}
