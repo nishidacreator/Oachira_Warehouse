@@ -1,92 +1,102 @@
-<!-- <mat-toolbar style="background-color:rgb(33,142,67);; color: white; height: 40px;">
-  PRODUCT CATEGORY
-</mat-toolbar> -->
 
 <form [formGroup]="productCategoryForm" (ngSubmit)="onSubmit()">
   <mat-card>
-    <div class="row" *ngIf="addStatus != 'true'">
+    <div class="row">
       <div class="col">
         <mat-card-header>
           <mat-card-title> PRODUCT CATEGORY</mat-card-title>
         </mat-card-header>
       </div>
-      <div class="col">
+      <div class="col" *ngIf="addStatus != 'true'">
         <mat-card-header>
-          <button mat-mini-fab color="primary" type="button" style="margin-left: auto;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" (click)="homeClick()">
-            <mat-icon>home</mat-icon>
-          </button>
-          &nbsp;<button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onClick="history.back()">
+          <button mat-mini-fab color="primary" style="margin-left: auto;" type="button" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onClick="history.back()">
             <mat-icon>exit_to_app</mat-icon>
           </button>
         </mat-card-header>
       </div>
-    </div>
+    </div><br>
 
     <div class="row box">
       <div class="col">
         <mat-card-content >
-
-          <div class="row">
-            <div class="col">
-              <mat-form-field class="full-width">
-                <input matInput placeholder="Name" formControlName="categoryName">
-                <mat-error *ngIf="productCategoryForm.controls['categoryName'].hasError('required')">
-                  Name <strong>required</strong>
-                </mat-error>
-              </mat-form-field>
-            </div>
-          </div>
-
-          <br><br><div class="col">
-            <section class="example-section" >
-              <mat-radio-group class="example-radio-group" aria-label="Taxable:" formControlName="taxable"><h4>Taxable :</h4>
-                <mat-radio-button class="example-radio-button" value="true">Yes</mat-radio-button><br>
-                <mat-radio-button class="example-radio-button" value="false">No</mat-radio-button>
-              </mat-radio-group>
-            </section>
-          </div>
-
-          <div formArrayName="subCategories" class="col">
-            <div *ngFor="let quantity of subCategories().controls; let i=index" [formGroupName]="i" class="row">
+          <mat-card>
+            <div class="row">
               <div class="col">
-                <mat-form-field>
-                  <input matInput placeholder="Qualification" formControlName="qualification">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="Name" formControlName="categoryName">
+                  <mat-error *ngIf="productCategoryForm.controls['categoryName'].hasError('required')">
+                    Name <strong>required</strong>
+                  </mat-error>
                 </mat-form-field>
               </div>
-              <button mat-icon-button (click)="removeSubCategory(i)">
-                <mat-icon>close</mat-icon>
-              </button>
             </div>
-            <button mat-raised-button type="button" (click)="addSubCategory()" style="background-color: rgb(56, 151, 86);">
-              <span class="material-icons">playlist_add</span>
-            </button>
-          </div>
+
+            <br><br><div class="col">
+              <section class="example-section" >
+                <mat-radio-group class="example-radio-group" aria-label="Taxable:" formControlName="taxable"><h4>Taxable :</h4>
+                  <mat-radio-button class="example-radio-button" value="true">Yes</mat-radio-button><br>
+                  <mat-radio-button class="example-radio-button" value="false">No</mat-radio-button>
+                </mat-radio-group>
+              </section>
+            </div>
+
+            <ng-container *ngIf="imageUrl; else noImage">
+              <img [src]="imageUrl" alt="Image" title="Image" height="100" width="100" style="margin-left: 150px; margin-top: 50px;"/>
+            </ng-container>
+
+            <ng-template #noImage>
+              <img src="../../../../../../assets/img/no_image_part.png" alt="Alternative Image" title="Image" height="100" width="100" />
+            </ng-template>
+            <input type="file" id="fileInput" (change)="onFileSelected($event)"/>
+            <mat-icon *ngIf="imageUrl && !editstatus" style="font-size: 25px;" (click)="clearFileInput()">delete</mat-icon>
+            <mat-icon *ngIf="imageUrl && editstatus" style="font-size: 25px;" (click)="deleteImage(imageUrl)">delete</mat-icon>
+          </mat-card>
+
         </mat-card-content>
       </div>
-      <div class="col">
-        <mat-card-content>
-          <ng-container *ngIf="imageUrl; else noImage">
-            <img [src]="imageUrl" alt="Image" title="Image" height="150" width="150" style="margin-left: 150px; margin-top: 50px;"/>
-          </ng-container>
+      <div class="col" *ngIf="addStatus != 'true'">
+        <mat-card>
+          <mat-card-header>SubCategory: </mat-card-header>
+          <div formArrayName="subCategories">
+            <div *ngFor="let quantity of subCategories().controls; let i=index" [formGroupName]="i" class="row">
+              <div class="row">
+                <div class="col">
+                  <mat-form-field>
+                    <input matInput placeholder="SubCategoryName" formControlName="subCategoryName">
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <ng-container *ngIf="imageUrlSub[i]; else noImage">
+                    <img [src]="imageUrlSub[i]" alt="Image" title="Image" height="100" width="100" style="margin-left: 150px; margin-top: 50px;"/>
+                  </ng-container>
 
-          <ng-template #noImage>
-            <img src="../../../../../../assets/img/no_image_part.png" alt="Alternative Image" title="Image" height="150" width="150" style="margin-left: 150px; margin-top: 50px;"/>
-          </ng-template>
-          <input type="file" id="fileInput" (change)="onFileSelected($event)" style="margin-left: 150px;" />
-        </mat-card-content>
+                  <ng-template #noImage>
+                    <img src="../../../../../../assets/img/no_image_part.png" alt="Alternative Image" title="Image" height="100" width="100" />
+                  </ng-template>
+                  <input type="file" id="fileInput" (change)="onFileSelectedSub($event, i)"/>
+                </div>
+
+                  <mat-icon (click)="removeSubCategory(i)" style="color: green; margin-top: 7px;">close</mat-icon>
+              </div>
+
+            </div>
+
+              &nbsp;&nbsp;<mat-icon style="color: green; margin-top: 7px;" (click)="addSubCategory()">playlist_add</mat-icon>
+          </div>
+        </mat-card>
       </div>
     </div>
 
     <mat-card-actions>
-      <button *ngIf="isEdit == false" mat-raised-button  type="submit" [disabled]="productCategoryForm.pristine || !productCategoryForm.valid ">
-        <span class="material-icons" style="font-size: 25px;">save</span>
+      <button *ngIf="!editstatus" mat-raised-button  type="submit" [disabled]="productCategoryForm.pristine || !productCategoryForm.valid ">
+        <mat-icon style="font-size: 25px;">save</mat-icon>
       </button>&nbsp;&nbsp;
-      <button *ngIf="isEdit == true" mat-raised-button  type="button" [disabled]="!productCategoryForm.valid" (click)="editFunction()">
-        <span class="material-icons" style="font-size: 30px;">edit_note</span>
+      <button *ngIf="editstatus" mat-raised-button  type="button" [disabled]="!productCategoryForm.valid" (click)="editFunction()">
+        <mat-icon style="font-size: 25px;">edit_note</mat-icon>
       </button>&nbsp;&nbsp;
 
-      <button *ngIf="addStatus === 'true'" type="button" class="cancel-button" (click)="onCancelClick()">
-        <span class="material-icons" style="font-size: 25px;">cancel_presentation</span>
+      <button mat-raised-button *ngIf="addStatus === 'true'" type="button" class="cancel-button" (click)="onCancelClick()">
+        <mat-icon style="font-size: 25px;">cancel_presentation</mat-icon>
       </button>
     </mat-card-actions>
   </mat-card>
@@ -120,31 +130,19 @@
     <tbody>
         <tr *ngFor="let element of category">
             <td>{{element.id}}</td>
-
-            <!-- <td *ngIf="element.category_image; else noImage">
-              <div class="image-container">
-                <div class="popup" *ngIf="showImagePopup">
-                  <img [src]="element.category_image" alt="Category Image">
-                </div>
-                <img class="imageView" [src]="element.category_image" alt="Category Image" (mouseenter)="showPopup()" (mouseleave)="hidePopup()">
-              </div>
-            </td> -->
             <td >
-              <!-- <ng-container>
-                <img alt="../../../../../../assets/img/partsbase.png" src="{{ element.file_url }}" style="width: 50px; height: 50px;" />
-              </ng-container> -->
-              <ng-container *ngIf="element.file_url; else alternativeImage">
-                <img  src="{{ element.file_url }}" style="width: 50px; height: 50px;" />
+              <ng-container *ngIf="element.fileUrl; else alternativeImage">
+                <img  src="{{ element.fileUrl }}" style="width: 50px; height: 50px;"
+                (mouseover)="enlargeImage(true)"
+                (mouseout)="enlargeImage(false)"
+                [ngClass]="{'enlarged': isImageEnlarged}" />
+
               </ng-container>
 
               <ng-template #alternativeImage>
                 <img src="../../../../../../assets/img/no_image_part.png" alt="Alternative Image" style="width: 50px; height: 50px;" />
               </ng-template>
             </td>
-
-            <!-- <ng-template #noImage>
-              <td><span class="material-icons iconColor">image_not_supported</span></td>
-            </ng-template> -->
             <td>{{element.categoryName}}</td>
             <td>{{element.taxable == true? "Yes" : "No"}}</td>
             <td>

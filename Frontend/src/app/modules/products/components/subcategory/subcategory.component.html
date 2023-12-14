@@ -1,1 +1,138 @@
-<p>subcategory works!</p>
+
+<form [formGroup]="subCategoryForm" (ngSubmit)="onSubmit()">
+  <mat-card class="background">
+    <div class="row" *ngIf="addStatus != 'true'">
+      <div class="col">
+        <mat-card-header>
+          <mat-card-title> SUBCATEGORY </mat-card-title>
+        </mat-card-header>
+      </div>
+      <div class="col">
+        <mat-card-header>
+          <button mat-mini-fab color="primary" style="margin-left: auto;" type="button" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onClick="history.back()">
+            <mat-icon>exit_to_app</mat-icon>
+          </button>
+        </mat-card-header>
+      </div>
+    </div>
+    <mat-card-content >
+
+      <div class="row box">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="SubCategory Name" formControlName="subCategoryName">
+            <mat-error *ngIf="subCategoryForm.controls['subCategoryName'].hasError('required')">
+              Name <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <ng-container *ngIf="imageUrl; else noImage">
+            <img [src]="imageUrl" alt="Image" title="Image" height="100" width="100" style="margin-left: 150px; margin-top: 50px;"/>
+          </ng-container>
+
+          <ng-template #noImage>
+            <img src="../../../../../../assets/img/no_image_part.png" alt="Alternative Image" title="Image" height="100" width="100" />
+          </ng-template>
+          <input type="file" id="fileInput" (change)="onFileSelected($event)"/>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+
+
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Category" formControlName="categoryId">
+              <span *ngIf="categories.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addCategory()">playlist_add</span>
+              <mat-option *ngFor="let item of categories" [value]="item.id">
+                {{item.categoryName}}
+              </mat-option>
+              <mat-option *ngIf="categories.length === 0" [value]="'add'">
+                <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addCategory()">playlist_add</span>
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="subCategoryForm.controls['categoryId'].hasError('required')">
+              Category<strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button *ngIf="isEdit == false" mat-raised-button  type="submit" [disabled]="!subCategoryForm.valid">
+        <span class="material-icons" style="font-size: 25px;">save</span>
+      </button>&nbsp;&nbsp;
+      <button *ngIf="isEdit == true" mat-raised-button  type="button" [disabled]="!subCategoryForm.valid" (click)="editFunction()">
+        <span class="material-icons" style="font-size: 30px;">edit_note</span>
+      </button>&nbsp;&nbsp;
+
+      <button *ngIf="addStatus === 'true'" type="button" class="cancel-button" (click)="onCancelClick()">
+        <span class="material-icons" style="font-size: 25px;">cancel_presentation</span>
+      </button>
+    </mat-card-actions>
+
+  </mat-card>
+
+</form>
+
+
+<!-- --------------------------------------------------------------------------------------------------------------------------- -->
+
+<br><mat-card *ngIf="addStatus != 'true'">
+  <mat-card-header>
+    <mat-card-title style="color: green;"> SUBCATEGORIES</mat-card-title>
+  </mat-card-header>
+
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput [(ngModel)]="filterValue"  (ngModelChange)="onInputChange($event)" placeholder="Ex. ium">
+  </mat-form-field>
+  &nbsp;&nbsp;
+  <button mat-raised-button (click)="search()" >
+    Search
+  </button>
+  <table class="styled-table">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Image</th>
+            <th>SubCategory</th>
+            <th>Category</th>
+            <th>Manage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let element of brands">
+            <td>{{element.id}}</td>
+            <td >
+              <ng-container *ngIf="element.fileUrlSub; else alternativeImage">
+                <img  src="{{ element.fileUrlSub }}" style="width: 50px; height: 50px;"
+                (mouseover)="enlargeImage(true)"
+                (mouseout)="enlargeImage(false)"
+                [ngClass]="{'enlarged': isImageEnlarged}" />
+
+              </ng-container>
+
+              <ng-template #alternativeImage>
+                <img src="../../../../../../assets/img/no_image_part.png" alt="Alternative Image" style="width: 50px; height: 50px;" />
+              </ng-template>
+            </td>
+            <td>{{element.subCategoryName}}</td>
+            <td>{{element.category.categoryName}}</td>
+            <td>
+              <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+              <i  (click)="editBrand(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
+              &nbsp;&nbsp;
+              <i  (click)="deleteBrand(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+  <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageIndex]="currentPage - 1"
+  (page)="onPageChange($event)" [pageSizeOptions]="[10, 20,30,40,50,100]">
+</mat-paginator>
+</mat-card>

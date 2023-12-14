@@ -1,15 +1,29 @@
 const express = require('express');
-const SubCategory = require('../models/subCategory');
 const router = express.Router();
-const authenticateToken = require('../../middleware/authorization');
 const {Op} = require('sequelize');
+
+const authenticateToken = require('../../middleware/authorization');
+
+const SubCategory = require('../models/subCategory');
 const Category = require('../models/category');
+
+const multer = require('../../utils/multer')
+const cloudinary = require('../../utils/cloudinary');
+
+router.post('/fileupload', multer.single('file'), async (req, res) => {
+  try {
+      const result = await cloudinary.uploader.upload(req.file.path);
+      res.send(result);
+  } catch (error) {
+      res.send(error);
+  }
+});
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
-            const {subCategoryName, categoryId, status, hsnCode} = req.body;
+            const {subCategoryName, categoryId, status, cloudinaryIdSub, fileUrlSub } = req.body;
 
-            const subcategory = new SubCategory({subCategoryName, categoryId, status, hsnCode});
+            const subcategory = new SubCategory({subCategoryName, categoryId, status, cloudinaryIdSub, fileUrlSub});
 
             await subcategory.save();
 
