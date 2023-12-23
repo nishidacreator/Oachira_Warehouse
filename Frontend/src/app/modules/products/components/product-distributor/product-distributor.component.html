@@ -1,0 +1,74 @@
+<mat-card *ngIf="!addStatus">
+  <mat-card-header>
+    <mat-card-title style="color: green;"> DISTRIBUTED PRODUCTS</mat-card-title>
+    <mat-icon style="margin-left: auto;" (click)="addMoreProducts()">note_add</mat-icon>
+    &nbsp;&nbsp;<mat-icon matDialogClose="true">cancel</mat-icon>
+  </mat-card-header>
+
+  <mat-card-content>
+    <table class="styled-table">
+      <thead>
+          <tr>
+              <th>Id</th>
+              <th>Product</th>
+              <th>Status</th>
+              <th>Manage</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let element of products let i=index">
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.id}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.product.productName}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">
+                <mat-slide-toggle [checked]="element.status" (change)="onSlideToggleChange($event, element.id)">
+                  Status
+                </mat-slide-toggle>
+              </td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">
+                <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+                <i  (click)="edit(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
+                &nbsp;&nbsp;
+                <i  (click)="deleteProd(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+              </td>
+          </tr>
+      </tbody>
+    </table>
+  </mat-card-content>
+</mat-card>
+
+<form [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
+  <mat-card *ngIf="addStatus">
+    <mat-card-header>
+      <mat-card-title style="color: green;"> ADD PRODUCTS</mat-card-title>
+      <mat-icon style="margin-left: auto;" matDialogClose="true">cancel</mat-icon>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-form-field class="full-width">
+        <mat-label>Products Distributed</mat-label>
+        <mat-select formControlName="products" multiple>
+          <mat-form-field class="search-field" style="width: 80%;">
+            <div class="row">
+              <input matInput (input)="filterProduct($event)" placeholder="Search">
+            </div>
+          </mat-form-field>
+          <span *ngIf="filteredProduct.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);"
+             (click)="addProduct()">playlist_add</span>
+          <mat-option *ngFor="let item of filteredProduct" [value]="item.id">
+            {{ item.productName }}
+          </mat-option>
+          <mat-option *ngIf="filteredProduct.length === 0">
+            <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55); margin-top: 18px;" (click)="addProduct()">playlist_add</span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button  type="submit" [disabled]="addProductForm.pristine || !addProductForm.valid ">
+        <mat-icon style="font-size: 25px;">save</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+

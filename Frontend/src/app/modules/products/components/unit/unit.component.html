@@ -1,1 +1,269 @@
-<p>unit works!</p>
+
+<form [formGroup]="unitForm">
+  <mat-card class="background">
+
+    <div class="row" *ngIf="addStatus != 'true'">
+      <div class="col">
+        <mat-card-header>
+          <mat-card-title> UNIT </mat-card-title>
+        </mat-card-header>
+      </div>
+      <div class="col">
+        <mat-card-header>
+          <button mat-mini-fab color="primary" style="margin-left: auto;" type="button" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onClick="history.back()">
+            <mat-icon>exit_to_app</mat-icon>
+          </button>
+        </mat-card-header>
+      </div>
+    </div><br>
+
+    <mat-card-content >
+
+      <div class="col">
+        <section class="example-section" >
+          <mat-radio-group class="example-radio-group" aria-label="Unit Type" formControlName="unitType"><h4>Unit Type :</h4>
+            <mat-radio-button class="example-radio-button" value="primary">Primary Unit</mat-radio-button><br>
+            <mat-radio-button class="example-radio-button" value="secondary">Secondary Unit</mat-radio-button>
+          </mat-radio-group>
+        </section>
+      </div>
+
+
+      <form [formGroup]="primaryUnitForm" (ngSubmit)="onPrimarySubmit()" *ngIf="unitForm.controls['unitType'].value ==='primary'">
+        <mat-card>
+          <mat-card-content>
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="Name" formControlName="primaryUnitName">
+                  <mat-error *ngIf="primaryUnitForm.controls['primaryUnitName'].hasError('required')">
+                    Name <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="Factor" formControlName="factor">
+                  <mat-error *ngIf="primaryUnitForm.controls['factor'].hasError('required')">
+                    value <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </mat-card-content>
+
+          <div class="col" *ngIf="addStatus != 'true'">
+            <mat-card>
+              <mat-card-header>SecondaryUnits: </mat-card-header>
+              <div formArrayName="secondaryUnits">
+                <div *ngFor="let quantity of secondaryUnits().controls; let i=index" [formGroupName]="i">
+                  <div class="row">
+                    <div class="col">
+                      <mat-form-field class="full-width">
+                        <input matInput placeholder="Name" formControlName="secondaryUnitName">
+                        <mat-error *ngIf="secondaryUnitForm.controls['secondaryUnitName'].hasError('required')">
+                          Name <strong>required</strong>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col">
+                      <mat-form-field class="full-width">
+                        <input matInput placeholder="PrimaryFactor" formControlName="primaryFactor">
+                        <mat-error *ngIf="secondaryUnitForm.controls['primaryFactor'].hasError('required')">
+                          Factor <strong>required</strong>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col">
+                      <mat-form-field class="full-width">
+                        <input matInput placeholder="SecondaryFactor" formControlName="secondaryFactor">
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col">
+                      <mat-form-field class="full-width">
+                        <input matInput placeholder="LoadingCharge" formControlName="loadingCharge">
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col">
+                      <mat-icon (click)="removeSecondary(i)" style="color: green; margin-top: 30px;">close</mat-icon>
+                    </div>
+                  </div>
+                </div>
+
+                  &nbsp;&nbsp;<mat-icon style="color: green; margin-top: 7px;" (click)="addSecondary()">playlist_add</mat-icon>
+              </div>
+            </mat-card>
+          </div>
+
+          <mat-card-actions>
+            <button *ngIf="isEdit == false" mat-raised-button  type="submit" [disabled]="!primaryUnitForm.valid">
+              <span class="material-icons" style="font-size: 25px;">save</span>
+            </button>&nbsp;&nbsp;
+
+            <button *ngIf="isEdit == true" mat-raised-button  type="button" [disabled]="!primaryUnitForm.valid" (click)="editPUnitFunction()">
+              <span class="material-icons" style="font-size: 30px;">edit_note</span>
+            </button>&nbsp;&nbsp;
+          </mat-card-actions>
+        </mat-card>
+      </form>
+
+      <form [formGroup]="secondaryUnitForm" (ngSubmit)="onSecondarySubmit()" *ngIf="unitForm.controls['unitType'].value ==='secondary'">
+        <mat-card>
+          <mat-card-content>
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="Name" formControlName="secondaryUnitName">
+                  <mat-error *ngIf="secondaryUnitForm.controls['secondaryUnitName'].hasError('required')">
+                    Name <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Primary Unit" formControlName="primaryUnitId">
+                    <mat-option *ngFor="let item of pUnits" [value]="item.id">
+                      {{item.primaryUnitName | titlecase}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="secondaryUnitForm.controls['primaryUnitId'].hasError('required')">
+                    Primary Unit is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="PrimaryFactor" formControlName="primaryFactor">
+                  <mat-error *ngIf="secondaryUnitForm.controls['primaryFactor'].hasError('required')">
+                    Factor <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="SecondaryFactor" formControlName="secondaryFactor">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="LoadingCharge" formControlName="loadingCharge">
+                </mat-form-field>
+              </div>
+            </div>
+          </mat-card-content>
+
+          <mat-card-actions>
+            <button *ngIf="isEdit == false" mat-raised-button  type="submit" [disabled]="!secondaryUnitForm.valid">
+              <span class="material-icons" style="font-size: 25px;">save</span>
+            </button>&nbsp;&nbsp;
+            <button *ngIf="isEdit == true && pUnitStatus == false" mat-raised-button  type="button" [disabled]="!secondaryUnitForm.valid" (click)="editSUnitFunction()">
+              <span class="material-icons" style="font-size: 30px;">edit_note</span>
+            </button>&nbsp;&nbsp;
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </mat-card-content>
+
+    <button mat-raised-button *ngIf="addStatus === 'true'" type="button" class="cancel-button" (click)="onCancelClick()">
+      <mat-icon style="font-size: 25px;">cancel_presentation</mat-icon>
+    </button>
+  </mat-card>
+</form>
+
+
+<!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<br><mat-card *ngIf="addStatus != 'true'">
+  <mat-card-header>
+    <mat-card-title style="color: green;"> UNITS</mat-card-title>
+  </mat-card-header>
+
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+
+  <table class="styled-table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Unit Name</th>
+            <th>Factor</th>
+            <th>Manage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let element of filtered">
+            <td>{{element.id}}</td>
+            <td>{{element.primaryUnitName}}</td>
+            <td>{{element.factor}}</td>
+            <td>
+              <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+              <i  (click)="editPUnit(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
+              &nbsp;&nbsp;
+              <i  (click)="deletePUnit(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+              </td>
+        </tr>
+    </tbody>
+  </table><br>
+</mat-card>
+
+<br><mat-card *ngIf="sUnits.length != 0 && addStatus != 'true'">
+  <mat-card-header>
+    <mat-card-title style="color: green;">SECONDARY UNITS</mat-card-title>
+  </mat-card-header>
+
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applySecFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+
+  <table class="styled-table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Unit Name</th>
+            <th>Primary Unit</th>
+            <th>Primary Factor</th>
+            <th>Secondary Factor</th>
+            <th>Loading Charge</th>
+            <th>Manage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let element of secFiltered">
+            <td>{{element.id}}</td>
+            <td>{{element.secondaryUnitName}}</td>
+            <td>{{element.primaryUnit.primaryUnitName}}</td>
+            <td>{{element.primaryFactor}}</td>
+            <td>{{element.secondaryFactor}}</td>
+            <td>{{element.loadingCharge}}</td>
+            <td>
+              <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+              <i  (click)="editSUnit(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
+              &nbsp;&nbsp;
+              <i  (click)="deleteSUnit(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+              </td>
+        </tr>
+    </tbody>
+  </table><br>
+
+</mat-card>

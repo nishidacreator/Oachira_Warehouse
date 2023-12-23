@@ -9,36 +9,81 @@ const {Op} = require('sequelize');
 router.post('/', authenticateToken, async (req, res) => {
     try {
 
-        const { name, userName, phoneNumber, password, roleId, status } = req.body;
+        const { name, phoneNumber, password, roleId, status } = req.body;
+        const userName = phoneNumber;
         const user = await User.findOne({where: {userName: userName}});
-    if (user) {
-        return res.status(400).send({ message: 'User name already exists' })  
-    }
-    const pass = await bcrypt.hash(password, 10);
-    const newUser = new User({
-        name : name, 
-        phoneNumber : phoneNumber, 
-        userName : userName,
-        password : pass, 
-        roleId : roleId, 
-        status : status
-    });
-    await newUser.save();
-    res.status(200).send({id:newUser.id, name:newUser.name, pohneNumber:newUser.phoneNumber});
-    } catch (error) {
-        res.send({error : error.message});
-    }   
+      if (user) {
+          return res.status(400).send({ message: 'User name already exists' })  
+      }
+      const pass = await bcrypt.hash(password, 10);
+      const newUser = new User({
+          name : name, 
+          phoneNumber : phoneNumber, 
+          userName : userName,
+          password : pass, 
+          roleId : roleId, 
+          status : status
+      });
+      await newUser.save();
+      res.status(200).send({id:newUser.id, name:newUser.name, pohneNumber:newUser.phoneNumber});
+      } catch (error) {
+          res.send({error : error.message});
+      }   
 })
 
-router.get('/', authenticateToken, async(req,res)=>{
-    try {
-        const user = await User.findAll({include : [Role], order:['id']});
-        res.send(user);
-        
-    } catch (error) {
-        res.send(error.message);
-    }  
-})
+router.get('/', authenticateToken, async (req, res) => {
+  try {
+    let whereClause = {};
+
+    // if (req.query.search) {
+    //   whereClause = {
+    //     [Op.and]: [
+    //       {
+    //         [Op.or]: [
+    //           { name: { [Op.iLike]: `%${req.query.search}%` }},
+    //         ],
+    //       },
+    //       // {
+    //       //   status: true
+    //       // },
+    //     ],
+    //   };
+    // }
+    
+    
+
+    let limit;
+    let offset;
+
+    if (req.query.pageSize && req.query.page) {
+      limit = parseInt(req.query.pageSize, 10) || 10; // Default to 10 if not a valid number
+      offset = (parseInt(req.query.page, 10) - 1) * limit || 0;
+    }
+
+    const users = await User.findAll({
+      include: [Role],
+      order: ["id"],
+      limit, 
+      offset
+    });
+
+    let totalCount;
+    totalCount = await User.count();
+
+    if (req.query.page && req.query.pageSize) {
+      const response = {
+        count: totalCount,
+        items: users,
+      };
+
+      res.json(response);
+    } else {
+      res.send(users);
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 router.delete('/:id', authenticateToken, async(req,res)=>{
     try {
@@ -63,31 +108,31 @@ router.delete('/:id', authenticateToken, async(req,res)=>{
 })
 
 router.patch('/:id', authenticateToken, async (req, res) => {
-  const pass = await bcrypt.hash(req.body.password, 10);
-
+  // const pass = await bcrypt.hash(req.body.password, 10);
+  console.log(req.params.id, "iddddddddddddddddddd");
   try {
     const userToUpdate = {
       name: req.body.name,
       phoneNumber: req.body.phoneNumber,
-      userName: req.body.userName,
-      password: pass,
+      // userName: req.body.userName,
+      // password: pass,
       roleId: req.body.roleId,
       status: req.body.status
     }
 
-    const existingUser = await User.findOne({
-      where: {
-        userName: userToUpdate.userName,
-        id: { [Op.not]: req.params.id } // Check if id is not equal to req.params.id
-      }
-    });
+    // const existingUser = await User.findOne({
+    //   where: {
+    //     userName: userToUpdate.userName,
+    //     id: { [Op.not]: req.params.id } // Check if id is not equal to req.params.id
+    //   }
+    // });
 
-    if (existingUser) {
-      return res.send({
-        status: "error",
-        message: "User with the specified userName already exists."
-      });
-    }
+    // if (existingUser) {
+    //   return res.send({
+    //     status: "error",
+    //     message: "User with the specified userName already exists."
+    //   });
+    // }
 
     const [num] = await User.update(userToUpdate, {
       where: { id: req.params.id }
@@ -111,6 +156,20 @@ router.patch('/:id', authenticateToken, async (req, res) => {
     });
   }
 });
+
+router.get('/:id', authenticateToken, async (req, res) => {
+  try {
+    const distributors = await User.findOne({
+      where: {id: req.params.id},
+      order: ["id"]
+    });
+  
+    res.send(distributors)
+  } catch (error) {
+    console.error("Error in distributor retrieval:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+  });
 
 
 module.exports = router;

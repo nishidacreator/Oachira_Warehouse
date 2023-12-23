@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { UsersService } from '../../users.service';
-import { Role } from '../../models/role';
+import { UsersService } from '../../users/users.service';
+import { Role } from '../../users/models/role';
 // import { Role } from '../../../auth/models/role';
 // import { AuthService } from '../../../auth/auth.service';
 

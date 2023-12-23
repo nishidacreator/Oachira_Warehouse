@@ -21,6 +21,7 @@ export class CategoryComponent implements OnInit {
     this.uploadSub?.unsubscribe();
     this.uploadSubscription?.unsubscribe();
     this.categorySubscription?.unsubscribe();
+    this.catSub?.unsubscribe();
   }
 
   constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private productService: ProductService,
@@ -35,6 +36,7 @@ export class CategoryComponent implements OnInit {
     taxable: [false],
     cloudinaryId : [''],
     fileUrl : [''],
+    status: [false],
     subCategories: this.fb.array([])
   });
 
@@ -65,27 +67,12 @@ export class CategoryComponent implements OnInit {
   editstatus: boolean = false;
   ngOnInit(): void {
     this.getCategory();
+    this.getComplete();
+    this.productCategoryForm.get('status')?.setValue(true);
 
     if (this.dialogRef) {
       this.addStatus = this.dialogData?.status;
-
-      this.productService.getCategory().subscribe(res=>{
-        if(this.dialogData?.type === 'edit'){
-          this.editstatus = true
-          let category: any= res.find(x =>x.id == this.dialogData?.id)
-          console.log(category)
-
-          let categoryName = category.categoryName.toString();
-          let taxable = category.taxable.toString();
-          this.imageUrl = category.fileUrl;
-
-          this.productCategoryForm.patchValue({
-            categoryName : categoryName,
-            taxable : taxable,
-          })
-          this.categoryId = this.dialogData?.id;
-        }
-      })
+      this.patchData()
     }
   }
 
@@ -183,10 +170,11 @@ export class CategoryComponent implements OnInit {
           cloudinaryId : res.public_id,
           fileUrl: res.url
         })
-
-        console.log(this.productCategoryForm.getRawValue())
         this.submitSubscription = this.productService.addCategory(this.productCategoryForm.getRawValue()).subscribe((response)=>{
-          console.log(response);
+          let data = {
+            category: this.productCategoryForm.get('categoryName')?.value
+          }
+          this.dialogRef?.close(data);
           this._snackBar.open("Category added successfully...","" ,{duration:3000})
           this.clearControls()
         },(error=>{
@@ -197,7 +185,10 @@ export class CategoryComponent implements OnInit {
     }else{
       console.log(this.productCategoryForm.getRawValue())
       this.submitSubscription = this.productService.addCategory(this.productCategoryForm.getRawValue()).subscribe((response)=>{
-        console.log(response);
+        let data = {
+          category: this.productCategoryForm.get('categoryName')?.value
+        }
+        this.dialogRef?.close(data);
         this._snackBar.open("Category added successfully...","" ,{duration:3000})
         this.clearControls()
       },(error=>{
@@ -222,14 +213,35 @@ export class CategoryComponent implements OnInit {
   categorySubscription? : Subscription
   getCategory(){
     this.categorySubscription = this.productService.getPaginatedCategory(this.filterValue, this.currentPage, this.pageSize).subscribe((res:any)=>{
-      this.category = res.items;
+      this.filtered = res.items;
       this.totalItems = res.count;
     })
   }
 
-  isImageEnlarged = false;
-  enlargeImage(enlarge: boolean): void {
-    this.isImageEnlarged = enlarge;
+  catSub!: Subscription;
+  getComplete(){
+    this.catSub = this.productService.getCategory().subscribe((res:any)=>{
+      this.category = res;
+    })
+  }
+
+  filtered!: any[];
+  applyFilter(event: Event): void {
+    if((event.target as HTMLInputElement).value.trim() === '') {
+      this.getCategory();
+    }else{
+      const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+      this.filtered = this.category.filter(element =>
+        element.categoryName.toLowerCase().includes(filterValue)
+        || element.id.toString().includes(filterValue)
+        || element.status.toString().includes(filterValue)
+    );
+    }
+  }
+
+  isImageEnlarged: boolean[] = [];
+  enlargeImage(index: number, isEnlarged: boolean): void {
+    this.isImageEnlarged[index] = isEnlarged;
   }
 
   pageSize = 10;
@@ -282,6 +294,28 @@ export class CategoryComponent implements OnInit {
 
   }
 
+  patchData(){
+    this.productService.getCategory().subscribe(res=>{
+      if(this.dialogData?.type === 'edit'){
+        this.editstatus = true
+        let category: any= res.find(x =>x.id == this.dialogData?.id)
+        console.log(category)
+
+        let categoryName = category.categoryName;
+        let taxable = category.taxable;
+        let status = category.status;
+        this.imageUrl = category.fileUrl;
+
+        this.productCategoryForm.patchValue({
+          categoryName : categoryName,
+          taxable : taxable,
+          status : status
+        })
+        this.categoryId = this.dialogData?.id;
+      }
+    })
+  }
+
   editFunction(){
     if(this.file){
       let image = {
@@ -329,48 +363,6 @@ export class CategoryComponent implements OnInit {
     this.productService.getCategoryByFileUrl(data).subscribe((res)=>{
       console.log(res)
       this.dialogRef.close();
-    })
-  }
-
-  uploadImageAndSubmit(data: any) {
-    // Upload the new image using your image upload service (e.g., Cloudinary)
-    // After successful upload, update the data object with the new image URL
-    // data.categoryImage = uploadedImageUrl;
-
-    this.submitCategoryData(data);
-  }
-
-  // Submit the category data
-  submitCategoryData(data: any) {
-    // this.adminService.updateCategory(this.categoryId, data).subscribe(
-    //   (res) => {
-    //     this.clearControls();
-    //   },
-    //   (error) => {
-    //     alert(error.message);
-    //   }
-    // );
-  }
-
-
-
-  // onUpload(){
-  //     const formData = new FormData();
-  //     formData.append('categoryImage', this.file, this.file.name);
-  //     console.log(formData)
-  //   // this.adminService.uploadImage(this.file).subscribe(res=>{
-  //   //   console.log(res)
-  //   // })
-  // }
-
-  homeClick(){
-    const dialogRef = this.dialog.open(ManageComponent, {
-      height: '200px',
-      width: '800px',
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     })
   }
 

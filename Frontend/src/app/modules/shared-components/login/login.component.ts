@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-import { UsersService } from '../../users.service';
+import { UsersService } from '../../users/users.service';
 // import { AuthService } from '../../../auth/auth.service';
 // import { Token } from '../../../auth/models/token';
 
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       let user = JSON.parse(token)
       // this._http.setCurrentUser(user)
       let roleid = user.role
-        this.router.navigate(['shared']);
+        this.router.navigate(['/login']);
       // })
 
     }

@@ -1,1 +1,318 @@
-<p>product works!</p>
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <mat-card class="background">
+
+    <div class="row box">
+      <div class="col">
+        <mat-card-header>
+          <mat-card-title> PRODUCT </mat-card-title>
+        </mat-card-header>
+      </div>
+      <div class="col">
+        <mat-card-header>
+          <button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto"
+           onClick="history.back()" style="margin-left: auto;">
+            <mat-icon style="color: white;">exit_to_app</mat-icon>
+          </button>
+        </mat-card-header>
+      </div>
+    </div>
+
+    <mat-card-content >
+      <div class="row box">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Product Name" formControlName="productName">
+            <mat-error *ngIf="productForm.controls['productName'].hasError('required')">
+              Name <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Code" formControlName="code">
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Barcode" formControlName="barCode">
+          </mat-form-field>
+        </div>
+
+
+        <!-- <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Primary Unit" formControlName="primaryUnitId">
+              <span *ngIf="units.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addUnit()">playlist_add</span>
+              <mat-option *ngFor="let item of units" [value]="item.id">
+                {{item.primaryUnitName}}
+              </mat-option>
+              <mat-option *ngIf="units.length === 0" [value]="'add'">
+                <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addUnit()">playlist_add</span>
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="productForm.controls['primaryUnitId'].hasError('required')">
+              Unit <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div> -->
+      </div>
+
+      <div class="row box">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Category" formControlName="categoryId" #id (selectionChange)="getSubByCat(id.value)">
+              <mat-form-field class="search-field" style="width: 80%;">
+                <div class="row">
+                  <!-- <mat-icon>search</mat-icon> -->
+                  <input matInput (input)="filterCategory($event)" placeholder="Search">
+                </div>
+              </mat-form-field>
+              <span *ngIf="categories.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);"
+               (click)="addCategory()">playlist_add</span>
+              <mat-option *ngFor="let item of filteredCat" [value]="item.id">
+                {{item.categoryName}}
+              </mat-option>
+              <mat-option>
+                <span *ngIf="categories.length === 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addCategory()">playlist_add</span>
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="productForm.controls['categoryId'].hasError('required')">
+              Category<strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="SubCategory" formControlName="subCategoryId">
+              <mat-form-field class="search-field" style="width: 80%;">
+                <div class="row">
+                  <input matInput (input)="filterSubCategory($event)" placeholder="Search">
+                </div>
+              </mat-form-field>
+
+              <span *ngIf="filteredSubCat.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addSubCategory()">playlist_add</span>
+              <mat-option *ngFor="let item of filteredSubCat" [value]="item.id">
+                {{item.subCategoryName}}
+              </mat-option>
+              <mat-option *ngIf="filteredSubCat.length === 0">
+                <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addHsn()">playlist_add</span>
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="productForm.controls['subCategoryId'].hasError('required')">
+              SubCategory<strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <div class="row">
+            <ng-container *ngIf="imageUrl; else noImage">
+              <img [src]="imageUrl" alt="Image" title="Image" height="100" width="100" style="margin-top: 50px;" />
+            </ng-container>
+
+            <ng-template #noImage>
+              <img src="../../../../../../assets/img/no_image_part.png" alt="Alternative Image" title="Image" height="100" width="100" />
+            </ng-template>
+          </div>
+
+          <div class="row">
+            <input *ngIf="!imageUrl" type="file" id="fileInput" (change)="onFileSelected($event)" />
+            <mat-icon *ngIf="imageUrl && !editstatus" style="font-size: 25px;" (click)="clearFileInput()">delete</mat-icon>
+            <mat-icon *ngIf="imageUrl && editstatus" style="font-size: 25px;" (click)="deleteImage(imageUrl)">delete</mat-icon>
+          </div>
+        </div>
+      </div>
+
+      <div class="row box">
+        <div class="col">
+          <mat-form-field class="full-width" *ngIf="brands">
+            <mat-select placeholder="Brand" formControlName="brandId">
+              <mat-form-field class="search-field" style="width: 80%;">
+                <div class="row">
+                  <!-- <mat-icon>search</mat-icon> -->
+                  <input matInput (input)="filterBrand($event)" placeholder="Search">
+                </div>
+              </mat-form-field>
+              <span *ngIf="brands.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addBrand()">playlist_add</span>
+              <mat-option *ngFor="let item of filteredBrand" [value]="item.id">
+                {{item.brandName}}
+              </mat-option>
+              <mat-option *ngIf="filteredBrand.length === 0">
+                <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addHsn()">playlist_add</span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width" *ngIf="locations">
+            <mat-select placeholder="Location" formControlName="locationId">
+              <mat-form-field class="search-field" style="width: 80%;">
+                <div class="row">
+                  <!-- <mat-icon>search</mat-icon> -->
+                  <input matInput (input)="filterLocation($event)" placeholder="Search">
+                </div>
+              </mat-form-field>
+
+              <span *ngIf="locations.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addLocation()">playlist_add</span>
+              <mat-option *ngFor="let item of filteredLoc" [value]="item.id">
+                {{item.locationName}}
+              </mat-option>
+              <mat-option *ngIf="filteredLoc.length === 0">
+                <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addHsn()">playlist_add</span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Hsn" formControlName="hsnId">
+              <mat-form-field class="search-field" style="width: 80%;">
+                <div class="row">
+                  <input matInput (input)="filterHsn($event)" placeholder="Search">
+                </div>
+              </mat-form-field>
+
+              <span *ngIf="filteredHsn.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addHsn()">playlist_add</span>
+              <mat-option *ngFor="let item of filteredHsn" [value]="item.id">
+                {{item.hsnName}}
+              </mat-option>
+              <mat-option>
+                <span *ngIf="hsn.length === 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addHsn()">playlist_add</span>
+              </mat-option>
+
+            </mat-select>
+            <mat-error *ngIf="productForm.controls['categoryId'].hasError('required')">
+              Category<strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width" *ngIf="gst">
+            <mat-select placeholder="Gst" formControlName="gstId">
+              <mat-form-field class="search-field" style="width: 80%;">
+                <div class="row">
+                  <input matInput (input)="filterGst($event)" placeholder="Search">
+                </div>
+              </mat-form-field>
+
+              <span *ngIf="filteredGst.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addGst()">playlist_add</span>
+              <mat-option *ngFor="let item of filteredGst" [value]="item.id">
+                {{item.gstName}}
+              </mat-option>
+              <mat-option *ngIf="filteredGst.length === 0">
+                <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addHsn()">playlist_add</span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row box">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Loyalty Point" formControlName="loyaltyPoint">
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="reorderQuantity" formControlName="reorderQuantity">
+          </mat-form-field>
+        </div>
+
+        <br><div>
+          <mat-slide-toggle formControlName="status">Status</mat-slide-toggle>
+        </div>
+      </div>
+
+      <div class="row box">
+
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button *ngIf="!editstatus" mat-raised-button  type="submit" [disabled]="productForm.pristine || !productForm.valid ">
+        <mat-icon style="font-size: 25px;">save</mat-icon>
+      </button>&nbsp;&nbsp;
+      <button *ngIf="editstatus" mat-raised-button  type="button" [disabled]="!productForm.valid" (click)="editFunction()">
+        <mat-icon style="font-size: 25px;">edit_note</mat-icon>
+      </button>&nbsp;&nbsp;
+
+      <button mat-raised-button *ngIf="addStatus === 'true'" type="button" class="cancel-button" (click)="onCancelClick()">
+        <mat-icon style="font-size: 25px;">cancel_presentation</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card><br>
+</form>
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+<br><mat-card *ngIf="!addStatus">
+  <mat-card-header>
+    <mat-card-title style="color: green;"> PRODUCTS</mat-card-title>
+  </mat-card-header>
+
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+  <table class="styled-table">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Image</th>
+            <th>Product Name</th>
+            <th>Code</th>
+            <th>Barcode</th>
+            <th>Category</th>
+            <th>SubCategory</th>
+            <th>Brand</th>
+            <th>Manage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let element of filtered let i=index">
+            <td>{{element.id}}</td>
+            <td [style.background-color]="element.status === false ? 'pink' : null">
+              <ng-container *ngIf="element.fileUrl; else alternativeImage">
+                <img
+                  src="{{ element.fileUrl }}"
+                  style="width: 50px; height: 50px;"
+                  (mouseover)="enlargeImage(i, true)"
+                  (mouseout)="enlargeImage(i, false)"
+                  [ngClass]="{ 'enlarged': isImageEnlarged[i] }"
+                />
+              </ng-container>
+
+              <ng-template #alternativeImage>
+                <img
+                  src="../../../../../../assets/img/no_image_part.png"
+                  alt="Alternative Image"
+                  style="width: 50px; height: 50px;"
+                />
+              </ng-template>
+            </td>
+            <td>{{element.productName}}</td>
+            <td>{{element.code}}</td>
+            <td>{{element.barCode}}</td>
+            <td>{{element.category.categoryName}}</td>
+            <td>{{element.subCategory?.subCategoryName}}</td>
+            <td>{{element.brand.brandName}}</td>
+            <td>
+              <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+              <i  (click)="editProduct(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
+              &nbsp;&nbsp;
+              <i  (click)="deleteProduct(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+              </td>
+        </tr>
+    </tbody>
+  </table>
+  <mat-paginator [length]="totalItems" [pageSize]="10" [pageSizeOptions]="[10, 20, 30,40,50,100]"
+    [pageIndex]="currentPage - 1" aria-label="Select page" (page)="onPageChange($event)">
+  </mat-paginator>
+</mat-card>

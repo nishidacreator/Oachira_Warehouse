@@ -3,7 +3,7 @@ const sequelize = require('../../utils/db');
 
 const Product = sequelize.define('product',{
     productName : {type : DataTypes.STRING, allowNull : false},
-    code : {type : DataTypes.STRING},
+    code : {type : DataTypes.STRING, unique : true},
     barCode : {type : DataTypes.STRING},
     categoryId : {type : DataTypes.INTEGER, allowNull : false},
     subCategoryId : {type : DataTypes.INTEGER},
@@ -15,8 +15,8 @@ const Product = sequelize.define('product',{
     loyaltyPoint : {type : DataTypes.FLOAT},
     status : {type : DataTypes.STRING},
 
-    cloudinary_id : {type:DataTypes.STRING},
-    file_url : {type:DataTypes.STRING} 
+    cloudinaryId : {type:DataTypes.STRING},
+    fileUrl : {type:DataTypes.STRING} 
 },
 {
     freezeTableName: true
