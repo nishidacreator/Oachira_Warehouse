@@ -13,10 +13,8 @@
       </div>
       <div class="col">
         <mat-card-header>
-          <button mat-mini-fab color="primary" type="button" style="margin-left: auto;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" (click)="homeClick()">
-            <mat-icon>home</mat-icon>
-          </button>
-          &nbsp;<button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onClick="history.back()">
+          <button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon"
+          class="d-block mr-0 ml-auto" onClick="history.back()" style="margin-left: auto;">
             <span class="material-icons" style="color: white;">exit_to_app</span>
           </button>
         </mat-card-header>
@@ -41,14 +39,15 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <button *ngIf="isEdit == false" mat-raised-button  type="submit" [disabled]="!roleForm.valid">
-        <span class="material-icons" style="font-size: 25px;">save</span>
+      <button *ngIf="!editstatus" mat-raised-button  type="submit" [disabled]="roleForm.pristine || !roleForm.valid ">
+        <mat-icon style="font-size: 25px;">save</mat-icon>
       </button>&nbsp;&nbsp;
-      <button *ngIf="isEdit == true" mat-raised-button  type="button" [disabled]="!roleForm.valid" (click)="editFunction()">
-        <span class="material-icons" style="font-size: 30px;">edit_note</span>
+      <button *ngIf="editstatus" mat-raised-button  type="button" [disabled]="!roleForm.valid" (click)="editFunction()">
+        <mat-icon style="font-size: 25px;">edit_note</mat-icon>
       </button>&nbsp;&nbsp;
-      <button *ngIf="addStatus === 'true'" type="button" class="cancel-button" (click)="onCancelClick()">
-        <span class="material-icons" style="font-size: 10px;">close</span>
+
+      <button mat-raised-button *ngIf="addStatus === 'true'" type="button" class="cancel-button" (click)="onCancelClick()">
+        <mat-icon style="font-size: 25px;">cancel_presentation</mat-icon>
       </button>
     </mat-card-actions>
   </mat-card>

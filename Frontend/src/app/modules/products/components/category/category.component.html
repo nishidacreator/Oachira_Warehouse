@@ -47,9 +47,13 @@
             <ng-template #noImage>
               <img src="../../../../../../assets/img/no_image_part.png" alt="Alternative Image" title="Image" height="100" width="100" />
             </ng-template>
-            <input type="file" id="fileInput" (change)="onFileSelected($event)"/>
+            <input *ngIf="!imageUrl" type="file" id="fileInput" (change)="onFileSelected($event)"/>
             <mat-icon *ngIf="imageUrl && !editstatus" style="font-size: 25px;" (click)="clearFileInput()">delete</mat-icon>
             <mat-icon *ngIf="imageUrl && editstatus" style="font-size: 25px;" (click)="deleteImage(imageUrl)">delete</mat-icon>
+
+            <br><div>
+              <mat-slide-toggle formControlName="status">Status</mat-slide-toggle>
+            </div>
           </mat-card>
 
         </mat-card-content>
@@ -110,16 +114,13 @@
 
   <mat-form-field>
     <mat-label>Search</mat-label>
-    <input matInput [(ngModel)]="filterValue"  (ngModelChange)="onInputChange($event)" placeholder="Ex. ium">
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
   </mat-form-field>
-  &nbsp;&nbsp;
-  <button mat-raised-button (click)="search()" >
-    Search
-  </button>
+
   <table class="styled-table">
     <thead>
         <tr>
-            <th>id</th>
+            <th>Id</th>
             <th>Image Uploaded</th>
             <th>Category</th>
             <th>Taxable</th>
@@ -128,13 +129,13 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let element of category">
-            <td>{{element.id}}</td>
-            <td >
+        <tr *ngFor="let element of filtered let i = index">
+            <td [style.background-color]="element.status == false ? 'pink' : null">{{element.id}}</td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">
               <ng-container *ngIf="element.fileUrl; else alternativeImage">
                 <img  src="{{ element.fileUrl }}" style="width: 50px; height: 50px;"
-                (mouseover)="enlargeImage(true)"
-                (mouseout)="enlargeImage(false)"
+                (mouseover)="enlargeImage(i, true)"
+                (mouseout)="enlargeImage(i, false)"
                 [ngClass]="{'enlarged': isImageEnlarged}" />
 
               </ng-container>
@@ -143,9 +144,9 @@
                 <img src="../../../../../../assets/img/no_image_part.png" alt="Alternative Image" style="width: 50px; height: 50px;" />
               </ng-template>
             </td>
-            <td>{{element.categoryName}}</td>
-            <td>{{element.taxable == true? "Yes" : "No"}}</td>
-            <td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">{{element.categoryName}}</td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">{{element.taxable == true? "Yes" : "No"}}</td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">
                 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
               <i  (click)="editCategory(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
               &nbsp;&nbsp;
@@ -155,6 +156,6 @@
     </tbody>
   </table>
   <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageIndex]="currentPage - 1" (page)="onPageChange($event)"
-    [pageSizeOptions]="[10, 20,30,40,50,100]">
+    [pageSizeOptions]="[10, 20, 30,40,50,100]">
   </mat-paginator>
  </mat-card>

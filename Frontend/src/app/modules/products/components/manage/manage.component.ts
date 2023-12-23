@@ -19,33 +19,11 @@ export class ManageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log("hiii")
   }
 
   onSubmit(){}
 
-  onCancelClick(): void {
-    this.router.navigateByUrl('admin/settings')
-    this.dialogRef.close();
-  }
-
-  manageProductCategory(){
-    this.router.navigateByUrl('products/settings/category')
-    // this.dialogRef.close();
-  }
-
-  manageUnits(){
-    this.router.navigateByUrl('admin/settings/product/unit')
-    this.dialogRef.close();
-  }
-
-  manageBrands(){
-    this.router.navigateByUrl('admin/settings/product/brand');
-    this.dialogRef.close();
-  }
-
-  manageProducts(){
-    this.router.navigateByUrl('admin/settings/product/addproduct')
-    this.dialogRef.close();
+  home(){
+    this.router.navigateByUrl('/login/settings')
   }
 }

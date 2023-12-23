@@ -30,6 +30,22 @@ export class UsersService {
     return this._http.get<User[]>(this.url + '/register')
   }
 
+  getUserById(id: number):Observable<User>{
+    return this._http.get<User>(this.url + '/register/'+id)
+  }
+
+  getPaginatedUser(search:string, page: number, pageSize: number): Observable<User[]>{
+    return this._http.get<User[]>(this.url + '/register/' + `?search=${search}&page=${page}&pageSize=${pageSize}`);
+  }
+
+  updateUser(id:Number, data:any){
+    return this._http.patch<User>(this.url+'/register/' + id, data);
+  }
+
+  deleteUser(id:Number){
+    return this._http.delete(this.url+'/register/'+id);
+  }
+
   login(data: any){
     return this._http.post(this.url + '/login', data)
     .pipe(
@@ -111,7 +127,7 @@ export class UsersService {
   }
 
   deleteRole(id: number){
-    return this._http.get<Role[]>(this.url + '/role/' + id)
+    return this._http.delete<Role[]>(this.url + '/role/' + id)
   }
 
   updateRole(data: any, id: number){

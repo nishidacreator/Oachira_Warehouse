@@ -1,0 +1,230 @@
+
+<form [formGroup]="distributorForm" (ngSubmit)="onSubmit()">
+  <mat-card class="background">
+    <div class="row" *ngIf="addStatus != 'true'">
+      <div class="col">
+        <mat-card-header>
+          <mat-card-title> DISTRIBUTOR</mat-card-title>
+        </mat-card-header>
+      </div>
+      <div class="col">
+        <mat-card-header>
+          <button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon"
+          class="d-block mr-0 ml-auto" onClick="history.back()" style="margin-left: auto;">
+            <mat-icon>exit_to_app</mat-icon>
+          </button>
+        </mat-card-header>
+      </div>
+    </div>
+    <mat-card-content >
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Distributor Name" formControlName="distributorName">
+            <mat-error *ngIf="distributorForm.controls['distributorName'].hasError('required')">
+              Name <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="PhoneNumber" formControlName="phoneNumber">
+            <mat-error *ngIf="distributorForm.controls['phoneNumber'].hasError('required')">
+              Name <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="ContactPerson" formControlName="contactPerson">
+            <mat-error *ngIf="distributorForm.controls['contactPerson'].hasError('required')">
+              Name <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+
+        <!-- <div class="col">
+          <ng-container *ngIf="imageUrl; else noImage">
+            <img [src]="imageUrl" alt="Image" title="Image" height="100" width="100" style="margin-top: 50px;"/>
+          </ng-container>
+
+          <ng-template #noImage>
+            <img src="../../../../../../assets/img/no_image_part.png" alt="Alternative Image" title="Image" height="100" width="100" />
+          </ng-template>
+          <input *ngIf="!imageUrl" type="file" id="fileInput" (change)="onFileSelected($event)"/>
+          <mat-icon *ngIf="imageUrl && !editstatus" style="font-size: 25px;" (click)="clearFileInput()">delete</mat-icon>
+          <mat-icon *ngIf="imageUrl && editstatus" style="font-size: 25px;" (click)="deleteImage(imageUrl)">delete</mat-icon>
+        </div> -->
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Address1" formControlName="address1"></textarea>
+            <mat-error *ngIf="distributorForm.controls['address1'].hasError('required')">
+              Name <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Address2" formControlName="address2"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="GstNo" formControlName="gstNo">
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="PanNo" formControlName="panNo">
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="FssaiNo" formControlName="fssaiNo">
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="State" formControlName="state">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <br><div>
+        <mat-slide-toggle formControlName="status">Status</mat-slide-toggle>
+      </div>
+
+      <div class="col" *ngIf="!editstatus">
+        <mat-form-field class="full-width">
+          <mat-label>Products Distributed</mat-label>
+          <mat-select formControlName="products" multiple>
+            <mat-form-field class="search-field" style="width: 80%;">
+              <div class="row">
+                <input matInput (input)="filterProduct($event)" placeholder="Search">
+              </div>
+            </mat-form-field>
+            <span *ngIf="filteredProduct.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);"
+               (click)="addProduct()">playlist_add</span>
+            <mat-option *ngFor="let item of filteredProduct" [value]="item.id">
+              {{ item.productName }}
+            </mat-option>
+            <mat-option *ngIf="filteredProduct.length === 0">
+              <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55); margin-top: 18px;" (click)="addProduct()">playlist_add</span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button *ngIf="!editstatus" mat-raised-button  type="submit" [disabled]="distributorForm.pristine || !distributorForm.valid ">
+        <mat-icon style="font-size: 25px;">save</mat-icon>
+      </button>&nbsp;&nbsp;
+      <button *ngIf="editstatus" mat-raised-button  type="button" [disabled]="!distributorForm.valid" (click)="editFunction()">
+        <mat-icon style="font-size: 25px;">edit_note</mat-icon>
+      </button>&nbsp;&nbsp;
+
+      <button mat-raised-button *ngIf="addStatus === 'true'" type="button" class="cancel-button" (click)="onCancelClick()">
+        <mat-icon style="font-size: 25px;">cancel_presentation</mat-icon>
+      </button>
+    </mat-card-actions>
+
+  </mat-card>
+
+</form>
+
+
+<!-- --------------------------------------------------------------------------------------------------------------------------- -->
+
+<br><mat-card *ngIf="addStatus != 'true'">
+  <mat-card-header>
+    <mat-card-title style="color: green;"> DISTRIBUTORS</mat-card-title>
+  </mat-card-header>
+
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+
+  <div style="overflow-x: auto;">
+    <table class="styled-table">
+      <thead>
+          <tr>
+              <th>Id</th>
+              <!-- <th>Image</th> -->
+              <th>Distributor</th>
+              <th>ContactPerson</th>
+              <th>PhoneNumber</th>
+              <th>Address1</th>
+              <th>Address2</th>
+              <th>state</th>
+              <th>GstNo</th>
+              <th>PanNo</th>
+              <th>FssaiNo</th>
+              <th>Products</th>
+              <th>Manage</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let element of filtered let i=index">
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.id}}</td>
+              <!-- <td [style.background-color]="element.status == false ? 'pink' : null">
+                <ng-container *ngIf="element.fileUrl; else alternativeImage">
+                  <img
+                    src="{{ element.fileUrl }}"
+                    style="width: 50px; height: 50px;"
+                    (mouseover)="enlargeImage(i, true)"
+                    (mouseout)="enlargeImage(i, false)"
+                    [ngClass]="{ 'enlarged': isImageEnlarged[i] }"
+                  />
+                </ng-container>
+
+                <ng-template #alternativeImage>
+                  <img src="../../../../../../assets/img/no_image_part.png" alt="Alternative Image" style="width: 50px; height: 50px;" />
+                </ng-template>
+              </td> -->
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.distributorName}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.contactPerson}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.phoneNumber}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.address1}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.address2}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.state}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.gstNo}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.panNo}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.fssaiNo}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">
+                <span class="material-icons" (click)="viewProductList(element.id)">logout</span>
+              </td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">
+                <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+                <i  (click)="editDistributor(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
+                &nbsp;&nbsp;
+                <i  (click)="deleteDistributor(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+              </td>
+          </tr>
+      </tbody>
+    </table>
+    <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageIndex]="currentPage - 1"
+    (page)="onPageChange($event)" [pageSizeOptions]="[10, 20,30,40,50,100]">
+    </mat-paginator>
+  </div>
+
+</mat-card>

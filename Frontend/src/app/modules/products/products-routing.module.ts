@@ -10,6 +10,10 @@ import { BrandComponent } from './components/brand/brand.component';
 import { SubcategoryComponent } from './components/subcategory/subcategory.component';
 import { UnitComponent } from './components/unit/unit.component';
 import { ProductComponent } from './components/product/product.component';
+import { LocationComponent } from './components/location/location.component';
+import { HsnComponent } from './components/hsn/hsn.component';
+import { GstComponent } from './components/gst/gst.component';
+import { DistributorComponent } from './components/distributor/distributor.component';
 
 const routes: Routes = [
   {path: '', component:ManageComponent},
@@ -18,6 +22,10 @@ const routes: Routes = [
     {path: 'brand', component: BrandComponent},
     {path: 'subcategory', component: SubcategoryComponent},
     {path: 'unit', component: UnitComponent},
+    {path: 'location', component: LocationComponent},
+    {path: 'hsn', component: HsnComponent},
+    {path: 'gst', component: GstComponent},
+    {path: 'distributor', component: DistributorComponent},
     {path: 'add', component: ProductComponent},
   // ]}
 ];

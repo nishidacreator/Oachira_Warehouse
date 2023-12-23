@@ -1,0 +1,117 @@
+
+<form [formGroup]="gstForm" (ngSubmit)="onSubmit()">
+  <mat-card class="background">
+    <div class="row">
+      <div class="col">
+        <mat-card-header>
+          <mat-card-title> GST </mat-card-title>
+        </mat-card-header>
+      </div>
+      <div class="col" *ngIf="addStatus != 'true'">
+        <mat-card-header>
+          <button mat-mini-fab color="primary" type="button" style="margin-left: auto;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onclick="history.back()">
+            <mat-icon>exit_to_app</mat-icon>
+          </button>
+        </mat-card-header>
+      </div>
+    </div>
+    <mat-card-content >
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Gst Name" formControlName="gstName">
+            <mat-error *ngIf="gstForm.controls['gstName'].hasError('required')">
+              Name <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="IGST" formControlName="igst" type="number">{{calculateGst()}}
+            <mat-error *ngIf="gstForm.controls['igst'].hasError('required')">
+              IGST <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="gstForm.controls['igst'].value">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="CGST" formControlName="cgst">
+            <!-- <mat-error *ngIf="gstForm.controls['cgst'].hasError('required')">
+              Name <strong>required</strong>
+            </mat-error> -->
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="SGST" formControlName="sgst">
+            <!-- <mat-error *ngIf="gstForm.controls['sgst'].hasError('required')">
+              Name <strong>required</strong>
+            </mat-error> -->
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <button *ngIf="!editstatus" mat-raised-button  type="submit" [disabled]="gstForm.pristine || !gstForm.valid ">
+      <mat-icon style="font-size: 25px;">save</mat-icon>
+    </button>&nbsp;&nbsp;
+    <button *ngIf="editstatus" mat-raised-button  type="button" [disabled]="!gstForm.valid" (click)="editFunction()">
+      <mat-icon style="font-size: 25px;">edit_note</mat-icon>
+    </button>&nbsp;&nbsp;
+
+    <button mat-raised-button *ngIf="addStatus === 'true'" type="button" class="cancel-button" (click)="onCancelClick()">
+      <mat-icon style="font-size: 25px;">cancel_presentation</mat-icon>
+    </button>
+  </mat-card>
+</form>
+
+
+<!-- --------------------------------------------------------------------------------------------------------------------------- -->
+
+<br><mat-card *ngIf="addStatus != 'true'">
+  <mat-card-header>
+    <mat-card-title style="color: green;">GST</mat-card-title>
+  </mat-card-header>
+
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+
+  <table class="styled-table">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>GST</th>
+            <th>IGST</th>
+            <th>SGST</th>
+            <th>CGST</th>
+            <th>Manage</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let element of filtered; let i = index">
+        <td>{{element.id}}</td>
+        <td>{{element.gstName}}</td>
+        <td>{{element.igst}}</td>
+        <td>{{element.sgst}}</td>
+        <td>{{element.cgst}}</td>
+        <td>
+          <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+          <i (click)="editGst(element.id)" class="fa fa-edit" style="font-size: 20px; color:green"></i>
+          &nbsp;&nbsp;
+          <i (click)="deleteGst(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</mat-card>
+

@@ -1,0 +1,139 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <mat-card class="background">
+
+    <div class="row">
+      <div class="col">
+        <mat-card-header>
+          <mat-card-title> USER </mat-card-title>
+        </mat-card-header>
+      </div>
+      <div class="col" *ngIf="addStatus != 'true'">
+        <mat-card-header>
+          <button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto"
+            onClick="history.back()" style="margin-left: auto;">
+            <span class="material-icons" style="color: white;">exit_to_app</span>
+          </button>
+        </mat-card-header>
+      </div>
+    </div>
+
+    <mat-card-content >
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Name" formControlName="name">
+            <mat-error *ngIf="userForm.controls['name'].hasError('required')">
+              Name <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Phone Number" formControlName="phoneNumber" >
+            <mat-error *ngIf="userForm.controls['phoneNumber'].hasError('required')">
+             Number is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+
+          <mat-form-field class="full-width">
+            <mat-select placeholder="User Role" formControlName="roleId">
+              <span *ngIf="roles.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addRole()">playlist_add</span>
+              <mat-option *ngFor="let item of roles" [value]="item.id">
+                {{item.roleName}}
+              </mat-option>
+              <mat-option *ngIf="roles.length === 0" [value]="'add'">
+                <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addRole()">playlist_add</span>
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="userForm.controls['roleId'].hasError('required')">
+              Role <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+
+      <div class="row" *ngIf="!addStatus">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput type="password" placeholder="Password" formControlName="password">
+            <mat-error *ngIf="userForm.controls['password'].hasError('required')">
+             Password is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div style="margin-top: 20px;">
+          <mat-slide-toggle formControlName="status">Status</mat-slide-toggle>
+        </div>
+      </div>
+
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button *ngIf="!editstatus" mat-raised-button  type="submit" [disabled]="userForm.pristine || !userForm.valid ">
+        <mat-icon style="font-size: 25px;">save</mat-icon>
+      </button>&nbsp;&nbsp;
+      <button *ngIf="editstatus" mat-raised-button  type="button" [disabled]="!userForm.valid" (click)="editFunction()">
+        <mat-icon style="font-size: 25px;">edit_note</mat-icon>
+      </button>&nbsp;&nbsp;
+
+      <button mat-raised-button *ngIf="addStatus === 'true'" type="button" class="cancel-button" (click)="onCancelClick()">
+        <mat-icon style="font-size: 25px;">cancel_presentation</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+
+
+
+
+<br><mat-card  *ngIf="!addStatus">
+  <mat-card-header>
+    <mat-card-title style="color: green;"> USERS </mat-card-title>
+  </mat-card-header>
+
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+
+  <table class="styled-table">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Phonenumber</th>
+            <th>Rolename</th>
+            <th>Status</th>
+            <th>Manage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let element of filtered">
+            <td [style.background-color]="element.status == false ? 'pink' : null">{{element.id}}</td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">{{element.name}}</td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">{{element.phoneNumber}}</td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">{{element.role.roleName}}</td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">{{element.status}}</td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">
+              <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+              <i  (click)="editUser(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
+              &nbsp;&nbsp;
+              <i  (click)="deleteUser(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+  <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageIndex]="currentPage - 1"
+  (page)="onPageChange($event)" [pageSizeOptions]="[10, 20,30,40,50,100]">
+  </mat-paginator>
+</mat-card>

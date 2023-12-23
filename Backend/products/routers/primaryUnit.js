@@ -1,17 +1,33 @@
 const express = require('express');
 const PrimaryUnit = require('../models/primayUnit');
+const SecondaryUnit = require('../models/secondaryUnit');
 const router = express.Router();
 const authenticateToken = require('../../middleware/authorization');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
-            const {primaryUnitName, factor} = req.body;
+            const {primaryUnitName, factor, secondaryUnits} = req.body;
 
             const primaryUnit = new PrimaryUnit({primaryUnitName, factor});
 
             await primaryUnit.save();
 
-            res.send(primaryUnit);
+            if(secondaryUnits){
+              const unitId = primaryUnit.id;
+              for(let i = 0; i < secondaryUnits.length; i++) {
+                secondaryUnits[i].primaryUnitId = unitId;
+              }
+              const sU = await SecondaryUnit.bulkCreate(secondaryUnits)
+              const response = {
+                pu: primaryUnit,
+                su: sU
+              }
+              res.send(response)
+            }else{
+              res.send(primaryUnit);
+            }
+            
+
 
     } catch (error) {
         res.send(error);

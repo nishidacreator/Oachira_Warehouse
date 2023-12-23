@@ -66,4 +66,62 @@ router.get("/", authenticateToken, async (req, res) => {
     }
 });
 
+router.get('/:id', authenticateToken, async(req,res)=>{
+
+  try {
+      const hsn = await Hsn.findOne({where: {id: req.params.id}, order:['id']});
+      res.send(hsn);
+      
+  } catch (error) {
+      res.send(error.message);
+  }  
+})
+
+
+router.delete('/:id', authenticateToken, async(req,res)=>{
+    try {
+
+        const result = await Hsn.destroy({
+            where: { id: req.params.id },
+            force: true,
+        });
+
+        if (result === 0) {
+            return res.status(404).json({
+              status: "fail",
+              message: "Hsn with that ID not found",
+            });
+          }
+      
+          res.status(204).json();
+        }  catch (error) {
+        res.send({error: error.message})
+    }
+    
+})
+
+router.patch('/:id', authenticateToken, async(req,res)=>{
+    try {
+        Hsn.update(req.body, {
+            where: { id: req.params.id }
+          })
+            .then(num => {
+              if (num == 1) {
+                res.send({
+                  message: "Hsn was updated successfully."
+                });
+              } else {
+                res.send({
+                  message: `Cannot update Hsn with id=${id}. Maybe Hsn was not found or req.body is empty!`
+                });
+              }
+            })
+      } catch (error) {
+        res.status(500).json({
+          status: "error",
+          message: error.message,
+        });
+      }
+})
+
 module.exports = router;

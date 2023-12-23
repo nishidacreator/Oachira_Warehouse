@@ -15,7 +15,9 @@ const SubCategory = require('../products/models/subCategory');
 const Gst = require('../products/models/gst');
 const Location = require('../products/models/location');
 const Hsn = require('../products/models/hsn');
-
+const Distributor = require('../products/models/distributor');
+const ProductDistributor = require('../products/models/productDistributor');
+const Store = require('../store/models/store');
 // const CustomerCategory = require('../models/Customer/customerCategory');
 // const CustomerGrade = require('../models/Customer/customerGrade');
 // const Customer = require('../models/Customer/customer');
@@ -93,6 +95,15 @@ async function syncModel(){
     Hsn.hasMany(Product,{foreignKey : 'hsnId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Product.belongsTo(Hsn)
 
+    Product.hasMany(ProductDistributor,{foreignKey : 'productId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    ProductDistributor.belongsTo(Product)
+
+    Distributor.hasMany(ProductDistributor,{foreignKey : 'distributorId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    ProductDistributor.belongsTo(Distributor)
+
+    // STORE
+    User.hasMany(Store,{foreignKey : 'storeInChargeId', as: 'storeInCharge',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Store.belongsTo(User, {foreignKey : 'storeInChargeId', as: 'storeInCharge'})
     // CustomerGrade.hasMany(Customer, {foreignKey : 'customerGradeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     // Customer.belongsTo(CustomerGrade)
 

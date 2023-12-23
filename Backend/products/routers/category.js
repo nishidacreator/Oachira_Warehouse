@@ -63,13 +63,10 @@ router.get("/", authenticateToken, async (req, res) => {
                 categoryName: { [Op.iLike]: `%${req.query.search}%` },
               },
             ],
-          },
-          { status: true }, // Ensure status is true
+          } // Ensure status is true
         ],
       };
-    } else {
-      whereClause = { status: true }; // Ensure status is true if no search query
-    }
+    } 
     
 
     let limit;
@@ -122,8 +119,9 @@ router.delete('/:id', authenticateToken, async(req,res)=>{
   
         try {
           const file = categories.cloudinaryId;
-          console.log(file);
-          const result = await cloudinary.uploader.destroy(file);
+          if(file){
+            const result = await cloudinary.uploader.destroy(file);
+          }
     
         } catch (error) {
           res.status(500).send(error);
@@ -210,4 +208,5 @@ router.get('/byfileurl', authenticateToken, async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
 module.exports = router;

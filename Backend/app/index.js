@@ -31,6 +31,8 @@ const primaryUnit = require('../products/routers/primaryUnit');
 const secondaryUnit = require('../products/routers/secondaryUnit');
 const subCategory = require('../products/routers/subCategory');
 const gst = require('../products/routers/gst');
+const distributor = require('../products/routers/distributor');
+const productDistributor = require('../products/routers/productDistributor');
 
 app.use('/product', product);
 app.use('/product/category',category);
@@ -41,7 +43,11 @@ app.use('/product/primaryunit',primaryUnit);
 app.use('/product/secondaryunit',secondaryUnit);
 app.use('/product/subcategory',subCategory);
 app.use('/product/gst',gst);
+app.use('/product/distributor',distributor);
+app.use('/product/productdistributor',productDistributor);
 
+const store = require('../store/routers/store');
+app.use('/store',store);
 
 const port = process.env.PORT;
 

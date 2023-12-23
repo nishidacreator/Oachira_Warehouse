@@ -4,15 +4,19 @@ import { MaterialModule } from '../shared-components/material.module';
 
 import { UsersRoutingModule } from './users-routing.module';
 
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from '../shared-components/login/login.component';
+import { RegisterComponent } from '../shared-components/register/register.component';
 import { RoleComponent } from './components/role/role.component';
+import { ManageUsersComponent } from './components/manage-users/manage-users.component';
+import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
-    RoleComponent
+    RoleComponent,
+    ManageUsersComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,

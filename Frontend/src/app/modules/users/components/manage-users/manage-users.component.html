@@ -1,0 +1,27 @@
+<section class="home_layout">
+  <div id="section_bg" class="background">
+    <mat-grid-list gutterSize="10px" cols="5" rowHeight="1:1">
+
+      <mat-grid-tile class="container">
+        <button class="btn btn" mat-fab aria-label="Example icon button with a bookmark icon" type="button" (click)="home()">
+          <span class="material-icons" style="color: white; font-size: 45px;">home</span>
+        </button>
+        <div class="button_align">Home</div>
+      </mat-grid-tile>
+
+      <mat-grid-tile class="container">
+        <button  class="btn btn" mat-fab aria-label="Example icon button with a bookmark icon" routerLink="role">
+          <span class="material-icons" style="color: rgb(255, 255, 255); font-size: 45px;">admin_panel_settings</span>
+        </button>
+        <div class="button_align">Role</div>
+      </mat-grid-tile>
+
+      <mat-grid-tile class="container">
+        <button  class="btn btn" mat-fab aria-label="Example icon button with a bookmark icon" routerLink="add">
+          <span class="material-icons" style="color: rgb(255, 255, 255); font-size: 45px;">badge</span>
+        </button>
+        <div class="button_align">User</div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</section>

@@ -16,9 +16,9 @@ const Location = require('../models/location');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
-            const { productName, code, barCode, primaryUnitId, categoryId, brandId, reorderQuantity, loyaltyPoint} = req.body;
+            const { productName, code, barCode, subCategoryId, categoryId, brandId, reorderQuantity, loyaltyPoint, cloudinaryId, fileUrl} = req.body;
 
-            const result = new Product({productName, code, barCode, primaryUnitId, categoryId, brandId, reorderQuantity, loyaltyPoint});
+            const result = new Product({productName, code, barCode, subCategoryId, categoryId, brandId, reorderQuantity, loyaltyPoint, cloudinaryId, fileUrl});
             await result.save();
             res.send(result);
   } catch (error) {
@@ -26,6 +26,14 @@ router.post('/', authenticateToken, async (req, res) => {
   }
 });
 
+router.post('/fileupload', multer.single('file'), async (req, res) => {
+  try {
+      const result = await cloudinary.uploader.upload(req.file.path);
+      res.send(result);
+  } catch (error) {
+      res.send(error);
+  }
+});
 
 router.get("/", authenticateToken, async (req, res) => {
   try {
@@ -33,21 +41,27 @@ router.get("/", authenticateToken, async (req, res) => {
 
     if (req.query.search) {
       whereClause = {
-        [Op.or]: [
-          { productName: { [Op.iLike]: `%${req.query.search}%` } },
-          { code: { [Op.iLike]: `%${req.query.search}%` } },
-          { barCode: { [Op.iLike]: `%${req.query.search}%` } },
+        [Op.and]: [
+          {
+            [Op.or]: [
+              { productName: { [Op.iLike]: `%${req.query.search}%` }},
+            ],
+          },
+          // {
+          //   status: true
+          // },
         ],
       };
-      console.log(whereClause)
     }
+    
+    
 
     let limit;
     let offset;
 
     if (req.query.pageSize && req.query.page) {
-      limit = req.query.pageSize;
-      offset = (req.query.page - 1) * req.query.pageSize;
+      limit = parseInt(req.query.pageSize, 10) || 10; // Default to 10 if not a valid number
+      offset = (parseInt(req.query.page, 10) - 1) * limit || 0;
     }
 
     const products = await Product.findAll({
@@ -141,4 +155,30 @@ router.patch('/:id', authenticateToken, async(req,res)=>{
       }
 })
 
+router.get('/byfileurl', authenticateToken, async (req, res) => {
+  try {
+    const categories = await Product.findOne({
+      where: {fileUrl: req.query.fileUrl},
+      order: ["id"]
+    });
+
+    try {
+      const file = categories.cloudinaryId;
+      console.log(file);
+      const result = await cloudinary.uploader.destroy(file);
+
+      categories.fileUrl = '';
+      categories.cloudinaryId = '';
+      await categories.save();
+
+      res.send(categories);
+    } catch (error) {
+      res.status(500).send(error);
+      console.error(error);
+    }
+  } catch (error) {
+    console.error("Error in product retrieval:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 module.exports = router;

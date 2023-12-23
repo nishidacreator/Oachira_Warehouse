@@ -22,15 +22,10 @@ export class RoleComponent implements OnInit {
 
   ngOnDestroy() {
     this.roleSubscription?.unsubscribe()
-    if(this.submit){
-      this.submit.unsubscribe()
-    }this.edit
-    if(this.submit){
-      this.edit.unsubscribe()
-    }
-    if(this.delete){
-      this.delete.unsubscribe()
-    }
+    this.submit?.unsubscribe();
+    this.delete?.unsubscribe();
+    this.edit?.unsubscribe();
+    this.patch?.unsubscribe();
   }
 
   roleForm = this.fb.group({
@@ -40,25 +35,17 @@ export class RoleComponent implements OnInit {
 
   displayedColumns : string[] = ['id','roleName','status','manage']
 
-  addStatus!: string
+  addStatus!: string;
+  editstatus!: boolean;
   ngOnInit(): void {
+    this.roleForm.get('status')?.setValue(true);
     this.roleSubscription = this.getRoles()
 
     if (this.dialogRef) {
       this.addStatus = this.dialogData?.status;
+      this.patchData();
     }
 
-  }
-
-  homeClick(){
-    // const dialogRef = this.dialog.open(UserManagementComponent, {
-    //   height: '200px',
-    //   width: '800px',
-    // });
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log(`Dialog result: ${result}`);
-    // })
   }
 
   submit!: Subscription;
@@ -108,6 +95,7 @@ export class RoleComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
         this.delete = this.userService.deleteRole(id).subscribe((res)=>{
+          console.log(res);
           this.getRoles()
           this._snackBar.open("Role deleted successfully...","" ,{duration:3000})
         },(error=>{
@@ -121,15 +109,32 @@ export class RoleComponent implements OnInit {
   roleId : any;
   editRole(id : any){
     this.isEdit = true;
-    //Get the product based on the ID
-    let role: any= this.roles.find(x =>x.id == id)
+    const dialogRef = this.dialog.open(RoleComponent, {
+      data: { status: "true" , type : "edit", id: id},
+    });
 
-    //Populate the object by the ID
-    let roleName = role.roleName.toString();
-    let status = role.status
+    dialogRef.afterClosed().subscribe((result) => {
+      this.getRoles();
+    });
+  }
 
-    this.roleForm.patchValue({roleName : roleName, status : status})
-    this.roleId = id;
+  patch!: Subscription;
+  patchData(){
+    this.userService.getRole().subscribe(res=>{
+      if(this.dialogData?.type === 'edit'){
+        this.editstatus = true
+        let role: any= res.find(x =>x.id == this.dialogData?.id)
+
+        let roleName = role.roleName;
+        let status = role.status
+
+        this.roleForm.patchValue({
+          roleName : roleName,
+          status: status
+        })
+        this.roleId = this.dialogData?.id;
+      }
+    })
   }
 
   edit!: Subscription;
@@ -143,6 +148,7 @@ export class RoleComponent implements OnInit {
 
     this.edit = this.userService.updateRole(data, this.roleId).subscribe((res)=>{
       this._snackBar.open("Role updated successfully...","" ,{duration:3000})
+      this.dialogRef?.close();
       this.getRoles();
       this.clearControls();
     },(error=>{

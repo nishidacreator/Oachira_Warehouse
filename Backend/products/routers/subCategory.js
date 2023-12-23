@@ -82,4 +82,102 @@ router.get("/", authenticateToken, async (req, res) => {
     }
 });
 
+router.patch('/:id', authenticateToken, async(req,res)=>{
+  try {
+
+    SubCategory.update(req.body, {
+        where: { id: req.params.id }
+      })
+        .then(num => {
+          if (num == 1) {
+            res.send({
+              message: "SubCategory was updated successfully."
+            });
+          } else {
+            res.send({
+              message: `Cannot update SubCategory with id=${id}. Maybe SubCategory was not found or req.body is empty!`
+            });
+          }
+        })
+    } catch (error) {
+      res.status(500).json({
+        status: "error",
+        message: error.message,
+      });
+    }
+})
+
+router.patch('/imageupdate', async (req, res) => {
+  try {
+    // Use the `upload` method with the `public_id` of the image you want to update
+    const result = await cloudinary.uploader.upload(req.body.fileUrl, req.file.path);
+
+    res.send(result);
+  } catch (error) {
+    console.error('Error updating image:', error.message);
+  }
+})
+
+router.get('/byfileurl', authenticateToken, async (req, res) => {
+  try {
+    const categories = await SubCategory.findOne({
+      where: {fileUrlSub: req.query.fileUrl},
+      order: ["id"]
+    });
+
+    try {
+      const file = categories.cloudinaryIdSub;
+      console.log(file);
+      const result = await cloudinary.uploader.destroy(file);
+
+      categories.fileUrlSub = '';
+      categories.cloudinaryIdSub = '';
+      await categories.save();
+
+      res.send(categories);
+    } catch (error) {
+      res.status(500).send(error);
+      console.error(error);
+    }
+  } catch (error) {
+    console.error("Error in category retrieval:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+router.delete('/:id', authenticateToken, async(req,res)=>{
+  try {
+    const categories = await SubCategory.findOne({
+      where: {id: req.params.id},
+      order: ["id"]
+    });
+
+      try {
+        const file = categories.cloudinaryIdSub;
+        if(file){
+          const result = await cloudinary.uploader.destroy(file);
+        }
+  
+      } catch (error) {
+        res.status(500).send(error);
+        console.error(error);
+      }
+
+      const result = await categories.destroy({
+          force: true
+      });
+
+      if (result === 0) {
+          return res.status(404).json({
+            status: "fail",
+            message: "Category with that ID not found",
+          });
+        }
+    
+        res.status(204).json();
+      }  catch (error) {
+      res.send({error: error.message})
+  }
+  
+})
 module.exports = router;
