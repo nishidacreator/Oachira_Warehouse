@@ -33,12 +33,12 @@ export class StoreComponent implements OnInit {
 
   storeForm = this.fb.group({
     storeName: ['', Validators.required],
-    storeInChargeId: ['', Validators.required],
+    storeInChargeId: [ Validators.required],
     phoneNumber: ['', Validators.required],
     storeLocation: ['', Validators.required],
-    counterCount: [, Validators.required],
+    counterCount: [ Validators.required],
     gstId: [],
-    storeBaseUrl: ['', Validators.required],
+    storeBaseUrl: [ Validators.required],
     status : [false ,Validators.required],
     cloudinaryId : [''],
     fileUrl : ['']
@@ -51,7 +51,6 @@ export class StoreComponent implements OnInit {
   ngOnInit(): void {
     if (this.dialogRef) {
       this.addStatus = this.dialogData?.status;
-
       this.patchData()
     }
     this.storeForm.get('status')?.setValue(true);
@@ -158,9 +157,8 @@ export class StoreComponent implements OnInit {
     // }else{
       console.log(this.storeForm.getRawValue())
       this.submit = this.storeService.addStore(this.storeForm.getRawValue()).subscribe((response)=>{
-        console.log(response)
         let data = {
-          store: this.storeForm.get('storeName')?.value
+          store: response
         }
         this.dialogRef?.close(data);
         this._snackBar.open("store added successfully...","" ,{duration:3000})
@@ -343,7 +341,10 @@ export class StoreComponent implements OnInit {
         storeBaseUrl : this.storeForm.get('storeBaseUrl')?.value,
         status : this.storeForm.get('status')?.value
       }
+      console.log(data);
       this.submit = this.storeService.updateStore(this.storeId, data).subscribe((res)=>{
+        console.log(res);
+
         this._snackBar.open("store updated successfully...","" ,{duration:3000})
         this.dialogRef.close();
         this.clearControls();
@@ -367,15 +368,6 @@ export class StoreComponent implements OnInit {
 
   clearFileInput() {
     this.imageUrl = '';
-  }
-
-  deleteImage(image: any){
-    let data = {
-      fileUrl: image
-    }
-    this.storeService.getStoreByFileUrl(data).subscribe((res)=>{
-      this.patchData()
-    })
   }
 }
 

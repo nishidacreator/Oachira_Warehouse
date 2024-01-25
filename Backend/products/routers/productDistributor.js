@@ -159,4 +159,20 @@ router.patch('/status/:id', authenticateToken, async(req,res)=>{
     }
 })
 
+router.patch('/statusupdate/:id', authenticateToken, async(req,res)=>{
+  try {
+
+    let status = req.body.status;
+    let result = await ProductDistributor.findByPk(req.params.id);
+    result.status = status
+
+    await result.save();
+    res.send(result);
+    } catch (error) {
+      res.status(500).json({
+        status: "error",
+        message: error.message,
+      });
+    }
+})
 module.exports = router;

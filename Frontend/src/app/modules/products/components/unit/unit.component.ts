@@ -85,10 +85,14 @@ export class UnitComponent implements OnInit {
     this.getPrimaryUnits();
     this.setValue();
     if (this.dialogRef) {
-      this.addStatus = this.dialogData?.status;
-      if(this.dialogData.unit === 'primary'){
+      this.addStatus = 'true';
+
+      if(this.dialogData?.status === 'add'){
+        this.unitForm.get('unitType')?.setValue(this.dialogData?.unit);
+      }
+      if(this.dialogData.unit === 'primary' && this.dialogData?.status === 'true'){
         this.patchDataPrimary()
-      }else if(this.dialogData.unit === 'secondary'){
+      }else if(this.dialogData.unit === 'secondary' && this.dialogData?.status === 'true'){
         this.patchDataSecondary()
       }
 
@@ -103,8 +107,11 @@ export class UnitComponent implements OnInit {
   onPrimarySubmit(){
     console.log(this.primaryUnitForm.getRawValue());
       this.pSubmit = this.productService.addPrimaryUnit(this.primaryUnitForm.getRawValue()).subscribe((res)=>{
-        console.log(res);
         this._snackBar.open("Primary Unit added successfully...","" ,{duration:3000})
+        let data = {
+          unit: this.primaryUnitForm.get('primaryUnitName')?.value
+        }
+        this.dialogRef?.close(data);
         this.clearControls()
       },(error=>{
         alert(error)
@@ -115,6 +122,10 @@ export class UnitComponent implements OnInit {
   onSecondarySubmit(){
     this.sSubmit = this.productService.addSecondaryUnit(this.secondaryUnitForm.getRawValue()).subscribe((res)=>{
       this._snackBar.open("Secondary Unit added successfully...","" ,{duration:3000})
+      let data = {
+        unit: res
+      }
+      this.dialogRef?.close(data);
       this.clearControls()
     },(error=>{
       alert(error)
@@ -334,5 +345,27 @@ editPUnitFunction(){
     }
     onCancelClick(): void {
       this.dialogRef.close();
+    }
+
+    onToggleChange(event: any, id: number) {
+      const newValue = event.checked;
+
+      let data = {
+        status : newValue
+      }
+      this.productService.updatePunitStatus(id, data).subscribe(data=>{
+        console.log(data);
+      });
+    }
+
+    onToggleChangeSecondary(event: any, id: number) {
+      const newValue = event.checked;
+
+      let data = {
+        status : newValue
+      }
+      this.productService.updateSunitStatus(id, data).subscribe(data=>{
+        console.log(data);
+      });
     }
 }

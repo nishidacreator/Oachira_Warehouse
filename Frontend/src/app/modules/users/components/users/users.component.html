@@ -113,8 +113,8 @@
             <th>Name</th>
             <th>Phonenumber</th>
             <th>Rolename</th>
-            <th>Status</th>
             <th>Manage</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
@@ -124,11 +124,14 @@
             <td [style.background-color]="element.status == false ? 'pink' : null">{{element.phoneNumber}}</td>
             <td [style.background-color]="element.status == false ? 'pink' : null">{{element.role.roleName}}</td>
             <td [style.background-color]="element.status == false ? 'pink' : null">{{element.status}}</td>
-            <td [style.background-color]="element.status == false ? 'pink' : null">
+            <!-- <td [style.background-color]="element.status == false ? 'pink' : null">
               <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
               <i  (click)="editUser(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
               &nbsp;&nbsp;
               <i  (click)="deleteUser(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+            </td> -->
+            <td [style.background-color]="element.status == false ? 'pink' : null">
+              <mat-slide-toggle [(ngModel)]="element.status" [ngModelOptions]="{standalone: true}" (change)="onToggleChange($event, element.id)"></mat-slide-toggle>
             </td>
         </tr>
     </tbody>

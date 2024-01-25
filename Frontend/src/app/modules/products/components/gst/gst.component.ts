@@ -33,9 +33,9 @@ export class GstComponent implements OnInit {
 
   gstForm = this.fb.group({
     gstName: ['', Validators.required],
-    igst: ['',[Validators.required, Validators.pattern("^()?[0-9]{1,2}$")]],
-    cgst: ['',[Validators.pattern("^()?[0-9]{1,2}$")]],
-    sgst: ['',[Validators.pattern("^()?[0-9]{1,2}$")]]
+    igst: ['',[Validators.required, Validators.pattern("^\\d*\\.?\\d{0,2}$")]],
+    cgst: ['',[Validators.pattern("^\\d*\\.?\\d{0,2}$")]],
+    sgst: ['',[Validators.pattern("^\\d*\\.?\\d{0,2}$")]]
   });
 
   displayedColumns : string[] = ['id','gstName','igst','cgst','sgst','manage']
@@ -180,5 +180,16 @@ export class GstComponent implements OnInit {
 
   onCancelClick(): void {
     this.dialogRef.close();
+  }
+
+  onToggleChange(event: any, id: number) {
+    const newValue = event.checked;
+
+    let data = {
+      status : newValue
+    }
+    this.productService.updateGstStatus(id, data).subscribe(data=>{
+      console.log(data);
+    });
   }
 }

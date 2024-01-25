@@ -73,6 +73,8 @@ export class HsnComponent implements OnInit {
   hsnSubcription? : Subscription;
   getHSN(){
     this.hsnSubcription = this.productService.getHsn().subscribe((res)=>{
+      console.log(res);
+
       this.hsn = res
       this.filtered = this.hsn
     })
@@ -156,5 +158,16 @@ export class HsnComponent implements OnInit {
 
   onCancelClick(): void {
     this.dialogRef.close();
+  }
+
+  onToggleChange(event: any, id: number) {
+    const newValue = event.checked;
+
+    let data = {
+      status : newValue
+    }
+    this.productService.updateHsnStatus(id, data).subscribe(data=>{
+      console.log(data);
+    });
   }
 }

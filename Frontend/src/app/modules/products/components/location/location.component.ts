@@ -208,5 +208,16 @@ export class LocationComponent implements OnInit {
   clearFileInput() {
     this.imageUrl = '';
   }
+
+  onToggleChange(event: any, id: number) {
+    const newValue = event.checked;
+
+    let data = {
+      status : newValue
+    }
+    this.productService.updateLocationStatus(id, data).subscribe(data=>{
+      console.log(data);
+    });
+  }
 }
 

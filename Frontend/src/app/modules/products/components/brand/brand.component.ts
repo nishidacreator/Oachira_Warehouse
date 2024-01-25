@@ -87,6 +87,9 @@ export class BrandComponent implements OnInit {
   submit!: Subscription
   uploadSubscription!: Subscription;
   onSubmit(){
+    if(!this.brandForm.valid){
+      return alert('Please fill the form first')
+    }
     if(this.file){
       this.uploadSubscription = this.productService.uploadBrandImage(this.file).subscribe(res=>{
         this.brandForm.patchValue({
@@ -125,10 +128,6 @@ export class BrandComponent implements OnInit {
   clearControls(){
     this.getBrand()
     this.brandForm.reset()
-    this.brandForm.setErrors(null)
-    Object.keys(this.brandForm.controls).forEach(key=>{this.brandForm.get(key)?.setErrors(null)})
-    this.file = null;
-    this.imageUrl = '';
   }
 
   brands: Brand[] = [];
@@ -291,6 +290,7 @@ export class BrandComponent implements OnInit {
 
   clearFileInput() {
     this.imageUrl = '';
+    this.file = '';
   }
 
   deleteImage(image: any){
@@ -298,8 +298,20 @@ export class BrandComponent implements OnInit {
       fileUrl: image
     }
     this.productService.getBrandByFileUrl(data).subscribe((res)=>{
+
       this.patchData()
     })
+  }
+
+  onToggleChange(event: any, id: number) {
+    const newValue = event.checked;
+
+    let data = {
+      status : newValue
+    }
+    this.productService.updateBrandStatus(id, data).subscribe(data=>{
+      console.log(data);
+    });
   }
 }
 

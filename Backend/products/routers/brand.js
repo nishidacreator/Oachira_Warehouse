@@ -38,6 +38,10 @@ router.get("/", authenticateToken, async (req, res) => {
     if (req.query.pageSize && req.query.page) {
       limit = req.query.pageSize;
       offset = (req.query.page - 1) * req.query.pageSize;
+    }else {
+      whereClause = {
+        status : true
+      }
     }
     const brand = await Brand.findAll({
       where: whereClause,
@@ -47,14 +51,10 @@ router.get("/", authenticateToken, async (req, res) => {
     });
 
     let totalCount;
+    totalCount = await Brand.count({
+      where: {status: true}
+    });
 
-    if (req.query.search) {
-      totalCount = await Brand.count({
-        where: whereClause,
-      });
-    } else {
-      totalCount = await Brand.count();
-    }
 
     if (req.query.page && req.query.pageSize) {
       const response = {
@@ -178,5 +178,22 @@ try {
   res.status(500).json({ error: "Internal Server Error" });
 }
 });
+
+router.patch('/statusupdate/:id', authenticateToken, async(req,res)=>{
+  try {
+
+    let status = req.body.status;
+    let brand = await Brand.findByPk(req.params.id);
+    brand.status = status
+
+    await brand.save();
+    res.send(brand);
+    } catch (error) {
+      res.status(500).json({
+        status: "error",
+        message: error.message,
+      });
+    }
+})
 
 module.exports = router;

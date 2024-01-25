@@ -4,7 +4,6 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
     try {
-        console.log("req.body");
             const { storeName, storeLocation, counterCount, storeInChargeId, phoneNumber, gstId, storeBaseUrl, status } = req.body;
 
             const store = new Store({storeName, storeLocation, counterCount, storeInChargeId, phoneNumber, gstId, storeBaseUrl, status});

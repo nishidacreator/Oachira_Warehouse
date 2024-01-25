@@ -21,6 +21,8 @@ import { Hsn } from '../../models/hsn';
 import { HsnComponent } from '../hsn/hsn.component';
 import { Gst } from '../../models/gst';
 import { GstComponent } from '../gst/gst.component';
+import { PrimaryUnit } from '../../models/primary-unit';
+import { UnitComponent } from '../unit/unit.component';
 
 @Component({
   selector: 'app-product',
@@ -37,6 +39,7 @@ export class ProductComponent implements OnInit {
 
   ngOnDestroy() {
     this.brandSub?.unsubscribe();
+    this.unitSub?.unsubscribe();
     this.cSubscription?.unsubscribe();
     this.scSubscription?.unsubscribe();
     this.locSub?.unsubscribe();
@@ -57,6 +60,7 @@ export class ProductComponent implements OnInit {
     barCode : [''],
     categoryId : [],
     subCategoryId : [],
+    baseUnitId : [],
     brandId : [],
     locationId : [],
     gstId : [],
@@ -91,6 +95,7 @@ export class ProductComponent implements OnInit {
     this.getComplete();
     this.getHsn();
     this.getGst();
+    this.getPUnit();
   }
 
   categories: Category[] = [];
@@ -98,6 +103,8 @@ export class ProductComponent implements OnInit {
   getCategory(value?: string){
     this.cSubscription = this.productService.getCategory().subscribe((res:any)=>{
       this.categories = res;
+      console.log(this.categories);
+
       this.filteredCat = this.categories
       if(value){
         this.filterCategory(value);
@@ -235,7 +242,7 @@ export class ProductComponent implements OnInit {
   brands: Brand[] = [];
   brandSub!: Subscription;
   getBrands(value?: string){
-    this.productService.getBrand().subscribe(brands =>{
+    this.brandSub = this.productService.getBrand().subscribe(brands =>{
       this.brands = brands
       this.filteredBrand = this.brands
       if(value){
@@ -268,6 +275,49 @@ export class ProductComponent implements OnInit {
       if (
         (option.brandName &&
           option.brandName.toLowerCase().includes(value?.toLowerCase()))
+      ) {
+        return true;
+      } else {
+        return null;
+      }
+    });
+  }
+
+  units: PrimaryUnit[] = [];
+  unitSub!: Subscription;
+  getPUnit(value?: string){
+    this.unitSub = this.productService.getPrimaryUnit().subscribe(x =>{
+      this.units = x
+      this.filteredUnits = this.units
+      if(value){
+        this.filterBrand(value);
+      }
+    })
+  }
+
+  addUnit(){
+    const dialogRef = this.dialog.open(UnitComponent, {
+      data: { status: "add", type : "add", unit: "primary" },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.getPUnit(result?.brand);
+    });
+  }
+
+  filteredUnits: PrimaryUnit[] = [];
+  filterUnit(event: Event|string) {
+    let value: string = "";
+
+    if (typeof event === "string") {
+      value = event;
+    } else if (event instanceof Event) {
+      value = (event.target as HTMLInputElement).value;
+    }
+    this.filteredUnits = this.units.filter((option) => {
+      if (
+        (option.primaryUnitName &&
+          option.primaryUnitName.toLowerCase().includes(value?.toLowerCase()))
       ) {
         return true;
       } else {
@@ -412,7 +462,7 @@ export class ProductComponent implements OnInit {
 
         this.submit = this.productService.addProduct(this.productForm.getRawValue()).subscribe((response)=>{
           let data = {
-            product: this.productForm.get('productName')?.value
+            product: res
           }
           this.dialogRef?.close(data);
           this._snackBar.open("Product added successfully...","" ,{duration:3000})
@@ -650,5 +700,16 @@ export class ProductComponent implements OnInit {
     console.log(data)
     this.imageSub = this.productService.getProductByFileUrl(data).subscribe((res)=>{
     })
+  }
+
+  onToggleChange(event: any, id: number) {
+    const newValue = event.checked;
+
+    let data = {
+      status : newValue
+    }
+    this.productService.updateProductStatus(id, data).subscribe(data=>{
+      console.log(data);
+    });
   }
 }

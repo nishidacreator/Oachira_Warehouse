@@ -112,6 +112,7 @@ export class CategoryComponent implements OnInit {
 
   clearFileInput() {
     this.imageUrl = '';
+    this.file = '';
   }
 
   fileSub!: any;
@@ -164,6 +165,9 @@ export class CategoryComponent implements OnInit {
   submitSubscription!: Subscription
   uploadSubscription!: Subscription
   onSubmit(){
+    if(!this.productCategoryForm.valid){
+      return alert('Please fill the form first')
+    }
     if(this.file){
       this.uploadSubscription = this.productService.uploadCategoryImage(this.file).subscribe(res=>{
         this.productCategoryForm.patchValue({
@@ -183,8 +187,8 @@ export class CategoryComponent implements OnInit {
       })
 
     }else{
-      console.log(this.productCategoryForm.getRawValue())
       this.submitSubscription = this.productService.addCategory(this.productCategoryForm.getRawValue()).subscribe((response)=>{
+
         let data = {
           category: this.productCategoryForm.get('categoryName')?.value
         }
@@ -199,10 +203,8 @@ export class CategoryComponent implements OnInit {
   }
 
   clearControls(){
-    this.getCategory()
+    this.getComplete()
     this.productCategoryForm.reset()
-    this.productCategoryForm.setErrors(null)
-    Object.keys(this.productCategoryForm.controls).forEach(key=>{this.productCategoryForm.get(key)?.setErrors(null)})
     this.file = null;
     this.fileSub = null;
     this.imageUrl = '';
@@ -262,7 +264,6 @@ export class CategoryComponent implements OnInit {
     }
   }
 
-
   deleteCategory(id:any){
     const dialogRef = this.dialog.open(DeleteDialogueComponent, {
       data: {}
@@ -294,12 +295,15 @@ export class CategoryComponent implements OnInit {
 
   }
 
+  editSub!: Subscription;
   patchData(){
-    this.productService.getCategory().subscribe(res=>{
+    this.editSub = this.productService.getCategory().subscribe(res=>{
+      console.log(res);
+
       if(this.dialogData?.type === 'edit'){
         this.editstatus = true
         let category: any= res.find(x =>x.id == this.dialogData?.id)
-        console.log(category)
+        console.log(category);
 
         let categoryName = category.categoryName;
         let taxable = category.taxable;
@@ -356,6 +360,8 @@ export class CategoryComponent implements OnInit {
   }
 
   deleteImage(image: any){
+    console.log("image");
+
     let data = {
       fileUrl: image
     }
@@ -376,6 +382,17 @@ export class CategoryComponent implements OnInit {
     this.currentPage = event.pageIndex + 1;
     this.pageSize = event.pageSize;
     this.getCategory();
+  }
+
+  onToggleChange(event: any, id: number) {
+    const newValue = event.checked;
+
+    let data = {
+      status : newValue
+    }
+    this.productService.updateCategoryStatus(id, data).subscribe(data=>{
+      console.log(data);
+    });
   }
 
 }

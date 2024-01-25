@@ -12,6 +12,7 @@ import { Product } from './models/product';
 import { Gst } from './models/gst';
 import { Hsn } from './models/hsn';
 import { ProductDistributor } from './models/product-distributor';
+import { Distributor } from './models/distributor';
 
 @Injectable({
   providedIn: 'root'
@@ -42,13 +43,13 @@ export class ProductService {
     return this._http.get<Category[]>(this.url+'category');
   }
 
+  getPaginatedCategory( search:String, page: number, pageSize: number): Observable<Category[]>{
+    return this._http.get<Category[]>(this.url + `category?search=${search}&page=${page}&pageSize=${pageSize}`);
+  }
+
   getCategoryByFileUrl(data: any): Observable<Category>{
     const queryParams = new HttpParams().set('fileUrl', data.fileUrl);
     return this._http.get<Category>(this.url+'category/byfileurl', { params: queryParams });
-  }
-
-  getPaginatedCategory( search:String, page: number, pageSize: number): Observable<Category[]>{
-    return this._http.get<Category[]>(this.url + `category?search=${search}&page=${page}&pageSize=${pageSize}`);
   }
 
   updateCategoryImage(file: Blob, data: any): Observable<any> {
@@ -62,8 +63,12 @@ export class ProductService {
     }
   }
 
-  updateCategory(id:Number, data:any){
+  updateCategory(id:number, data:any){
     return this._http.patch<Category>(this.url+'category/' + id, data);
+  }
+
+  updateCategoryStatus(id:number, data:any){
+    return this._http.patch<Category>(this.url+'category/statusupdate/' + id, data);
   }
 
   deleteCatImage(data: any){
@@ -71,7 +76,7 @@ export class ProductService {
     return this._http.delete(this.url + 'category/filedelete', { params: queryParams });
   }
 
-  deleteCategory(id:Number){
+  deleteCategory(id:number){
     return this._http.delete(this.url+'category/'+id);
   }
 
@@ -99,7 +104,7 @@ export class ProductService {
     return this._http.get<SubCategory[]>(this.url + `subcategory?search=${search}&page=${page}&pageSize=${pageSize}`);
   }
 
-  updateSubCategory(id:Number, data:any){
+  updateSubCategory(id:number, data:any){
     return this._http.patch<SubCategory>(this.url+'subcategory/' + id, data);
   }
 
@@ -119,8 +124,12 @@ export class ProductService {
     return this._http.get<SubCategory>(this.url+'subcategory/byfileurl', { params: queryParams });
   }
 
-  deleteSubCategory(id:Number){
+  deleteSubCategory(id:number){
     return this._http.delete(this.url+'subcategory/'+id);
+  }
+
+  updateSubCategoryStatus(id:number, data:any){
+    return this._http.patch<SubCategory>(this.url+'subcategory/statusupdate/' + id, data);
   }
 
   // BRANDS
@@ -147,7 +156,7 @@ export class ProductService {
     return this._http.get<Brand[]>(this.url + `brand?search=${search}&page=${page}&pageSize=${pageSize}`);
   }
 
-  updateBrand(id:Number, data:any){
+  updateBrand(id:number, data:any){
     return this._http.patch<Brand>(this.url+'brand/' + id, data);
   }
 
@@ -167,8 +176,12 @@ export class ProductService {
     return this._http.get<Brand>(this.url+'brand/byfileurl', { params: queryParams });
   }
 
-  deleteBrand(id:Number){
+  deleteBrand(id:number){
     return this._http.delete(this.url+'brand/'+id);
+  }
+
+  updateBrandStatus(id:number, data:any){
+    return this._http.patch<Brand>(this.url+'brand/statusupdate/' + id, data);
   }
 
   // UNIT
@@ -180,12 +193,16 @@ export class ProductService {
     return this._http.get<PrimaryUnit[]>(this.url+'primaryunit');
   }
 
-  deletePUnit(id:Number){
+  deletePUnit(id:number){
     return this._http.delete(this.url+'primaryunit/'+id);
   }
 
-  updatePUnit(id:Number, data:any){
+  updatePUnit(id:number, data:any){
     return this._http.patch<PrimaryUnit>(this.url+'primaryunit/'+id, data);
+  }
+
+  updatePunitStatus(id:number, data:any){
+    return this._http.patch<PrimaryUnit>(this.url+'primaryunit/statusupdate/' + id, data);
   }
 
   addSecondaryUnit(data : any){
@@ -196,12 +213,16 @@ export class ProductService {
     return this._http.get<SecondaryUnit[]>(this.url+'secondaryunit');
   }
 
-  deleteSUnit(id:Number){
+  deleteSUnit(id:number){
     return this._http.delete(this.url+'secondaryunit/'+id);
   }
 
-  updateSUnit(id:Number, data:any){
-    return this._http.patch<SecondaryUnit>(this.url+'secondaryUnit/'+id, data);
+  updateSUnit(id:number, data:any){
+    return this._http.patch<SecondaryUnit>(this.url+'secondaryunit/'+id, data);
+  }
+
+  updateSunitStatus(id:number, data:any){
+    return this._http.patch<SecondaryUnit>(this.url+'secondaryunit/statusupdate/' + id, data);
   }
 
   //LOCATION
@@ -213,12 +234,16 @@ export class ProductService {
     return this._http.get<Location[]>(this.url + 'location');
   }
 
-  deleteLocation(id:Number){
+  deleteLocation(id:number){
     return this._http.delete(this.url+'location/'+id);
   }
 
-  updateLocation(id:Number, data:any){
+  updateLocation(id:number, data:any){
     return this._http.patch<Location>(this.url+'location/'+id, data);
+  }
+
+  updateLocationStatus(id:number, data:any){
+    return this._http.patch<PrimaryUnit>(this.url+'location/statusupdate/' + id, data);
   }
 
   // PRODUCT
@@ -245,7 +270,7 @@ export class ProductService {
     return this._http.get<Product[]>(this.url + `?search=${search}&page=${page}&pageSize=${pageSize}`);
   }
 
-  updateProduct(id:Number, data:any){
+  updateProduct(id:number, data:any){
     return this._http.patch<Product>(this.url+'/' + id, data);
   }
 
@@ -265,8 +290,12 @@ export class ProductService {
     return this._http.get<Product>(this.url+'byfileurl', { params: queryParams });
   }
 
-  deleteProduct(id:Number){
+  deleteProduct(id:number){
     return this._http.delete(this.url+'/'+id);
+  }
+
+  updateProductStatus(id:number, data:any){
+    return this._http.patch<Product>(this.url+'statusupdate/' + id, data);
   }
 
   //GST
@@ -278,12 +307,16 @@ export class ProductService {
     return this._http.get<Gst[]>(this.url + 'gst');
   }
 
-  deleteGst(id:Number){
+  deleteGst(id:number){
     return this._http.delete(this.url+'gst/'+id);
   }
 
-  updateGst(id:Number, data:any){
+  updateGst(id:number, data:any){
     return this._http.patch<Gst>(this.url+'gst/'+id, data);
+  }
+
+  updateGstStatus(id:number, data:any){
+    return this._http.patch<Gst>(this.url+'gst/statusupdate/' + id, data);
   }
 
   //HSN
@@ -295,12 +328,16 @@ export class ProductService {
     return this._http.get<Hsn[]>(this.url + 'hsn');
   }
 
-  deleteHsn(id:Number){
+  deleteHsn(id:number){
     return this._http.delete(this.url+'hsn/'+id);
   }
 
-  updateHsn(id:Number, data:any){
+  updateHsn(id:number, data:any){
     return this._http.patch<Hsn>(this.url+'hsn/'+id, data);
+  }
+
+  updateHsnStatus(id:number, data:any){
+    return this._http.patch<Hsn>(this.url+'hsn/statusupdate/' + id, data);
   }
 
   // DISTRIBUTOR
@@ -327,7 +364,7 @@ export class ProductService {
     return this._http.get<Brand[]>(this.url + `distributor?search=${search}&page=${page}&pageSize=${pageSize}`);
   }
 
-  updateDistributor(id:Number, data:any){
+  updateDistributor(id:number, data:any){
     return this._http.patch<Brand>(this.url+'distributor/' + id, data);
   }
 
@@ -347,12 +384,16 @@ export class ProductService {
     return this._http.get<Brand>(this.url+'distributor/byfileurl', { params: queryParams });
   }
 
-  deleteDistributor(id:Number){
+  deleteDistributor(id:number){
     return this._http.delete(this.url+'distributor/'+id);
   }
 
   getProductsByDistributor(id: number): Observable<ProductDistributor[]>{
     return this._http.get<ProductDistributor[]>(this.url+'productdistributor/byditsributorid/' + id);
+  }
+
+  updateDistributorStatus(id:number, data:any){
+    return this._http.patch<Distributor>(this.url+'productdistributor/statusupdate/' + id, data);
   }
 
   // PRODUCT DISTRIBUTOR
@@ -367,4 +408,8 @@ export class ProductService {
   updateProductDistributorStatus(data: any, id : number){
     return this._http.patch(this.url + 'productdistributor/status/'+ id, data )
   }
+
+  // updateProductDistributorStatus(id:number, data:any){
+  //   return this._http.patch<Distributor>(this.url+'productdistributor/statusupdate/' + id, data);
+  // }
 }

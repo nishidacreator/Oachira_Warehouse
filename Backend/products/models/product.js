@@ -11,9 +11,11 @@ const Product = sequelize.define('product',{
     locationId : {type : DataTypes.INTEGER},
     gstId : {type : DataTypes.INTEGER},
     hsnId : {type : DataTypes.INTEGER}, 
+    baseUnitId : {type : DataTypes.INTEGER},
     reorderQuantity : {type : DataTypes.FLOAT},
     loyaltyPoint : {type : DataTypes.FLOAT},
-    status : {type : DataTypes.STRING},
+    brokerage : {type : DataTypes.BOOLEAN},
+    status: {type : DataTypes.BOOLEAN, defaultValue : true},
 
     cloudinaryId : {type:DataTypes.STRING},
     fileUrl : {type:DataTypes.STRING} 

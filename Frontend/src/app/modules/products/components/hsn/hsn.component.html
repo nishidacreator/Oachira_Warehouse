@@ -61,6 +61,7 @@
             <th>id</th>
             <th>HSN</th>
             <th>Manage</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
@@ -72,6 +73,9 @@
           <i (click)="editHSN(element.id)" class="fa fa-edit" style="font-size: 20px; color:green"></i>
           &nbsp;&nbsp;
           <i (click)="deleteHSN(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+        </td>
+        <td [style.background-color]="element.status == false ? 'pink' : null">
+          <mat-slide-toggle [(ngModel)]="element.status" [ngModelOptions]="{standalone: true}" (change)="onToggleChange($event, element.id)"></mat-slide-toggle>
         </td>
       </tr>
 

@@ -12,23 +12,24 @@ const ProductDistributor = require('../models/productDistributor');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
-            const {distributorName, address1, address2,state, phoneNumber, gstNo, panNo, fssaiNo, contactPerson, status, fileUrl, cloudinaryId, products} = req.body;
+            const {distributorName, address1, address2,state, phoneNumber, gstNo, panNo, fssaiNo, 
+              contactPerson, status, fileUrl, cloudinaryId, products} = req.body;
 
-            const distributor = new Distributor({distributorName, address1, address2,state, phoneNumber, gstNo, panNo, fssaiNo, contactPerson, status, fileUrl, cloudinaryId});
+            const distributor = new Distributor({distributorName, address1, address2,state, phoneNumber, gstNo, panNo,
+               fssaiNo, contactPerson, status, fileUrl, cloudinaryId});
 
             await distributor.save();
-            console.log(distributor);
 
             const distributorId = distributor.id;
-            console.log(distributorId);
-            for(let i = 0; i < products.length; i++) {
-              products[i].distributorId = distributorId
-              products[i].status = true;
+            if(products.length > 0){
+              for(let i = 0; i < products.length; i++) {
+                products[i].distributorId = distributorId
+                products[i].status = true;
+              }
+              const prodDist = await ProductDistributor.bulkCreate(products);
             }
-            console.log(products);
-            const prodDist = await ProductDistributor.bulkCreate(products);
-
-            res.send(prodDist);
+            
+            res.send(distributor);
 
     } catch (error) {
         res.send(error);
@@ -38,17 +39,16 @@ router.post('/', authenticateToken, async (req, res) => {
 router.get("/", authenticateToken, async (req, res) => {
   try {
     let whereClause = {};
-    if (req.query.search) {
-      whereClause = {
-        [Op.or]: [{ distributorName: { [Op.iLike]: `%${req.query.search}%` } }],
-      };
-    }
     
     let limit;
     let offset;
     if (req.query.pageSize && req.query.page) {
       limit = req.query.pageSize;
       offset = (req.query.page - 1) * req.query.pageSize;
+    }else {
+      whereClause = {
+        status : true
+      }
     }
     const distributor = await Distributor.findAll({
       where: whereClause,
@@ -58,14 +58,7 @@ router.get("/", authenticateToken, async (req, res) => {
     });
 
     let totalCount;
-
-    if (req.query.search) {
-      totalCount = await Distributor.count({
-        where: whereClause,
-      });
-    } else {
-      totalCount = await Distributor.count();
-    }
+    totalCount = await Distributor.count();
 
     if (req.query.page && req.query.pageSize) {
       const response = {
@@ -189,5 +182,22 @@ try {
   res.status(500).json({ error: "Internal Server Error" });
 }
 });
+
+router.patch('/statusupdate/:id', authenticateToken, async(req,res)=>{
+  try {
+
+    let status = req.body.status;
+    let result = await Distributor.findByPk(req.params.id);
+    result.status = status
+
+    await result.save();
+    res.send(result);
+    } catch (error) {
+      res.status(500).json({
+        status: "error",
+        message: error.message,
+      });
+    }
+})
 
 module.exports = router;

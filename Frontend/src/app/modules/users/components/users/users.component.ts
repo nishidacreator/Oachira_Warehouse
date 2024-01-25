@@ -52,7 +52,7 @@ export class UsersComponent implements OnInit {
     // Add validators based on editStatus
     // if (!this.editstatus)  {
       // Add validators for non-edit mode
-      passwordControl?.clearValidators();
+      passwordControl?.setValidators(Validators.required);
     // }
 
     // Update the validity of the control
@@ -93,6 +93,10 @@ export class UsersComponent implements OnInit {
   onSubmit(){
     this.submit = this.userService.registerUser(this.userForm.getRawValue()).subscribe((res)=>{
       this._snackBar.open("User added successfully...","" ,{duration:3000});
+      let data = {
+        user: res
+      }
+      this.dialogRef?.close(data);
       this.getUsers();
       this.clearControls()
     },(error=>{
@@ -261,4 +265,14 @@ export class UsersComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  onToggleChange(event: any, id: number) {
+    const newValue = event.checked;
+
+    let data = {
+      status : newValue
+    }
+    this.userService.updateUserStatus(id, data).subscribe(data=>{
+      console.log(data);
+    });
+  }
 }

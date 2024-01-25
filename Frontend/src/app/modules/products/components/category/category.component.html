@@ -34,8 +34,8 @@
             <br><br><div class="col">
               <section class="example-section" >
                 <mat-radio-group class="example-radio-group" aria-label="Taxable:" formControlName="taxable"><h4>Taxable :</h4>
-                  <mat-radio-button class="example-radio-button" value="true">Yes</mat-radio-button><br>
-                  <mat-radio-button class="example-radio-button" value="false">No</mat-radio-button>
+                  <mat-radio-button class="example-radio-button" value= true>Yes</mat-radio-button><br>
+                  <mat-radio-button class="example-radio-button" value= false>No</mat-radio-button>
                 </mat-radio-group>
               </section>
             </div>
@@ -125,7 +125,7 @@
             <th>Category</th>
             <th>Taxable</th>
             <th>Manage</th>
-            <!-- <th>vendor Name</th> -->
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
@@ -133,12 +133,12 @@
             <td [style.background-color]="element.status == false ? 'pink' : null">{{element.id}}</td>
             <td [style.background-color]="element.status == false ? 'pink' : null">
               <ng-container *ngIf="element.fileUrl; else alternativeImage">
-                <img  src="{{ element.fileUrl }}" style="width: 50px; height: 50px;"
-                (mouseover)="enlargeImage(i, true)"
-                (mouseout)="enlargeImage(i, false)"
-                [ngClass]="{'enlarged': isImageEnlarged}" />
-
+                <img src="{{ element.fileUrl }}" style="width: 50px; height: 50px;"
+                  (mouseover)="enlargeImage(i, true)"
+                  (mouseout)="enlargeImage(i, false)"
+                  [ngClass]="{'enlarged': isImageEnlarged[i]}" />
               </ng-container>
+
 
               <ng-template #alternativeImage>
                 <img src="../../../../../../assets/img/no_image_part.png" alt="Alternative Image" style="width: 50px; height: 50px;" />
@@ -151,6 +151,9 @@
               <i  (click)="editCategory(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
               &nbsp;&nbsp;
               <i  (click)="deleteCategory(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+            </td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">
+              <mat-slide-toggle [(ngModel)]="element.status" [ngModelOptions]="{standalone: true}" (change)="onToggleChange($event, element.id)"></mat-slide-toggle>
             </td>
         </tr>
     </tbody>

@@ -54,27 +54,16 @@ router.get("/", authenticateToken, async (req, res) => {
   try {
     let whereClause = {};
 
-    if (req.query.search) {
-      whereClause = {
-        [Op.and]: [
-          {
-            [Op.or]: [
-              {
-                categoryName: { [Op.iLike]: `%${req.query.search}%` },
-              },
-            ],
-          } // Ensure status is true
-        ],
-      };
-    } 
-    
-
     let limit;
     let offset;
 
     if (req.query.pageSize && req.query.page) {
       limit = parseInt(req.query.pageSize, 10) || 10; // Default to 10 if not a valid number
       offset = (parseInt(req.query.page, 10) - 1) * limit || 0;
+    }else {
+      whereClause = {
+        status : true
+      }
     }
 
     const categories = await Category.findAll({
@@ -85,15 +74,8 @@ router.get("/", authenticateToken, async (req, res) => {
     });
 
     let totalCount;
-
-    if (req.query.search) {
-      totalCount = await Category.count({
-        where: whereClause,
-      });
-    } else {
-      totalCount = await Category.count();
-    }
-
+    totalCount = await Category.count();
+    
     if (req.query.page && req.query.pageSize) {
       const response = {
         count: totalCount,
@@ -208,5 +190,22 @@ router.get('/byfileurl', authenticateToken, async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
+router.patch('/statusupdate/:id', authenticateToken, async(req,res)=>{
+  try {
+
+    let status = req.body.status;
+    let cat = await Category.findByPk(req.params.id);
+    cat.status = status
+
+    await cat.save();
+    res.send(cat);
+    } catch (error) {
+      res.status(500).json({
+        status: "error",
+        message: error.message,
+      });
+    }
+})
 
 module.exports = router;

@@ -1,0 +1,216 @@
+<!-- <mat-toolbar style="background-color: rgb(33,142,67); color: white; height: 40px;">
+  BRAND
+  <span class="material-icons" style="font-size: 25px;margin-left: auto;" (click)="getBrands()">view_list</span>
+</mat-toolbar> -->
+
+<form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+  <mat-card class="background">
+    <div class="row">
+      <div class="col">
+        <mat-card-header>
+          <mat-card-title>CUSTOMER</mat-card-title>
+        </mat-card-header>
+      </div>
+      <div class="col">
+        <mat-card-header>
+          &nbsp;<button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onClick="history.back()">
+            <span class="material-icons" style="color: white; ">exit_to_app</span>
+          </button>
+        </mat-card-header>
+      </div>
+    </div>
+    <mat-card-content >
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Customer Name" formControlName="customerName">
+
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="GST No." formControlName="gstNo">
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <div class="row">
+          <div class="col">
+
+            <mat-form-field class="full-width">
+              <mat-select placeholder="Customer Category" formControlName="customerCategoryId">
+                <span *ngIf="category.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addCategory()">playlist_add</span>
+                <mat-option *ngFor="let item of category" [value]="item.id">
+                  {{item.categoryName}}
+                </mat-option>
+                <mat-option *ngIf="category.length === 0" [value]="'add'">
+                  <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addCategory()">playlist_add</span>
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="customerForm.controls['customerCategoryId'].hasError('required')">
+                 <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-select placeholder="Customer Grade" formControlName="customerGradeId">
+                <span *ngIf="grade.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addGrade()">playlist_add</span>
+                <mat-option *ngFor="let item of grade" [value]="item.id">
+                  {{item.grade}}
+                </mat-option>
+                <mat-option *ngIf="grade.length === 0" [value]="'add'">
+                  <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addGrade()">playlist_add</span>
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="customerForm.controls['customerGradeId'].hasError('required')">
+                 <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+
+          </div>
+        </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Subledger Code" formControlName="subledgerCode">
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Email" type="email" formControlName="email">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Address" formControlName="address">
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Location" formControlName="location">
+          </mat-form-field>
+        </div>
+      </div>
+
+    </mat-card-content>
+
+    <form>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title> PhoneNumber </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div>
+            <ul formArrayName="numbers">
+
+            <div class="container">
+              <table class="responsive-table">
+
+                <tbody>
+                  <!-- <tr *ngFor="let quantity of numbers().controls; let i=index" [formGroupName]="i">
+                    <td scope="row">
+                      <mat-form-field class="full-width">
+                        <mat-label>Phone Number</mat-label>
+                        <input matInput formControlName="phoneNumber">
+                      </mat-form-field>
+                    </td>
+
+                    <td>
+                      <span class="material-icons" style="color: rgb(255, 0, 0); font-size: 25px; margin-top: 17px;" (click)="removeProduct(i)">cancel</span>
+                    </td>
+                  </tr> -->
+                </tbody>
+              </table>
+            </div>
+
+
+              <div>
+                <!-- <span class="material-icons" style="font-size: 40px; color: green;"(click)="addNumber()">add_box</span> -->
+              </div>
+            </ul>
+          </div>
+      </mat-card-content>
+      </mat-card>
+    </form>
+
+    <mat-card-actions>
+      <button *ngIf="isEdit == false" mat-raised-button  type="submit" [disabled]="!customerForm.valid ">
+        <span class="material-icons" style="font-size: 25px;">save</span>
+      </button>&nbsp;&nbsp;
+      <button *ngIf="isEdit == true" mat-raised-button  type="button" [disabled]="!customerForm.valid " (click)="editFunction()">
+        <span class="material-icons" style="font-size: 30px;">edit_note</span>
+      </button>&nbsp;&nbsp;
+    </mat-card-actions>
+  </mat-card>
+</form>
+
+
+  <!-- --------------------------------------------------------------------------------------------------------------------------- -->
+
+  <br><mat-card class="horizontal-scroll">
+    <mat-card-header>
+      <mat-card-title style="color: green;">CUSTOMERS</mat-card-title>
+    </mat-card-header>
+
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+    <div style="overflow-y: auto;">
+      <table class="styled-table">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Customer</th>
+                <th>Subledger</th>
+                <th>Category</th>
+                <th>Grade</th>
+                <th>Address1</th>
+                <th>Address2</th>
+                <th>Location</th>
+                <th>Tin</th>
+                <th>Contact</th>
+                <th>Remarks</th>
+                <th>Branch</th>
+                <th>Manage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let element of customer">
+                <td>{{element.id}}</td>
+                <td>{{element.name}}</td>
+                <td>{{element.subledgerCode}}</td>
+                <td>{{element.customerCategory.categoryName}}</td>
+                <td>{{element.customerGrade.grade}}</td>
+                <td>{{element.address1}}</td>
+                <td>{{element.address2}}</td>
+                <td>{{element.state}}</td>
+                <td>{{element.gstNo}}</td>
+                <td>{{element.remarks}}</td>
+                <!-- <td><span class="material-icons" (click)="openContacts(element.id)">contacts</span></td> -->
+                <td>
+                  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+                  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+                  <!-- <i  (click)="editCustomer(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
+                  &nbsp;&nbsp;
+                  <i  (click)="deleteBrand(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i> -->
+                  </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-card>
+
+
