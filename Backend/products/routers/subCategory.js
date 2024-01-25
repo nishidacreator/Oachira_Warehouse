@@ -37,11 +37,6 @@ router.post('/', authenticateToken, async (req, res) => {
 router.get("/", authenticateToken, async (req, res) => {
     try {
       let whereClause = {};
-      if (req.query.search) {
-        whereClause = {
-          [Op.or]: [{ subcategoryName: { [Op.iLike]: `%${req.query.search}%` } }],
-        };
-      }
   
       let limit;
       let offset;
@@ -58,14 +53,7 @@ router.get("/", authenticateToken, async (req, res) => {
       });
   
       let totalCount;
-  
-      if (req.query.search) {
-        totalCount = await SubCategory.count({
-          where: whereClause,
-        });
-      } else {
-        totalCount = await SubCategory.count();
-      }
+      totalCount = await SubCategory.count();
   
       if (req.query.page && req.query.pageSize) {
         const response = {
@@ -179,5 +167,22 @@ router.delete('/:id', authenticateToken, async(req,res)=>{
       res.send({error: error.message})
   }
   
+})
+
+router.patch('/statusupdate/:id', authenticateToken, async(req,res)=>{
+  try {
+
+    let status = req.body.status;
+    let result = await SubCategory.findByPk(req.params.id);
+    result.status = status
+
+    await result.save();
+    res.send(result);
+    } catch (error) {
+      res.status(500).json({
+        status: "error",
+        message: error.message,
+      });
+    }
 })
 module.exports = router;

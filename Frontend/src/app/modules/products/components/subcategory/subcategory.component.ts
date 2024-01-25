@@ -31,6 +31,9 @@ export class SubcategoryComponent implements OnInit {
     this.uploadSubscription?.unsubscribe();
     this.submit?.unsubscribe();
     this.scSub?.unsubscribe();
+    this.deleteSub?.unsubscribe();
+    this.getSubCatSub?.unsubscribe();
+    this.delete?.unsubscribe();
   }
 
   subCategoryForm = this.fb.group({
@@ -141,14 +144,15 @@ export class SubcategoryComponent implements OnInit {
   submit!: Subscription
   uploadSubscription!: Subscription;
   onSubmit(){
+    if(!this.subCategoryForm.valid){
+      return alert('Please fill the form first')
+    }
     if(this.file){
       this.uploadSubscription = this.productService.uploadCategoryImage(this.file).subscribe(res=>{
         this.subCategoryForm.patchValue({
           cloudinaryIdSub : res.public_id,
           fileUrlSub: res.url
         })
-
-        console.log(this.subCategoryForm.getRawValue())
         this.submit = this.productService.addSubCategory(this.subCategoryForm.getRawValue()).subscribe((response)=>{
           let data = {
             subCat: this.subCategoryForm.get('subCategoryName')?.value
@@ -162,7 +166,6 @@ export class SubcategoryComponent implements OnInit {
       })
 
     }else{
-      console.log(this.subCategoryForm.getRawValue())
       this.submit = this.productService.addSubCategory(this.subCategoryForm.getRawValue()).subscribe((response)=>{
         let data = {
           subCat: this.subCategoryForm.get('subCategoryName')?.value
@@ -177,10 +180,8 @@ export class SubcategoryComponent implements OnInit {
   }
 
   clearControls(){
-    this.getSubCategory()
+    this.getComplete()
     this.subCategoryForm.reset()
-    this.subCategoryForm.setErrors(null)
-    Object.keys(this.subCategoryForm.controls).forEach(key=>{this.subCategoryForm.get(key)?.setErrors(null)})
     this.file = null;
     this.imageUrl = '';
 
@@ -206,14 +207,14 @@ export class SubcategoryComponent implements OnInit {
   filtered!: any[];
   applyFilter(event: Event): void {
     if((event.target as HTMLInputElement).value.trim() === '') {
-      this.getCategory();
+      this.getSubCategory();
     }else{
       const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
       this.filtered = this.subCategories.filter(element =>
         element.subCategoryName.toLowerCase().includes(filterValue)
         || element.id.toString().includes(filterValue)
         || element.status.toString().includes(filterValue)
-    );
+      );
     }
   }
 
@@ -271,8 +272,9 @@ export class SubcategoryComponent implements OnInit {
     });
   }
 
+  getSubCatSub!: Subscription;
   patchData(){
-    this.productService.getSubCategory().subscribe(res=>{
+    this.getSubCatSub = this.productService.getSubCategory().subscribe(res=>{
       if(this.dialogData?.type === 'edit'){
         this.editstatus = true
         let category: any= res.find(x =>x.id == this.dialogData?.id)
@@ -362,16 +364,28 @@ export class SubcategoryComponent implements OnInit {
 
   clearFileInput() {
     this.imageUrl = '';
+    this.file = ''
   }
 
+  deleteSub!: Subscription;
   deleteImage(image: any){
     let data = {
       fileUrl: image
     }
-    console.log(data)
-    this.productService.getSubCategoryByFileUrl(data).subscribe((res)=>{
+    this.deleteSub = this.productService.getSubCategoryByFileUrl(data).subscribe((res)=>{
       console.log(res)
       this.dialogRef.close();
     })
+  }
+
+  onToggleChange(event: any, id: number) {
+    const newValue = event.checked;
+
+    let data = {
+      status : newValue
+    }
+    this.productService.updateSubCategoryStatus(id, data).subscribe(data=>{
+      console.log(data);
+    });
   }
 }

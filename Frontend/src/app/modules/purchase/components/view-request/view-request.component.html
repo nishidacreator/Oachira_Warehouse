@@ -1,0 +1,62 @@
+<mat-card class="container">
+  <div class="row">
+    <div class="col">
+      <mat-card-header>
+        <mat-card-title> PURCHASE REQUEST </mat-card-title>
+      </mat-card-header>
+    </div>
+
+    <div class="col">
+      <mat-card-header>
+        <button (mouseover)="showName('PO')" (mouseout)="hideName()" mat-mini-fab type="button" style="margin-left: auto;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" (click)="addPO()">
+          <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'PO')">add_shopping_cart</mat-icon>
+          <div class="icon_name" *ngIf="isHovered && hoveredButton === 'PO'">PO</div>
+        </button>
+
+        <button (mouseover)="showName('PR')" (mouseout)="hideName()" mat-mini-fab type="button" style="margin-left: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" (click)="addPR()">
+          <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'PR')">request_quote</mat-icon>
+          <div class="icon_name" *ngIf="isHovered && hoveredButton === 'PR'">PR</div>
+        </button>
+        <!-- <div *ngIf="isHovered">Add Purchase Request</div> -->
+
+        <button (mouseover)="showName('Back')" (mouseout)="hideName()" mat-mini-fab color="primary" type="button" style="margin-left: 10px;"  aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onclick="history.back()">
+          <mat-icon *ngIf="!isHovered || (isHovered && hoveredButton != 'Back')">exit_to_app</mat-icon>
+          <div class="icon_name" *ngIf="isHovered && hoveredButton === 'Back'">Back</div>
+        </button>
+      </mat-card-header>
+    </div>
+  </div>
+
+  <table class="styled-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>RequestNo</th>
+            <th>Store</th>
+            <th>Date</th>
+            <th>Manage</th>
+            <th>Purchase Order</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let element of pr">
+            <td>{{element.id}}</td>
+            <td>{{element.requestNo}}</td>
+            <td>{{element.store.storeName}}</td>
+            <td>{{element.date}}</td>
+            <td (mouseover)="showName('Back')" (mouseout)="hideName()">
+              <mat-icon (click)="viewPurchaseRequest(element.id)">open_in_new</mat-icon>
+            </td>
+            <td>
+              <mat-icon (click)="editRequest(element.id)" >edit</mat-icon>
+              <!-- &nbsp;&nbsp; -->
+              <mat-icon (click)="deleteRequest(element.id)">delete</mat-icon>
+              <mat-icon (click)="addPurchaseOrder(element.id)">post_add</mat-icon>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+</mat-card>
+

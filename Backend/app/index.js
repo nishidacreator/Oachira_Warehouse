@@ -2,6 +2,9 @@
 const cors = require('cors');
 const express = require('express');
 const dotenv = require('dotenv');
+const path = require('path');
+const easyInvoice = require('easyinvoice');
+
 dotenv.config();
 
 const syncModel = require('../utils/association');
@@ -47,7 +50,33 @@ app.use('/product/distributor',distributor);
 app.use('/product/productdistributor',productDistributor);
 
 const store = require('../store/routers/store');
+const warehouse = require('../store/routers/warehouse');
 app.use('/store',store);
+app.use('/store/warehouse',warehouse);
+
+const request = require('../purchases/rouers/request');
+const order = require('../purchases/rouers/order');
+// const entry = require('../purchases/rouers/entry');
+// const requestDetails = require('../purchases/rouers/');
+const orderDetails = require('../purchases/rouers/orderDetails');
+// const entryDetails = require('../purchases/rouers/entryDetails');
+const coolie = require('../purchases/rouers/coolie');
+app.use('/purchases/request',request);
+app.use('/purchases/order',order);
+// app.use('/purchases/entry',entry);
+// app.use('/purchases/requestdetails',requestDetails);
+app.use('/purchases/orderdetails',orderDetails);
+// app.use('/purchases/entrydetails',entryDetails);
+app.use('/purchases/coolie',coolie);
+
+const customer = require('../routesale/routers/customer');
+const customerCategory = require('../routesale/routers/customerCategory');
+const customerGrade = require('../routesale/routers/customerGrade');
+const loyaltyPoint = require('../routesale/routers/loyaltyPoint');
+app.use('/routesale/customer',customer);
+app.use('/routesale/loyaltypoint',loyaltyPoint);
+app.use('/routesale/customercategory',customerCategory);
+app.use('/routesale/customergrade',customerGrade);
 
 const port = process.env.PORT;
 

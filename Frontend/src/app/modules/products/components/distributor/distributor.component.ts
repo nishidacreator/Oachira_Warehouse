@@ -426,5 +426,15 @@ export class DistributorComponent implements OnInit {
       this.patchData()
     })
   }
+
+  onToggleChange(event: any, id: number) {
+    const newValue = event.checked;
+
+    let data = {
+      status : newValue
+    }
+    this.productService.updateDistributorStatus(id, data).subscribe(data=>{
+    });
+  }
 }
 

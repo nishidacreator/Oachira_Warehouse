@@ -9,7 +9,7 @@ const Store = sequelize.define('store',{
     phoneNumber : {type : DataTypes.STRING, allowNull : false},
     gstId : {type : DataTypes.INTEGER},
     storeBaseUrl : {type : DataTypes.INTEGER, allowNull : false},
-    
+    warehouseId : {type : DataTypes.INTEGER},
     status : {type : DataTypes.BOOLEAN, defaultValue : true}
 },
 {

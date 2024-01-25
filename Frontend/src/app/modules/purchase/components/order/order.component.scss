@@ -1,0 +1,388 @@
+.full-width{
+  width: 100%;
+}
+
+.background{
+  overflow-y: auto;
+}
+
+.search-field {
+width: 100%;
+}
+
+.search-field input {
+border: 1px solid #ccc;
+border-radius: 4px;
+padding: 8px;
+font-size: 14px;
+}
+
+.search-field input:focus {
+outline: none;
+border-color: #2196F3; /* Change the border color when focused */
+}
+
+.search-field ::placeholder{
+color: #999;
+}
+
+button:enabled {
+background-color :rgb(56, 151, 86);
+color : white
+}
+
+.product{
+background-color : white;
+color : black
+}
+
+:host ::ng-deep .p-inputtext {
+  color: green;
+  border: 2px solid green;
+  border-radius: 10px;
+}
+
+:host ::ng-deep .p-inputtext:focus:enabled,
+:host ::ng-deep .p-inputtext:hover
+{
+  box-shadow: none;
+  border: 2px solid green;
+}
+
+
+.row {
+display: flex;
+flex-direction: row;
+}
+
+.col {
+flex: 1;
+margin-right: 20px;
+}
+
+.col:last-child {
+margin-right: 0;
+}
+
+span:hover{
+  cursor: pointer;
+  transform: scale(1.2);
+}
+// span:hover {
+//   background-position: right center;
+// }
+
+// span:active {
+//   box-shadow: 0 5px white;
+//   transform: translateY(5px);
+// }
+
+.table.submitted td.ng-invalid {
+background-color: red;
+}
+
+.container {
+max-width: 1000px;
+margin-left: auto;
+margin-right: auto;
+padding-left: 10px;
+padding-right: 10px;
+}
+
+h2 {
+font-size: 26px;
+margin: 20px 0;
+text-align: center;
+small {
+  font-size: 0.5em;
+}
+}
+
+*{
+box-sizing: border-box;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+}
+
+body{
+font-family: Helvetica;
+-webkit-font-smoothing: antialiased;
+background: rgba( 71, 147, 227, 1);
+}
+
+h2{
+text-align: center;
+font-size: 18px;
+text-transform: uppercase;
+letter-spacing: 1px;
+color: white;
+// padding: 30px 0;
+}
+
+.table-container {
+margin-top: 20px;
+}
+
+
+
+// Breakpoints
+$bp-maggie: 15em;
+$bp-lisa: 30em;
+$bp-bart: 48em;
+$bp-marge: 62em;
+$bp-homer: 75em;
+
+// Styles
+html {
+box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+box-sizing: inherit;
+}
+
+body {
+// font-family: $font-stack-system;
+color: rgba(0,0,0,.87);
+}
+
+a {
+color: rgb(232, 240, 230);
+
+&:hover,
+&:focus {
+  color: rgba(4,106,56,1);
+}
+}
+
+.container {
+margin: 5% 3%;
+
+@media (min-width: $bp-bart) {
+  margin: 2%;
+}
+
+@media (min-width: $bp-homer) {
+  margin: 2em auto;
+  max-width: $bp-homer;
+}
+}
+
+.responsive-table {
+width: 100%;
+margin-bottom: 1.5em;
+border-spacing: 0;
+
+@media (min-width: $bp-bart) {
+  font-size: .9em;
+}
+
+@media (min-width: $bp-marge) {
+  font-size: 1em;
+}
+
+thead {
+  // Accessibly hide <thead> on narrow viewports
+  position: absolute;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+
+  @media (min-width: $bp-bart) {
+    // Unhide <thead> on wide viewports
+    position: relative;
+    clip: auto;
+    height: auto;
+    width: auto;
+    overflow: auto;
+  }
+
+  th {
+    background-color: rgb(218, 236, 213);
+    border: 1px solid rgba(134,188,37,1);
+    font-weight: normal;
+    text-align: center;
+    color: black;
+
+    &:first-of-type {
+      text-align: left;
+    }
+  }
+}
+
+// Set these items to display: block for narrow viewports
+tbody,
+tr,
+th,
+td {
+  display: block;
+  padding: 0;
+  text-align: left;
+  white-space: normal;
+}
+
+tr {
+  @media (min-width: $bp-bart) {
+    // Undo display: block
+    display: table-row;
+  }
+}
+
+th,
+td {
+  padding: .5em;
+  vertical-align: middle;
+
+  @media (min-width: $bp-lisa) {
+    padding: .75em .5em;
+  }
+
+  @media (min-width: $bp-bart) {
+    // Undo display: block
+    display: table-cell;
+    padding: .5em;
+  }
+
+  @media (min-width: $bp-marge) {
+    padding: .75em .5em;
+  }
+
+  @media (min-width: $bp-homer) {
+    padding: .75em;
+  }
+}
+
+caption {
+  margin-bottom: 1em;
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+
+  @media (min-width: $bp-bart) {
+    font-size: 1.5em;
+  }
+}
+
+tfoot {
+  font-size: .8em;
+  font-style: italic;
+
+  @media (min-width: $bp-marge) {
+    font-size: .9em;
+  }
+}
+
+tbody {
+  @media (min-width: $bp-bart) {
+    // Undo display: block
+    display: table-row-group;
+  }
+
+  tr {
+    margin-bottom: 1em;
+
+    @media (min-width: $bp-bart) {
+      // Undo display: block
+      display: table-row;
+      border-width: 1px;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &:nth-of-type(even) {
+      @media (min-width: $bp-bart) {
+        background-color: rgba(0,0,0,.12);
+      }
+    }
+  }
+
+  th[scope="row"] {
+    background-color: rgba(38,137,13,1);
+    color: white;
+
+    @media (min-width: $bp-lisa) {
+      border-left: 1px solid rgba(134,188,37,1);
+      border-bottom: 1px solid rgba(134,188,37,1);
+    }
+
+    @media (min-width: $bp-bart) {
+      background-color: transparent;
+      color: rgba(0,0,0.87);
+      text-align: left;
+    }
+  }
+
+  td {
+    text-align: right;
+
+    @media (min-width: $bp-bart) {
+      border-left: 1px solid rgba(134,188,37,1);
+      border-bottom: 1px solid rgba(134,188,37,1);
+      text-align: center;
+    }
+
+    &:last-of-type {
+      @media (min-width: $bp-bart) {
+        border-right: 1px solid rgba(134,188,37,1);
+      }
+    }
+  }
+
+  td[data-type=currency] {
+    text-align: right;
+  }
+
+  td[data-title]:before {
+    content: attr(data-title);
+    float: left;
+    font-size: .8em;
+    color: rgba(0,0,0,.54);
+
+    @media (min-width: $bp-lisa) {
+      font-size: .9em;
+    }
+
+    @media (min-width: $bp-bart) {
+      // Don’t show data-title labels
+      content: none;
+    }
+  }
+}
+}
+
+.search-field {
+width: 100%;
+}
+
+.material-icons {
+cursor: pointer;
+}
+
+.material-icons:hover {
+color: red;
+}
+
+.material-icons:active {
+color: darkred;
+}
+
+.material-icons[contenteditable="true"]:hover {
+color: green;
+}
+
+.material-icons[contenteditable="true"]:active {
+color: darkgreen;
+}
+
+
+.container {
+overflow-x: auto;
+}
+

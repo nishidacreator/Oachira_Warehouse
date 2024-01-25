@@ -133,4 +133,12 @@ export class UsersService {
   updateRole(data: any, id: number){
     return this._http.patch<Role[]>(this.url + '/role/' + id, data)
   }
+
+  updateUserStatus(id:number, data:any){
+    return this._http.patch<User>(this.url+'/register/statusupdate/' + id, data);
+  }
+
+  updateRoleStatus(id:number, data:any){
+    return this._http.patch<Role>(this.url+'/role/statusupdate/' + id, data);
+  }
 }

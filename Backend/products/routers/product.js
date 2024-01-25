@@ -16,9 +16,12 @@ const Location = require('../models/location');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
-            const { productName, code, barCode, subCategoryId, categoryId, brandId, reorderQuantity, loyaltyPoint, cloudinaryId, fileUrl} = req.body;
+            const { productName, code, barCode, subCategoryId, categoryId, brandId, reorderQuantity, 
+              loyaltyPoint, baseUnitId, cloudinaryId, fileUrl, brockerage} = req.body;
 
-            const result = new Product({productName, code, barCode, subCategoryId, categoryId, brandId, reorderQuantity, loyaltyPoint, cloudinaryId, fileUrl});
+            const result = new Product({productName, code, barCode, subCategoryId, categoryId, brandId, reorderQuantity, 
+              loyaltyPoint, baseUnitId, cloudinaryId, fileUrl, brockerage});
+              
             await result.save();
             res.send(result);
   } catch (error) {
@@ -38,49 +41,29 @@ router.post('/fileupload', multer.single('file'), async (req, res) => {
 router.get("/", authenticateToken, async (req, res) => {
   try {
     let whereClause = {};
-
-    if (req.query.search) {
-      whereClause = {
-        [Op.and]: [
-          {
-            [Op.or]: [
-              { productName: { [Op.iLike]: `%${req.query.search}%` }},
-            ],
-          },
-          // {
-          //   status: true
-          // },
-        ],
-      };
-    }
     
-    
-
     let limit;
     let offset;
 
     if (req.query.pageSize && req.query.page) {
       limit = parseInt(req.query.pageSize, 10) || 10; // Default to 10 if not a valid number
       offset = (parseInt(req.query.page, 10) - 1) * limit || 0;
+    }else {
+      whereClause = {
+        status : true
+      }
     }
 
     const products = await Product.findAll({
       where: whereClause,
-      include: [Category, Brand, Hsn, Gst, SubCategory, Location],
+      include: [Category, Brand, Hsn, Gst, SubCategory, Location, 'baseUnit'],
       order: ["id"],
       limit, 
       offset
     });
 
     let totalCount;
-
-    if (req.query.search) {
-      totalCount = await Product.count({
-        where: whereClause,
-      });
-    } else {
-      totalCount = await Product.count();
-    }
+    totalCount = await Product.count();
 
     if (req.query.page && req.query.pageSize) {
       const response = {
@@ -181,4 +164,21 @@ router.get('/byfileurl', authenticateToken, async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
+router.patch('/statusupdate/:id', authenticateToken, async(req,res)=>{
+  try {
+
+    let status = req.body.status;
+    let result = await Product.findByPk(req.params.id);
+    result.status = status
+
+    await result.save();
+    res.send(result);
+    } catch (error) {
+      res.status(500).json({
+        status: "error",
+        message: error.message,
+      });
+    }
+})
 module.exports = router;

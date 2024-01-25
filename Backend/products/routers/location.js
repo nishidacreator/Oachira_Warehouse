@@ -22,17 +22,16 @@ router.post('/', authenticateToken, async (req, res) => {
 router.get("/", authenticateToken, async (req, res) => {
     try {
       let whereClause = {};
-      if (req.query.search) {
-        whereClause = {
-          [Op.or]: [{ locationName: { [Op.iLike]: `%${req.query.search}%` } }],
-        };
-      }
   
       let limit;
       let offset;
       if (req.query.pageSize && req.query.page) {
         limit = req.query.pageSize;
         offset = (req.query.page - 1) * req.query.pageSize;
+      }else {
+        whereClause = {
+          status : true
+        }
       }
       const location = await Location.findAll({
         where: whereClause,
@@ -42,14 +41,7 @@ router.get("/", authenticateToken, async (req, res) => {
       });
   
       let totalCount;
-  
-      if (req.query.search) {
-        totalCount = await Location.count({
-          where: whereClause,
-        });
-      } else {
-        totalCount = await Location.count();
-      }
+      totalCount = await Location.count();
   
       if (req.query.page && req.query.pageSize) {
         const response = {
@@ -113,6 +105,23 @@ router.delete('/:id', authenticateToken, async(req,res)=>{
       res.send({error: error.message})
   }
   
+})
+
+router.patch('/statusupdate/:id', authenticateToken, async(req,res)=>{
+  try {
+
+    let status = req.body.status;
+    let result = await Location.findByPk(req.params.id);
+    result.status = status
+
+    await result.save();
+    res.send(result);
+    } catch (error) {
+      res.status(500).json({
+        status: "error",
+        message: error.message,
+      });
+    }
 })
 
 module.exports = router;

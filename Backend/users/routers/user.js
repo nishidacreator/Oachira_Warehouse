@@ -34,30 +34,17 @@ router.post('/', authenticateToken, async (req, res) => {
 router.get('/', authenticateToken, async (req, res) => {
   try {
     let whereClause = {};
-
-    // if (req.query.search) {
-    //   whereClause = {
-    //     [Op.and]: [
-    //       {
-    //         [Op.or]: [
-    //           { name: { [Op.iLike]: `%${req.query.search}%` }},
-    //         ],
-    //       },
-    //       // {
-    //       //   status: true
-    //       // },
-    //     ],
-    //   };
-    // }
-    
-    
-
+  
     let limit;
     let offset;
 
     if (req.query.pageSize && req.query.page) {
       limit = parseInt(req.query.pageSize, 10) || 10; // Default to 10 if not a valid number
       offset = (parseInt(req.query.page, 10) - 1) * limit || 0;
+    }else {
+      whereClause = {
+        status : true
+      }
     }
 
     const users = await User.findAll({
@@ -108,8 +95,6 @@ router.delete('/:id', authenticateToken, async(req,res)=>{
 })
 
 router.patch('/:id', authenticateToken, async (req, res) => {
-  // const pass = await bcrypt.hash(req.body.password, 10);
-  console.log(req.params.id, "iddddddddddddddddddd");
   try {
     const userToUpdate = {
       name: req.body.name,
@@ -169,8 +154,22 @@ router.get('/:id', authenticateToken, async (req, res) => {
     console.error("Error in distributor retrieval:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
-  });
+});
 
+router.patch('/statusupdate/:id', authenticateToken, async(req,res)=>{
+  try {
+    let status = req.body.status;
+    let result = await User.findByPk(req.params.id);
+    result.status = status
+    await result.save();
+    res.send(result);
+    } catch (error) {
+      res.status(500).json({
+        status: "error",
+        message: error.message,
+      });
+    }
+})
 
 module.exports = router;
  

@@ -6,7 +6,8 @@ const SecondaryUnit = sequelize.define('secondaryUnit',{
     primaryUnitId : {type : DataTypes.INTEGER, allowNull : false},
     primaryFactor : {type : DataTypes.FLOAT, allowNull : false},
     secondaryFactor : {type : DataTypes.FLOAT, defaultValue : 1},
-    loadingCharge : {type : DataTypes.FLOAT}
+    loadingCharge : {type : DataTypes.FLOAT},   
+    status: {type : DataTypes.BOOLEAN, defaultValue : true},
 },
 {
     freezeTableName: true,

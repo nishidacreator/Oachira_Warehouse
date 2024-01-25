@@ -1,6 +1,9 @@
 import { SubCategory } from './sub-category';
 import { Brand } from "./brand";
 import { Category } from './category';
+import { Gst } from './gst';
+import { PrimaryUnit } from './primary-unit';
+import { Hsn } from './hsn';
 
 export interface Product {
   id : number;
@@ -16,6 +19,8 @@ export interface Product {
   reorderQuantity : number;
   loyaltyPoint : number;
   status : string;
+  baseUnitId : number;
+
 
   cloudinaryId : string;
   fileUrl : string;
@@ -24,6 +29,7 @@ export interface Product {
   category : Category;
   subCategory : SubCategory;
   location : Location;
-  // gst : Gst
-  // hsn : HSN
+  baseUnit : PrimaryUnit;
+  gst : Gst
+  hsn : Hsn
 }

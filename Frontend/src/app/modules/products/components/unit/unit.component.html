@@ -208,6 +208,7 @@
             <th>Unit Name</th>
             <th>Factor</th>
             <th>Manage</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
@@ -220,7 +221,10 @@
               <i  (click)="editPUnit(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
               &nbsp;&nbsp;
               <i  (click)="deletePUnit(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
-              </td>
+            </td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">
+              <mat-slide-toggle [(ngModel)]="element.status" [ngModelOptions]="{standalone: true}" (change)="onToggleChange($event, element.id)"></mat-slide-toggle>
+            </td>
         </tr>
     </tbody>
   </table><br>
@@ -246,6 +250,7 @@
             <th>Secondary Factor</th>
             <th>Loading Charge</th>
             <th>Manage</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
@@ -261,7 +266,10 @@
               <i  (click)="editSUnit(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
               &nbsp;&nbsp;
               <i  (click)="deleteSUnit(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
-              </td>
+            </td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">
+              <mat-slide-toggle [(ngModel)]="element.status" [ngModelOptions]="{standalone: true}" (change)="onToggleChangeSecondary($event, element.id)"></mat-slide-toggle>
+            </td>
         </tr>
     </tbody>
   </table><br>

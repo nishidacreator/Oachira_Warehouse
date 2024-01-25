@@ -1,9 +1,10 @@
 const express = require('express');
 const Role = require('../models/role');
 const router = express.Router();
+const authenticateToken = require('../../middleware/authorization');
 
 
-router.post('/', async (req, res) => {
+router.post('/',authenticateToken, async (req, res) => {
     try {
             const { roleName, status } = req.body;
 
@@ -18,21 +19,21 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.get('/', async (req, res) => {
+router.get('/', authenticateToken, async (req, res) => {
 
     const role = await Role.findAll({order:['id']})
 
     res.send(role);
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', authenticateToken, async (req, res) => {
 
   const role = await Role.findOne({where: {id: req.params.id}, order:['id']})
 
   res.send(role);
 })
 
-router.delete('/:id', async(req,res)=>{
+router.delete('/:id', authenticateToken, async(req,res)=>{
     try {
 
         const result = await Role.destroy({
@@ -54,7 +55,7 @@ router.delete('/:id', async(req,res)=>{
     
 })
 
-router.patch('/:id', async(req,res)=>{
+router.patch('/:id', authenticateToken, async(req,res)=>{
     try {
         Role.update(req.body, {
             where: { id: req.params.id }
@@ -76,5 +77,22 @@ router.patch('/:id', async(req,res)=>{
           message: error.message,
         });
       }
+})
+
+router.patch('/statusupdate/:id', authenticateToken, async(req,res)=>{
+  try {
+
+    let status = req.body.status;
+    let result = await Role.findByPk(req.params.id);
+    result.status = status
+
+    await result.save();
+    res.send(result);
+    } catch (error) {
+      res.status(500).json({
+        status: "error",
+        message: error.message,
+      });
+    }
 })
 module.exports = router;

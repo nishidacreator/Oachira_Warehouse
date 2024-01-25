@@ -1,0 +1,7 @@
+[
+    {"grade" : "Normal", "gradeRemarks" : "initial customer"},
+    {"grade" : "Regular", "gradeRemarks" : "min 25 transactions"}, 
+    {"grade" : "Premium", "gradeRemarks" : "50 transactions"}, 
+    {"grade" : "VIP", "gradeRemarks" : "100 transactions"}, 
+    {"id" : 100, "grade" : "Fraud", "gradeRemarks" : "bad debtors"}
+]

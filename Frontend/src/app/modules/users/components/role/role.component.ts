@@ -159,4 +159,15 @@ export class RoleComponent implements OnInit {
   onCancelClick(): void {
     this.dialogRef.close();
   }
+
+  onToggleChange(event: any, id: number) {
+    const newValue = event.checked;
+
+    let data = {
+      status : newValue
+    }
+    this.userService.updateRoleStatus(id, data).subscribe(data=>{
+      console.log(data);
+    });
+  }
 }

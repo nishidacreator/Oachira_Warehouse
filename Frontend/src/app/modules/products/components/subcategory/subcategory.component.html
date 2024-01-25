@@ -103,7 +103,7 @@
     <mat-label>Search</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
   </mat-form-field>
-  
+
   <table class="styled-table">
     <thead>
         <tr>
@@ -112,10 +112,11 @@
             <th>SubCategory</th>
             <th>Category</th>
             <th>Manage</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let element of subCategories; let i = index">
+      <tr *ngFor="let element of filtered; let i = index">
         <td [style.background-color]="element.status == false ? 'pink' : null">{{element.id}}</td>
         <td [style.background-color]="element.status == false ? 'pink' : null">
           <ng-container *ngIf="element.fileUrlSub; else alternativeImage">
@@ -139,6 +140,9 @@
           <i (click)="editSubCategory(element.id)" class="fa fa-edit" style="font-size: 20px; color:green"></i>
           &nbsp;&nbsp;
           <i (click)="deleteSubCategory(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+        </td>
+        <td [style.background-color]="element.status == false ? 'pink' : null">
+          <mat-slide-toggle [(ngModel)]="element.status" [ngModelOptions]="{standalone: true}" (change)="onToggleChange($event, element.id)"></mat-slide-toggle>
         </td>
       </tr>
 

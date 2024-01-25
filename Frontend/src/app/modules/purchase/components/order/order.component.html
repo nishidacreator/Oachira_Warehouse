@@ -1,50 +1,211 @@
-<mat-card class="container">
-  <div class="row">
-    <div class="col">
-      <mat-card-header>
-        <mat-card-title> PURCHASE ORDER </mat-card-title>
-      </mat-card-header>
+
+
+<form [formGroup]="purchaseRequestForm" (ngSubmit)="onSubmit()">
+  <mat-card class="background">
+    <div class="row">
+      <div class="col">
+        <mat-card-header>
+          <mat-card-title> PURCHASE ORDER </mat-card-title>
+        </mat-card-header>
+      </div>
+
+      <div class="col">
+        <mat-card-header>
+          <button mat-mini-fab color="primary" type="button" style="margin-left: auto;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onclick="history.back()">
+            <mat-icon>exit_to_app</mat-icon>
+          </button>
+        </mat-card-header>
+      </div>
     </div>
 
-    <div class="col">
-      <mat-card-header>
-        <button mat-mini-fab color="primary" type="button" style="margin-left: auto;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onclick="history.back()">
-          <mat-icon>exit_to_app</mat-icon>
-        </button>
-      </mat-card-header>
-    </div>
-  </div>
+    <mat-card-content >
 
-  <table class="styled-table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Purchase Order No</th>
-            <th>Vendor</th>
-            <th>Required Date</th>
-            <th>Manage</th>
-            <th>purchase Entry</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let element of pEntry">
-            <td>{{element.id}}</td>
-            <td>{{element.purchaseOrderNo}}</td>
-            <td>{{element.vendor.vendorName}}</td>
-            <td>{{element.requestedPurchaseDate}}</td>
-            <td>
-              <span class="material-icons" style=" margin-left: 8px;" (click)="viewPurchaseOrderDetails(element.id)">open_in_new</span>
-            </td>
-            <td>
-              <span *ngIf="element.purchaseEntry" class="material-icons" style=" margin-left: 8px;" (click)="viewPurchaseEntry(element.id)">open_in_new</span>
-              <span *ngIf="!element.purchaseEntry" class="material-icons" style="margin-left: 8px;" (click)="addPurchaseEntry(element.id)">post_add</span>
-            </td>
-        </tr>
-    </tbody>
-  </table>
-    <div>
-      <span class="material-icons" style="font-size: 40px; color: green;"
-        (click)="addPurchaseOrder()">playlist_add</span>
-    </div>
-  </mat-card>
+      <div class="row">
+        <div class="col">
+            <!-- <mat-form-field style="width: 10%;" appearance="fill">
+              <div class="form-group">
+                <input matInput type="text" id="prefix" formControlName="prefix" placeholder="Prefix">
+              </div>
+            </mat-form-field> -->
+            <!-- <span class="material-icons" (click)="generateInvoiceNumber()" style="margin-top: 20px;">repeat_one</span> -->
+            <mat-form-field class="full-width">
+              <input matInput placeholder="RequestNo" formControlName="requestNo">
+                <mat-error *ngIf="purchaseRequestForm.controls['requestNo'].hasError('required')">
+                  Invoice <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <!-- <span class="material-icons" style="margin-top: 17px; margin-left: 5px;" (click)="generateInvoiceNumber()">settings</span> -->
+          <!-- </div> -->
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Store" formControlName="storeId">
+              <mat-form-field class="search-field" style="width: 80%;">
+                <div class="row">
+                  <!-- <mat-icon>search</mat-icon> -->
+                  <input matInput (input)="filterWarehouse($event)" placeholder="Search">
+                </div>
+              </mat-form-field>
+              <!-- <span *ngIf="filteredWarehouse.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55); margin-left: 20px;"
+               (click)="addWarehouse()">playlist_add</span> -->
+              <mat-option *ngFor="let item of filteredWarehouse" [value]="item.id">
+                {{item.warehouseName}}
+              </mat-option>
+              <mat-option  *ngIf="filteredWarehouse.length === 0">
+                <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addWarehouse()">playlist_add</span>
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="purchaseRequestForm.controls['storeId'].hasError('required')">
+              User <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="User" formControlName="userId">
+              <mat-form-field class="search-field" style="width: 80%;">
+                <div class="row">
+                  <!-- <mat-icon>search</mat-icon> -->
+                  <input matInput (input)="filterUser($event)" placeholder="Search">
+                </div>
+              </mat-form-field>
+              <span *ngIf="filteredUser.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55); margin-left: 20px;"
+                (click)="addUser()">playlist_add</span>
+              <mat-option *ngFor="let item of filteredUser" [value]="item.id">
+                {{item.name}}
+              </mat-option>
+              <mat-option  *ngIf="filteredUser.length === 0">
+                <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addUser()">playlist_add</span>
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="purchaseRequestForm.controls['storeId'].hasError('required')">
+              User <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+
+
+<div>
+  <!-- <form [formGroup]="productForm"> -->
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title> DETAILS </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div>
+          <ul formArrayName="requestDetails">
+
+          <div class="container">
+            <table class="responsive-table">
+              <thead>
+                <tr>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Unit</th>
+                  <!-- <th>Secondary Unit</th> -->
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let quantity of products().controls; let i=index" [formGroupName]="i">
+                  <td scope="row">
+                    <mat-form-field>
+                      <mat-label>Select an option</mat-label>
+                      <mat-select formControlName="productId">
+                        <mat-form-field class="search-field">
+                          <div class="row">
+                            <input matInput (input)="filterOptions($event)" placeholder="Search">
+                          </div>
+                        </mat-form-field>
+                        <mat-option *ngFor="let option of filteredOptions" [value]="option.id">
+                          {{ option.productName }}
+                        </mat-option>
+
+                        <mat-option *ngIf="product.length === 0 || filteredOptions.length === 0" [value]="'add'">
+                          <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);"
+                            (click)="addNewProduct()">playlist_add</span>
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </td>
+
+                  <td>
+                    <mat-form-field>
+                      <input matInput placeholder="Quantity" formControlName="quantity">
+                    </mat-form-field>
+                  </td>
+
+                  <td>
+                    <mat-form-field class="full-width">
+                      <mat-select placeholder="SecondaryUnit" formControlName="secondaryUnitId">
+                        <mat-form-field class="search-field" style="width: 80%;">
+                          <div class="row">
+                            <!-- <mat-icon>search</mat-icon> -->
+                            <input matInput (input)="filterSecondaryUnit($event)" placeholder="Search">
+                          </div>
+                        </mat-form-field>
+                        <span *ngIf="filteredSecondaryUnit.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);"
+                         (click)="addSecondaryUnit()">playlist_add</span>
+                        <mat-option *ngFor="let item of filteredSecondaryUnit" [value]="item.id">
+                          {{item.secondaryUnitName}}
+                        </mat-option>
+                        <mat-option  *ngIf="filteredSecondaryUnit.length === 0">
+                          <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addSecondaryUnit()">playlist_add</span>
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </td>
+
+                  <td>
+                    <span class="material-icons" style="color: rgb(255, 0, 0); font-size: 25px; margin-top: 17px;" (click)="removeProduct(i)">cancel</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+            <div>
+              <span class="material-icons" style="font-size: 40px; color: green;"(click)="addProduct()">add_box</span>
+            </div>
+          </ul>
+        </div>
+     </mat-card-content>
+    </mat-card>
+
+
+
+  <!-- </form> -->
+
+  <br/>
+</div>
+  <mat-card-actions>
+  <button mat-raised-button *ngIf="!editstatus" type="submit" class="btn btn-success" [disabled]="!purchaseRequestForm.valid ">
+    <span class="material-icons" style="font-size: 25px;">save</span>
+  </button>
+  <button *ngIf="editstatus" mat-raised-button  type="button" [disabled]="!purchaseRequestForm.valid" (click)="update()">
+    <mat-icon style="font-size: 25px;">edit_note</mat-icon>
+  </button>&nbsp;&nbsp;
+  </mat-card-actions>
+  </mat-card><br>
+</form>
+
+
 

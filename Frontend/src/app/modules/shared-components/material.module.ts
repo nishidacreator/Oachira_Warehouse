@@ -28,6 +28,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {CdkMenuModule} from '@angular/cdk/menu';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 @NgModule({
   declarations: [],
   imports: [
@@ -60,7 +61,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatStepperModule,
     MatPaginatorModule,
     CdkMenuModule,
-    MatMenuModule
+    MatMenuModule,
+    MatProgressBarModule
   ],
 
   exports: [
@@ -93,7 +95,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatStepperModule,
     MatPaginatorModule,
     CdkMenuModule,
-    MatMenuModule
+    MatMenuModule,
+    MatProgressBarModule
   ]
 })
 export class MaterialModule { }

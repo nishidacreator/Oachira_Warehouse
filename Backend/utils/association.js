@@ -18,33 +18,18 @@ const Hsn = require('../products/models/hsn');
 const Distributor = require('../products/models/distributor');
 const ProductDistributor = require('../products/models/productDistributor');
 const Store = require('../store/models/store');
-// const CustomerCategory = require('../models/Customer/customerCategory');
-// const CustomerGrade = require('../models/Customer/customerGrade');
-// const Customer = require('../models/Customer/customer');
-// const Vendor = require('../models/vendor');
-// const Branch = require('../models/branch');
-// const BankAccount = require('../models/bankAccount');
+const Request = require('../purchases/models/request');
+const RequestDetails = require('../purchases/models/requestDetails');
+const Order = require('../purchases/models/order');
+const OrderDetails = require('../purchases/models/orderDetails');
+const Coolie = require('../purchases/models/coolie');
+const Entry = require('../purchases/models/entry');
+const EntryDetails = require('../purchases/models/entryDetails');
 
-// const PurchaseEntry = require('../models/Purchases/purchaseEntry');
-// const PurchaseEntryDetails = require('../models/Purchases/purchaseEntryDetails');
-// const VehicleType = require('../models/route/vehicleType');
-// const Vehicle = require('../models/route/vehicle');
-// const Route = require('../models/route/route');
-// const CollectionDays = require('../models/route/collectionDays');
-// const RouteDetails = require('../models/route/routeDetails');
-// const PickList = require('../models/route/pickList');
-// const PickListDetails = require('../models/route/pickListDetails');
-// const DailyCollection = require('../models/route/dailyCollection');
-// const Trip = require('../models/route/trip');
-// const TripDetails = require('../models/route/tripDetails');
-// const DeliveryDays = require('../models/route/deliveryDays');
-// const BranchAccount = require('../models/branchAccount');
-
-// const PurchaseOrder = require('../models/Purchases/purchaseOrder');
-// const PurchaseOrderDetails = require('../models/Purchases/purchaseOrderDetails');
-// const Stock = require('../models/Stock/stock');
-// const PurchaseTransaction = require('../models/Stock/purchaseTransaction');
-// const CustomerPhone = require('../models/Customer/customerPhone');
+const Customer = require('../routesale/models/customer');
+const CustomerCategory = require('../routesale/models/customerCategory');
+const CustomerGrade = require('../routesale/models/customerGrade');
+const LoyaltyPoint = require('../routesale/models/loyaltyPoint');
 
 // // BULK CREATE
 const userData = require('./dataSource/user.json');
@@ -56,11 +41,9 @@ const hsnData = require('./dataSource/products/hsn.json');
 const gstData = require('./dataSource/products/gst.json');
 const locationData = require('./dataSource/products/location.json');
 const productData = require('./dataSource/products/productsOachiraFirst.json');
-
-const vehicleTypeData = require('./dataSource/vehicleType.json');
-const branchData = require('./dataSource/branch.json');
-const vehilceData = require('./dataSource/vehicle.json');
-const bankAccountData = require('./dataSource/bankAccount.json');
+const customerCategoryData = require('./dataSource/routeSale/customerCategory.json');
+const customerGradeData = require('./dataSource/routeSale/customerGrade.json');
+const Warehouse = require('../store/models/warehouse');
 
 
 async function syncModel(){
@@ -95,6 +78,9 @@ async function syncModel(){
     Hsn.hasMany(Product,{foreignKey : 'hsnId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Product.belongsTo(Hsn)
 
+    PrimaryUnit.hasMany(Product,{foreignKey : 'baseUnitId', as: 'baseUnit',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Product.belongsTo(PrimaryUnit, {foreignKey : 'baseUnitId', as: 'baseUnit'})
+
     Product.hasMany(ProductDistributor,{foreignKey : 'productId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     ProductDistributor.belongsTo(Product)
 
@@ -104,154 +90,71 @@ async function syncModel(){
     // STORE
     User.hasMany(Store,{foreignKey : 'storeInChargeId', as: 'storeInCharge',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Store.belongsTo(User, {foreignKey : 'storeInChargeId', as: 'storeInCharge'})
-    // CustomerGrade.hasMany(Customer, {foreignKey : 'customerGradeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // Customer.belongsTo(CustomerGrade)
 
-    // CustomerCategory.hasMany(Customer, {foreignKey : 'customerCategoryId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // Customer.belongsTo(CustomerCategory)
+    Store.hasMany(Warehouse,{foreignKey : 'warehouseId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Warehouse.belongsTo(Store, {foreignKey : 'warehouseId'})
 
-    // Customer.hasMany(CustomerPhone, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // CustomerPhone.belongsTo(Customer)
-
+    Warehouse.hasMany(User,{foreignKey : 'warehouseInChargeId', as: 'warehouseInCharge',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    User.belongsTo(Warehouse, {foreignKey : 'warehouseInChargeId', as: 'warehouseInCharge'})
    
-  
-    // // BRANCH
-    // Branch.hasMany(User,{foreignKey : 'branchId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // User.belongsTo(Branch)
+    // PURCHASES
+    Store.hasMany(Request, {foreignKey : 'storeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Request.belongsTo(Store)
 
-    // Branch.hasMany(Customer,{foreignKey : 'branchId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // Customer.belongsTo(Branch)
+    User.hasMany(Request, {foreignKey : 'userId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Request.belongsTo(User)
 
-    // Branch.hasMany(Vehicle,{foreignKey : 'branchId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // Vehicle.belongsTo(Branch)
+    Request.hasMany(RequestDetails, {foreignKey : 'requestId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    RequestDetails.belongsTo(Request)
 
-    // Branch.hasMany(Route,{foreignKey : 'branchId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // Route.belongsTo(Branch)
+    Product.hasMany(RequestDetails, {foreignKey : 'productId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    RequestDetails.belongsTo(Product)
 
-    // Branch.hasMany(Trip,{foreignKey : 'branchId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // Trip.belongsTo(Branch)
+    SecondaryUnit.hasMany(RequestDetails, {foreignKey : 'secondaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    RequestDetails.belongsTo(SecondaryUnit)
 
-    // VehicleType.hasMany(Vehicle, {foreignKey : 'vehicleTypeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // Vehicle.belongsTo(VehicleType)
+    Distributor.hasMany(Order, {foreignKey : 'distributorId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Order.belongsTo(Distributor)
 
-    // // User.hasMany(Branch,{foreignKey : 'branchManagerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'}) 
-    // // Branch.belongsTo(User, {as: 'branchManager', foreignKey : 'branchManagerId'})
+    User.hasMany(Order, {foreignKey : 'userId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Order.belongsTo(User)
 
-    // BankAccount.hasMany(BranchAccount,{foreignKey : 'bankAccountId', onDelete : 'CASCADE', onUpdate : 'CASCADE'}) 
-    // BranchAccount.belongsTo(BankAccount)
+    Order.hasMany(OrderDetails, {foreignKey : 'orderId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    OrderDetails.belongsTo(Order)
 
-    // Branch.hasMany(BranchAccount,{foreignKey : 'branchId', onDelete : 'CASCADE', onUpdate : 'CASCADE'}) 
-    // BranchAccount.belongsTo(Branch)
+    Product.hasMany(OrderDetails, {foreignKey : 'productId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    OrderDetails.belongsTo(Product)
 
-    // //ROUTE
-    // Vehicle.hasMany(Route, {foreignKey : 'vehicleId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // Route.belongsTo(Vehicle)
+    PrimaryUnit.hasMany(OrderDetails, {foreignKey : 'primaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    OrderDetails.belongsTo(PrimaryUnit)
 
-    // User.hasOne(Route,{foreignKey : 'driverId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // Route.belongsTo(User, {as: 'driver', foreignKey : 'driverId'})
+    SecondaryUnit.hasMany(Coolie, {foreignKey : 'secondaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Coolie.belongsTo(SecondaryUnit)
 
-    // User.hasOne(Route, {foreignKey : 'salesManId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // Route.belongsTo(User, {as:'salesman', foreignKey : 'salesManId'})
+    // Distributor.hasMany(Order, {foreignKey : 'distributorId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    // Order.belongsTo(Store)
 
-    // User.hasOne(Route, {foreignKey : 'salesExecutiveId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // Route.belongsTo(User, {as:'salesexecutive', foreignKey : 'salesExecutiveId'})
+    // User.hasMany(Order, {foreignKey : 'userId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    // Order.belongsTo(User)
 
-    // Route.hasMany(CollectionDays, {foreignKey : 'routeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // CollectionDays.belongsTo(Route)
+    // Order.hasMany(OrderDetails, {foreignKey : 'orderId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    // OrderDetails.belongsTo(Order)
 
-    // Route.hasMany(RouteDetails, {foreignKey : 'routeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // RouteDetails.belongsTo(Route)
+    // Product.hasMany(OrderDetails, {foreignKey : 'productId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    // OrderDetails.belongsTo(Product)
 
-    // Customer.hasMany(RouteDetails, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // RouteDetails.belongsTo(Customer)
+    // PrimaryUnit.hasMany(OrderDetails, {foreignKey : 'primaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    // OrderDetails.belongsTo(PrimaryUnit)
 
-    // //SALES EXECUTIVE
-    // Route.hasOne(PickList, {foreignKey : 'routeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // PickList.belongsTo(Route)
+    //ROUTE SALE 
+    Customer.hasMany(LoyaltyPoint, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    LoyaltyPoint.belongsTo(Customer)
 
-    // Customer.hasOne(PickList, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // PickList.belongsTo(Customer)
+    CustomerCategory.hasMany(Customer, {foreignKey : 'customerCategoryId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Customer.belongsTo(CustomerCategory)
 
-    // User.hasOne(PickList, {foreignKey : 'salesExecutiveId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // PickList.belongsTo(User, {as:'salesexecutive', foreignKey : 'salesExecutiveId'})
-
-    // Product.hasOne(PickListDetails, {foreignKey : 'productId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // PickListDetails.belongsTo(Product)
-
-    // PickList.hasOne(PickListDetails, {foreignKey : 'pickListId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // PickListDetails.belongsTo(PickList)
-
-    // Route.hasOne(DailyCollection, {foreignKey : 'routeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // DailyCollection.belongsTo(Route)
-
-    // Customer.hasOne(DailyCollection, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // DailyCollection.belongsTo(Customer)
-
-    // User.hasOne(DailyCollection, {foreignKey : 'salesExecutiveId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // DailyCollection.belongsTo(User, {as:'salesexecutive', foreignKey : 'salesExecutiveId'})
-
-    // Route.hasOne(Trip, {foreignKey : 'routeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // Trip.belongsTo(Route)
-
-    // Trip.hasOne(TripDetails, {foreignKey : 'tripId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // TripDetails.belongsTo(Trip)
-
-    // Customer.hasOne(TripDetails, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // TripDetails.belongsTo(Customer)
-
-    // Route.hasMany(DeliveryDays, {foreignKey : 'routeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // DeliveryDays.belongsTo(Route)
-
-    // //PURCHASES
-    // Vendor.hasMany(PurchaseOrder,{foreignKey : 'vendorId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // PurchaseOrder.belongsTo(Vendor)
-
-    // User.hasMany(PurchaseOrder,{foreignKey : 'userId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // PurchaseOrder.belongsTo(User)
-
-    // Branch.hasMany(PurchaseOrder,{foreignKey : 'branchId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // PurchaseOrder.belongsTo(Branch)
-
-    // Product.hasMany(PurchaseOrderDetails, {foreignKey : 'productId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // PurchaseOrderDetails.belongsTo(Product)
-
-    // PurchaseOrder.hasMany(PurchaseOrderDetails,{foreignKey : 'purchaseOrderId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // PurchaseOrderDetails.belongsTo(PurchaseOrder)
-
-    // PurchaseOrder.hasOne(PurchaseEntry, {foreignKey : 'purchaseOrderId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // PurchaseEntry.belongsTo(PurchaseOrder)
-
-    // Vendor.hasMany(PurchaseEntry,{foreignKey : 'vendorId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // PurchaseEntry.belongsTo(Vendor)
-
-    // User.hasMany(PurchaseEntry,{foreignKey : 'userId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // PurchaseEntry.belongsTo(User)
-
-    // Branch.hasMany(PurchaseEntry,{foreignKey : 'branchId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // PurchaseEntry.belongsTo(Branch)
-
-    // Product.hasMany(PurchaseEntryDetails, {foreignKey : 'productId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // PurchaseEntryDetails.belongsTo(Product)
-
-    // PurchaseEntry.hasMany(PurchaseEntryDetails,{foreignKey : 'purchaseEntryId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // PurchaseEntryDetails.belongsTo(PurchaseEntry)
-
-    // SecondaryUnit.hasMany(PurchaseEntryDetails, {foreignKey : 'secondaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // PurchaseEntryDetails.belongsTo(SecondaryUnit)
-
-    // Gst.hasMany(PurchaseEntryDetails, {foreignKey : 'gstId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // PurchaseEntryDetails.belongsTo(Gst)
-
-
-    // // STOCK
-    // Product.hasMany(Stock,{foreignKey : 'productId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // Stock.belongsTo(Product)
-
-    // Stock.hasMany(PurchaseTransaction,{foreignKey: 'stockId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // PurchaseTransaction.belongsTo(Stock)
-
-    // PurchaseEntry.hasMany(PurchaseTransaction,{foreignKey: 'purchaseEntryId', onDelete : 'CASCADE'})
-    // PurchaseTransaction.belongsTo(PurchaseEntry)
+    CustomerGrade.hasMany(Customer, {foreignKey : 'customerGradeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Customer.belongsTo(CustomerGrade)
 
     await sequelize.sync({alter: true})
 
@@ -340,26 +243,19 @@ async function syncModel(){
         }
     }
 
-    // const customerCategory = await CustomerCategory.findAll({})
-    // if(customerCategory.length === 0){
-    //     CustomerCategory.bulkCreate([
-    //        {categoryName : 'Walkin'},
-    //        {categoryName : 'Wholesale'},
-    //        {categoryName : 'Route'},
-    //        {categoryName : 'Ecommerce'},
-    //     ])
-    // }
+    const customerCategory = await CustomerCategory.findAll({})
+    if(customerCategory.length === 0){
+        for(let i = 0; i < customerCategoryData.length; i++){
+            CustomerCategory.bulkCreate([customerCategoryData[i]])
+        }
+    }
 
-    // const customerGarde = await CustomerGrade.findAll({})
-    // if(customerGarde.length === 0){
-    //     CustomerGrade.bulkCreate([
-    //         {grade : 'Normal', gradeRemarks : 'initial customer'}, // initial customer
-    //         {grade : 'Regular', gradeRemarks : 'min 25 transactions'}, // min 25 transactions
-    //         {grade : 'Premium', gradeRemarks : '50 transactions'}, // 50 transactions
-    //         {grade : 'VIP', gradeRemarks : '100 transactions'}, // 100 transactions
-    //         {id : 100, grade : 'Fraud', gradeRemarks : 'bad debtors'}// bad debtors
-    //     ])
-    // }
+    const customerGarde = await CustomerGrade.findAll({})
+    if(customerGarde.length === 0){
+        for(let i = 0; i < customerGradeData.length; i++){
+            CustomerGrade.bulkCreate([customerGradeData[i]])
+        }
+    }
     
 
     // const vehicleType = await VehicleType.findAll({})
