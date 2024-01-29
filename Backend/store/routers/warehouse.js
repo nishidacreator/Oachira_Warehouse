@@ -30,7 +30,7 @@ router.get('/:id', async (req, res) => {
   const warehouse = await Warehouse.findOne({
     where: {id: req.params.id}, 
     order:['id'],
-    include: ['warehouseInCharge']
+    // include: ['warehouseInCharge']
   })
 
   res.send(warehouse);
