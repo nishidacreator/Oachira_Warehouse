@@ -69,14 +69,28 @@ app.use('/purchases/orderdetails',orderDetails);
 // app.use('/purchases/entrydetails',entryDetails);
 app.use('/purchases/coolie',coolie);
 
-const customer = require('../routesale/routers/customer');
-const customerCategory = require('../routesale/routers/customerCategory');
-const customerGrade = require('../routesale/routers/customerGrade');
-const loyaltyPoint = require('../routesale/routers/loyaltyPoint');
-app.use('/routesale/customer',customer);
-app.use('/routesale/loyaltypoint',loyaltyPoint);
-app.use('/routesale/customercategory',customerCategory);
-app.use('/routesale/customergrade',customerGrade);
+const customer = require('../sales/routers/customer');
+const customerCategory = require('../sales/routers/customerCategory');
+const customerGrade = require('../sales/routers/customerGrade');
+const loyaltyPoint = require('../sales/routers/loyaltyPoint');
+const vehicleType = require('../sales/routers/vehicleType');
+const vehicle = require('../sales/routers/vehicle');
+const route = require('../sales/routers/route');
+const routeDay = require('../sales/routers/routeDays');
+const routeDetails = require('../sales/routers/routeDetails');;
+const trip = require('../sales/routers/trip');
+const tripDetails = require('../sales/routers/tripDetails');
+app.use('/sales/customer',customer);
+app.use('/sales/loyaltypoint',loyaltyPoint);
+app.use('/sales/customercategory',customerCategory);
+app.use('/sales/customergrade',customerGrade);
+app.use('/sales/vehicletype',vehicleType);
+app.use('/sales/vehicle',vehicle);
+app.use('/sales/route',route);
+app.use('/sales/routedays',routeDay);
+app.use('/sales/routedetails',routeDetails);
+app.use('/sales/trip',trip);
+app.use('/sales/tripdetails',tripDetails);
 
 const port = process.env.PORT;
 

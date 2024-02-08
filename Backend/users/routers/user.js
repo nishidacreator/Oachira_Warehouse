@@ -13,7 +13,7 @@ router.post('/', authenticateToken, async (req, res) => {
         const userName = phoneNumber;
         const user = await User.findOne({where: {userName: userName}});
       if (user) {
-          return res.status(400).send({ message: 'User name already exists' })  
+          return res.status(400).send('User name already exists' )  
       }
       const pass = await bcrypt.hash(password, 10);
       const newUser = new User({
@@ -27,7 +27,7 @@ router.post('/', authenticateToken, async (req, res) => {
       await newUser.save();
       res.status(200).send({id:newUser.id, name:newUser.name, pohneNumber:newUser.phoneNumber});
       } catch (error) {
-          res.send({error : error.message});
+          res.send( error.message);
       }   
 })
 

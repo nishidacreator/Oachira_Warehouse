@@ -122,3 +122,11 @@ button:enabled {
 .col:last-child {
   margin-right: 0;
 }
+
+@media print{
+  html, body{
+    width: 800mm;
+    height: 100%;
+    position: absolute;
+  }
+}

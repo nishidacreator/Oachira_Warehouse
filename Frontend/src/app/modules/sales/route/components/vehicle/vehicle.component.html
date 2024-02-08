@@ -1,0 +1,176 @@
+<form [formGroup]="vehicleForm" (ngSubmit)="onSubmit()">
+  <mat-card class="background">
+    <div class="row">
+      <div class="col">
+        <mat-card-header>
+          <mat-card-title>VEHICLE</mat-card-title>
+        </mat-card-header>
+      </div>
+      <div class="col" *ngIf="addStatus != 'true'">
+        <mat-card-header>
+          <button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon"
+          class="d-block mr-0 ml-auto" onClick="history.back()" style="margin-left: auto;">
+            <span class="material-icons" style="color: white;">exit_to_app</span>
+          </button>
+        </mat-card-header>
+      </div>
+    </div><br>
+    <mat-card-content style="overflow-x: auto;">
+
+      <div class="row box">
+        <div class="col">
+          <mat-form-field class="full-width" appearance="fill">
+            <input matInput placeholder="RegistrationNumber" formControlName="registrationNumber">
+            <mat-error *ngIf="vehicleForm.controls['registrationNumber'].hasError('required')">
+              field is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-select placeholder="VehicleType" formControlName="vehicleTypeId">
+              <mat-form-field class="full-width">
+                <div class="row box">
+                  <input matInput (input)="filterVehicleType($event)" placeholder="Search">
+                </div>
+              </mat-form-field>
+              <mat-option *ngFor="let item of filteredVehicleType" [value]="item.id">
+                  {{item.typeName}}
+              </mat-option>
+              &nbsp;&nbsp; &nbsp;&nbsp;<span *ngIf="filteredVehicleType.length === 0" class="material-icons" style="font-size: 30px; color: rgb(0, 128, 55);" (click)="addVehicleType()">playlist_add</span>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width" appearance="fill">
+            <input matInput placeholder="Capacity" formControlName="capacity">
+            <mat-error *ngIf="vehicleForm.controls['capacity'].hasError('required')">
+              field is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row box">
+        <div class="col">
+          <mat-form-field class="full-width" appearance="fill">
+            <input matInput type="date" placeholder="Tax Expiry" formControlName="taxExpiry">
+            <mat-error *ngIf="vehicleForm.controls['taxExpiry'].hasError('required')">
+              field <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width" appearance="fill">
+            <input matInput type="date" placeholder="Insurance Expiry" formControlName="insuranceExpiry">
+            <mat-error *ngIf="vehicleForm.controls['insuranceExpiry'].hasError('required')">
+              field <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width" appearance="fill">
+            <input matInput type="date" placeholder="Polution Expiry" formControlName="polutionExpiry">
+            <mat-error *ngIf="vehicleForm.controls['polutionExpiry'].hasError('required')">
+              field <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width" appearance="fill">
+            <input matInput type="date" placeholder="Tax Expiry" formControlName="fitnessExpiry">
+            <mat-error *ngIf="vehicleForm.controls['fitnessExpiry'].hasError('required')">
+              field <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width" appearance="fill">
+            <input matInput type="date" placeholder="Permit Expiry" formControlName="permitExpiry">
+            <mat-error *ngIf="vehicleForm.controls['permitExpiry'].hasError('required')">
+              field <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button *ngIf="!editstatus" mat-raised-button  type="submit" [disabled]="!vehicleForm.valid">
+        <span class="material-icons" style="font-size: 25px;">save</span>
+      </button>&nbsp;&nbsp;
+      <button *ngIf="editstatus" mat-raised-button  type="button" [disabled]="!vehicleForm.valid" (click)="editFunction()">
+        <span class="material-icons" style="font-size: 30px;">edit_note</span>
+      </button>&nbsp;&nbsp;
+
+      <button mat-raised-button *ngIf="addStatus === 'true'" type="button" class="cancel-button" (click)="onCancelClick()">
+        <mat-icon style="font-size: 25px;">cancel_presentation</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+
+
+<br><mat-card *ngIf="addStatus != 'true'">
+<mat-card-header>
+  <mat-card-title style="color: green;">VEHICLES</mat-card-title>
+</mat-card-header>
+<mat-form-field>
+  <mat-label>Search</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+</mat-form-field>
+
+<div style="overflow-x: auto;">
+  <table class="styled-table">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>RegistrationNumber</th>
+            <th>VehicleType</th>
+            <th>TaxExpiry</th>
+            <th>InsuranceExpiry</th>
+            <th>PollutionExpiry</th>
+            <th>FitnessExpiry</th>
+            <th>PermitExpiry</th>
+            <th>Capacity</th>
+            <th>Status</th>
+            <th>Manage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let element of filtered">
+            <td [style.background-color]="element.status == false ? 'pink' : null">{{element.id}}</td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">{{element.registrationNumber}}</td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">{{element.vehicleType.typeName}}</td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">{{element.taxExpiry}}</td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">{{element.insuranceExpiry}}</td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">{{element.polutionExpiry}}</td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">{{element.fitnessExpiry}}</td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">{{element.permitExpiry}}</td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">{{element.capacity}}</td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">
+              <mat-slide-toggle [(ngModel)]="element.status" [ngModelOptions]="{standalone: true}" (change)="onToggleChange($event, element.id)"></mat-slide-toggle>
+            </td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">
+              <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+              <i  (click)="editDetails(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
+              &nbsp;&nbsp;
+              <i  (click)="deleteDetails(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+<mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageIndex]="currentPage - 1"
+(page)="onPageChange($event)" [pageSizeOptions]="[10, 20,30,40,50,100]">
+</mat-paginator>
+</mat-card>

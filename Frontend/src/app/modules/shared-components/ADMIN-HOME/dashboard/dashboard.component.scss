@@ -76,7 +76,7 @@
   position: relative;
   width: calc(100% );
   padding: 10px;
-  
+
   transition: all 0.5s ease;
 }
 .sidebar.active ~ .home-section{
@@ -183,7 +183,7 @@ nav .profile-details i{
   flex-wrap: wrap;
   padding: 0 20px;
   margin-bottom: 26px;
- 
+
 }
 .overview-boxes .box{
   display: flex;
@@ -444,5 +444,69 @@ text-align: center;
     width: calc(100% - 60px);
   }
 }
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.rowDate {
+    display: flex;
+    flex-direction: row;
+}
+
+.box {
+ width:300px;
+ padding: 80px 0;
+text-align: center;
+color:green;
+border-radius: var(--mdc-elevated-card-container-shape, var(--mdc-shape-medium, 16px))
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height:100px;
+}
+
+.footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+table {
+  width: 500px;
+}
+
+
+
+.background{
+  background-color: rgb(243,243,243);
+}
+
+
+/////
+.date-range-container {
+display: flex;
+align-items: center;
+}
+
+.custom-date-range-input {
+display: flex;
+justify-content: space-between;
+}
+
+.dropbox {
+  width: 300px; /* Adjust the width as needed */
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 
 

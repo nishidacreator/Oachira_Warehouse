@@ -3,6 +3,24 @@ import { MatDialog } from "@angular/material/dialog";
 // import { AdminService } from "../../../admin.service";
 // import { MasterSearchComponent } from "../../master-search/master-search.component";
 
+export interface GroceryProduct {
+  serialNumber: number;
+  name: string;
+  sale: number;
+  purchase: number;
+}
+
+const GROCERY_DATA: GroceryProduct[] = [
+  { serialNumber: 1, name: 'Apple', sale: 2, purchase: 1 },
+  { serialNumber: 2, name: 'Banana', sale: 1, purchase: 1 },
+  { serialNumber: 3, name: 'Carrot', sale: 1, purchase: 1 },
+  { serialNumber: 4, name: 'Tomato', sale: 3, purchase: 2 },
+  { serialNumber: 5, name: 'Potato', sale: 2, purchase: 1 },
+  { serialNumber: 6, name: 'Milk', sale: 4, purchase: 3 },
+  { serialNumber: 7, name: 'Bread', sale: 2, purchase: 1 },
+  { serialNumber: 8, name: 'Eggs', sale: 1, purchase: 1 },
+  { serialNumber: 9, name: 'Cheese', sale: 5, purchase: 4 },
+];
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.component.html",
@@ -14,8 +32,9 @@ export class DashboardComponent {
   quotCount:any;
   sales: any;
   topSellingParts: any;
-  stockCount=0;
+  stockCount!: number;
   constructor( public dialog: MatDialog) {}
+
 
   ngOnInit() {
     // this.getPendingRfqs();
@@ -25,6 +44,8 @@ export class DashboardComponent {
     // this.getQuotCount();
     // this.getStockCount();
   }
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  dataSource = GROCERY_DATA;
   // openFullScreenDialog(searchValue: string) {
   //   console.log(searchValue);
   //   const dialogRef = this.dialog.open(MasterSearchComponent, {

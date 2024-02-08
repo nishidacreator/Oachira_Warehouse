@@ -16,18 +16,18 @@
       <div class="overview-boxes">
         <div class="box">
           <div class="right-side">
-            <div class="box-topic" style="color: blue">Pending RFQ</div>
+            <div class="box-topic" style="color: rgb(57, 120, 55);">Users</div>
             <div class="number">{{ pendingRfqs }}</div>
             <div class="indicator">
               <!-- <i class='bx bx-up-arrow-alt'></i> -->
               <!-- <span class="text">Up from yesterday</span> -->
             </div>
           </div>
-          <i class='bx bx-cart-alt cart'></i>
+          <i class='bx bx-user cart one'></i>
         </div>
         <div class="box">
           <div class="right-side">
-            <div class="box-topic" style="color: blue">Total Sales</div>
+            <div class="box-topic" style="color: rgb(57, 120, 55);"> Purchases</div>
             <div class="number">{{ saleCount }}</div>
             <div class="indicator">
               <!-- <i class='bx bx-up-arrow-alt'></i> -->
@@ -38,7 +38,7 @@
         </div>
         <div class="box">
           <div class="right-side">
-            <div class="box-topic" style="color: blue">Total Quots</div>
+            <div class="box-topic" style="color: rgb(57, 120, 55);">Sales</div>
             <div class="number">{{ quotCount }}</div>
             <div class="indicator">
               <!-- <i class='bx bx-up-arrow-alt'></i> -->
@@ -49,7 +49,7 @@
         </div>
         <div class="box">
           <div class="right-side">
-            <div class="box-topic" style="color: blue">Total Stocks</div>
+            <div class="box-topic" style="color: rgb(57, 120, 55);"> Stock</div>
             <div class="number">{{stockCount}}</div>
             <div class="indicator">
               <!-- <i class='bx bx-down-arrow-alt down'></i> -->
@@ -59,58 +59,114 @@
           <i class='bx bxs-cart-download cart four'></i>
         </div>
       </div>
-  
-      <div class="sales-boxes">
-        <div class="recent-sales box">
-          <div class="title">Recent Sales</div>
-          <div class="button">
-            <a href="#">See All</a>
-          </div>
-          <div class="sales-details">
-            <table class="sales-table" style="width: 100%;">
-              <thead>
-                <tr class="topic">
-                  <th>Date</th>
-                  <th>Customer</th>
-                  <th>Sales</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <br>
-              <tbody>
-                <tr *ngFor="let item of sales">
-                  <td>{{ item.invoiceDate }}</td>
-                  <td>{{ item.shippingAddress }}</td>
-                  <td>{{ item.saleNo }}</td>
-                  <td>{{ item.NetTotal }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="top-sales box">
-          <div class="title">Top Selling Parts</div>
-          <br>
-          <table class="top-sales-table" style="width: 100%;">
-            <thead>
-              <tr class="product">
-                <th>Parts</th>
-                <th>Quantity</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of topSellingParts">
-                <td class="product">{{ item.partDetails.partNumber }}</td>
-                <td class="price">{{ item.totalQuantity }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+
+      <mat-card class="background">
+
+    <div class="header">
+        <mat-card class="dropbox" style="display: flex;align-items: center;">
+            <mat-form-field style="flex: 1;">
+                    <mat-label style="color: green;">Enter a date range</mat-label>
+                    <div class="date-range-container">
+                      <mat-date-range-input [rangePicker]="picker" class="custom-date-range-input">
+                        <input matStartDate placeholder="Start date" style="flex:1;">
+                        <input matEndDate placeholder="End date" style="flex:1;">
+                      </mat-date-range-input>
+                      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    </div>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+        </mat-card>
+        <mat-card class="dropbox">
+            <mat-card-subtitle style="color: green"> Choose service </mat-card-subtitle>
+            <mat-select>
+                <mat-option value="sales">Sales</mat-option>
+                <mat-option value="purchases">Purchases</mat-option>
+            </mat-select>
+        </mat-card>
+    </div>
+
+    <div class="footer">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-content style="color:green"> Top Products</mat-card-content>
+            </mat-card-header>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> Sl. No.. </th>
+          <td mat-cell *matCellDef="let element"> {{element.serialNumber}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef> Sale </th>
+          <td mat-cell *matCellDef="let element"> {{element.sale}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="symbol">
+          <th mat-header-cell *matHeaderCellDef> Purchase </th>
+          <td mat-cell *matCellDef="let element"> {{element.purchase}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+        </mat-card>
+    <br>
+    <mat-card style="width:500px;">
+        <mat-card-content>
+            Graph
+          <!-- <mat-card-title>Grocery Sales and Purchases</mat-card-title>
+          <div style="display: flex; justify-content: center;">
+            <div style="width: 80%;">
+              <canvas baseChart
+                      [datasets]="barChartData"
+                      [labels]="barChartLabels"
+                      [options]="barChartOptions"
+                      [legend]="barChartLegend"
+                      [chartType]="barChartType"></canvas>
+            </div>
+          </div> -->
+        </mat-card-content>
+      </mat-card>
+    <mat-card style="width:500px;">
+        <mat-card-content>
+            Graph
+          <!-- <mat-card-title>Grocery Sales and Purchases</mat-card-title>
+          <div style="display: flex; justify-content: center;">
+            <div style="width: 80%;">
+              <canvas baseChart
+                      [datasets]="barChartData"
+                      [labels]="barChartLabels"
+                      [options]="barChartOptions"
+                      [legend]="barChartLegend"
+                      [chartType]="barChartType"></canvas>
+            </div>
+          </div> -->
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    </mat-card><br>
     </div>
   <!-- </div> -->
-  
+
   </section>
+
+
 
   <script>
    let sidebar = document.querySelector(".sidebar");

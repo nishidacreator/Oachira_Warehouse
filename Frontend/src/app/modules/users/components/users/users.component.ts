@@ -37,7 +37,7 @@ export class UsersComponent implements OnInit {
     name: ['', Validators.required],
     phoneNumber: ['',[Validators.required, Validators.pattern("^[0-9 +]*$"),Validators.minLength(10),Validators.maxLength(14)]],
     password:[''],
-    roleId: ['', Validators.required],
+    roleId: [0, Validators.required],
     status: [false],
     branchId: [0]
   });
@@ -62,7 +62,6 @@ export class UsersComponent implements OnInit {
   ngOnDestroy(): void {
     this.userSubscriptions?.unsubscribe()
     this.roleSubscription?.unsubscribe()
-
   }
 
   addStatus!: string
@@ -77,6 +76,16 @@ export class UsersComponent implements OnInit {
 
     if (this.dialogRef) {
       this.addStatus = this.dialogData?.status;
+      console.log(this.dialogData);
+      this.userService.getRole().subscribe(role => {
+        let r = role.find(role => role.roleName === this.dialogData.role);
+        console.log(r);
+        let id: any = r?.id;
+        this.userForm.get('roleId')?.setValue(id)
+      })
+      // this.userService.getRoleByRole(this.dialogData).subscribe(role => {
+      //   console.log(role);
+      // })
     }
 
   }

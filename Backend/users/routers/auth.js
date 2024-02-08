@@ -31,7 +31,7 @@ router.post('/', async(req, res)=> {
         return res.status(200).send({"token" : token, "role": user.roleId, "name" : user.name, "id" : user.id, "branch": user.branchId});
 
     } catch (error) {
-        res.send(error);
+        res.send(error.message);
     }    
 })
 

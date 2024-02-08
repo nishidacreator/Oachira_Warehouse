@@ -1,0 +1,127 @@
+<form [formGroup]="routeDaysForm" (ngSubmit)="onSubmit()">
+  <mat-card class="background">
+    <div class="row">
+      <div class="col">
+        <mat-card-header>
+          <mat-card-title>COLLECTION DAYS</mat-card-title>
+        </mat-card-header>
+      </div>
+      <div class="col" *ngIf="!addStatus">
+        <mat-card-header>
+          <button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto"
+           onClick="history.back()" style="margin-left: auto;">
+            <span class="material-icons" style="color: white;">exit_to_app</span>
+          </button>
+        </mat-card-header>
+      </div>
+    </div><br>
+    <mat-card-content >
+
+      <div class="row">
+          <div class="col">
+          <mat-form-field class="full-width" appearance="fill">
+              <mat-select placeholder="Route Name" formControlName="routeId">
+                <mat-form-field class="full-width">
+                  <div class="row">
+                    <input matInput (input)="filterRoute($event)" placeholder="Search">
+                  </div>
+                </mat-form-field>
+                <mat-option *ngFor="let item of filteredRoute" [value]="item.id">
+                    {{item.routeName}}
+                </mat-option>
+                <mat-option *ngIf="filteredRoute.length === 0" [value]="'add'">
+                  <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addRoute()">playlist_add</span>
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
+          </div>
+
+          <div class="col" *ngIf="isEdit == false">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Days</mat-label>
+              <mat-select formControlName="weekDays" multiple>
+                <mat-option *ngFor="let day of weekDays" [value]="day.abbreviation">{{day.name}}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="routeDaysForm.controls['weekDays'].hasError('required')">
+                This Field is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col" *ngIf="isEdit == true">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Days</mat-label>
+              <mat-select formControlName="weekDays">
+                <mat-option *ngFor="let day of weekDays" [value]="day.abbreviation">{{ day.name }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="routeDaysForm.controls['weekDays'].hasError('required')">
+                This Field is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button *ngIf="isEdit == false" mat-raised-button  type="submit" [disabled]="!routeDaysForm.valid">
+        <span class="material-icons" style="font-size: 25px;">save</span>
+      </button>&nbsp;&nbsp;
+      <!-- <button *ngIf="addStatus" type="button" class="cancel-button" (click)="addArray()">
+        <span class="material-icons" style="font-size: 10px;">playlist_add</span>
+      </button>&nbsp;&nbsp; -->
+      <button *ngIf="isEdit" mat-raised-button  type="button" [disabled]="!routeDaysForm.valid" (click)="editFunction()">
+        <span class="material-icons" style="font-size: 30px;">edit_note</span>
+      </button>&nbsp;&nbsp;
+
+      <button mat-raised-button *ngIf="addStatus === 'true'" type="button" class="cancel-button" (click)="onCancelClick()">
+        <mat-icon style="font-size: 25px;">cancel_presentation</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+
+
+
+<br><mat-card *ngIf="!addStatus">
+<mat-card-header>
+  <mat-card-title style="color: green;">ROUTE DAYS</mat-card-title>
+</mat-card-header>
+<mat-form-field>
+  <mat-label>Search</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+</mat-form-field>
+
+<table mat-table *ngIf="filtered" [dataSource]="filtered" class="mat-elevation-z8">
+
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="routeId">
+    <th mat-header-cell *matHeaderCellDef>Route Name</th>
+    <td mat-cell *matCellDef="let element"> {{element.route.routeName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="weekDay">
+    <th mat-header-cell *matHeaderCellDef>Days</th>
+    <td mat-cell *matCellDef="let element"> {{element.weekDay}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="manage">
+    <th mat-header-cell *matHeaderCellDef>Manage</th>
+    <td mat-cell [style.background-color]="element.slotStatus == true ? 'lightgreen' : null" *matCellDef="let element">
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <i  (click)="editDays(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
+    &nbsp;&nbsp;
+    <i  (click)="deleteDays(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</mat-card>

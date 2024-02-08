@@ -26,10 +26,10 @@ const Coolie = require('../purchases/models/coolie');
 const Entry = require('../purchases/models/entry');
 const EntryDetails = require('../purchases/models/entryDetails');
 
-const Customer = require('../routesale/models/customer');
-const CustomerCategory = require('../routesale/models/customerCategory');
-const CustomerGrade = require('../routesale/models/customerGrade');
-const LoyaltyPoint = require('../routesale/models/loyaltyPoint');
+const Customer = require('../sales/models/customer');
+const CustomerCategory = require('../sales/models/customerCategory');
+const CustomerGrade = require('../sales/models/customerGrade');
+const LoyaltyPoint = require('../sales/models/loyaltyPoint');
 
 // // BULK CREATE
 const userData = require('./dataSource/user.json');
@@ -44,6 +44,14 @@ const productData = require('./dataSource/products/productsOachiraFirst.json');
 const customerCategoryData = require('./dataSource/routeSale/customerCategory.json');
 const customerGradeData = require('./dataSource/routeSale/customerGrade.json');
 const Warehouse = require('../store/models/warehouse');
+const CustomerPhone = require('../sales/models/customerPhone');
+const VehicleType = require('../sales/models/vehicleType');
+const Vehicle = require('../sales/models/vehicle');
+const Route = require('../sales/models/route');
+const RouteDay = require('../sales/models/routeDays');
+const RouteDetails = require('../sales/models/routeDetails');
+const Trip = require('../sales/models/trip');
+const TripDetails = require('../sales/models/tripDetails');
 
 
 async function syncModel(){
@@ -156,7 +164,49 @@ async function syncModel(){
     CustomerGrade.hasMany(Customer, {foreignKey : 'customerGradeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Customer.belongsTo(CustomerGrade)
 
-    await sequelize.sync({alter: true})
+    Customer.hasMany(CustomerPhone, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    CustomerPhone.belongsTo(Customer)
+
+    VehicleType.hasMany(Vehicle, {foreignKey : 'vehicleTypeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Vehicle.belongsTo(VehicleType)
+
+    Vehicle.hasMany(Route, {foreignKey : 'vehicleId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Route.belongsTo(Vehicle)
+
+    User.hasMany(Route, {foreignKey : 'driverId', as: 'driver', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Route.belongsTo(User, {foreignKey : 'driverId', as: 'driver'})
+
+    User.hasMany(Route, {foreignKey : 'salesExecutiveId', as: 'salesExecutive', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Route.belongsTo(User, {foreignKey : 'salesExecutiveId', as: 'salesExecutive'})
+
+    User.hasMany(Route, {foreignKey : 'salesManId', as: 'salesMan', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Route.belongsTo(User, {foreignKey : 'salesManId', as: 'salesMan'})
+
+    Route.hasMany(RouteDay, {foreignKey : 'routeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    RouteDay.belongsTo(Route)
+
+    Route.hasMany(RouteDetails, {foreignKey : 'routeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    RouteDetails.belongsTo(Route)
+
+    Customer.hasMany(RouteDetails, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    RouteDetails.belongsTo(Customer)
+
+    Route.hasMany(Trip, {foreignKey : 'routeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Trip.belongsTo(Route)
+
+    User.hasMany(Trip, {foreignKey : 'salesManId', as:'tripSalesMan', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Trip.belongsTo(User)
+
+    User.hasMany(Trip, {foreignKey : 'driverId', as: 'tripDriver', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Trip.belongsTo(User)
+
+    Trip.hasMany(TripDetails, {foreignKey : 'tripId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    TripDetails.belongsTo(Trip)
+
+    Customer.hasMany(TripDetails, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    TripDetails.belongsTo(Customer)
+
+    await sequelize.sync({force: true})
 
     const role = await Role.findAll({})
     if(role.length === 0){

@@ -1,0 +1,91 @@
+<!-- <mat-toolbar style="background-color: rgb(33,142,67); color: white; height: 40px;">
+  BRAND
+  <span class="material-icons" style="font-size: 25px;margin-left: auto;" (click)="getBrands()">view_list</span>
+</mat-toolbar> -->
+
+<form [formGroup]="customerGradeForm" (ngSubmit)="onSubmit()">
+  <mat-card class="background">
+    <div class="row">
+      <div class="col">
+        <mat-card-header>
+          <mat-card-title>CUSTOMER GRADE</mat-card-title>
+        </mat-card-header>
+      </div>
+      <div class="col" *ngIf="addStatus != 'true'">
+        <mat-card-header>
+          <button mat-mini-fab color="primary" style="margin-left: auto;" type="button" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onClick="history.back()">
+            <span class="material-icons" style="color: white;">exit_to_app</span>
+          </button>
+        </mat-card-header>
+      </div>
+    </div>
+    <mat-card-content >
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Customer Grade" formControlName="grade">
+            <mat-error *ngIf="customerGradeForm.controls['grade'].hasError('required')">
+              Grade <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Grade Remarks" formControlName="gradeRemarks">
+            </mat-form-field>
+          </div>
+        </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button *ngIf="isEdit == false" mat-raised-button  type="submit" [disabled]="!customerGradeForm.valid">
+        <span class="material-icons" style="font-size: 25px;">save</span>
+      </button>&nbsp;&nbsp;
+      <button *ngIf="isEdit == true" mat-raised-button  type="button" [disabled]="!customerGradeForm.valid" (click)="editFunction()">
+        <span class="material-icons" style="font-size: 30px;">edit_note</span>
+      </button>&nbsp;&nbsp;
+
+      <button mat-raised-button *ngIf="addStatus === 'true'" type="button" class="cancel-button" (click)="onCancelClick()">
+        <mat-icon style="font-size: 25px;">cancel_presentation</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+
+
+<!-- --------------------------------------------------------------------------------------------------------------------------- -->
+
+<br><mat-card *ngIf="addStatus != 'true'">
+  <mat-card-header>
+    <mat-card-title style="color: green;">CUSTOMER CATEGORY</mat-card-title>
+  </mat-card-header>
+
+  <table class="styled-table">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Grade</th>
+            <th>Grade Remarks</th>
+            <th>Manage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let element of grades">
+            <td>{{element.id}}</td>
+            <td>{{element.grade}}</td>
+            <td>{{element.gradeRemarks}}</td>
+            <td>
+              <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+              <i  (click)="editBrand(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
+              &nbsp;&nbsp;
+              <i  (click)="deleteBrand(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+</mat-card>
+

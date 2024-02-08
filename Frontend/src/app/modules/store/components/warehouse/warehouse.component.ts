@@ -54,7 +54,7 @@ export class WarehouseComponent implements OnInit {
       this.addStatus = this.dialogData?.status;
       this.patchData()
     }
-    this.warehouseForm.get('status')?.setValue(true);
+    // this.warehouseForm.get('status')?.setValue(true);
     this.getwarehouse()
     // this.getComplete()
     this.getUsers()

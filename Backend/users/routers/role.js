@@ -33,6 +33,20 @@ router.get('/:id', authenticateToken, async (req, res) => {
   res.send(role);
 })
 
+router.get('/rolename', authenticateToken, async (req, res) => {
+  try {
+    const roles = await Role.findOne({
+      where: { roleName: req.query.role }, 
+      order: ["id"]
+    });
+
+    res.send(roles);
+  } catch (error) {
+    res.send(error.message);
+  }
+});
+
+
 router.delete('/:id', authenticateToken, async(req,res)=>{
     try {
 
