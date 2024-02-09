@@ -41,25 +41,25 @@ export class ViewPrComponent implements OnInit, OnDestroy {
     })
   }
 
-  testData = {
-    number: "123",
-    seller: {
-      name: "Next Step Webs, Inc.",
-      road: "12345 Sunny Road",
-      country: "Sunnyville, TX 12345",
-    },
-    buyer: {
-      name: "Acme Corp.",
-      road: "16 Johnson Road",
-      country: "Paris, France 8060",
-    },
-    items: [
-      {
-        name: "Website design",
-        price: 300,
-      },
-    ],
-  };
+  // testData = {
+  //   number: "123",
+  //   seller: {
+  //     name: "Next Step Webs, Inc.",
+  //     road: "12345 Sunny Road",
+  //     country: "Sunnyville, TX 12345",
+  //   },
+  //   buyer: {
+  //     name: "Acme Corp.",
+  //     road: "16 Johnson Road",
+  //     country: "Paris, France 8060",
+  //   },
+  //   items: [
+  //     {
+  //       name: "Website design",
+  //       price: 300,
+  //     },
+  //   ],
+  // };
 
   @ViewChild("grid") grid!: GridComponent;
   public pdfExportProperties: PdfExportProperties | undefined;
@@ -85,6 +85,7 @@ export class ViewPrComponent implements OnInit, OnDestroy {
       new Date().getMonth().toString() + "/" + new Date().getDate().toString();
     return (date += "/" + new Date().getFullYear().toString());
   }
+
   onPdfExport(args: any): void {
     args.item.width = 148; // Set the page size to 148 mm x 210 mm
   }
@@ -96,7 +97,7 @@ export class ViewPrComponent implements OnInit, OnDestroy {
   private getPdfExportProperties(): any {
     return {
       pageSettings: {
-        width: 74, // Specify the width in millimeters
+        width: 80, // Specify the width in millimeters
         height: 52, // Specify the height in millimeters
       },
       header: {
@@ -192,6 +193,7 @@ class ThermalPrinterManager {
   //   //     backgroundColor: "red"
   //   //   }
   //   // }
+
   // });
 
   printContent = ``;
@@ -219,6 +221,9 @@ class ThermalPrinterManager {
 
   print() {
     const printerWindow = window.open(``, `_blank`);
+    const contentHeight = this.calculateContentHeight(); // Add a function to calculate content height
+    console.log(contentHeight);
+
     printerWindow?.document.write(`
     <!DOCTYPE html>
     <html>
@@ -287,7 +292,7 @@ class ThermalPrinterManager {
         }
 
         .max-line-2 {
-          max-height: 30px;
+          max-height: ${contentHeight}px; /* Set to calculated content height */
           overflow: hidden;
           text-overflow: ellipsis;
           display: -webkit-box;
@@ -316,5 +321,12 @@ class ThermalPrinterManager {
     printerWindow?.focus();
     printerWindow?.print();
     // mywindow.close();
+  }
+
+  calculateContentHeight() {
+    // Add logic to calculate the content height dynamically
+    // You may use document.body.scrollHeight or any other suitable method
+    // Adjust this logic based on your specific requirements
+    return document.body.scrollHeight;
   }
 }

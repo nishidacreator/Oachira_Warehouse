@@ -1,0 +1,33 @@
+<section class="home_layout">
+  <div id="section_bg" class="background">
+    <mat-grid-list gutterSize="10px" cols="4" rowHeight="1:1">
+      <mat-grid-tile class="container">
+        <button class="btn btn-4" mat-fab aria-label="Example icon button with a bookmark icon" type="button" (click)="home()">
+          <span class="material-icons" style="color: white; font-size: 45px;">home</span>
+        </button>
+        <div class="button_align">Home</div>
+      </mat-grid-tile>
+
+      <mat-grid-tile class="container">
+        <button class="btn btn-4" mat-fab aria-label="Example icon button with a bookmark icon" type="button" routerLink="category">
+          <span class="material-icons" style="font-size: 45px; color: rgb(255, 255, 255);">switch_account</span>
+        </button>
+        <div class="button_align">Category</div>
+      </mat-grid-tile>
+
+      <mat-grid-tile class="container">
+        <button class="btn btn-4" mat-fab aria-label="Example icon button with a bookmark icon" type="button" routerLink="grade">
+          <span class="material-icons" style="font-size: 45px; color: rgb(255, 255, 255);">grade</span>
+        </button>
+        <div class="button_align">Grade</div>
+      </mat-grid-tile>
+
+      <mat-grid-tile class="container">
+        <button class="btn btn-4" mat-fab aria-label="Example icon button with a bookmark icon" type="button" routerLink="add">
+          <span class="material-icons" style="font-size: 45px; color: rgb(255, 255, 255);">person_add</span>
+        </button>
+        <div class="button_align">Add</div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</section>

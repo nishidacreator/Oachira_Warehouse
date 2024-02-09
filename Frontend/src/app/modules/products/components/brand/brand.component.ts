@@ -204,7 +204,6 @@ export class BrandComponent implements OnInit {
   isEdit = false;
   brandId : any;
   editBrand(id : any){
-    this.isEdit = true;
     const dialogRef = this.dialog.open(BrandComponent, {
       data: { status: "true" , type : "edit", id: id},
     });

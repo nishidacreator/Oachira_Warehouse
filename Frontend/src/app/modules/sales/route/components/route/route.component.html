@@ -1,0 +1,254 @@
+<mat-card>
+  <form [formGroup]="routeForm" (ngSubmit)="onSubmit()">
+      <mat-card class="background">
+        <div class="row">
+          <div class="col">
+            <mat-card-header>
+              <mat-card-title>ROUTE</mat-card-title>
+            </mat-card-header>
+          </div>
+          <div class="col" *ngIf="addStatus!= 'true'">
+            <mat-card-header>
+              <button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto"
+              onClick="history.back()" style="margin-left: auto;">
+                <span class="material-icons" style="color: white;">exit_to_app</span>
+              </button>
+            </mat-card-header>
+          </div>
+        </div><br>
+        <mat-card-content style="overflow-x: auto;">
+          <div class="row box">
+            <div class="col">
+              <mat-form-field class="full-width" appearance="fill">
+                <input matInput placeholder="Route Name" formControlName="routeName">
+                <mat-error *ngIf="routeForm.controls['routeName'].hasError('required')">
+                  Name <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col">
+              <mat-form-field class="full-width" appearance="fill">
+                <mat-select placeholder="Vehicle" formControlName="vehicleId">
+                  <mat-form-field class="full-width">
+                    <div class="row">
+                      <input matInput (input)="filterVehicle($event)" placeholder="Search">
+                    </div>
+                  </mat-form-field>
+                  <mat-option *ngFor="let item of filteredVehicle" [value]="item.id">
+                    {{item.registrationNumber}}
+                  </mat-option>
+                  <mat-option *ngIf="filteredVehicle.length === 0" [value]="'add'">
+                    <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addVehicle()">playlist_add</span>
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="routeForm.controls['vehicleId'].hasError('required')">
+                  field <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-select placeholder="Vehicle Driver" formControlName="driverId">
+                <mat-form-field class="full-width">
+                  <div class="row">
+                    <input matInput (input)="filterDriver($event)" placeholder="Search">
+                  </div>
+                </mat-form-field>
+                <mat-option *ngFor="let item of filteredDriver" [value]="item.id">
+                  {{item.name}}
+                </mat-option>
+                <mat-option *ngIf="filteredDriver.length === 0" [value]="'add'">
+                  <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addUser('Driver')">playlist_add</span>
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="routeForm.controls['driverId'].hasError('required')">
+                field <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-select placeholder="Sales Man" formControlName="salesManId">
+                <mat-form-field class="full-width">
+                  <div class="row">
+                    <input matInput (input)="filterSalesMan($event)" placeholder="Search">
+                  </div>
+                </mat-form-field>
+                <mat-option *ngFor="let item of filteredSalesMan" [value]="item.id">
+                  {{item.name}}
+                </mat-option>
+                <mat-option *ngIf="filteredSalesMan.length === 0" [value]="'add'">
+                  <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addUser('Salesman')">playlist_add</span>
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="routeForm.controls['salesManId'].hasError('required')">
+                field <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-select placeholder="Sales Executive" formControlName="salesExecutiveId">
+                <mat-form-field class="full-width">
+                  <div class="row">
+                    <input matInput (input)="filterSEx($event)" placeholder="Search">
+                  </div>
+                </mat-form-field>
+                <mat-option *ngFor="let item of filteredSalesExe" [value]="item.id">
+                  {{item.name}}
+                </mat-option>
+                <mat-option *ngIf="filteredSalesExe.length === 0" [value]="'add'">
+                  <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addUser('SalesExecutive')">playlist_add</span>
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="routeForm.controls['salesExecutiveId'].hasError('required')">
+                field <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        </mat-card-content>
+
+
+  <br><mat-grid-list cols="3" rowHeight="4:1" *ngIf="addStatus != 'true'">
+    <mat-grid-tile>
+      <button mat-raised-button aria-label="Example icon button with a bookmark icon">
+        Collection Days
+      </button>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <button mat-raised-button aria-label="Example icon button with a bookmark icon" >
+        Delivery Days
+      </button>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <button mat-raised-button aria-label="Example icon button with a bookmark icon" (click)="addDetails()">
+        Route Details
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+        <mat-card-actions>
+          <button *ngIf="!isEdit" mat-raised-button type="button" class="btn btn-success" (click)="onSubmit()" [disabled]="!routeForm.valid || routeForm.pristine">
+            <span class="material-icons" style="font-size: 25px;">save</span>
+          </button>&nbsp;&nbsp;
+          <button *ngIf="isEdit" mat-raised-button  type="button" [disabled]="!routeForm.valid" (click)="editFunction()">
+            <span class="material-icons" style="font-size: 30px;">edit_note</span>
+          </button>&nbsp;&nbsp;
+
+          <button mat-raised-button *ngIf="addStatus === 'true'" type="button" class="cancel-button" (click)="onCancelClick()">
+            <mat-icon style="font-size: 25px;">cancel_presentation</mat-icon>
+          </button>
+        </mat-card-actions>
+
+
+
+      </mat-card>
+    </form>
+
+
+  </mat-card>
+
+  <br><mat-card *ngIf="addStatus != 'true'">
+    <mat-card-header>
+      <mat-card-title style="color: green;"> ROUTES </mat-card-title>
+    </mat-card-header>
+
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+    <table class="styled-table">
+      <thead>
+          <tr>
+              <th>id</th>
+              <th>Route Name</th>
+              <th>Vehicle</th>
+              <th>Driver</th>
+              <th>Sales Man</th>
+              <th>Sales Executive</th>
+              <th>Status</th>
+              <th>Manage</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let element of filtered">
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.id}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.routeName}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.vehicle.registrationNumber}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.driver.name}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.salesMan.name}}</td>
+              <td >{{element.salesExecutive.name}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">
+                <mat-slide-toggle [(ngModel)]="element.status" [ngModelOptions]="{standalone: true}" (change)="onToggleChange($event, element.id)"></mat-slide-toggle>
+              </td>
+              <td>
+                <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+                <i  (click)="editRoute(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
+                &nbsp;&nbsp;
+                <i  (click)="deleteRoute(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+              </td>
+          </tr>
+      </tbody>
+    </table>
+    <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageIndex]="currentPage - 1"
+    (page)="onPageChange($event)" [pageSizeOptions]="[10, 20,30,40,50,100]">
+    </mat-paginator>
+  </mat-card>
+
+  <!-- <br><mat-card>
+    <mat-card-header>
+      <mat-card-title style="color: green;">ROUTES</mat-card-title>
+    </mat-card-header>
+    <table mat-table *ngIf="routes" [dataSource]="routes" class="mat-elevation-z8">
+
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="routeName">
+        <th mat-header-cell *matHeaderCellDef>Route Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.routeName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="vehicleId">
+        <th mat-header-cell *matHeaderCellDef>Vehicle</th>
+        <td mat-cell *matCellDef="let element"> {{element.vehicle.registrationNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="vehicleDriverId">
+        <th mat-header-cell *matHeaderCellDef>Driver</th>
+        <td mat-cell *matCellDef="let element"> {{element.driver.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="salesManId">
+        <th mat-header-cell *matHeaderCellDef>Sales Man</th>
+        <td mat-cell *matCellDef="let element"> {{element.salesman.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="salesExecutiveId">
+        <th mat-header-cell *matHeaderCellDef>Sales Executive</th>
+        <td mat-cell *matCellDef="let element"> {{element.salesexecutive.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="manage">
+        <th mat-header-cell *matHeaderCellDef>Manage</th>
+        <td mat-cell [style.background-color]="element.slotStatus == true ? 'lightgreen' : null" *matCellDef="let element">
+          <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <i  (click)="editRoute(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
+        &nbsp;&nbsp;
+        <i  (click)="deleteRoute(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card> -->

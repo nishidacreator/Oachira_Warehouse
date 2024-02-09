@@ -41,7 +41,7 @@ export class StoreService {
   }
 
   getWarehouse(): Observable<Warehouse[]>{
-    return this._http.get<Warehouse[]>(this.url+ 'warehouse');
+    return this._http.get<Warehouse[]>(this.url + 'warehouse');
   }
 
   getPaginatedWarehouse( search:String, page: number, pageSize: number): Observable<Warehouse[]>{

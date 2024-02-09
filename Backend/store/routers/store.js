@@ -18,14 +18,12 @@ router.post('/', async (req, res) => {
 })
 
 router.get('/', async (req, res) => {
-
     const store = await Store.findAll({order:['id'], include: ['storeInCharge']})
 
     res.send(store);
 })
 
 router.get('/:id', async (req, res) => {
-
   const store = await Store.findOne({
     where: {id: req.params.id}, 
     order:['id'],

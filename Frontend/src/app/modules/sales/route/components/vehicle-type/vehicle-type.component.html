@@ -1,0 +1,80 @@
+<form [formGroup]="vehicleTypeForm" (ngSubmit)="onSubmit()">
+  <mat-card class="background">
+    <div class="row">
+      <div class="col">
+        <mat-card-header>
+          <mat-card-title>VEHICLE TYPE</mat-card-title>
+        </mat-card-header>
+      </div>
+      <div class="col" *ngIf="addStatus != 'true'">
+        <mat-card-header>
+          <button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon"
+          class="d-block mr-0 ml-auto" onClick="history.back()" style="margin-left: auto;">
+            <span class="material-icons" style="color: white;">exit_to_app</span>
+          </button>
+        </mat-card-header>
+      </div>
+    </div><br>
+    <mat-card-content style="overflow-x: auto;">
+
+      <div class="row box">
+        <div class="col">
+          <mat-form-field class="full-width" appearance="fill">
+            <input matInput placeholder="Type" formControlName="typeName">
+            <mat-error *ngIf="vehicleTypeForm.controls['typeName'].hasError('required')">
+              field is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button *ngIf="!editStatus" mat-raised-button  type="submit" [disabled]="!vehicleTypeForm.valid">
+        <span class="material-icons" style="font-size: 25px;">save</span>
+      </button>&nbsp;&nbsp;
+      <button *ngIf="editStatus" mat-raised-button  type="button" [disabled]="!vehicleTypeForm.valid" (click)="editFunction()">
+        <span class="material-icons" style="font-size: 30px;">edit_note</span>
+      </button>&nbsp;&nbsp;
+
+      <button mat-raised-button *ngIf="addStatus === 'true'" type="button" class="cancel-button" (click)="onCancelClick()">
+        <mat-icon style="font-size: 25px;">cancel_presentation</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+
+
+<br><mat-card *ngIf="addStatus != 'true'">
+<mat-card-header>
+  <mat-card-title style="color: green;">VEHICLE TYPE</mat-card-title>
+</mat-card-header>
+<mat-form-field>
+  <mat-label>Search</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+</mat-form-field>
+
+<div style="overflow-x: auto;">
+  <table class="styled-table">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>VehicleType</th>
+            <th>Manage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let element of filtered">
+            <td [style.background-color]="element.status == false ? 'pink' : null">{{element.id}}</td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">{{element.typeName}}</td>
+            <td [style.background-color]="element.status == false ? 'pink' : null">
+              <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+              <i  (click)="editVehicleType(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
+              &nbsp;&nbsp;
+              <i  (click)="deleteVehicleType(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+</mat-card>

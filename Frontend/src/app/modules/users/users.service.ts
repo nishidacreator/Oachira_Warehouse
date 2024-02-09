@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ReplaySubject, Observable, tap, mapTo, catchError, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -124,6 +124,11 @@ export class UsersService {
 
   getRole():Observable<Role[]>{
     return this._http.get<Role[]>(this.url + '/role')
+  }
+
+  getRoleByRole(data: any):Observable<Role>{
+    const queryParams = new HttpParams().set('role', data.role);
+    return this._http.get<Role>(this.url+'/role/rolename/', { params: queryParams });
   }
 
   deleteRole(id: number){
