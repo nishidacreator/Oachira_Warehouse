@@ -126,6 +126,10 @@ export class UsersService {
     return this._http.get<Role[]>(this.url + '/role')
   }
 
+  getRoleById(id: number):Observable<Role>{
+    return this._http.get<Role>(this.url + '/role/' + id)
+  }
+
   getRoleByRole(data: any):Observable<Role>{
     const queryParams = new HttpParams().set('role', data.role);
     return this._http.get<Role>(this.url+'/role/rolename/', { params: queryParams });

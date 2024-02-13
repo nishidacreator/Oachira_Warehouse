@@ -1,0 +1,72 @@
+<mat-card class="container">
+  <div class="row">
+    <div class="col">
+      <mat-card-header>
+        <mat-card-title> PICK LIST </mat-card-title>
+      </mat-card-header>
+    </div>
+
+    <div class="col">
+      <mat-card-header>
+        <button (mouseover)="showName('PickList')" (mouseout)="hideName()" mat-mini-fab type="button" style="margin-left: auto;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" (click)="addPickList()">
+          <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'PickList')">playlist_add</mat-icon>
+          <div class="icon_name" *ngIf="isHovered && hoveredButton === 'PickList'">Add</div>
+        </button>
+
+        <!-- <button (mouseover)="showName('PR')" (mouseout)="hideName()" mat-mini-fab type="button" style="margin-left: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto">
+          <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'PR')">request_quote</mat-icon>
+          <div class="icon_name" *ngIf="isHovered && hoveredButton === 'PR'">PR</div>
+        </button> -->
+        <!-- <div *ngIf="isHovered">Add Purchase Request</div> -->
+
+        <button (mouseover)="showName('Back')" (mouseout)="hideName()" mat-mini-fab color="primary" type="button" style="margin-left: 10px;"  aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onclick="history.back()">
+          <mat-icon *ngIf="!isHovered || (isHovered && hoveredButton != 'Back')">exit_to_app</mat-icon>
+          <div class="icon_name" *ngIf="isHovered && hoveredButton === 'Back'">Back</div>
+        </button>
+      </mat-card-header>
+    </div>
+  </div>
+
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+
+  <table class="styled-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Route</th>
+            <th>Customer</th>
+            <th>User</th>
+            <th>Date</th>
+            <th>Expecte Date</th>
+            <th>Status</th>
+            <th>Manage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let element of filtered">
+            <td>{{element.id}}</td>
+            <td>{{element.route.routeName}}</td>
+            <td>{{element.customer.name}}</td>
+            <td>{{element.pickSalesExecutive.name}}</td>
+            <td>{{element.date | date: 'dd/MM/yyyy'}}</td>
+            <td>{{element.deliveryDate | date: 'dd/MM/yyyy'}}</td>
+            <td>{{element.status}}</td>
+            <td (mouseover)="showName('Back')" (mouseout)="hideName()">
+              <mat-icon (click)="viewPickListDetails(element.id)">open_in_new</mat-icon>
+              <mat-icon (click)="editPickList(element.id)" >edit</mat-icon>
+              <mat-icon (click)="deletePickList(element.id)">delete</mat-icon>
+            </td>
+            <!-- <td>
+
+              <mat-icon (click)="addPurchaseOrder(element.id)">post_add</mat-icon>
+            </td> -->
+        </tr>
+    </tbody>
+  </table>
+
+
+</mat-card>
+

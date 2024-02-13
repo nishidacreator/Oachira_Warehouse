@@ -26,7 +26,6 @@ export class NavbarComponent {
   constructor(private breakpointObserver: BreakpointObserver, private router: Router, private userService: UsersService) {
     const token: any = localStorage.getItem('token')
     let user = JSON.parse(token)
-    console.log(user)
     this.userName = user.name
     // let branchId = user.branch
 

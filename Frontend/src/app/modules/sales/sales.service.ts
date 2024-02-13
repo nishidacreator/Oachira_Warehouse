@@ -9,8 +9,10 @@ import { Customer } from './customers/models/customer';
 import { RouteDetails } from './route/models/route-details';
 import { Vehicle } from './route/models/vehicle';
 import { VehicleType } from './route/models/vehicle-type';
-import { RouteDays } from './route/models/route-days';
 import { Route } from './route/models/route';
+import { TripDays } from './route/models/trip-days';
+import { PickList } from './route/models/pick-list';
+import { RouteDays } from './route/models/route-days';
 
 @Injectable({
   providedIn: 'root'
@@ -162,6 +164,10 @@ export class SalesService {
     return this._http.get<Route>(this.url +'route/'+id);
   }
 
+  getRouteByUserId(id: number): Observable<Route[]>{
+    return this._http.get<Route[]>(this.url +'route/byuserid/'+id);
+  }
+
   deleteRoute(id : Number){
     return this._http.delete(this.url+'route/'+ id);
   }
@@ -232,6 +238,90 @@ export class SalesService {
 
   updateRouteDetailStatus(id:number, data:any){
     return this._http.patch<RouteDetails>(this.url+'routedetails/statusupdate/' + id, data);
+  }
+
+  addTrip(data : any){
+    return this._http.post(this.url +'routedays', data);
+  }
+
+  getTrip(): Observable<RouteDays[]>{
+    return this._http.get<RouteDays[]>(this.url +'routedays');
+  }
+
+  getPaginatedTrip( search:String, page: number, pageSize: number): Observable<RouteDays[]>{
+    return this._http.get<RouteDays[]>(this.url + `routedays?search=${search}&page=${page}&pageSize=${pageSize}`);
+  }
+
+  getTripById(id: number): Observable<RouteDays>{
+    return this._http.get<RouteDays>(this.url +'routedays/'+id);
+  }
+
+  getTripByRouteId(id: number): Observable<RouteDays[]>{
+    return this._http.get<RouteDays[]>(this.url +'routedays/byrouteid/'+id);
+  }
+
+  deleteTrip(id : Number){
+    return this._http.delete(this.url+'routedays/'+ id);
+  }
+
+  updateTrip(id:Number, data:any): Observable<RouteDays>{
+    return this._http.patch<RouteDays>(this.url+'routedays/'+id, data);
+  }
+
+  addTripDays(data : any){
+    return this._http.post(this.url +'tripdays', data);
+  }
+
+  getTripDays(): Observable<TripDays[]>{
+    return this._http.get<TripDays[]>(this.url +'tripdays');
+  }
+
+  getPaginatedTripDays( search:String, page: number, pageSize: number): Observable<RouteDays[]>{
+    return this._http.get<TripDays[]>(this.url + `tripdays?search=${search}&page=${page}&pageSize=${pageSize}`);
+  }
+
+  getTripDayById(id: number): Observable<TripDays>{
+    return this._http.get<TripDays>(this.url +'tripdays/'+id);
+  }
+
+  getTripDayByRouteId(id: number): Observable<TripDays[]>{
+    return this._http.get<TripDays[]>(this.url +'tripdays/byrouteid/'+id);
+  }
+
+  deleteTripDays(id : Number){
+    return this._http.delete(this.url+'tripdays/'+ id);
+  }
+
+  updateTripDays(id:Number, data:any): Observable<TripDays>{
+    return this._http.patch<TripDays>(this.url+'tripdays/'+id, data);
+  }
+
+  addPickList(data : any){
+    return this._http.post(this.url +'picklist', data);
+  }
+
+  getPickList(): Observable<PickList[]>{
+    return this._http.get<PickList[]>(this.url +'picklist');
+  }
+
+  getPaginatedPickList( search:String, page: number, pageSize: number): Observable<PickList[]>{
+    return this._http.get<PickList[]>(this.url + `picklist?search=${search}&page=${page}&pageSize=${pageSize}`);
+  }
+
+  getPickListById(id: number): Observable<PickList>{
+    return this._http.get<PickList>(this.url +'picklist/'+id);
+  }
+
+  getPickListByRouteId(id: number): Observable<PickList[]>{
+    return this._http.get<PickList[]>(this.url +'picklist/byrouteid/'+id);
+  }
+
+  deletePickList(id : Number){
+    return this._http.delete(this.url+'picklist/'+ id);
+  }
+
+  updatePickList(id:Number, data:any): Observable<PickList>{
+    return this._http.patch<PickList>(this.url+'picklist/'+id, data);
   }
 
 }

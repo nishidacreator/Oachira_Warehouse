@@ -6,7 +6,7 @@ const Trip = sequelize.define('trip',{
     date  : {type : DataTypes.DATEONLY},
     driverId : {type : DataTypes.INTEGER, allowNull : false},
     salesManId : {type : DataTypes.INTEGER, allowNull : false},
-    status : {type : DataTypes.STRING, allowNull : false}
+    status : {type : DataTypes.STRING, defaultValue : true}
 },
 {
     freezeTableName: true,
