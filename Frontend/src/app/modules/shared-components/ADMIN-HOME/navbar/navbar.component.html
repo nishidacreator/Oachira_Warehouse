@@ -65,6 +65,29 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
+              <span class="material-icons" style=" color: rgb(33,142,67); font-size: 25px; margin-right: 3px;">local_shipping</span>
+              <a *ngIf="isExpanded">ROUTE</a>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <a mat-list-item routerLink="sales/routesale/viewpicklist" [routerLinkActive]="['active']">
+            <span class="material-icons" style="font-size: 25px; color: rgb(33,142,67); margin-right: 3px;">fact_check</span>
+            <div *ngIf="isExpanded">PICKLIST</div>
+          </a>
+
+          <a mat-list-item routerLink="sales/routesale/trip" [routerLinkActive]="['active']">
+            <span class="material-icons" style="font-size: 25px; color: rgb(33,142,67); margin-right: 3px;"><span class="material-icons">add_road</span></span>
+            <div *ngIf="isExpanded">TRIP</div>
+          </a>
+          <!-- <a mat-list-item routerLink="addroom"  [routerLinkActive]="['active']"> Therapist</a>
+          <a mat-list-item routerLink="addroom"  [routerLinkActive]="['active']">Daily Expenses</a>
+          <a mat-list-item routerLink="addroom"  [routerLinkActive]="['active']">Reports</a> -->
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
               <span class="material-icons" style=" color: rgb(33,142,67); font-size: 25px; margin-right: 3px;">price_check</span>
               <a *ngIf="isExpanded">SALES</a>
             </mat-panel-title>

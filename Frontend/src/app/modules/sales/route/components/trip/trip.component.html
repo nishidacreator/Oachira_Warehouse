@@ -1,0 +1,201 @@
+<mat-card>
+  <form [formGroup]="tripForm">
+      <mat-card class="background">
+        <div class="row">
+          <div class="col">
+            <mat-card-header>
+              <mat-card-title>TRIP</mat-card-title>
+            </mat-card-header>
+          </div>
+          <div class="col">
+            <mat-card-header>
+              <button mat-mini-fab color="primary" type="button" style="margin-left: auto;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onclick="history.back()">
+                <mat-icon>exit_to_app</mat-icon>
+              </button>
+            </mat-card-header>
+          </div>
+        </div><br>
+        <mat-card-content >
+
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width" appearance="fill">
+                  <mat-label>Route</mat-label>
+                  <mat-select formControlName="routeId"  #id (selectionChange)="byRouteId(id.value)">
+                    <mat-form-field class="full-width">
+                      <div class="row">
+                        <input matInput (input)="filterRoute($event)" placeholder="Search">
+                      </div>
+                    </mat-form-field>
+                    <mat-option *ngFor="let option of filteredRoute" [value]="option.id">
+                        {{ option.routeName }}
+                    </mat-option>
+                    <mat-option *ngIf="filteredRoute.length === 0" [value]="'add'">
+                      <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addRoute()">playlist_add</span>
+                    </mat-option>
+                  </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col">
+              <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Date</mat-label>
+                <input matInput  [matDatepickerFilter]="myFilter" [matDatepicker]="picker" formControlName="date">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div class="col">
+              <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Salesman</mat-label>
+                <mat-select formControlName="salesMan">
+                  <mat-form-field class="full-width">
+                    <div class="row">
+                      <input matInput (input)="filterSalesMan($event)" placeholder="Search">
+                    </div>
+                  </mat-form-field>
+                  <mat-option *ngFor="let option of filteredSalesMan" [value]="option.name">
+                      {{ option.name }}
+                  </mat-option>
+                  <mat-option *ngIf="filteredSalesMan.length === 0" [value]="'add'">
+                    <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addUser('Salesman')">playlist_add</span>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col">
+              <mat-form-field class="full-width" appearance="fill">
+                  <mat-label>Driver</mat-label>
+                  <mat-select formControlName="driver">
+                    <mat-form-field class="full-width">
+                      <div class="row">
+                        <input matInput (input)="filterSalesMan($event)" placeholder="Search">
+                      </div>
+                    </mat-form-field>
+                    <mat-option *ngFor="let option of filteredDriver" [value]="option.name">
+                        {{ option.name }}
+                    </mat-option>
+                    <mat-option *ngIf="filteredSalesMan.length === 0" [value]="'add'">
+                      <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addUser('Driver')">playlist_add</span>
+                    </mat-option>
+                  </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card-content>
+
+      </mat-card>
+  <!-- </form> -->
+  <!-- <form [formGroup]="tripDetailsForm" (ngSubmit)="onSubmit()"> -->
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title> CUSTOMERS </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div>
+          <table formArrayName="customers">
+            <table *ngFor="let quantity of customers().controls; let i=index" [formGroupName]="i">
+              <tr>
+                <td>
+                  <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Customer</mat-label>
+                    <mat-select formControlName="customerId">
+                      <mat-form-field class="full-width">
+                        <div class="row">
+                          <input matInput (input)="filterCustomer($event)" placeholder="Search">
+                        </div>
+                      </mat-form-field>
+                      <mat-option *ngFor="let option of filteredCustomer" [value]="option.id">
+                          {{ option.name }}
+                      </mat-option>
+                      <mat-option *ngIf="filteredCustomer.length === 0" [value]="'add'">
+                        <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addCustomerCompo()">playlist_add</span>
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                </td>
+
+                <td>
+                  <mat-form-field class="full-width" appearance="fill">
+                    <input matInput placeholder="Amount" formControlName="amount">
+                  </mat-form-field>
+                </td>
+
+                <td>
+                  <mat-form-field class="full-width" appearance="fill">
+                    <input matInput placeholder="Invoice" formControlName="invoiceNo">
+                  </mat-form-field>
+                </td>
+              <!-- </tr> -->
+              <!-- <tr> -->
+                <td>
+                  <span class="material-icons" style="color: rgb(255, 0, 0); font-size: 25px; margin-top: 17px; margin-left: 75px;" (click)="removeCustomer(i)">cancel</span>
+                </td>
+              </tr>
+            </table>
+            <tr>
+              <th>
+                <div>
+                  <span class="material-icons" style="font-size: 25px; color: green;"(click)="addCustomer()">add_box</span>
+                </div>
+            </tr>
+          </table>
+        </div>
+     </mat-card-content>
+
+    </mat-card>
+  </form>
+  <mat-card-actions>
+    <button mat-raised-button type="button" class="btn btn-success" [disabled]="!tripForm.valid" (click)="onSubmit()">
+      <span class="material-icons" style="font-size: 25px;">save</span>
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+
+<!-- <br><mat-card *ngIf="addStatus != 'true'">
+  <mat-card-header>
+    <mat-card-title style="color: green;"> TRIPS</mat-card-title>
+  </mat-card-header>
+
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+  <table class="styled-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Route</th>
+            <th>Date</th>
+            <th>Driver</th>
+            <th>Salesman</th>
+            <th>Branch</th>
+            <th>Status</th>
+            <th>Manage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let element of filtered">
+            <td>{{element.id}}</td>
+            <td>{{element.route.routeName}}</td>
+            <td>{{element.date}}</td>
+            <td>{{element.driver}}</td>
+            <td>{{element.salesMan}}</td>
+            <td>{{element.branch.branchName}}</td>
+            <td>{{element.status}}</td>
+            <td>
+              <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+              <i  (click)="editTrip(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
+              &nbsp;&nbsp;
+              <i  (click)="deleteTrip(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+              </td>
+        </tr>
+    </tbody>
+  </table>
+
+</mat-card> -->

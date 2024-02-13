@@ -1,22 +1,24 @@
 import { Component, EventEmitter, Inject, OnInit, Optional, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { DeleteDialogueComponent } from 'src/app/modules/shared-components/delete-dialogue/delete-dialogue.component';
 import { SalesService } from '../../../sales.service';
-import { Route } from '../../models/route';
 import { RouteDays } from '../../models/route-days';
-import { PageEvent } from '@angular/material/paginator';
+import { RouteDaysComponent } from '../route-days/route-days.component';
 import { RouteComponent } from '../route/route.component';
+import { Route } from '../../models/route';
+import { TripDays } from '../../models/trip-days';
 
 @Component({
-  selector: 'app-route-days',
-  templateUrl: './route-days.component.html',
-  styleUrls: ['./route-days.component.scss']
+  selector: 'app-trip-days',
+  templateUrl: './trip-days.component.html',
+  styleUrls: ['./trip-days.component.scss']
 })
-export class RouteDaysComponent implements OnInit {
+export class TripDaysComponent implements OnInit {
 
   id: number = 0;
   constructor(private fb: FormBuilder,public salesService: SalesService, private _snackBar: MatSnackBar,
@@ -30,14 +32,21 @@ export class RouteDaysComponent implements OnInit {
 
   ngOnDestroy(){
     this.daysSubscription?.unsubscribe()
-    this.routeSub?.unsubscribe()
-    this.delete?.unsubscribe()
-    this.edit?.unsubscribe()
-    this.submit?.unsubscribe()
-    this.routeIdSub?.unsubscribe()
+    if(this.routeSub){
+      this.routeSub.unsubscribe()
+    }
+    if(this.delete){
+      this.delete.unsubscribe()
+    }
+    if(this.edit){
+      this.edit.unsubscribe()
+    }
+    if(this.submit){
+      this.submit.unsubscribe()
+    }
   }
 
-  routeDaysForm = this.fb.group({
+  tripDaysForm = this.fb.group({
     routeId: ['', Validators.required],
     weekDays : ['', Validators.required],
   });
@@ -47,7 +56,7 @@ export class RouteDaysComponent implements OnInit {
   addStatus!: string;
   ngOnInit(): void {
     this.getRoute()
-    this.getRouteDays()
+    this.getTripDays()
     this.getComplete()
     if (this.dialogRef) {
       this.addStatus = this.dialogData?.status;
@@ -58,9 +67,8 @@ export class RouteDaysComponent implements OnInit {
   }
 
   routes: Route[] = [];
-  routeSub!: Subscription
   getRoute(value?: string){
-    this.routeSub = this.salesService.getRoute().subscribe(route =>{
+    this.salesService.getRoute().subscribe(route =>{
       this.routes = route
       this.filteredRoute = route
       if(value){
@@ -110,12 +118,12 @@ export class RouteDaysComponent implements OnInit {
     {name: 'Saturday', abbreviation: 'SAT', index: 6},
   ];
 
-  routeIdSub!: Subscription;
+  routeSub!: Subscription;
   getRouteById(){
-    this.routeIdSub = this.salesService.getRouteById(this.id).subscribe(result => {
+    this.routeSub = this.salesService.getRouteById(this.id).subscribe(result => {
       let routeName: any = result.id;
 
-      this.routeDaysForm.patchValue({
+      this.tripDaysForm.patchValue({
         routeId: routeName
       })
     })
@@ -123,8 +131,8 @@ export class RouteDaysComponent implements OnInit {
 
   submit!: Subscription;
   onSubmit(){
-    this.submit = this.salesService.addRouteDays(this.routeDaysForm.getRawValue()).subscribe((res)=>{
-      this._snackBar.open("added successfully...","" ,{duration:3000})
+    this.submit = this.salesService.addTripDays(this.tripDaysForm.getRawValue()).subscribe((res)=>{
+      this._snackBar.open("Trip days added successfully...","" ,{duration:3000})
       this.clearControls()
     },(error=>{
       alert(error)
@@ -132,10 +140,10 @@ export class RouteDaysComponent implements OnInit {
   }
 
   clearControls(){
-    this.getRouteDays()
-    this.routeDaysForm.reset()
-    this.routeDaysForm.setErrors(null)
-    Object.keys(this.routeDaysForm.controls).forEach(key=>{this.routeDaysForm.get(key)?.setErrors(null)})
+    this.getTripDays()
+    this.tripDaysForm.reset()
+    this.tripDaysForm.setErrors(null)
+    Object.keys(this.tripDaysForm.controls).forEach(key=>{this.tripDaysForm.get(key)?.setErrors(null)})
   }
 
   pageSize = 10;
@@ -145,13 +153,13 @@ export class RouteDaysComponent implements OnInit {
   onPageChange(event: PageEvent): void {
     this.currentPage = event.pageIndex + 1;
     this.pageSize = event.pageSize;
-    this.getRouteDays();
+    this.getTripDays();
   }
 
-  days : RouteDays[] = [];
+  days : TripDays[] = [];
   daysSubscription!: Subscription
-  getRouteDays(){
-    this.daysSubscription = this.salesService.getPaginatedRouteDays(this.filterValue, this.currentPage, this.pageSize).subscribe((res: any)=>{
+  getTripDays(){
+    this.daysSubscription = this.salesService.getPaginatedTripDays(this.filterValue, this.currentPage, this.pageSize).subscribe((res: any)=>{
       this.filtered = res.items
       this.totalItems = res.count;
     })
@@ -159,15 +167,15 @@ export class RouteDaysComponent implements OnInit {
 
   detailSub!: Subscription;
   getComplete(){
-    this.detailSub = this.salesService.getRouteDays().subscribe((res:any)=>{
+    this.detailSub = this.salesService.getTripDays().subscribe((res:any)=>{
       this.days = res;
     })
   }
 
-  filtered!: any[];
+  filtered!: TripDays[];
   applyFilter(event: Event): void {
     if((event.target as HTMLInputElement).value.trim() === '') {
-      this.getRouteDays();
+      this.getTripDays();
     }else{
       const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
       this.filtered = this.days.filter(element =>
@@ -178,10 +186,6 @@ export class RouteDaysComponent implements OnInit {
     }
   }
 
-  onToggleChange(event: any, id: number){
-
-  }
-
   delete!: Subscription;
   deleteDays(id : any){
     const dialogRef = this.dialog.open(DeleteDialogueComponent, {
@@ -190,9 +194,9 @@ export class RouteDaysComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
-        this.delete = this.salesService.deleteRouteDays(id).subscribe((res)=>{
-          this.getRouteDays()
-          this._snackBar.open("Route Days deleted successfully...","" ,{duration:3000})
+        this.delete = this.salesService.deleteTripDays(id).subscribe((res)=>{
+          this.getTripDays()
+          this._snackBar.open("Trip Days deleted successfully...","" ,{duration:3000})
         },(error=>{
           this._snackBar.open(error.error.message,"" ,{duration:3000})
         }))
@@ -204,7 +208,7 @@ export class RouteDaysComponent implements OnInit {
   dayId : any;
   isDisabled = true;
   editDays(id : any){
-    const dialogRef = this.dialog.open(RouteDaysComponent, {
+    const dialogRef = this.dialog.open(TripDaysComponent, {
       data: { status: "true" , type : "edit", id: id},
     });
 
@@ -216,7 +220,7 @@ export class RouteDaysComponent implements OnInit {
   patchData(){
     this.isEdit = true;
     //Get the product based on the ID
-    this.salesService.getRouteDayById(this.dialogData.id).subscribe((result) => {
+    this.salesService.getTripDayById(this.dialogData.id).subscribe((result) => {
       let day = result
 
       //Populate the object by the ID
@@ -224,7 +228,7 @@ export class RouteDaysComponent implements OnInit {
       let weekDays = day.weekDay.toString();
       console.log(day);
 
-      this.routeDaysForm.patchValue({
+      this.tripDaysForm.patchValue({
         routeId : routeId,
         weekDays : weekDays
       })
@@ -237,14 +241,14 @@ export class RouteDaysComponent implements OnInit {
     this.isEdit = false;
 
     let data: any ={
-      routeId : this.routeDaysForm.get('routeId')?.value,
-      weekDays : this.routeDaysForm.get('weekDays')?.value,
+      routeId : this.tripDaysForm.get('routeId')?.value,
+      weekDays : this.tripDaysForm.get('weekDays')?.value,
     }
-    console.log(data);
 
-    this.edit = this.salesService.updateRouteDays(this.dayId, data).subscribe((res)=>{
-      this._snackBar.open("Route Days updated successfully...","" ,{duration:3000})
+    this.edit = this.salesService.updateTripDays(this.dayId, data).subscribe((res)=>{
+      this._snackBar.open("Trip Days updated successfully...","" ,{duration:3000})
       this.clearControls();
+      this.dialogRef?.close()
     },(error=>{
           alert(error.message)
         }))
@@ -252,7 +256,7 @@ export class RouteDaysComponent implements OnInit {
 
   addArray(){
     let data ={
-      days : this.routeDaysForm.getRawValue().weekDays,
+      days : this.tripDaysForm.getRawValue().weekDays,
       collectStatus : 'true'
     }
 

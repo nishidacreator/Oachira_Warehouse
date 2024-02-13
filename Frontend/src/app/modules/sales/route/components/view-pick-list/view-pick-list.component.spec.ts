@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManageTripComponent } from './manage-trip.component';
+import { ViewPickListComponent } from './view-pick-list.component';
 
-describe('ManageTripComponent', () => {
-  let component: ManageTripComponent;
-  let fixture: ComponentFixture<ManageTripComponent>;
+describe('ViewPickListComponent', () => {
+  let component: ViewPickListComponent;
+  let fixture: ComponentFixture<ViewPickListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ManageTripComponent ]
+      declarations: [ ViewPickListComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ManageTripComponent);
+    fixture = TestBed.createComponent(ViewPickListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

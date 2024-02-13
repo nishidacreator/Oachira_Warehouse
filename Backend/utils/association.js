@@ -31,6 +31,17 @@ const CustomerCategory = require('../sales/models/customerCategory');
 const CustomerGrade = require('../sales/models/customerGrade');
 const LoyaltyPoint = require('../sales/models/loyaltyPoint');
 
+const Warehouse = require('../store/models/warehouse');
+const CustomerPhone = require('../sales/models/customerPhone');
+const VehicleType = require('../sales/models/vehicleType');
+const Vehicle = require('../sales/models/vehicle');
+const Route = require('../sales/models/route');
+const RouteDay = require('../sales/models/routeDays');
+const RouteDetails = require('../sales/models/routeDetails');
+const Trip = require('../sales/models/trip');
+const TripDay = require('../sales/models/tripDays');
+const TripDetails = require('../sales/models/tripDetails');
+
 // // BULK CREATE
 const userData = require('./dataSource/user.json');
 
@@ -43,15 +54,12 @@ const locationData = require('./dataSource/products/location.json');
 const productData = require('./dataSource/products/productsOachiraFirst.json');
 const customerCategoryData = require('./dataSource/routeSale/customerCategory.json');
 const customerGradeData = require('./dataSource/routeSale/customerGrade.json');
-const Warehouse = require('../store/models/warehouse');
-const CustomerPhone = require('../sales/models/customerPhone');
-const VehicleType = require('../sales/models/vehicleType');
-const Vehicle = require('../sales/models/vehicle');
-const Route = require('../sales/models/route');
-const RouteDay = require('../sales/models/routeDays');
-const RouteDetails = require('../sales/models/routeDetails');
-const Trip = require('../sales/models/trip');
-const TripDetails = require('../sales/models/tripDetails');
+
+const vehicleTypeData = require('./dataSource/vehicleType.json');
+const vehilceData = require('./dataSource/vehicle.json');
+const PickList = require('../sales/models/pickList');
+const PickListDetails = require('../sales/models/pickListDetails');
+
 
 
 async function syncModel(){
@@ -206,7 +214,22 @@ async function syncModel(){
     Customer.hasMany(TripDetails, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     TripDetails.belongsTo(Customer)
 
-    await sequelize.sync({force: true})
+    Route.hasMany(TripDay, {foreignKey : 'routeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    TripDay.belongsTo(Route)
+
+    User.hasMany(PickList, {foreignKey : 'salesExecutiveId', as: 'pickSalesExecutive', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    PickList.belongsTo(User, {foreignKey : 'salesExecutiveId', as: 'pickSalesExecutive'})
+
+    Route.hasMany(PickList, {foreignKey : 'routeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    PickList.belongsTo(Route, {foreignKey : 'routeId'})
+
+    Customer.hasMany(PickList, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    PickList.belongsTo(Customer, {foreignKey : 'customerId'})
+
+    PickList.hasMany(PickListDetails, {foreignKey : 'pickListId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    PickListDetails.belongsTo(PickList, {foreignKey : 'pickListId'})
+
+    await sequelize.sync({alter: true})
 
     const role = await Role.findAll({})
     if(role.length === 0){
@@ -308,19 +331,19 @@ async function syncModel(){
     }
     
 
-    // const vehicleType = await VehicleType.findAll({})
-    // if(vehicleType.length === 0){
-    //     for(let i = 0; i < vehicleTypeData.length; i++){
-    //         VehicleType.bulkCreate([vehicleTypeData[i]])
-    //     }
-    // }
+    const vehicleType = await VehicleType.findAll({})
+    if(vehicleType.length === 0){
+        for(let i = 0; i < vehicleTypeData.length; i++){
+            VehicleType.bulkCreate([vehicleTypeData[i]])
+        }
+    }
 
-    // const vehicle = await Vehicle.findAll({})
-    // if(vehicle.length === 0){
-    //     for(let i = 0; i < vehilceData.length; i++){
-    //         Vehicle.bulkCreate([vehilceData[i]])
-    //     }
-    // }
+    const vehicle = await Vehicle.findAll({})
+    if(vehicle.length === 0){
+        for(let i = 0; i < vehilceData.length; i++){
+            Vehicle.bulkCreate([vehilceData[i]])
+        }
+    }
 
     // const bankAccount = await BankAccount.findAll({})
     // if(bankAccount.length === 0){

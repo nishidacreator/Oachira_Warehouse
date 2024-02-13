@@ -45,6 +45,7 @@ export class RouteDetailsComponent implements OnInit, OnDestroy {
     this.getCustomer()
     this.getRoute()
     this.getRouteDetails()
+    this.getComplete()
 
     if (this.dialogRef) {
       this.addStatus = this.dialogData?.status;
@@ -90,7 +91,7 @@ export class RouteDetailsComponent implements OnInit, OnDestroy {
 
   addCustomer(){
     const dialogRef = this.dialog.open(CustomerComponent, {
-      data: { status: "true"},
+      data: { status: "true", category: "Route"},
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -179,11 +180,12 @@ export class RouteDetailsComponent implements OnInit, OnDestroy {
       this.getRouteDetails();
     }else{
       const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+
       this.filtered = this.routeDetails.filter(element =>
         element.route.routeName.toLowerCase().includes(filterValue)
         || element.id.toString().includes(filterValue)
         || element.status.toString().includes(filterValue)
-        || element.customer.name.toString().includes(filterValue)
+        || element.customer.name.toLowerCase().includes(filterValue)
       );
     }
   }

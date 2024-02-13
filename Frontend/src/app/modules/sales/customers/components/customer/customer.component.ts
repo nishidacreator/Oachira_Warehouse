@@ -89,14 +89,21 @@ export class CustomerComponent implements OnInit {
       if(this.dialogData.type === 'edit'){
         this.patchData()
       }
+      if(this.dialogData.category){
+        this.getCategory(this.dialogData.category)
+      }
     }
   }
 
   category: CustomerCategory[] = [];
   categorySub!: Subscription;
-  getCategory(){
+  getCategory(cat?: string){
     this.categorySub = this.salesService.getCustomerCategory().subscribe(c => {
       this.category = c
+      if(cat){
+        let id: any = this.category.find(c=>c.categoryName.toLowerCase() === cat.toLowerCase())?.id
+        this.customerForm.get('customerCategoryId')?.setValue(id)
+      }
     })
   }
 

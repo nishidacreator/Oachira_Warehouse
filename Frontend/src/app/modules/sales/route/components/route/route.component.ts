@@ -215,8 +215,6 @@ export class RouteComponent implements OnInit {
   clearControls(){
     this.getRoute()
     this.routeForm.reset()
-    this.routeForm.setErrors(null)
-    Object.keys(this.routeForm.controls).forEach(key=>{this.routeForm.get(key)?.setErrors(null)})
   }
 
   pageSize = 10;

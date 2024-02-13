@@ -184,9 +184,9 @@
               <td [style.background-color]="element.status == false ? 'pink' : null">{{element.driver.name}}</td>
               <td [style.background-color]="element.status == false ? 'pink' : null">{{element.salesMan.name}}</td>
               <td >{{element.salesExecutive.name}}</td>
-              <td [style.background-color]="element.status == false ? 'pink' : null">
+              <!-- <td [style.background-color]="element.status == false ? 'pink' : null">
                 <mat-slide-toggle [(ngModel)]="element.status" [ngModelOptions]="{standalone: true}" (change)="onToggleChange($event, element.id)"></mat-slide-toggle>
-              </td>
+              </td> -->
               <td>
                 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
                 <i  (click)="editRoute(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>

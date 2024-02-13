@@ -16,6 +16,7 @@ const routes: Routes = [
       {path: '', component:DashboardComponent},
       {path:'settings',loadChildren:()=>import('../settings/settings.module').then(x=>x.SettingsModule), canActivate: [AuthGuard]},
       {path:'purachases',loadChildren:()=>import('../purchase/purchase.module').then(x=>x.PurchaseModule), canActivate: [AuthGuard]},
+      {path:'sales',loadChildren:()=>import('../sales/sales.module').then(x=>x.SalesModule), canActivate: [AuthGuard]},
     ]
   },
 ];

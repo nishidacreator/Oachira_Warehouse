@@ -41,7 +41,6 @@ router.post('/', authenticateToken, async (req, res) => {
     }
 })
 
-
 router.get("/", authenticateToken, async (req, res) => {
   try {
     let whereClause = {};
@@ -100,6 +99,19 @@ router.get('/:id', authenticateToken,async(req,res)=>{
   }  
 })
 
+router.get('/byuserid/:id', authenticateToken,async(req,res)=>{
+
+  try {
+      const route = await Route.findAll({
+        where: {salesExecutiveId: req.params.id},
+        include: ['driver', 'salesMan', 'salesExecutive' , Vehicle ]
+      });
+      res.send(route);
+      
+  } catch (error) {
+    res.send(error.message);
+  }  
+})
 
 router.delete('/:id', authenticateToken, async(req,res)=>{
     try {
