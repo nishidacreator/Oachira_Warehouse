@@ -50,36 +50,43 @@ router.post('/', authenticateToken, async (req, res) => {
         // Send the created request as a response
         res.status(201).send(pRequestDetails);
     } catch (error) {
-        console.error('Error creating request:', error);
-        res.status(500).send({ error: 'Internal server error.' });
+      res.send(error.message);
     }
 });
 
 router.get('/', authenticateToken, async (req, res) => {
-
+  try {
     const request = await Request.findAll({
-        order :[['id', 'DESC']],
-        include : [User, RequestDetails, Store]
+      order :[['id', 'DESC']],
+      include : [User, RequestDetails, Store]
     })
 
     res.send(request);
+  } catch (error) {
+    res.send(error.message);
+  }
 })
 
 router.get('/byid/:id', authenticateToken, async (req, res) => {
 
+  try {
     const request = await Request.findOne({
-        where : {id : req.params.id},
-        order :['id'],
-        include : [
-            {model: User}, {model: Store},  
-            {model: RequestDetails, 
-                include: [
-                { model: Product }, {model: SecondaryUnit},
-            ]}
+      where : {id : req.params.id},
+      order :['id'],
+      include : [
+          {model: User}, {model: Store},  
+          {model: RequestDetails, 
+              include: [
+              { model: Product }, {model: SecondaryUnit},
+          ]}
         ]
     })
 
     res.send(request);
+  } catch (error) {
+    res.send(error.message);
+  }
+
 })
 
 router.patch('/:id', authenticateToken, async(req,res)=>{

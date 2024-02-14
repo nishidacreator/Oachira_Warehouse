@@ -80,8 +80,8 @@ const routeDetails = require('../sales/routers/routeDetails');;
 const trip = require('../sales/routers/trip');
 const tripDays = require('../sales/routers/tripDays');
 const tripDetails = require('../sales/routers/tripDetails');
-const pickList = require('../sales/routers/pickList');
-const pickListDetails = require('../sales/routers/pickListDetails');
+const routeSO = require('../sales/routers/routeSO');
+const routeSODetails = require('../sales/routers/routeSODetails');
 app.use('/sales/customer',customer);
 app.use('/sales/loyaltypoint',loyaltyPoint);
 app.use('/sales/customercategory',customerCategory);
@@ -94,8 +94,8 @@ app.use('/sales/routedetails',routeDetails);
 app.use('/sales/trip',trip);
 app.use('/sales/tripdays', tripDays);
 app.use('/sales/tripdetails',tripDetails);
-app.use('/sales/picklist', pickList);
-app.use('/sales/picklistdetails', pickListDetails);
+app.use('/sales/routeorder', routeSO);
+app.use('/sales/routeorderdetails', routeSODetails);
 
 const port = process.env.PORT;
 

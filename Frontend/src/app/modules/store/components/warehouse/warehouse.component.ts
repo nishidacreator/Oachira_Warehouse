@@ -135,6 +135,9 @@ export class WarehouseComponent implements OnInit {
   submit!: Subscription
   uploadSubscription!: Subscription;
   onSubmit(){
+    if(!this.warehouseForm.valid){
+      return alert('Please fill the form first')
+    }
     // if(this.file){
     //   this.uploadSubscription = this.warehouseService.uploadWarehouseImage(this.file).subscribe(res=>{
     //     this.warehouseForm.patchValue({

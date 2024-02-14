@@ -80,7 +80,9 @@ export class LocationComponent implements OnInit {
   submit!: Subscription
   uploadSubscription!: Subscription;
   onSubmit(){
-    console.log(this.locationForm.getRawValue())
+    if(!this.locationForm.valid){
+      return alert('Please fill the form first')
+    }
     this.submit = this.productService.addLocation(this.locationForm.getRawValue()).subscribe((response)=>{
       console.log(response);
       this._snackBar.open("Location added successfully...","" ,{duration:3000})
