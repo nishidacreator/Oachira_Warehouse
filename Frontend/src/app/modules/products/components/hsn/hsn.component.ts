@@ -50,6 +50,9 @@ export class HsnComponent implements OnInit {
 
   submit!: Subscription;
   onSubmit(){
+    if(!this.hsnForm.valid){
+      return alert('Please fill the form first')
+    }
     this.submit = this.productService.addHsn(this.hsnForm.getRawValue()).subscribe((res)=>{
       this._snackBar.open("HSN added successfully...","" ,{duration:3000})
       let data = {

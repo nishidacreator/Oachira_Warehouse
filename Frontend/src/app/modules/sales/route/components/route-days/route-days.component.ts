@@ -123,6 +123,9 @@ export class RouteDaysComponent implements OnInit {
 
   submit!: Subscription;
   onSubmit(){
+    if(!this.routeDaysForm.valid){
+      return alert('Please fill the form first')
+    }
     this.submit = this.salesService.addRouteDays(this.routeDaysForm.getRawValue()).subscribe((res)=>{
       this._snackBar.open("added successfully...","" ,{duration:3000})
       this.clearControls()

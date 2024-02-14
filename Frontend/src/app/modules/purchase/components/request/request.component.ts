@@ -331,19 +331,21 @@ export class RequestComponent implements OnInit {
 
   submitSub!: Subscription;
   onSubmit(){
-    if(this.purchaseRequestForm.valid){
-      let form = {
-        ...this.purchaseRequestForm.value
-      }
-      form.date = moment(this.purchaseRequestForm.value.date).format('YYYY-MM-DD HH:mm:ss');
-
-      this.submitSub = this.purchaseService.addPR(form).subscribe(() =>{
-        this.clearControls()
-      },
-      (error) => {
-        alert(error);
-      })
+    if(!this.purchaseRequestForm.valid){
+      return alert('Please fill the form first')
     }
+    let form = {
+      ...this.purchaseRequestForm.value
+    }
+    form.date = moment(this.purchaseRequestForm.value.date).format('YYYY-MM-DD HH:mm:ss');
+
+    this.submitSub = this.purchaseService.addPR(form).subscribe(() =>{
+      this.clearControls()
+    },
+    (error) => {
+      alert(error);
+    })
+  
   }
 
   clearControls() {

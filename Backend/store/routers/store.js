@@ -13,24 +13,33 @@ router.post('/', async (req, res) => {
             res.send(store);
 
     } catch (error) {
-        res.send(error);
+      res.send(error.message);
     }
 })
 
 router.get('/', async (req, res) => {
+  try {
     const store = await Store.findAll({order:['id'], include: ['storeInCharge']})
 
     res.send(store);
+  } catch (error) {
+    res.send(error.message);
+  }
 })
 
 router.get('/:id', async (req, res) => {
-  const store = await Store.findOne({
-    where: {id: req.params.id}, 
-    order:['id'],
-    include: ['storeInCharge']
-  })
-
-  res.send(store);
+  try {
+    const store = await Store.findOne({
+      where: {id: req.params.id}, 
+      order:['id'],
+      include: ['storeInCharge']
+    })
+  
+    res.send(store);
+  } catch (error) {
+    res.send(error.message);
+  }
+  
 })
 
 router.delete('/:id', async(req,res)=>{
@@ -50,7 +59,7 @@ router.delete('/:id', async(req,res)=>{
       
           res.status(204).json();
         }  catch (error) {
-        res.send({error: error.message})
+          res.send(error.message);
     }
     
 })
@@ -72,10 +81,7 @@ router.patch('/:id', async(req,res)=>{
               }
             })
       } catch (error) {
-        res.status(500).json({
-          status: "error",
-          message: error.message,
-        });
+        res.send(error.message);
       }
 })
 module.exports = router;

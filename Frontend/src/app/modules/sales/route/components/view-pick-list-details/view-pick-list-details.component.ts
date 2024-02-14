@@ -14,28 +14,15 @@ export class ViewPickListDetailsComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private salesService: SalesService) { }
 
   ngOnDestroy(): void {
-    this.plSub?.unsubscribe();
+    // this.plSub?.unsubscribe();
   }
 
   id!: number;
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
-    this.getPickList();
+    // this.id = this.route.snapshot.params['id'];
+    // this.getPickList();
   }
 
-  pickList!: PickList
-  plSub!: Subscription;
-  getPickList(){
-    this.plSub = this.salesService.getPickListById(this.id).subscribe(data=>{
-      this.pickList = data;
-      console.log(data);
-    })
-  }
-
-  editPickList(id: number){
-
-  }
-
-  deletePickList(id: number){}
+ 
 
 }

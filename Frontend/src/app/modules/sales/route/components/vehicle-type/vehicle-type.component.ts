@@ -44,6 +44,9 @@ export class VehicleTypeComponent implements OnInit, OnDestroy {
 
   submit!: Subscription;
   onSubmit(){
+    if(!this.vehicleTypeForm.valid){
+      return alert('Please fill the form first')
+    }
     this.submit = this.salesService.addVehicleType(this.vehicleTypeForm.getRawValue()).subscribe(vehicle => {
       this._snackBar.open("Vehicle Details added successfully...","" ,{duration:3000})
       let data = {

@@ -121,6 +121,9 @@ export class ProductDistributorComponent implements OnInit {
   }
 
   onSubmit(){
+    if(!this.addProductForm.valid){
+      return alert('Please fill the form first')
+    }
     let form = this.addProductForm.getRawValue().products;
     let products = []
     if (form !== null) {

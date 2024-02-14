@@ -14,26 +14,35 @@ router.post('/', async (req, res) => {
             res.send(warehouse);
 
     } catch (error) {
-        res.send(error);
+      res.send(error.message);
     }
 })
 
 router.get('/', async (req, res) => {
 
+  try {
     const warehouse = await Warehouse.findAll({order:['id'], include: ['warehouseInCharge']})
 
     res.send(warehouse);
+  } catch (error) {
+    res.send(error.message);
+  }
+
 })
 
 router.get('/:id', async (req, res) => {
-
-  const warehouse = await Warehouse.findOne({
-    where: {id: req.params.id}, 
-    order:['id'],
-    // include: ['warehouseInCharge']
-  })
-
-  res.send(warehouse);
+  try {
+    const warehouse = await Warehouse.findOne({
+      where: {id: req.params.id}, 
+      order:['id'],
+      // include: ['warehouseInCharge']
+    })
+  
+    res.send(warehouse);
+  } catch (error) {
+    res.send(error.message);
+  }
+  
 })
 
 router.delete('/:id', async(req,res)=>{
@@ -53,7 +62,7 @@ router.delete('/:id', async(req,res)=>{
       
           res.status(204).json();
         }  catch (error) {
-        res.send({error: error.message})
+          res.send(error.message);
     }
     
 })
@@ -75,10 +84,7 @@ router.patch('/:id', async(req,res)=>{
               }
             })
       } catch (error) {
-        res.status(500).json({
-          status: "error",
-          message: error.message,
-        });
+        res.send(error.message);
       }
 })
 module.exports = router;

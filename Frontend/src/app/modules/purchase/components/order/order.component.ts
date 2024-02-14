@@ -321,14 +321,15 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   submitSub!: Subscription;
   onSubmit(){
-    if(this.purchaseRequestForm.valid){
-      this.submitSub = this.purchaseService.addPR(this.purchaseRequestForm.getRawValue()).subscribe(() =>{
-        this.clearControls()
-      },
-      (error) => {
-        alert(error);
-      })
+    if(!this.purchaseRequestForm.valid){
+      return alert('Please fill the form first')
     }
+    this.submitSub = this.purchaseService.addPR(this.purchaseRequestForm.getRawValue()).subscribe(() =>{
+      this.clearControls()
+    },
+    (error) => {
+      alert(error);
+    })
   }
 
   clearControls() {

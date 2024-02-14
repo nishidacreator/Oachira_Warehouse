@@ -66,7 +66,7 @@ router.get("/", authenticateToken, async (req, res) => {
       res.send(route);
     }
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.send(error.message);
   }
 });
 
