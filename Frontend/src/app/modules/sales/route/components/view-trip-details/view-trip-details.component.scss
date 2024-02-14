@@ -80,3 +80,11 @@ button:enabled {
   background-color :rgb(56, 151, 86);
   color : white
 }
+
+mat-icon:hover {
+  color: red;
+}
+
+mat-icon:active {
+  color: darkred;
+}

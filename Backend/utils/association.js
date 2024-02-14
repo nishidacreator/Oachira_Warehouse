@@ -202,12 +202,6 @@ async function syncModel(){
     Route.hasMany(Trip, {foreignKey : 'routeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Trip.belongsTo(Route)
 
-    User.hasMany(Trip, {foreignKey : 'salesManId', as:'tripSalesMan', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    Trip.belongsTo(User)
-
-    User.hasMany(Trip, {foreignKey : 'driverId', as: 'tripDriver', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    Trip.belongsTo(User)
-
     Trip.hasMany(TripDetails, {foreignKey : 'tripId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     TripDetails.belongsTo(Trip)
 
@@ -229,6 +223,12 @@ async function syncModel(){
     PickList.hasMany(PickListDetails, {foreignKey : 'pickListId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     PickListDetails.belongsTo(PickList, {foreignKey : 'pickListId'})
 
+    Product.hasMany(PickListDetails, {foreignKey : 'productId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    PickListDetails.belongsTo(Product, {foreignKey : 'productId'})
+
+    SecondaryUnit.hasMany(PickListDetails, {foreignKey : 'secondaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    PickListDetails.belongsTo(SecondaryUnit, {foreignKey : 'secondaryUnitId'})
+
     await sequelize.sync({alter: true})
 
     const role = await Role.findAll({})
@@ -239,7 +239,8 @@ async function syncModel(){
             {roleName : 'Salesman', status: true},
             {roleName : 'Driver', status: true},
             {roleName : 'SalesExecutive', status: true},
-            {roleName : 'BranchManager', status: true}
+            {roleName : 'BranchManager', status: true},
+            {roleName : 'Supervisor', status: true},
         ])
     }
 

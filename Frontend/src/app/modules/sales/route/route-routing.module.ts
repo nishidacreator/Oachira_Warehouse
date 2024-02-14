@@ -11,6 +11,10 @@ import { PickListComponent } from './components/pick-list/pick-list.component';
 import { TripDaysComponent } from './components/trip-days/trip-days.component';
 import { ViewPickListComponent } from './components/view-pick-list/view-pick-list.component';
 import { ViewPickListDetailsComponent } from './components/view-pick-list-details/view-pick-list-details.component';
+import { ViewTripComponent } from './components/view-trip/view-trip.component';
+import { ViewTripDetailsComponent } from './components/view-trip-details/view-trip-details.component';
+import { RouteMapComponent } from './components/route-map/route-map.component';
+import { TripListComponent } from './components/trip-list/trip-list.component';
 
 const routes: Routes = [
   {path: '', component: ManageRouteComponent},
@@ -19,8 +23,15 @@ const routes: Routes = [
   {path: 'routedetails', component: RouteDetailsComponent},
   {path: 'vehicletype', component: VehicleTypeComponent},
   {path: 'vehicle', component: VehicleComponent},
+  {path: 'viewmap', component: RouteMapComponent},
+
   {path: 'trip', component: TripComponent},
+  {path: 'trip/:id', component: TripComponent},
+  {path: 'viewtrip', component: ViewTripComponent},
+  {path: 'viewtrip/details/:id', component: ViewTripDetailsComponent},
+  {path: 'viewtrip/details/list/:id/:routeId', component: TripListComponent},
   {path: 'tripdays', component: TripDaysComponent},
+
   {path: 'viewpicklist', component: ViewPickListComponent},
   {path: 'viewpicklist/details/:id', component: ViewPickListDetailsComponent},
   {path: 'picklist', component: PickListComponent},

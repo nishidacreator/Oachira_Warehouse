@@ -13,6 +13,8 @@ import { Route } from './route/models/route';
 import { TripDays } from './route/models/trip-days';
 import { PickList } from './route/models/pick-list';
 import { RouteDays } from './route/models/route-days';
+import { Trip } from './route/models/trip';
+import { PickListDetails } from './route/models/pick-list-details';
 
 @Injectable({
   providedIn: 'root'
@@ -241,31 +243,31 @@ export class SalesService {
   }
 
   addTrip(data : any){
-    return this._http.post(this.url +'routedays', data);
+    return this._http.post(this.url +'trip', data);
   }
 
-  getTrip(): Observable<RouteDays[]>{
-    return this._http.get<RouteDays[]>(this.url +'routedays');
+  getTrip(): Observable<Trip[]>{
+    return this._http.get<Trip[]>(this.url +'trip');
   }
 
-  getPaginatedTrip( search:String, page: number, pageSize: number): Observable<RouteDays[]>{
-    return this._http.get<RouteDays[]>(this.url + `routedays?search=${search}&page=${page}&pageSize=${pageSize}`);
+  getPaginatedTrip( search:String, page: number, pageSize: number): Observable<Trip[]>{
+    return this._http.get<Trip[]>(this.url + `trip?search=${search}&page=${page}&pageSize=${pageSize}`);
   }
 
-  getTripById(id: number): Observable<RouteDays>{
-    return this._http.get<RouteDays>(this.url +'routedays/'+id);
+  getTripById(id: number): Observable<Trip>{
+    return this._http.get<Trip>(this.url +'trip/'+id);
   }
 
-  getTripByRouteId(id: number): Observable<RouteDays[]>{
-    return this._http.get<RouteDays[]>(this.url +'routedays/byrouteid/'+id);
+  getTripByRouteId(id: number): Observable<Trip[]>{
+    return this._http.get<Trip[]>(this.url +'trip/byrouteid/'+id);
   }
 
   deleteTrip(id : Number){
-    return this._http.delete(this.url+'routedays/'+ id);
+    return this._http.delete(this.url+'trip/'+ id);
   }
 
-  updateTrip(id:Number, data:any): Observable<RouteDays>{
-    return this._http.patch<RouteDays>(this.url+'routedays/'+id, data);
+  updateTrip(id:Number, data:any): Observable<Trip>{
+    return this._http.patch<Trip>(this.url+'trip/'+id, data);
   }
 
   addTripDays(data : any){
@@ -322,6 +324,14 @@ export class SalesService {
 
   updatePickList(id:Number, data:any): Observable<PickList>{
     return this._http.patch<PickList>(this.url+'picklist/'+id, data);
+  }
+
+  getPickListDetailsByProductId(id: number){
+    return this._http.get<PickListDetails[]>(this.url+'picklistdetails/product/'+id);
+  }
+
+  getPickListDetails(id: number){
+
   }
 
 }

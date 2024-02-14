@@ -1,28 +1,28 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { SalesService } from '../../../sales.service';
+import { Trip } from '../../models/trip';
 import { Subscription } from 'rxjs';
-import { PickList } from '../../models/pick-list';
+import { SalesService } from '../../../sales.service';
 import { Router } from '@angular/router';
 import { DeleteDialogueComponent } from 'src/app/modules/shared-components/delete-dialogue/delete-dialogue.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-view-pick-list',
-  templateUrl: './view-pick-list.component.html',
-  styleUrls: ['./view-pick-list.component.scss']
+  selector: 'app-view-trip',
+  templateUrl: './view-trip.component.html',
+  styleUrls: ['./view-trip.component.scss']
 })
-export class ViewPickListComponent implements OnInit, OnDestroy {
+export class ViewTripComponent implements OnInit, OnDestroy{
 
   constructor(private salesService: SalesService, private router: Router, private dialog: MatDialog,
     private _snackBar: MatSnackBar) { }
 
   ngOnDestroy(): void {
-    this.plSub?.unsubscribe();
+    this.tripSub?.unsubscribe();
   }
 
   ngOnInit(): void {
-    this.getPickList();
+    this.getTrip()
   }
 
   isHovered = false;
@@ -37,33 +37,33 @@ export class ViewPickListComponent implements OnInit, OnDestroy {
     this.hoveredButton = null;
   }
 
-  addPickList(){
-    this.router.navigateByUrl('login/sales/routesale/picklist')
+  addTrip(){
+    this.router.navigateByUrl('login/sales/routesale/trip')
   }
 
-  plSub!: Subscription
-  pickList : PickList[] = [];
-  getPickList(){
-    this.plSub = this.salesService.getPickList().subscribe(x=>{
-      this.pickList = x;
+  tripSub!: Subscription
+  trip : Trip[] = [];
+  getTrip(){
+    this.tripSub = this.salesService.getTrip().subscribe(x=>{
+      this.trip = x;
       console.log(x);
-      this.filtered = this.pickList
+      this.filtered = this.trip
     })
   }
 
   filtered!: any[];
   applyFilter(event: Event): void {
     if((event.target as HTMLInputElement).value.trim() === '') {
-      this.getPickList();
+      this.getTrip();
     }else{
       const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-      this.filtered = this.pickList.filter(element =>
+      this.filtered = this.trip.filter(element =>
         element.route.routeName.toLowerCase().includes(filterValue)
+        || element.driver.toLowerCase().includes(filterValue)
+        || element.salesMan.toLowerCase().includes(filterValue)
         || element.id.toString().includes(filterValue)
         || element.status.toLowerCase().includes(filterValue)
-        || element.customer.name.toLowerCase().includes(filterValue)
         ||  this.formatDate(element.date).includes(filterValue)
-        ||  this.formatDate(element.deliveryDate).includes(filterValue)
       );
     }
   }
@@ -74,31 +74,35 @@ export class ViewPickListComponent implements OnInit, OnDestroy {
     return dateObject.toLocaleDateString();
   }
 
-  viewPickListDetails(id: number){
-    this.router.navigateByUrl('login/sales/routesale/viewpicklist/details/'+id)
+  viewTrip(id: number){
+    this.router.navigateByUrl('/login/sales/routesale/viewtrip/details/'+id)
   }
 
-  editPickList(id: number){
-    this.router.navigateByUrl('/login/sales/routesale/picklist/'+id)
+  editTrip(id: number){
+    this.router.navigateByUrl('/login/sales/routesale/trip/'+id)
   }
 
   delete!: Subscription;
-  deletePickList(id: number){
+  deleteTrip(id: number){
     const dialogRef = this.dialog.open(DeleteDialogueComponent, {
       data: {}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
-        this.delete = this.salesService.deletePickList(id).subscribe((res)=>{
-          this.getPickList()
-          this._snackBar.open("PickList deleted successfully...","" ,{duration:3000})
+        this.delete = this.salesService.deleteTrip(id).subscribe((res)=>{
+          this.getTrip()
+          this._snackBar.open("Trip deleted successfully...","" ,{duration:3000})
         },(error=>{
           this._snackBar.open(error.error.message,"" ,{duration:3000})
         }))
       }
     })
 
+  }
+
+  viewMap(){
+    this.router.navigateByUrl('login/sales/routesale/viewmap')
   }
 
 }
