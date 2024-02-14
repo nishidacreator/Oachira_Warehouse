@@ -3,7 +3,6 @@ const cors = require('cors');
 const express = require('express');
 const dotenv = require('dotenv');
 const path = require('path');
-const easyInvoice = require('easyinvoice');
 
 dotenv.config();
 
@@ -51,8 +50,8 @@ app.use('/product/productdistributor',productDistributor);
 
 const store = require('../store/routers/store');
 const warehouse = require('../store/routers/warehouse');
-app.use('/store',store);
-app.use('/store/warehouse',warehouse);
+app.use('/store', store);
+app.use('/store/warehouse', warehouse);
 
 const request = require('../purchases/rouers/request');
 const order = require('../purchases/rouers/order');

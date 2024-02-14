@@ -1,0 +1,139 @@
+<br><mat-card>
+  <mat-card>
+      <mat-card-header>
+          <mat-card-title style="color: green;">TRIP LIST</mat-card-title>
+      </mat-card-header>
+
+
+      <html>
+
+      <head>
+          <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+          <!-- <style>
+            {{asset "./assets/Invoice styles.css"}}
+        </style>         -->
+      </head>
+
+      <body>
+          <div class="invoice-box">
+              <table cellpadding="0" cellspacing="0">
+                  <tr class="top">
+                      <td colspan="2">
+                          <table>
+                              <tr>
+                                  <td class="title">
+                                      <!-- <img src="{{asset "./assets/Invoice logo.png" "dataURI"}}" style="width:100%; max-width:300px;" /> -->
+                                  </td>
+                                  <td>
+                                      Invoice #: {{testData.number}}
+                                      <!-- <br> Created: {{Date.now}}
+                                    <br> Due: {{testData.nowPlus20Days}} -->
+                                  </td>
+                              </tr>
+                          </table>
+                      </td>
+                  </tr>
+                  <tr class="information ">
+                      <td colspan="2 ">
+                          <table>
+                              <tr>
+                                  <td>
+                                      {{testData.seller.name}}<br>
+                                      {{testData.seller.road}}<br>
+                                      {{testData.seller.country}}
+                                  </td>
+                                  <td>
+                                      {{testData.buyer.name}}<br>
+                                      {{testData.buyer.road}}<br>
+                                      {{testData.buyer.country}}
+                                  </td>
+                              </tr>
+                          </table>
+                      </td>
+                  </tr>
+                  <tr class="heading ">
+                      <td>
+                          Item
+                      </td>
+                      <td>
+                          Price
+                      </td>
+
+                  </tr>
+                  <!-- {{#each items}} -->
+                  <tr *ngFor="let item of combinedArray">
+                      <!-- <td>{{ item.productId }}</td> -->
+                      <td>{{ item.productName }}</td>
+                      <td>{{ item.count }}</td>
+                      <!-- <td>
+                      <button mat-raised-button style="background-color: green; margin-left: 8px;" class="main-button" type="button">View</button>
+                    </td> -->
+                  </tr>
+                  <!-- {{/each}} -->
+                  <tr class="total ">
+                      <td></td>
+                      <td>
+                          <!-- Total: ${{total items}} -->
+                      </td>
+                  </tr>
+              </table>
+              <button class="print-button" (click)="saveAndDownload()">Print</button>
+          </div>
+      </body>
+
+      </html>
+
+
+
+
+
+      <!-- <table class="combined-table">
+          <thead>
+            <tr>
+              <th>Product ID</th>
+              <th>Product Name</th>
+              <th>Count</th>
+              <th>Manage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of combinedArray">
+              <td>{{ item.productId }}</td>
+              <td>{{ item.productName }}</td>
+              <td>{{ item.count }}</td>
+              <td>
+                <button mat-raised-button style="background-color: green; margin-left: 8px;" class="main-button" (click)="viewDetails( item.productId)" type="button">View</button>
+              </td>
+            </tr>
+          </tbody>
+        </table> -->
+  </mat-card>
+
+
+
+  <!-- syncfusion -->
+  <mat-card>
+      <mat-card-header>
+          <mat-card-title style="color: green;">TRIP LIST</mat-card-title>
+      </mat-card-header>
+
+      <!-- <div class="control-section">
+          <div *ngIf="combinedArray.length != 0">
+              <button ej-button id='print' (click)='print()'>Print</button>
+              <ejs-grid #grid [dataSource]="combinedArray" [toolbar]="toolbar" (toolbarClick)="toolbarClick($event)"
+                  [allowPaging]="true" [allowPdfExport]="true" (customizeExport)="onPdfExport($event)" height='272px'>
+                  <e-columns>
+                      <e-column field='productId' headerText='PRODUCT ID' width='150'></e-column>
+                      <e-column field='ProductName' headerText='PRODUCT NAME' width='150'></e-column>
+                      <e-column field='count' headerText='COUNT' width='150'></e-column>
+                      <e-column *ngIf="pdfprint" headerText='MANAGE' width='150' [visible]='false'>
+                          <ng-template #template let-data>
+                              <button mat-raised-button style="background-color: green; margin-left: 8px;"
+                                  class="main-button" (click)="viewDetails(data.productId)" type="button">View</button>
+                          </ng-template>
+                      </e-column>
+                  </e-columns>
+              </ejs-grid>
+          </div>
+      </div> -->
+  </mat-card>

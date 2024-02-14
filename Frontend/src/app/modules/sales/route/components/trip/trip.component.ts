@@ -1,15 +1,18 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, Optional } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SalesService } from '../../../sales.service';
 import { Subscription } from 'rxjs';
 import { Route } from '../../models/route';
-import { MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { RouteComponent } from '../route/route.component';
 import { Customer } from '../../../customers/models/customer';
 import { UsersService } from 'src/app/modules/users/users.service';
 import { User } from 'src/app/modules/users/models/user';
 import { CustomerComponent } from '../../../customers/components/customer/customer.component';
 import { UsersComponent } from 'src/app/modules/users/components/users/users.component';
+import { ActivatedRoute } from '@angular/router';
+import { PickListComponent } from '../pick-list/pick-list.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-trip',
@@ -19,7 +22,9 @@ import { UsersComponent } from 'src/app/modules/users/components/users/users.com
 export class TripComponent implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder, private salesService: SalesService, private dialog: MatDialog,
-    private userService: UsersService) { }
+    private userService: UsersService, @Optional() public dialogRef: MatDialogRef<TripComponent>,
+    private route: ActivatedRoute, @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any,
+    private _snackBar: MatSnackBar) { }
 
   ngOnDestroy(): void {
     this.routeSub?.unsubscribe();
@@ -42,8 +47,8 @@ export class TripComponent implements OnInit, OnDestroy {
   newCustomer(): FormGroup {
     return this.fb.group({
       customerId: ['', Validators.required],
-      invoiceNo: ['', Validators.required],
-      amount: ['', Validators.required]
+      invoiceNo: [''],
+      amount: [0]
     })
   }
 
@@ -60,6 +65,11 @@ export class TripComponent implements OnInit, OnDestroy {
     this.getDriver();
     this.getCustomer();
     this.addCustomer();
+
+    let id = this.route.snapshot.params['id'];
+    if(id){
+      this.patchData(id)
+    }
   }
 
   routeSub!: Subscription;
@@ -115,27 +125,26 @@ export class TripComponent implements OnInit, OnDestroy {
       let driverName = res.driver.name
       let salesmanName = res.salesMan.name
 
-      // this.tripForm.patchValue({
-      //   driver : driverName,
-      //   salesMan : salesmanName
-      // })
+      this.tripForm.patchValue({
+        driver : driverName,
+        salesMan : salesmanName
+      })
+
+      this.routeDetailsSub = this.salesService.getRouteDetailsByRouteId(id).subscribe((res)=>{
+        let details = res
+        console.log(details);
+
+        this.filteredCustomer = res.map(x => x.customer);
+
+        //DELIVERY DAYS
+        return this.salesService.getTripDayByRouteId(id).subscribe((res)=>{
+          let days = res
+          for(let i = 0; i < days.length; i++){
+            this.weekDay[i] = days[i].weekDay
+          }
+        })
+      })
     })
-
-    //ROUTE DETAILS
-    this.routeDetailsSub = this.salesService.getRouteDetailsByRouteId(id).subscribe((res)=>{
-      let details = res
-
-      this.customer = res.map(x => x.customer);
-      // this.getCustomer()
-    })
-
-    //DELIVERY DAYS
-    // return this.salesService.getRouteDaysByRouteId(id).subscribe((res)=>{
-    //   this.days = res
-    //   for(let i = 0; i < this.days.length; i++){
-    //     this.weekDay[i] = this.days[i].weekDay
-    //   }
-    // })
   }
 
   weekdayNames = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
@@ -261,5 +270,77 @@ export class TripComponent implements OnInit, OnDestroy {
     }
     console.log(this.tripForm.getRawValue());
 
+    this.salesService.addTrip(this.tripForm.getRawValue()).subscribe((result) => {
+      console.log(result);
+      let data = {
+        route: this.tripForm.get('routeName')?.value
+      }
+      this.dialogRef?.close(data);
+      this._snackBar.open("PickList added successfully...","" ,{duration:3000})
+      this.clearControls()
+    });
+
+  }
+
+  clearControls(){
+    this.tripForm.reset()
+  }
+
+  isEdit: boolean = false;
+  tripId!: number;
+  patchData(id: number){
+    this.isEdit = true;
+    this.salesService.getTripById(id).subscribe(data =>{
+      console.log(data);
+
+      let list = data
+      this.tripId = list.id;
+      let route: any = list.route.id;
+      let driver: any = list.driver;
+      let salesman: any = list.salesMan;
+      let date: any = list.date;
+
+      this.byRouteId(route)
+      this.tripForm.patchValue({
+        routeId: route,
+        driver: driver,
+        salesMan: salesman,
+        date: date
+      })
+
+      const trip = this.tripForm.get("customers") as FormArray;
+      trip.clear();
+
+        let details = list.tripDetails;
+        if (details && details.length > 0) {
+          details.forEach((detail: any) => {
+
+          const details = this.fb.group({
+            customerId : detail.customerId,
+            amount : detail.amount,
+            invoiceNo : detail.invoiceNo
+          });
+
+          trip.push(details);
+        })
+      }
+    });
+  }
+
+  editFunction(){
+    this.isEdit = false;
+
+    let data = {
+      routeId: this.tripForm.get('routeId')?.value,
+      driver: this.tripForm.get('driver')?.value,
+      salesMan: this.tripForm.get('salesMan')?.value,
+      date: this.tripForm.get('date')?.value,
+      customers: this.tripForm.get('customers')?.value
+    }
+    this.salesService.updateTrip(this.tripId, data).subscribe(data => {
+      this._snackBar.open("PickList added successfully...","" ,{duration:3000})
+      this.clearControls()
+      history.back();
+    });
   }
 }

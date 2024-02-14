@@ -60,16 +60,15 @@ router.get('/byid/:id', authenticateToken, async(req,res)=>{
   }  
 })
 
-router.get('/byproductid/:id', authenticateToken, async(req,res)=>{
+router.get('/product/:id', authenticateToken, async(req,res)=>{
 
   try {
       const result = await PickListDetails.findAll(
         {where :{productId : req.params.id},
-        include: [{model : PickList, 
-          include: [Customer, Route, 'salesexecutive'],
-          }, {
-          model: Product
-        }]});
+        include: [
+          { model: PickList, include: [Customer, Route, 'pickSalesExecutive'] }, 
+          { model: Product }
+        ]});
       res.send(result);
       
   } catch (error) {

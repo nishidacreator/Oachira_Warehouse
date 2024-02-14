@@ -3,25 +3,28 @@ const router = express.Router();
 const authenticateToken = require('../../middleware/authorization');
 
 const Vehicle = require('../models/vehicle');
-const User = require('../../users/models/user');
-const TripDay = require('../models/routeDays');
 const Trip = require('../models/trip');
-// const DeliveryDays = require('../models/deliveryDays');
+const TripDetails = require('../models/tripDetails');
+const Route = require('../models/route');
+const Customer = require('../models/customer');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
-            const {routeId, date, driverId, salesManId, status, tripDetails} = req.body;
+            const {routeId, date, driver, salesMan, status, customers} = req.body;
 
-            const trip = new Trip({routeId, date, driverId, salesManId, status});
+            const trip = new Trip({routeId, date, driver, salesMan, status});
 
             await trip.save();
 
-            // const routeId = route.id
-            // for(let i = 0; i < routeDay.length; i++) {           
-            //       routeDay[i].routeId = routeId;
-            // }
+            const id = trip.id
+            console.log(customers);
+            for(let i = 0; i < customers.length; i++) {           
+              customers[i].tripId = id;
+            }
+            console.log(customers);
 
-            // const collDays = await TripDay.bulkCreate({routeDay})
+            const details = await TripDetails.bulkCreate(customers)
+            console.log(details);
 
             // const delivery = deliveryDays.weekDays.slice();
 
@@ -34,7 +37,7 @@ router.post('/', authenticateToken, async (req, res) => {
             //   await result.save()
             // }
 
-            res.status(200).send(route)
+            res.status(200).send(details)
 
     } catch (error) {
       res.send(error.message);
@@ -48,27 +51,26 @@ router.get("/", authenticateToken, async (req, res) => {
     
     let limit;
     let offset;
-    if (req.query.pageSize && req.query.page) {
-      limit = req.query.pageSize;
-      offset = (req.query.page - 1) * req.query.pageSize;
-    }else {
-      whereClause = {
-        status : true
-      }
-    }
+    // if (req.query.pageSize && req.query.page) {
+    //   limit = req.query.pageSize;
+    //   offset = (req.query.page - 1) * req.query.pageSize;
+    // }else {
+    //   whereClause = {
+    //     status : true
+    //   }
+    // }
 
     const route = await Trip.findAll({
-      where: whereClause,
       order: ["id"],
       limit,
       offset,
-      include: ['tripDriver', 'tripSalesMan' ]
+      include: [Route, TripDetails]
     });
 
-    let totalCount;
-    totalCount = await Trip.count({
-      where: {status: true}
-    });
+    // let totalCount;
+    // totalCount = await Trip.count({
+    //   where: {status: true}
+    // });
 
 
     if (req.query.page && req.query.pageSize) {
@@ -88,11 +90,13 @@ router.get("/", authenticateToken, async (req, res) => {
 
 
 router.get('/:id', authenticateToken,async(req,res)=>{
-
   try {
       const route = await Trip.findOne({
         where: {id: req.params.id},
-        include: ['driver', 'salesMan', 'salesExecutive' , Vehicle ]
+        include: [
+          {model: Route, include: [Vehicle, 'salesMan', 'driver', 'salesExecutive']}, 
+          {model: TripDetails, include: [Customer]}
+        ]
       });
       res.send(route);
       
@@ -124,22 +128,37 @@ router.delete('/:id', authenticateToken, async(req,res)=>{
 })
 
 router.patch('/:id', authenticateToken, async(req,res)=>{
-    try {
-        Trip.update(req.body, {
-            where: { id: req.params.id }
-          })
-            .then(num => {
-              if (num == 1) {
-                res.send({
-                  message: "Trip was updated successfully."
-                });
-              } else {
-                res.send({
-                  message: `Cannot update Trip with id=${id}. Maybe Trip was not found or req.body is empty!`
-                });
-              }
-            })
-      } catch (error) {
+  try {
+    Trip.update(req.body, {
+        where: { id: req.params.id }
+      })
+        .then(num => {
+          if (num == 1) {
+            res.send({
+              message: "Trip was updated successfully."
+            });
+          } else {
+            res.send({
+              message: `Cannot update Trip with id=${id}. Maybe Trip was not found or req.body is empty!`
+            });
+          }
+        })
+
+        const tripId = req.params.id;
+
+        const result = await TripDetails.destroy({
+          where: { tripId: tripId},
+          force: true,
+        });
+
+        let list = req.body.customers;
+        for(let i = 0; i < list.length; i++){
+          list[i].tripId = tripId;
+        }
+
+        let pd = await TripDetails.bulkCreate(list)
+        
+  } catch (error) {
         res.send(error.message);
       }
 })

@@ -372,10 +372,9 @@ export class PickListComponent implements OnInit, OnDestroy {
       deliveryDate : this.pickListForm.get('deliveryDate')?.value,
       products : this.pickListForm.get('products')?.value
     }
-    console.log(data);
 
-    this.edit = this.salesService.updateRoute(this.plId, data).subscribe((res)=>{
-      console.log(res);
+    this.edit = this.salesService.updatePickList(this.plId, data).subscribe((res)=>{
+      history.back();
 
       this._snackBar.open("PickList updated successfully...","" ,{duration:3000})
       this.clearControls();

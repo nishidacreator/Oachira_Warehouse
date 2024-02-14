@@ -17,7 +17,7 @@
         </div><br>
         <mat-card-content >
 
-          <div class="row">
+          <div class="row box">
             <div class="col">
               <mat-form-field class="full-width" appearance="fill">
                   <mat-label>Route</mat-label>
@@ -99,7 +99,7 @@
         <div>
           <table formArrayName="customers">
             <table *ngFor="let quantity of customers().controls; let i=index" [formGroupName]="i">
-              <tr>
+              <tr class="box">
                 <td>
                   <mat-form-field class="full-width" appearance="fill">
                     <mat-label>Customer</mat-label>
@@ -120,14 +120,16 @@
                 </td>
 
                 <td>
+                  <mat-label>InvoiceNo </mat-label>
                   <mat-form-field class="full-width" appearance="fill">
-                    <input matInput placeholder="Amount" formControlName="amount">
+                    <input matInput placeholder="InvoiceNo" formControlName="invoiceNo">
                   </mat-form-field>
                 </td>
 
                 <td>
+                  <mat-label>Amount </mat-label>
                   <mat-form-field class="full-width" appearance="fill">
-                    <input matInput placeholder="Invoice" formControlName="invoiceNo">
+                    <input matInput placeholder="Amount" formControlName="amount">
                   </mat-form-field>
                 </td>
               <!-- </tr> -->
@@ -150,9 +152,13 @@
     </mat-card>
   </form>
   <mat-card-actions>
-    <button mat-raised-button type="button" class="btn btn-success" [disabled]="!tripForm.valid" (click)="onSubmit()">
+    <button *ngIf="!isEdit" mat-raised-button type="button" class="btn btn-success" [disabled]="!tripForm.valid" (click)="onSubmit()">
       <span class="material-icons" style="font-size: 25px;">save</span>
     </button>
+
+    <button *ngIf="isEdit" mat-raised-button  type="button" (click)="editFunction()">
+      <span class="material-icons" style="font-size: 30px;">edit_note</span>
+    </button>&nbsp;&nbsp;
   </mat-card-actions>
 </mat-card>
 

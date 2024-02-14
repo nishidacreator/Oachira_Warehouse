@@ -1,0 +1,93 @@
+
+<div>
+  <mat-card *ngIf="trip">
+    <div class="row">
+      <div class="col">
+        <mat-card-header>
+          <mat-card-title> TRIP({{trip.route.routeName}}) </mat-card-title>
+        </mat-card-header>
+      </div>
+
+      <div class="col">
+        <mat-card-header>
+          <button mat-mini-fab color="primary" type="button" style="margin-left: auto;" aria-label="Example icon button with a home icon"
+          class="d-block mr-0 ml-auto" (click)="viewTrip()" (mouseover)="showName('list')" (mouseout)="hideName()">
+            <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'list')">list</mat-icon>
+            <div class="icon_name" *ngIf="isHovered && hoveredButton === 'list'">View</div>
+          </button>&nbsp;
+
+          <button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon"
+          class="d-block mr-0 ml-auto" onclick="history.back()" (mouseover)="showName('back')" (mouseout)="hideName()">
+            <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'back')">exit_to_app</mat-icon>
+            <div class="icon_name" *ngIf="isHovered && hoveredButton === 'back'">Back</div>
+          </button>
+        </mat-card-header>
+      </div>
+    </div><br>
+    <mat-card-content class="table-container">
+      <div class="row">
+
+        <div class="col">
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Date :<span style="font-weight: normal;"> {{trip.date | date:'yyyy/MM/dd'}}</span></h4>
+          </mat-list>
+
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Driver :<span style="font-weight: normal;"> {{trip.driver}}</span></h4>
+          </mat-list>
+
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Salesman :<span style="font-weight: normal;"> {{trip.salesMan}}</span></h4>
+          </mat-list>
+
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Status :<span style="font-weight: normal;"> {{trip.status}}</span></h4>
+          </mat-list>
+        </div>
+
+        <div class="col">
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Vehicle : <span style="font-weight: normal;">{{trip.route.vehicle.registrationNumber}} </span></h4>
+          </mat-list>
+
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;RouteDriver : <span style="font-weight: normal;">{{trip.route.driver.name}} </span></h4>
+          </mat-list>
+
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;RouteSalesMan :  <span style="font-weight: normal;">{{trip.route.salesMan.name}}</span></h4>
+          </mat-list>
+        </div>
+      </div>
+
+
+    </mat-card-content>
+    <mat-card-header>
+      <mat-card-title> DETAILS </mat-card-title>
+    </mat-card-header>
+    <br>
+
+    <mat-card-content>
+      <table class="full-width-1">
+        <thead>
+          <tr>
+            <th>Customer</th>
+            <th>InvoiceNo</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of trip?.tripDetails; let i=index">
+            <td>{{item.customer.name}}</td>
+            <td>{{item.invoiceNo}}</td>
+            <td>{{item.amount}}</td>
+
+          </tr>
+
+        </tbody>
+      </table>
+      <br>
+</mat-card-content>
+</mat-card>
+</div>

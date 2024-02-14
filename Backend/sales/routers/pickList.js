@@ -6,6 +6,9 @@ const Route = require('../models/route');
 const Customer = require('../models/customer');
 const PickListDetails = require('../models/pickListDetails');
 const User = require('../../users/models/user');
+const Product = require('../../products/models/product');
+const SecondaryUnit = require('../../products/models/secondaryUnit');
+const CustomerGrade = require('../models/customerGrade');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
@@ -73,7 +76,12 @@ router.get('/:id', authenticateToken,async(req,res)=>{
       const result = await PickList.findOne(
         {
           where : {id: req.params.id},
-          include: [Route, Customer, 'pickSalesExecutive', PickListDetails]
+          include: [
+            {model : PickListDetails, 
+              include: [Product, SecondaryUnit]
+            }, {model: Customer, include: [CustomerGrade]}, 
+            Route, 'pickSalesExecutive'
+          ]
         });
       res.send(result);
       
@@ -104,27 +112,42 @@ router.delete('/:id', authenticateToken, async(req,res)=>{
 })
 
 router.patch('/:id', authenticateToken, async(req,res)=>{
-    try {
-        Route.update(req.body, {
-            where: { id: req.params.id }
-          })
-            .then(num => {
-              if (num == 1) {
-                res.send({
-                  message: "Pick List was updated successfully."
-                });
-              } else {
-                res.send({
-                  message: `Cannot update Pick List with id=${id}. Maybe Pick List was not found or req.body is empty!`
-                });
-              }
-            })
-      } catch (error) {
-        res.status(500).json({
-          status: "error",
-          message: error.message,
+  try {
+    PickList.update(req.body, {
+        where: { id: req.params.id }
+      })
+        .then(num => {
+          if (num == 1) {
+            res.send({
+              message: "PickList was updated successfully."
+            });
+          } else {
+            res.send({
+              message: `Cannot update PickList with id=${id}. Maybe PickList was not found or req.body is empty!`
+            });
+          }
+        })
+
+        const pickId = req.params.id;
+
+        const result = await PickListDetails.destroy({
+          where: { pickListId: pickId},
+          force: true,
         });
-      }
+
+        let list = req.body.products;
+        for(let i = 0; i < list.length; i++){
+          list[i].pickListId = pickId;
+        }
+
+        let pd = await PickListDetails.bulkCreate(list)
+        
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: error.message,
+    });
+  }
 })
 
 module.exports = router;
