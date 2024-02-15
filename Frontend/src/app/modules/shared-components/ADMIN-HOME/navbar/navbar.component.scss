@@ -1,72 +1,67 @@
-.sidenav-container {
-  height: 100%;
-}
-
-.sidenav {
-  width: 95px;
-}
-
-.sidenav.rotated {
-  width: 200px;
-}
-
-.sidenav .mat-toolbar {
-  background: inherit;
-}
-
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
-
 .nav_main{
   position: relative;
   margin: 0px 0px 0px auto;
-  margin-right: 10px;
   float: left;
   display: flex;
+  color: white;
+}
+.search-box input[type="text"]::placeholder {
+  /* Your placeholder styles here */
+  color: #999; /* Placeholder text color */
+  // font-style: italic; /* Placeholder text style */
+  font-family: Arial, sans-serif; /* Change the font family */
 }
 
-.nav_username{
-  position: relative;
-  margin-right: 5px;
-  margin-left: 20px;
-  float: right;
+.top-navbar {
+  background-color: #fff; /* Set your desired background color */
+  height: 64px; /* Set the height of the top navbar as needed */
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+
 }
 
-mat-sidenav-container {
-  height: 100%;
-
-  mat-sidenav{
-
-    mat-toolbar{
-      .chevron_icon{
-        transition: 300ms ease-in-out;
-        transform: rotate(0deg);
-        right: 0;
-        float: right;
-        position: absolute;
-      }
-
-      .chevron_icon.rotated{
-        transform: rotate(180deg);
-      }
-    }
-  }
+.top-navbar-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
 }
 
-.mat-list-item.active{
-  color: rgb(57, 120, 55);
+.mat-list-item {
+  margin-right: 16px; /* Adjust the spacing between menu items */
 }
 
-.active {
-  background-color: #cbecbb;
+
+.bg-blue-900{
+  padding-top:10px;
+  padding-right: 10px;
+  padding-left: 0px;
+}
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Equal distance between buttons */
+  align-items: center; /* Center vertically within the container */
 }
 
-mat-toolbar{
-  cursor: pointer;
+.button-container button {
+  display: flex;
+  align-items: center; /* Center horizontally within each button */
+  color: rgb(10, 111, 189); /* Text color for buttons */
+  margin-right: 6px; /* Spacing between icons and text */
+}
+
+.button-container button .material-icons {
+  font-size: 25px;
+}
+
+
+.menu-button:hover + mat-menu {
+  display: block;
+}
+
+.mat-menu-panel {
+  display: none;
+  position: absolute;
 }
 
 .search-box{
@@ -89,7 +84,7 @@ mat-toolbar{
   position: absolute;
   height: 40px;
   width: 40px;
-  background: rgb(57, 120, 55);
+  background: #068938;
   right: 5px;
   top: 50%;
   transform: translateY(-50%);
@@ -99,4 +94,62 @@ mat-toolbar{
   color: #fff;
   font-size: 22px;
   transition: all 0.4 ease;
+}
+
+.imgs{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  justify-content: space-evenly;
+}
+
+.sidenav-container {
+  background-color: white;
+}
+
+
+
+////
+///
+/* Style for the dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Style for the dropdown button */
+.dropbtn {
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Style for the dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 60px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Style for the list items in the dropdown */
+.dropdown-content a {
+  display: block;
+  padding: 10px 10px;
+  text-decoration: none;
+  color: black;
+}
+
+/* Change the background color of the dropdown content on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown content when hovering over the dropdown button */
+.dropdown:hover .dropdown-content {
+  display: block;
 }
