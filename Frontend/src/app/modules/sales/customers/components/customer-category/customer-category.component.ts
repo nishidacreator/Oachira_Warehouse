@@ -51,6 +51,9 @@ export class CustomerCategoryComponent implements OnInit {
 
   submit!: Subscription;
   onSubmit(){
+    if(!this.customerCategoryForm.valid){
+      return alert('Please fill the form first')
+    }
     this.submit = this.salesService.addCustomerCategory(this.customerCategoryForm.getRawValue()).subscribe((res)=>{
       this._snackBar.open("Customer category added successfully...","" ,{duration:3000})
       this.clearControls()

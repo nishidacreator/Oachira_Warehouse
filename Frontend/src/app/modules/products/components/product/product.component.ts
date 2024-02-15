@@ -453,6 +453,9 @@ export class ProductComponent implements OnInit {
   submit!: Subscription
   uploadSubscription!: Subscription;
   onSubmit(){
+    if(!this.productForm.valid){
+      return alert('Please fill the form first')
+    }
     if(this.file){
       this.uploadSubscription = this.productService.uploadProductImage(this.file).subscribe(res=>{
         this.productForm.patchValue({

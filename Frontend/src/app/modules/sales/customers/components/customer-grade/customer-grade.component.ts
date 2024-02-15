@@ -50,6 +50,9 @@ export class CustomerGradeComponent implements OnInit {
 
   submit!: Subscription
   onSubmit(){
+    if(!this.customerGradeForm.valid){
+      return alert('Please fill the form first')
+    }
     this.submit = this.salesService.addCustomerGrade(this.customerGradeForm.getRawValue()).subscribe((res)=>{
       this._snackBar.open("Customer Grade added successfully...","" ,{duration:3000})
       this.clearControls()

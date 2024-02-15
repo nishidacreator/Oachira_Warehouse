@@ -68,7 +68,7 @@ router.get('/', authenticateToken, async (req, res) => {
       res.send(users);
     }
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.send(error.message);
   }
 });
 
@@ -89,7 +89,7 @@ router.delete('/:id', authenticateToken, async(req,res)=>{
       
           res.status(204).json();
         }  catch (error) {
-        res.send({error: error.message})
+          res.send(error.message);
     }
     
 })
@@ -135,10 +135,7 @@ router.patch('/:id', authenticateToken, async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(500).json({
-      status: "error",
-      message: error.message,
-    });
+    res.send(error.message);
   }
 });
 
@@ -151,8 +148,7 @@ router.get('/:id', authenticateToken, async (req, res) => {
   
     res.send(distributors)
   } catch (error) {
-    console.error("Error in distributor retrieval:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.send(error.message);
   }
 });
 
@@ -164,10 +160,7 @@ router.patch('/statusupdate/:id', authenticateToken, async(req,res)=>{
     await result.save();
     res.send(result);
     } catch (error) {
-      res.status(500).json({
-        status: "error",
-        message: error.message,
-      });
+      res.send(error.message);
     }
 })
 

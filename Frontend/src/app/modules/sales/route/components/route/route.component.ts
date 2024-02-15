@@ -370,6 +370,9 @@ export class RouteComponent implements OnInit {
   submitted = false;
   submit!: Subscription;
   onSubmit(){
+    if(!this.routeForm.valid){
+      return alert('Please fill the form first')
+    }
     let data ={
       routeName: this.routeForm.get('routeName')?.value,
       vehicleId :this.routeForm.get('vehicleId')?.value,

@@ -50,6 +50,9 @@ export class RoleComponent implements OnInit {
 
   submit!: Subscription;
   onSubmit(){
+    if(!this.roleForm.valid){
+      return alert('Please fill the form first')
+    }
     this.submit = this.userService.addRole(this.roleForm.getRawValue()).subscribe((res)=>{
       this._snackBar.open("Role added successfully...","" ,{duration:3000})
       this.getRoles()

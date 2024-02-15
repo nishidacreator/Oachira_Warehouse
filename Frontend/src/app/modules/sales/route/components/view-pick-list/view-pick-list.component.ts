@@ -3,6 +3,9 @@ import { SalesService } from '../../../sales.service';
 import { Subscription } from 'rxjs';
 import { PickList } from '../../models/pick-list';
 import { Router } from '@angular/router';
+import { DeleteDialogueComponent } from 'src/app/modules/shared-components/delete-dialogue/delete-dialogue.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-view-pick-list',
@@ -11,14 +14,15 @@ import { Router } from '@angular/router';
 })
 export class ViewPickListComponent implements OnInit, OnDestroy {
 
-  constructor(private salesService: SalesService, private router: Router) { }
+  constructor(private salesService: SalesService, private router: Router, private dialog: MatDialog,
+    private _snackBar: MatSnackBar) { }
 
   ngOnDestroy(): void {
-    this.plSub?.unsubscribe();
+    // this.plSub?.unsubscribe();
   }
 
   ngOnInit(): void {
-    this.getPickList();
+    // this.getPickList();
   }
 
   isHovered = false;
@@ -33,51 +37,6 @@ export class ViewPickListComponent implements OnInit, OnDestroy {
     this.hoveredButton = null;
   }
 
-  addPickList(){
-
-  }
-
-  plSub!: Subscription
-  pickList : PickList[] = [];
-  getPickList(){
-    this.plSub = this.salesService.getPickList().subscribe(x=>{
-      this.pickList = x;
-      console.log(x);
-      this.filtered = this.pickList
-    })
-  }
-
-  filtered!: any[];
-  applyFilter(event: Event): void {
-    if((event.target as HTMLInputElement).value.trim() === '') {
-      this.getPickList();
-    }else{
-      const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-      this.filtered = this.pickList.filter(element =>
-        element.route.routeName.toLowerCase().includes(filterValue)
-        || element.id.toString().includes(filterValue)
-        || element.status.toLowerCase().includes(filterValue)
-        || element.customer.name.toLowerCase().includes(filterValue)
-        ||  this.formatDate(element.date).includes(filterValue)
-        ||  this.formatDate(element.deliveryDate).includes(filterValue)
-      );
-    }
-  }
-
-  formatDate(date: Date): string {
-    // Assuming date is in a standard string format, modify this according to your date format
-    const dateObject = new Date(date);
-    return dateObject.toLocaleDateString();
-  }
-
-  viewPickListDetails(id: number){
-    this.router.navigateByUrl('login/sales/routesale/viewpicklist/details/'+id)
-  }
-
-  editPickList(id: number){
-    this.router.navigateByUrl('/login/sales/routesale/picklist/'+id)
-  }
-
-  deletePickList(id: number){}
+ 
 
 }

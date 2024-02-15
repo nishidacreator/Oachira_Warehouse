@@ -1,34 +1,34 @@
 const express = require('express');
 const router = express.Router();
 const authenticateToken = require('../../middleware/authorization');
-const PickListDetails = require('../models/pickListDetails');
+const RouteSODetails = require('../models/routeSODetails');
 const Route = require('../models/route');
 const Product = require('../../products/models/product');
-const PickList = require('../models/pickList');
+const RouteSO = require('../models/routeSO');
 const Customer = require('../models/customer');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
             const {products} = req.body;
 
-            const result = await PickListDetails.bulkCreate(products)
+            const result = await RouteSODetails.bulkCreate(products)
 
             await result.save();
 
             res.send(result);
 
     } catch (error) {
-        res.send(error);
+      res.send(error.message);
     }
 })
 
 router.get('/:id', authenticateToken,async(req,res)=>{
 
     try {
-        const result = await PickListDetails.findAll(
-          {where :{pickListId : req.params.id},
+        const result = await RouteSODetails.findAll(
+          {where :{routeSOId : req.params.id},
           include: [{
-            model : PickList, 
+            model : RouteSO, 
             include: {
               model: Customer
             }}, {
@@ -44,10 +44,10 @@ router.get('/:id', authenticateToken,async(req,res)=>{
 router.get('/byid/:id', authenticateToken, async(req,res)=>{
 
   try {
-      const result = await PickListDetails.findOne(
+      const result = await RouteSODetails.findOne(
         {where :{id : req.params.id},
         include: [{
-          model : PickList, 
+          model : RouteSO, 
           include: {
             model: Customer
           }}, {
@@ -60,16 +60,15 @@ router.get('/byid/:id', authenticateToken, async(req,res)=>{
   }  
 })
 
-router.get('/byproductid/:id', authenticateToken, async(req,res)=>{
+router.get('/product/:id', authenticateToken, async(req,res)=>{
 
   try {
-      const result = await PickListDetails.findAll(
+      const result = await RouteSODetails.findAll(
         {where :{productId : req.params.id},
-        include: [{model : PickList, 
-          include: [Customer, Route, 'salesexecutive'],
-          }, {
-          model: Product
-        }]});
+        include: [
+          { model: RouteSO, include: [Customer, Route, 'pickSalesExecutive'] }, 
+          { model: Product }
+        ]});
       res.send(result);
       
   } catch (error) {
@@ -81,7 +80,7 @@ router.get('/byproductid/:id', authenticateToken, async(req,res)=>{
 router.delete('/:id', authenticateToken, async(req,res)=>{
     try {
 
-        const result = await PickListDetails.destroy({
+        const result = await RouteSODetails.destroy({
             where: { id: req.params.id },
             force: true,
         });
@@ -94,14 +93,14 @@ router.delete('/:id', authenticateToken, async(req,res)=>{
           }    
           res.status(204).json();
         }  catch (error) {
-        res.send({error: error.message})
+          res.send(error.message);
     }
     
 })
 
 router.patch('/:id', authenticateToken, async(req,res)=>{
     try {
-        PickListDetails.update(req.body, {
+        RouteSODetails.update(req.body, {
             where: { id: req.params.id }
           })
             .then(num => {
@@ -116,10 +115,7 @@ router.patch('/:id', authenticateToken, async(req,res)=>{
               }
             })
       } catch (error) {
-        res.status(500).json({
-          status: "error",
-          message: error.message,
-        });
+        res.send(error.message);
       }
 })
 

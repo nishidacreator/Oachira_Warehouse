@@ -1,0 +1,73 @@
+<mat-card class="container">
+  <div class="row">
+    <div class="col">
+      <mat-card-header>
+        <mat-card-title> TRIP </mat-card-title>
+      </mat-card-header>
+    </div>
+
+    <div class="col">
+      <mat-card-header>
+        <button (mouseover)="showName('PickList')" (mouseout)="hideName()" mat-mini-fab type="button" style="margin-left: auto;"
+        aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" (click)="addTrip()">
+          <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'PickList')">playlist_add</mat-icon>
+          <div class="icon_name" *ngIf="isHovered && hoveredButton === 'PickList'">Add</div>
+        </button>
+
+        <button (mouseover)="showName('Map')" (mouseout)="hideName()" mat-mini-fab type="button" style="margin-left: 10px;"
+        aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" (click)="viewMap()">
+          <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'Map')">map</mat-icon>
+          <div class="icon_name" *ngIf="isHovered && hoveredButton === 'Map'">Map</div>
+        </button>
+        <!-- <div *ngIf="isHovered">Add Purchase Request</div> -->
+
+        <button (mouseover)="showName('Back')" (mouseout)="hideName()" mat-mini-fab color="primary" type="button" style="margin-left: 10px;"
+          aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onclick="history.back()">
+          <mat-icon *ngIf="!isHovered || (isHovered && hoveredButton != 'Back')">exit_to_app</mat-icon>
+          <div class="icon_name" *ngIf="isHovered && hoveredButton === 'Back'">Back</div>
+        </button>
+      </mat-card-header>
+    </div>
+  </div>
+
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+
+  <table class="styled-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Route</th>
+            <th>Driver</th>
+            <th>Salesman</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Manage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let element of filtered">
+            <td>{{element.id}}</td>
+            <td>{{element.route.routeName}}</td>
+            <td>{{element.driver}}</td>
+            <td>{{element.salesMan}}</td>
+            <td>{{element.date | date: 'dd/MM/yyyy'}}</td>
+            <td>{{element.status}}</td>
+            <td>
+              <mat-icon (click)="viewTrip(element.id)">open_in_new</mat-icon>
+              <mat-icon (click)="editTrip(element.id)" >edit</mat-icon>
+              <mat-icon (click)="deleteTrip(element.id)">delete</mat-icon>
+            </td>
+            <!-- <td>
+
+              <mat-icon (click)="addPurchaseOrder(element.id)">post_add</mat-icon>
+            </td> -->
+        </tr>
+    </tbody>
+  </table>
+
+
+</mat-card>
+

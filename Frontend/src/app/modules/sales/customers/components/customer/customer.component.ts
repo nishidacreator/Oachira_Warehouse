@@ -117,6 +117,9 @@ export class CustomerComponent implements OnInit {
 
   submit!: Subscription;
   onSubmit(){
+    if(!this.customerForm.valid){
+      return alert('Please fill the form first')
+    }
     let data = {
       name: this.customerForm.getRawValue().name,
       customerCategoryId : this.customerForm.getRawValue().customerCategoryId,

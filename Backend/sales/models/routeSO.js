@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../utils/db');
 
-const PickList = sequelize.define('pickList',{
+const RouteSO = sequelize.define('routeSO',{
     routeId : {type : DataTypes.INTEGER, allowNull : false},
     customerId  : {type : DataTypes.INTEGER, allowNull : false},
     date : {type : DataTypes.DATEONLY, allowNull : false, defaultValue : new Date()},
@@ -14,6 +14,6 @@ const PickList = sequelize.define('pickList',{
     timestamps: false
 })
 
-module.exports = PickList;
+module.exports = RouteSO;
 
 

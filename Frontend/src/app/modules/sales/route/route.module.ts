@@ -15,6 +15,14 @@ import { TripComponent } from './components/trip/trip.component';
 import { PickListComponent } from './components/pick-list/pick-list.component';
 import { ViewPickListComponent } from './components/view-pick-list/view-pick-list.component';
 import { ViewPickListDetailsComponent } from './components/view-pick-list-details/view-pick-list-details.component';
+import { ViewTripComponent } from './components/view-trip/view-trip.component';
+import { ViewTripDetailsComponent } from './components/view-trip-details/view-trip-details.component';
+import { RouteMapComponent } from './components/route-map/route-map.component';
+import { TripListComponent } from './components/trip-list/trip-list.component';
+import { RouteOrderComponent } from './components/route-order/route-order.component';
+import { ViewRouteOrderComponent } from './components/view-route-order/view-route-order.component';
+import { ViewRouteOrderDetailsComponent } from './components/view-route-order-details/view-route-order-details.component';
+import { RouteEntryComponent } from './components/route-entry/route-entry.component';
 
 
 @NgModule({
@@ -29,7 +37,15 @@ import { ViewPickListDetailsComponent } from './components/view-pick-list-detail
     TripComponent,
     PickListComponent,
     ViewPickListComponent,
-    ViewPickListDetailsComponent
+    ViewPickListDetailsComponent,
+    ViewTripComponent,
+    ViewTripDetailsComponent,
+    RouteMapComponent,
+    TripListComponent,
+    RouteOrderComponent,
+    ViewRouteOrderComponent,
+    ViewRouteOrderDetailsComponent,
+    RouteEntryComponent
   ],
   imports: [
     CommonModule,
