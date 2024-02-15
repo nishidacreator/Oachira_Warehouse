@@ -1,13 +1,14 @@
 <mat-sidenav-container autosize class="sidenav-container">
 
   <mat-sidenav-content>
-    <mat-toolbar style="background-color: rgb(33,142,67); color: white;" >
-      <img style="height: 100%;" src="../../../../assets/img/oachira_logo.png" routerLink="home">
+    <!-- <mat-toolbar style="background-color: rgb(24, 139, 32); color: white;" > -->
+      <mat-toolbar style="background-color: #023e82; color: white;" >
+      <img style="height: 100%;" src="../../../../../assets/img/oachira_white.png" routerLink="home">
 
-      <div class="search-box">
+      <!-- <div class="search-box">
         <input type="text" #searchInput placeholder="Search Product">
         <button class='bx bx-search' type="button" (click)="OpenMasterSearchPage(searchInput.value)"></button>
-      </div>
+      </div> -->
       <!-- <div class="nav_main"> -->
         <h6 class="nav_main"> Welcome {{userName}}</h6> &nbsp;&nbsp;
         <span class="material-icons">notifications</span> &nbsp;&nbsp;
@@ -16,7 +17,7 @@
         <!-- <mat-icon>settings</mat-icon> -->
         <!-- </div> -->
     </mat-toolbar>
-    <div class="bg-green-700 button-container" style="background: #068938;">
+    <div class="bg-green-700 button-container" style="background: #023e82">
 
       <div class="dropdown">
         <button class="dropbtn" [routerLink]="'/admin'"><span class="material-icons"
@@ -62,7 +63,7 @@
             style="color:white; font-size: 25px; margin-right: 6px;">support_agent</span><span
             style="color: white; margin-right: 6px;">ROUTE</span></button>
         <div class="dropdown-content">
-          <a routerLink="sales/viewpicklist" >
+          <a routerLink="sales/routesale/viewrouteorder" >
             <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
            Sales Order
           </a>
