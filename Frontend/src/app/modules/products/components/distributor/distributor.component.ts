@@ -143,6 +143,9 @@ export class DistributorComponent implements OnInit {
   submit!: Subscription
   uploadSubscription!: Subscription;
   onSubmit(){
+    if(!this.distributorForm.valid){
+      return alert('Please fill the form first')
+    }
     let form = this.distributorForm.getRawValue().products;
     let products = []
     if (form !== null) {

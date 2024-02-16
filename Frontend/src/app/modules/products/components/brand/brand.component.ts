@@ -236,6 +236,9 @@ export class BrandComponent implements OnInit {
 
   edit!:Subscription;
   editFunction(){
+    if(!this.brandForm.valid){
+      return alert('Please fill the form first')
+    }
     if(this.file){
       let image = {
         fileUrl: this.imageUrl,

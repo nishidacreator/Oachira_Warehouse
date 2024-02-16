@@ -57,8 +57,8 @@ const customerGradeData = require('./dataSource/routeSale/customerGrade.json');
 
 const vehicleTypeData = require('./dataSource/vehicleType.json');
 const vehilceData = require('./dataSource/vehicle.json');
-const PickList = require('../sales/models/pickList');
-const PickListDetails = require('../sales/models/pickListDetails');
+const RouteSO = require('../sales/models/routeSO');
+const RouteSODetails = require('../sales/models/routeSODetails');
 
 
 
@@ -216,23 +216,23 @@ async function syncModel(){
     Route.hasMany(TripDay, {foreignKey : 'routeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     TripDay.belongsTo(Route)
 
-    User.hasMany(PickList, {foreignKey : 'salesExecutiveId', as: 'pickSalesExecutive', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    PickList.belongsTo(User, {foreignKey : 'salesExecutiveId', as: 'pickSalesExecutive'})
+    User.hasMany(RouteSO, {foreignKey : 'salesExecutiveId', as: 'pickSalesExecutive', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    RouteSO.belongsTo(User, {foreignKey : 'salesExecutiveId', as: 'pickSalesExecutive'})
 
-    Route.hasMany(PickList, {foreignKey : 'routeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    PickList.belongsTo(Route, {foreignKey : 'routeId'})
+    Route.hasMany(RouteSO, {foreignKey : 'routeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    RouteSO.belongsTo(Route, {foreignKey : 'routeId'})
 
-    Customer.hasMany(PickList, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    PickList.belongsTo(Customer, {foreignKey : 'customerId'})
+    Customer.hasMany(RouteSO, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    RouteSO.belongsTo(Customer, {foreignKey : 'customerId'})
 
-    PickList.hasMany(PickListDetails, {foreignKey : 'pickListId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    PickListDetails.belongsTo(PickList, {foreignKey : 'pickListId'})
+    RouteSO.hasMany(RouteSODetails, {foreignKey : 'routeSOId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    RouteSODetails.belongsTo(RouteSO, {foreignKey : 'routeSOId'})
 
-    Product.hasMany(PickListDetails, {foreignKey : 'productId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    PickListDetails.belongsTo(Product, {foreignKey : 'productId'})
+    Product.hasMany(RouteSODetails, {foreignKey : 'productId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    RouteSODetails.belongsTo(Product, {foreignKey : 'productId'})
 
-    SecondaryUnit.hasMany(PickListDetails, {foreignKey : 'secondaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    PickListDetails.belongsTo(SecondaryUnit, {foreignKey : 'secondaryUnitId'})
+    SecondaryUnit.hasMany(RouteSODetails, {foreignKey : 'secondaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    RouteSODetails.belongsTo(SecondaryUnit, {foreignKey : 'secondaryUnitId'})
 
     await sequelize.sync({alter: true})
 

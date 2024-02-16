@@ -144,6 +144,9 @@ export class RouteDetailsComponent implements OnInit, OnDestroy {
 
   submit!: Subscription;
   onSubmit(){
+    if(!this.routeDetailsForm.valid){
+      return alert('Please fill the form first')
+    }
     this.submit = this.salesService.addRouteDetails(this.routeDetailsForm.getRawValue()).subscribe(route => {
       this.clearControls();
       this._snackBar.open("Route Details added successfully...","" ,{duration:3000})

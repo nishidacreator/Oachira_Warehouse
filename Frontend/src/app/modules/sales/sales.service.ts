@@ -11,10 +11,10 @@ import { Vehicle } from './route/models/vehicle';
 import { VehicleType } from './route/models/vehicle-type';
 import { Route } from './route/models/route';
 import { TripDays } from './route/models/trip-days';
-import { PickList } from './route/models/pick-list';
 import { RouteDays } from './route/models/route-days';
 import { Trip } from './route/models/trip';
-import { PickListDetails } from './route/models/pick-list-details';
+import { RouteOrder } from './route/models/route-order';
+import { RouteOrderDetails } from './route/models/route-order-details';
 
 @Injectable({
   providedIn: 'root'
@@ -298,39 +298,39 @@ export class SalesService {
     return this._http.patch<TripDays>(this.url+'tripdays/'+id, data);
   }
 
-  addPickList(data : any){
-    return this._http.post(this.url +'picklist', data);
+  addRouteOrder(data : any){
+    return this._http.post(this.url +'routeorder', data);
   }
 
-  getPickList(): Observable<PickList[]>{
-    return this._http.get<PickList[]>(this.url +'picklist');
+  getRouteOrder(): Observable<RouteOrder[]>{
+    return this._http.get<RouteOrder[]>(this.url +'routeorder');
   }
 
-  getPaginatedPickList( search:String, page: number, pageSize: number): Observable<PickList[]>{
-    return this._http.get<PickList[]>(this.url + `picklist?search=${search}&page=${page}&pageSize=${pageSize}`);
+  getPaginatedRouteOrder( search:String, page: number, pageSize: number): Observable<RouteOrder[]>{
+    return this._http.get<RouteOrder[]>(this.url + `routeorder?search=${search}&page=${page}&pageSize=${pageSize}`);
   }
 
-  getPickListById(id: number): Observable<PickList>{
-    return this._http.get<PickList>(this.url +'picklist/'+id);
+  getRouteOrderById(id: number): Observable<RouteOrder>{
+    return this._http.get<RouteOrder>(this.url +'routeorder/'+id);
   }
 
-  getPickListByRouteId(id: number): Observable<PickList[]>{
-    return this._http.get<PickList[]>(this.url +'picklist/byrouteid/'+id);
+  getRouteOrderByRouteId(id: number): Observable<RouteOrder[]>{
+    return this._http.get<RouteOrder[]>(this.url +'routeorder/byrouteid/'+id);
   }
 
-  deletePickList(id : Number){
-    return this._http.delete(this.url+'picklist/'+ id);
+  deleteRouteOrder(id : Number){
+    return this._http.delete(this.url+'routeorder/'+ id);
   }
 
-  updatePickList(id:Number, data:any): Observable<PickList>{
-    return this._http.patch<PickList>(this.url+'picklist/'+id, data);
+  updateRouteOrder(id:Number, data:any): Observable<RouteOrder>{
+    return this._http.patch<RouteOrder>(this.url+'routeorder/'+id, data);
   }
 
-  getPickListDetailsByProductId(id: number){
-    return this._http.get<PickListDetails[]>(this.url+'picklistdetails/product/'+id);
+  getRouteOrderDetailsByProductId(id: number){
+    return this._http.get<RouteOrderDetails[]>(this.url+'routeorderdetails/product/'+id);
   }
 
-  getPickListDetails(id: number){
+  getRouteOrderDetails(id: number){
 
   }
 

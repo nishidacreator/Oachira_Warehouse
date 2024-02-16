@@ -15,7 +15,7 @@ router.post('/', authenticateToken, async (req, res) => {
             res.send(secondaryUnit);
 
     } catch (error) {
-        res.send(error);
+        res.send(error.message);
     }
 })
 
@@ -70,7 +70,7 @@ router.delete('/:id', authenticateToken, async(req,res)=>{
       
           res.status(204).json();
         }  catch (error) {
-        res.send({error: error.message})
+          res.send(error.message);
     }
     
 })
@@ -92,10 +92,7 @@ router.patch('/:id', authenticateToken, async(req,res)=>{
               }
             })
       } catch (error) {
-        res.status(500).json({
-          status: "error",
-          message: error.message,
-        });
+        res.send(error.message);
       }
 })
 
@@ -109,10 +106,7 @@ router.patch('/statusupdate/:id', authenticateToken, async(req,res)=>{
     await result.save();
     res.send(result);
     } catch (error) {
-      res.status(500).json({
-        status: "error",
-        message: error.message,
-      });
+      res.send(error.message);
     }
 })
 module.exports = router;

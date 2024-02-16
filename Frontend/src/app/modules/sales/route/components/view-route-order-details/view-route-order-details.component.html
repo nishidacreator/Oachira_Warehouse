@@ -1,0 +1,105 @@
+
+<div>
+  <mat-card *ngIf="routeOrder">
+    <div class="row">
+      <div class="col">
+        <mat-card-header>
+          <mat-card-title> ROUTE SALES ORDER ({{routeOrder.customer.name | uppercase}}) </mat-card-title>
+        </mat-card-header>
+      </div>
+
+      <div class="col">
+        <mat-card-header>
+          <button mat-mini-fab color="primary" type="button" style="margin-left: auto;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onclick="history.back()">
+            <mat-icon>exit_to_app</mat-icon>
+          </button>
+        </mat-card-header>
+      </div>
+    </div><br>
+    <mat-card-content class="table-container">
+      <div class="row">
+        <div class="col">
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Phone Number :<span *ngIf="routeOrder.customer.customerPhones" style="font-weight: normal;">{{routeOrder.customer.customerPhones[0].phoneNumber}}</span></h4>
+          </mat-list>
+
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Address 1 :<span style="font-weight: normal;"> {{routeOrder.customer.address1}}</span></h4>
+          </mat-list>
+
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Address 2 : <span style="font-weight: normal;">{{routeOrder.customer.address2}}</span></h4>
+          </mat-list>
+
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;State :<span style="font-weight: normal;"> {{routeOrder.customer.state}}</span></h4>
+          </mat-list>
+        </div>
+        <div class="col">
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;SubledgerCode : <span style="font-weight: normal;">{{routeOrder.customer.subledgerCode}}</span></h4>
+          </mat-list>
+
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;GstNo :<span style="font-weight: normal;"> {{routeOrder.customer.gstNo}}</span></h4>
+          </mat-list>
+
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;LoyaltyPoint :<span style="font-weight: normal;"> {{routeOrder.customer.loyaltyPoint}}</span></h4>
+          </mat-list>
+
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;CustomerGrade :<span style="font-weight: normal;"> {{routeOrder.customer.customerGrade.grade}}</span></h4>
+          </mat-list>
+        </div>
+        <div class="col">
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Date :<span style="font-weight: normal;"> {{routeOrder.date | date:'yyyy/MM/dd'}}</span></h4>
+          </mat-list>
+
+
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Expexted Date : <span style="font-weight: normal;">{{routeOrder.deliveryDate | date:'yyyy/MM/dd'}}</span></h4>
+          </mat-list>
+
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Prepared By :<span style="font-weight: normal;"> {{routeOrder.pickSalesExecutive.name}}</span></h4>
+          </mat-list>
+
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Status :<span style="font-weight: normal;"> {{routeOrder.status}}</span></h4>
+          </mat-list>
+        </div>
+      </div>
+
+
+    </mat-card-content>
+    <mat-card-header>
+      <mat-card-title> DETAILS </mat-card-title>
+    </mat-card-header>
+    <br>
+
+    <mat-card-content>
+      <table class="full-width-1">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>SecondaryUnit</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of routeOrder?.routeSODetails; let i=index">
+            <td>{{item.product.productName}}</td>
+            <td>{{item.secondaryUnit.secondaryUnitName}}</td>
+            <td>{{item.quantity}}</td>
+
+          </tr>
+
+        </tbody>
+      </table>
+      <br>
+</mat-card-content>
+</mat-card>
+</div>
