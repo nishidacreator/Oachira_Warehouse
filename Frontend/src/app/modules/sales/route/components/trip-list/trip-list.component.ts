@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SalesService } from '../../../sales.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, forkJoin, map } from 'rxjs';
-import { PickListDetails } from '../../models/pick-list-details';
 import { HttpClient } from '@angular/common/http';
 import { ExcelExportService, GridComponent, PageService, PdfExportProperties, PdfExportService, ToolbarService } from '@syncfusion/ej2-angular-grids';
 import { environment } from 'src/environments/environment';
@@ -73,29 +72,29 @@ export class TripListComponent implements OnInit {
   combinedArray: { productId: string; productName: string; count: number }[] =
     [];
   tripSubscription!: Subscription;
-  pickListId: any;
+  routeOrderId: any;
   getTrip() {
     return this.adminService.getTripById(this.tripId).subscribe((res) => {
       this.routeId = res.routeId;
       this.adminService
-        .getPickListByRouteId(this.routeId)
+        .getRouteOrderByRouteId(this.routeId)
         .pipe(map((x) => x.filter((y) => y.status === "pending")))
         .subscribe((res) => {
           const observables = res.map((pick) => {
-            return this.adminService.getPickListDetails(pick.id);
+            return this.adminService.getRouteOrderDetails(pick.id);
           });
 
-          forkJoin(observables).subscribe((pickListDetails) => {
+          forkJoin(observables).subscribe((routeOrderDetails) => {
             const countMap = new Map<any, any>(); // Map to store productId and its count
             const productMap = new Map<any, any>();
 
-            for (let i = 0; i < pickListDetails.length; i++) {
-              // for (let j = 0; j < pickListDetails[i].length; j++) {
-              //   this.productList.push(pickListDetails[i][j]);
+            for (let i = 0; i < routeOrderDetails.length; i++) {
+              // for (let j = 0; j < routeOrderDetails[i].length; j++) {
+              //   this.productList.push(routeOrderDetails[i][j]);
 
-              //   const productId = pickListDetails[i][j].product.id;
-              //   const productCount = pickListDetails[i][j].quantity;
-              //   const productName = pickListDetails[i][j].product.productName;
+              //   const productId = routeOrderDetails[i][j].product.id;
+              //   const productCount = routeOrderDetails[i][j].quantity;
+              //   const productName = routeOrderDetails[i][j].product.productName;
 
               //   if (countMap.has(productId)) {
               //     countMap.set(
@@ -122,7 +121,7 @@ export class TripListComponent implements OnInit {
 
   viewDetails(id: any) {
     this.router.navigateByUrl(
-      "/admin/sales/viewpicklist/triplist/products/view/" +
+      "/admin/sales/viewrouteorder/triplist/products/view/" +
         id +
         "/" +
         this.routeId

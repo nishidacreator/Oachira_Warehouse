@@ -131,6 +131,9 @@ export class TripDaysComponent implements OnInit {
 
   submit!: Subscription;
   onSubmit(){
+    if(!this.tripDaysForm.valid){
+      return alert('Please fill the form first')
+    }
     this.submit = this.salesService.addTripDays(this.tripDaysForm.getRawValue()).subscribe((res)=>{
       this._snackBar.open("Trip days added successfully...","" ,{duration:3000})
       this.clearControls()

@@ -134,6 +134,9 @@ export class StoreComponent implements OnInit {
   submit!: Subscription
   uploadSubscription!: Subscription;
   onSubmit(){
+    if(!this.storeForm.valid){
+      return alert('Please fill the form first')
+    }
     // if(this.file){
     //   this.uploadSubscription = this.storeService.uploadStoreImage(this.file).subscribe(res=>{
     //     this.storeForm.patchValue({

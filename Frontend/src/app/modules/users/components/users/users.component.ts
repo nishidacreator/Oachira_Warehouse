@@ -100,6 +100,9 @@ export class UsersComponent implements OnInit {
 
   submit!: Subscription;
   onSubmit(){
+    if(!this.userForm.valid){
+      return alert('Please fill the form first')
+    }
     this.submit = this.userService.registerUser(this.userForm.getRawValue()).subscribe((res)=>{
       this._snackBar.open("User added successfully...","" ,{duration:3000});
       let data = {

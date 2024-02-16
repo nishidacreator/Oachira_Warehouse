@@ -14,7 +14,7 @@ router.post('/', authenticateToken, async (req, res) => {
             res.send(customerCategory);
 
     } catch (error) {
-        res.send(error);
+      res.send(error.message);
     }
 })
 

@@ -32,7 +32,7 @@ router.post('/', authenticateToken, async (req, res) => {
             res.send(distributor);
 
     } catch (error) {
-        res.send(error);
+        res.send(error.message);
     }
 })
 
@@ -71,7 +71,7 @@ router.get("/", authenticateToken, async (req, res) => {
       res.send(distributor);
     }
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.send(error.message);
   }
 });
 
@@ -92,10 +92,7 @@ router.patch('/:id', authenticateToken, async(req,res)=>{
               }
             })
       } catch (error) {
-        res.status(500).json({
-          status: "error",
-          message: error.message,
-        });
+        res.send(error.message);
       }
 })
 
@@ -104,7 +101,7 @@ router.post('/fileupload', multer.single('file'), async (req, res) => {
       const result = await cloudinary.uploader.upload(req.file.path);
       res.send(result);
   } catch (error) {
-      res.send(error);
+      res.send(error.message);
   }
 });
 
@@ -123,8 +120,7 @@ router.delete('/:id', authenticateToken, async(req,res)=>{
         }
   
       } catch (error) {
-        res.status(500).send(error);
-        console.error(error);
+        res.send(error.message);
       }
 
       const result = await distributors.destroy({
@@ -140,7 +136,7 @@ router.delete('/:id', authenticateToken, async(req,res)=>{
     
         res.status(204).json();
       }  catch (error) {
-      res.send({error: error.message})
+        res.send(error.message);
   }
   
 })
@@ -152,7 +148,7 @@ router.patch('/imageupdate', async (req, res) => {
 
     res.send(result);
   } catch (error) {
-    console.error('Error updating image:', error.message);
+    res.send(error.message);
   }
   })
 
@@ -174,12 +170,10 @@ try {
 
     res.send(distributors);
   } catch (error) {
-    res.status(500).send(error);
-    console.error(error);
+    res.send(error.message);
   }
 } catch (error) {
-  console.error("Error in distributor retrieval:", error);
-  res.status(500).json({ error: "Internal Server Error" });
+  res.send(error.message);
 }
 });
 
@@ -193,10 +187,7 @@ router.patch('/statusupdate/:id', authenticateToken, async(req,res)=>{
     await result.save();
     res.send(result);
     } catch (error) {
-      res.status(500).json({
-        status: "error",
-        message: error.message,
-      });
+      res.send(error.message);
     }
 })
 

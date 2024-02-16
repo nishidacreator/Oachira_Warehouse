@@ -65,6 +65,9 @@ export class GstComponent implements OnInit {
 
   submit!: Subscription;
   onSubmit(){
+    if(!this.gstForm.valid){
+      return alert('Please fill the form first')
+    }
     this.submit = this.productService.addGst(this.gstForm.getRawValue()).subscribe((res)=>{
       this._snackBar.open("Gst added successfully...","" ,{duration:3000})
       let data = {
