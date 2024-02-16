@@ -44,6 +44,14 @@ export class EntryComponent implements OnInit {
   id!: number;
   addStatus!: string;
   editstatus!: boolean;
+  finalMonth: any;
+  finalDay: any;
+  date1 = new Date();
+  currentYear = this.date1.getUTCFullYear();
+  currentMonth = this.date1.getUTCMonth() + 1;
+  currentDay = this.date1.getUTCDate();
+
+  todayDate = "12-01-2011";
   ngOnInit(): void {
     this.getStores();
     this.getUsers();
@@ -55,6 +63,31 @@ export class EntryComponent implements OnInit {
   //   if(requestId){
   //     this.patchData(requestId)
   //   }
+
+  
+  if (this.currentMonth < 10) {
+    this.finalMonth = "0" + this.currentMonth;
+  } else {
+    this.finalMonth = String(this.currentMonth);
+  }
+
+  if (this.currentDay < 10) {
+    this.finalDay = "0" + this.currentDay;
+  } else {
+    this.finalDay = String(this.currentDay);
+  }
+
+  
+  this.todayDate =
+    this.currentYear + "-" + this.finalMonth + "-" + this.finalDay;
+
+  
+  const formattedDate = new Date(this.todayDate);
+;
+
+// this.purchaseEntryForm
+// .get("purachseDate")
+// ?.setValue(formattedDate.toISOString().split("T")[0]);
   }
 
   purchaseEntryForm = this.fb.group({
@@ -462,5 +495,7 @@ export class EntryComponent implements OnInit {
 
 
   }
+
+  
   
 }
