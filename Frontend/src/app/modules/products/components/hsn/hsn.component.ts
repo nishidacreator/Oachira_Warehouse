@@ -144,6 +144,9 @@ export class HsnComponent implements OnInit {
 
   edit!: Subscription;
   editFunction(){
+    if(!this.hsnForm.valid){
+      return alert('Please fill the form first')
+    }
     this.isEdit = false;
 
     let data: any ={

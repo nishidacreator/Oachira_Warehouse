@@ -184,6 +184,9 @@ export class LocationComponent implements OnInit {
 
   edit!:Subscription;
   editFunction(){
+    if(!this.locationForm.valid){
+      return alert('Please fill the form first')
+    }
     let data={
       locationName  : this.locationForm.get('locationName')?.value,
       status : this.locationForm.get('status')?.value,

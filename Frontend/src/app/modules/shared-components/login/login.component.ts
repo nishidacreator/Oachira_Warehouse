@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   submit(){
     this.userService.login(this.loginForm.getRawValue()).subscribe((res)=>{
       this.token = res
+
       // localStorage.setItem('token', this.token.token)
       if(this.token){
         this.setCurrentUser()

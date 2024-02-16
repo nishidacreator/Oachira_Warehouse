@@ -111,6 +111,9 @@ export class CustomerCategoryComponent implements OnInit {
   }
 
   editFunction(){
+    if(!this.customerCategoryForm.valid){
+      return alert('Please fill the form first')
+    }
     this.isEdit = false;
 
     let data: any ={

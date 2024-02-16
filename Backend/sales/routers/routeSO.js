@@ -73,6 +73,7 @@ router.get('/userid/:id', authenticateToken, async(req,res)=>{
 router.get('/:id', authenticateToken,async(req,res)=>{
 
   try {
+    console.log(req.params.id,'reqqqqqqqqqqqqqqqqq');
       const result = await RouteSO.findOne(
         {
           where : {id: req.params.id},
