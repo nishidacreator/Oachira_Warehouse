@@ -36,6 +36,7 @@ const gst = require('../products/routers/gst');
 const distributor = require('../products/routers/distributor');
 const productDistributor = require('../products/routers/productDistributor');
 
+
 app.use('/product', product);
 app.use('/product/category',category);
 app.use('/product/brand',brand);
@@ -55,7 +56,8 @@ app.use('/store/warehouse', warehouse);
 
 const request = require('../purchases/rouers/request');
 const order = require('../purchases/rouers/order');
-// const entry = require('../purchases/rouers/entry');
+const entry = require('../purchases/rouers/entry');
+const entryDetails = require('../purchases/rouers/entryDetails')
 // const requestDetails = require('../purchases/rouers/');
 const orderDetails = require('../purchases/rouers/orderDetails');
 // const entryDetails = require('../purchases/rouers/entryDetails');
@@ -94,8 +96,15 @@ app.use('/sales/routedetails',routeDetails);
 app.use('/sales/trip',trip);
 app.use('/sales/tripdays', tripDays);
 app.use('/sales/tripdetails',tripDetails);
+
+app.use('/sales/picklist', pickList);
+app.use('/sales/picklistdetails', pickListDetails);
+app.use('/purchases/entry',entry)
+app.use('/entryDetails',entryDetails)
+
 app.use('/sales/routeorder', routeSO);
 app.use('/sales/routeorderdetails', routeSODetails);
+
 
 const port = process.env.PORT;
 
