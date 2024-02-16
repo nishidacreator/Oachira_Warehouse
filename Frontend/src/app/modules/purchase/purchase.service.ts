@@ -19,6 +19,7 @@ export class PurchaseService {
     return this._http.post(this.url + 'request', data)
   }
 
+  //PE
   addPE(data : any){
     return this._http.post(this.url + 'entry', data)
 

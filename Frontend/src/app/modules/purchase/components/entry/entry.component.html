@@ -120,8 +120,7 @@
                 <mat-form-field class="full-width">
                   <mat-select placeholder="Commission applicable" formControlName="commission" (change)="onCommissionApplicableChange()">
                   
-                    <!-- <span *ngIf="filteredUser.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55); margin-left: 20px;"
-                      (click)="addUser()">playlist_add</span> -->
+              
                     <mat-option *ngFor="let item of commission" [value]="item.value">
                       {{item.value}}
                     </mat-option>

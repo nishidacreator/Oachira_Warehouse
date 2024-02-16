@@ -14,5 +14,7 @@ export interface EntryDetails {
     salePrice :number,
     quantity :number,
     unitId :number,
+
+    // L
     
 }

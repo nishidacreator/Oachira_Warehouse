@@ -455,8 +455,10 @@ export class EntryComponent implements OnInit {
   onUnloadingApplicable(){
     const commissionControl = this.purchaseEntryForm.get('unloading');
     if (commissionControl) {
-      this.unloadingApplicable = commissionControl.value === 'yes'; // Update this based on your actual values
+      this.unloadingApplicable = commissionControl.value === 'yes'; 
+      
     }
+
 
 
   }

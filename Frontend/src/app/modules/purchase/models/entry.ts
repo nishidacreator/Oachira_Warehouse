@@ -1,5 +1,5 @@
 import { EntryDetails } from "./entryDetails";
-
+// j
 
 export interface Entry{
     id:number,
