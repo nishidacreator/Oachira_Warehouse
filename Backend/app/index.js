@@ -98,8 +98,8 @@ app.use('/sales/trip',trip);
 app.use('/sales/tripdays', tripDays);
 app.use('/sales/tripdetails',tripDetails);
 
-app.use('/sales/picklist', pickList);
-app.use('/sales/picklistdetails', pickListDetails);
+// app.use('/sales/picklist', pickList);
+// app.use('/sales/picklistdetails', pickListDetails);
 app.use('/purchases/entry',entry)
 app.use('/entryDetails',entryDetails)
 
