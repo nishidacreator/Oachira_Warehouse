@@ -328,6 +328,9 @@ export class RouteComponent implements OnInit {
 
   edit!: Subscription;
   editFunction(){
+    if(!this.routeForm.valid){
+      return alert('Please fill the form first')
+    }
     this.isEdit = false;
 
     let data: any ={

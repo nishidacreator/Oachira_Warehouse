@@ -227,6 +227,9 @@ export class RouteDetailsComponent implements OnInit, OnDestroy {
 
   edit!: Subscription;
   editFunction(){
+    if(!this.routeDetailsForm.valid){
+      return alert('Please fill the form first')
+    }
     let data = {
       routeId : this.routeDetailsForm.get('routeId')?.value,
       customerId : this.routeDetailsForm.get('customerId')?.value,

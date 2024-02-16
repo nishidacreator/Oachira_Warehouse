@@ -234,6 +234,9 @@ export class UsersComponent implements OnInit {
 
   edit!: Subscription;
   editFunction(){
+    if(!this.userForm.valid){
+      return alert('Please fill the form first')
+    }
     this.isEdit = false;
 
     let data: any ={

@@ -265,6 +265,9 @@ export class CustomerComponent implements OnInit {
 
   edit!: Subscription;
   editFunction(){
+    if(!this.customerForm.valid){
+      return alert('Please fill the form first')
+    }
     this.isEdit = false;
 
     let data: any ={

@@ -277,7 +277,7 @@ export class RequestComponent implements OnInit {
   prefix!: string;
   prSub!: Subscription;
   generateInvoiceNumber() {
-    this.prSub = this.userSub = this.purchaseService.getPR().subscribe((res) => {
+    this.prSub = this.purchaseService.getPR().subscribe((res) => {
       let purchases = res;
 
       // Check if there are any employees in the array
@@ -304,7 +304,7 @@ export class RequestComponent implements OnInit {
       } else {
         // If there are no employees in the array, set the employeeId to 'EMP001'
         this.nextId = 0o0;
-        this.prefix = "INVPR";
+        this.prefix = "INVRSE";
       }
 
       const paddedId = `${this.prefix}${this.nextId
@@ -345,7 +345,7 @@ export class RequestComponent implements OnInit {
     (error) => {
       alert(error);
     })
-  
+
   }
 
   clearControls() {

@@ -328,6 +328,9 @@ export class TripComponent implements OnInit, OnDestroy {
   }
 
   editFunction(){
+    if(!this.tripForm.valid){
+      return alert('Please fill the form first')
+    }
     this.isEdit = false;
 
     let data = {

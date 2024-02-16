@@ -142,6 +142,9 @@ export class RoleComponent implements OnInit {
 
   edit!: Subscription;
   editFunction(){
+    if(!this.roleForm.valid){
+      return alert('Please fill the form first')
+    }
     this.isEdit = false;
 
     let data: any ={

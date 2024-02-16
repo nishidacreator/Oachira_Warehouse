@@ -304,6 +304,9 @@ export class WarehouseComponent implements OnInit {
 
   edit!:Subscription;
   editFunction(){
+    if(!this.warehouseForm.valid){
+      return alert('Please fill the form first')
+    }
     // if(this.file){
     //   let image = {
     //     fileUrl: this.imageUrl,

@@ -15,6 +15,7 @@ import { TripListComponent } from './components/trip-list/trip-list.component';
 import { ViewRouteOrderComponent } from './components/view-route-order/view-route-order.component';
 import { RouteOrderComponent } from './components/route-order/route-order.component';
 import { ViewRouteOrderDetailsComponent } from './components/view-route-order-details/view-route-order-details.component';
+import { RouteEntryComponent } from './components/route-entry/route-entry.component';
 
 const routes: Routes = [
   {path: '', component: ManageRouteComponent},
@@ -36,6 +37,7 @@ const routes: Routes = [
   {path: 'viewrouteorder/details/:id', component: ViewRouteOrderDetailsComponent},
   {path: 'routeorder', component: RouteOrderComponent},
   {path: 'routeorder/:id', component: RouteOrderComponent},
+  {path: 'routeentry/:id', component: RouteEntryComponent},
 ];
 
 @NgModule({

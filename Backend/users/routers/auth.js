@@ -10,7 +10,6 @@ router.post('/', async(req, res)=> {
     try {
 
         const { userName, password } = req.body;
-
         const user = await User.findOne({where: { userName: userName }});
 
         if(!user){

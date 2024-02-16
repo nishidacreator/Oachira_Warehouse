@@ -298,6 +298,9 @@ export class SubcategoryComponent implements OnInit {
 
   edit!:Subscription;
   editFunction(){
+    if(!this.subCategoryForm.valid){
+      return alert('Please fill the form first')
+    }
     if(this.file){
       let image = {
         fileUrl: this.imageUrl,

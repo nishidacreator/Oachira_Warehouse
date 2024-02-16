@@ -302,6 +302,9 @@ export class StoreComponent implements OnInit {
 
   edit!:Subscription;
   editFunction(){
+    if(!this.storeForm.valid){
+      return alert('Please fill the form first')
+    }
     // if(this.file){
     //   let image = {
     //     fileUrl: this.imageUrl,

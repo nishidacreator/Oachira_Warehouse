@@ -102,7 +102,9 @@ export class ViewRouteOrderComponent implements OnInit {
   }
 
   generateRSE(id: number){
-    
+    console.log(id);
+
+    this.router.navigateByUrl('/login/sales/routesale/routeentry/'+id)
   }
 
 }
