@@ -3,52 +3,51 @@ const router = express.Router();
 
 const authenticateToken = require('../../middleware/authorization');
 
-const Order = require('../models/order');
-const OrderDetails = require('../models/orderDetails');
-const Distributor = require('../../products/models/distributor');
+const Entry = require('../models/entry')
+const EntryDetails = require('../models/entryDetails');
 const User = require('../../users/models/user');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
-        const { orderNo, distributorId, userId, warehouseId, date, status, orderDetails } = req.body;
+        const { purchaseOrderId,userId, purchaseInvoice,purachseDate ,paymentMode , purchaseAmount,eWayBillNo,loading,transportationCharge,unloading ,munloadingTeam,commission, chequeNo,entryDetails} = req.body;
 
         // Validate input data
-        if (!orderNo || !distributorId || !userId || !warehouseId || !status || !orderDetails) {
-            return res.status(400).send({ error: 'Incomplete data provided.' });
-        }
+        // if (!orderNo || !distributorId || !userId || !warehouseId || !status || !orderDetails) {
+        //     return res.status(400).send({ error: 'Incomplete data provided.' });
+        // }
 
-        // Create a new Order instance
-        const purchaseOrder = new Order({ orderNo, distributorId, userId, warehouseId, date, status });
-        console.log(purchaseOrder);
-        // Save the order to the database
-        await purchaseOrder.save();
+    
+        const entry = new Entry({ purchaseOrderId,userId, purchaseInvoice,purachseDate ,paymentMode , purchaseAmount,eWayBillNo,loading,transportationCharge,unloading ,munloadingTeam,commission, chequeNo ,entryDetails});
+        console.log(entry);
+       
+        await entry.save();
 
-        // Get the ID of the newly created order
-        const orderId = purchaseOrder.id;
+       const entryId = entry.id
 
         // Assign the orderId to each orderDetail
-        for (let i = 0; i < orderDetails.length; i++) {
-            orderDetails[i].orderId = orderId;
+        for (let i = 0; i < entryDetails.length; i++) {
+            entryDetails[i].entryId = entryId;
         }
 
-        // Bulk create orderDetails associated with the order
-        const pOrderDetails = await OrderDetails.bulkCreate(orderDetails);
+        const eDetails = await EntryDetails.bulkCreate(entryDetails);
 
-        // Send the created order as a response
-        res.status(201).send(pOrderDetails);
+    
+        res.status(201).send(eDetails);
     } catch (error) {
-        console.error('Error creating order:', error);
-        res.status(500).send({ error: 'Internal server error.' });
+      res.send(error.message)
     }
 });
 
+
+
 router.get('/', async (req, res) => {
 
-    const order = await Order.findAll({
+    const entry = await EntryDetails.findAll({
         order:['id'],
-        include : [Distributor, User]
+        include : [User]
+  
     })
 
-    res.send(order);
+    res.send(entry);
 })
 module.exports = router;

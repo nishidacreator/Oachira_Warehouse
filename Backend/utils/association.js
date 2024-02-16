@@ -62,6 +62,8 @@ const PickListDetails = require('../sales/models/pickListDetails');
 
 
 
+
+
 async function syncModel(){
 
     //USER
@@ -137,6 +139,9 @@ async function syncModel(){
 
     Order.hasMany(OrderDetails, {foreignKey : 'orderId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     OrderDetails.belongsTo(Order)
+
+    Entry.hasMany(EntryDetails, {foreignKey : 'entryId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    EntryDetails.belongsTo(Entry)
 
     Product.hasMany(OrderDetails, {foreignKey : 'productId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     OrderDetails.belongsTo(Product)
@@ -230,6 +235,7 @@ async function syncModel(){
     PickListDetails.belongsTo(SecondaryUnit, {foreignKey : 'secondaryUnitId'})
 
     await sequelize.sync({alter: true})
+
 
     const role = await Role.findAll({})
     if(role.length === 0){

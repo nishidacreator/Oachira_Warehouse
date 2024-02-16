@@ -19,6 +19,11 @@ export class PurchaseService {
     return this._http.post(this.url + 'request', data)
   }
 
+  addPE(data : any){
+    return this._http.post(this.url + 'entry', data)
+
+  }
+
   getPR(): Observable<PurchaseRequest[]>{
     return this._http.get<PurchaseRequest[]>(this.url+'request');
   }
