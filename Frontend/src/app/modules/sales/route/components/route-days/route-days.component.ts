@@ -237,6 +237,9 @@ export class RouteDaysComponent implements OnInit {
 
   edit!: Subscription
   editFunction(){
+    if(!this.routeDaysForm.valid){
+      return alert('Please fill the form first')
+    }
     this.isEdit = false;
 
     let data: any ={

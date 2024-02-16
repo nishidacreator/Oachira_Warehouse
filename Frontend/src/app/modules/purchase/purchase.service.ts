@@ -44,6 +44,10 @@ export class PurchaseService {
     return this._http.get<PurchaseOrder[]>(this.url+'order');
   }
 
+  getPOById(id: number): Observable<PurchaseOrder>{
+    return this._http.get<PurchaseOrder>(this.url+'order/'+ id);
+  }
+
   deletePO(id:Number){
     return this._http.delete(this.url+'order/'+id);
   }

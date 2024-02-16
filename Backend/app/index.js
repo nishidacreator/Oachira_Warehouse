@@ -82,6 +82,7 @@ const tripDays = require('../sales/routers/tripDays');
 const tripDetails = require('../sales/routers/tripDetails');
 const routeSO = require('../sales/routers/routeSO');
 const routeSODetails = require('../sales/routers/routeSODetails');
+const routeSE = require('../sales/routers/routeSE');
 app.use('/sales/customer',customer);
 app.use('/sales/loyaltypoint',loyaltyPoint);
 app.use('/sales/customercategory',customerCategory);
@@ -96,6 +97,7 @@ app.use('/sales/tripdays', tripDays);
 app.use('/sales/tripdetails',tripDetails);
 app.use('/sales/routeorder', routeSO);
 app.use('/sales/routeorderdetails', routeSODetails);
+app.use('/sales/routeentry', routeSE);
 
 const port = process.env.PORT;
 

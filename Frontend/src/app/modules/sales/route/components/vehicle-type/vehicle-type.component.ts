@@ -115,6 +115,9 @@ export class VehicleTypeComponent implements OnInit, OnDestroy {
 
   edit!: Subscription;
   editFunction(){
+    if(!this.vehicleTypeForm.valid){
+      return alert('Please fill the form first')
+    }
     let data = {
       typeName: this.vehicleTypeForm.get('typeName')?.value
     }

@@ -619,6 +619,9 @@ export class ProductComponent implements OnInit {
 
   edit!:Subscription;
   editFunction(){
+    if(!this.productForm.valid){
+      return alert('Please fill the form first')
+    }
     if(this.file){
       let image = {
         fileUrl: this.imageUrl,

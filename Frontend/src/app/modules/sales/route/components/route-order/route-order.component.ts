@@ -367,6 +367,9 @@ export class RouteOrderComponent implements OnInit {
 
   edit!: Subscription;
   editFunction(){
+    if(!this.routeOrderForm.valid){
+      return alert('Please fill the form first')
+    }
     this.isEdit = false;
 
     let data: any ={

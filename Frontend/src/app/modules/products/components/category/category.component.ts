@@ -321,6 +321,9 @@ export class CategoryComponent implements OnInit {
   }
 
   editFunction(){
+    if(!this.productCategoryForm.valid){
+      return alert('Please fill the form first')
+    }
     if(this.file){
       let image = {
         fileUrl: this.imageUrl,

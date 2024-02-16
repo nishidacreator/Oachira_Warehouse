@@ -163,6 +163,9 @@ export class GstComponent implements OnInit {
 
   edit!: Subscription;
   editFunction(){
+    if(!this.gstForm.valid){
+      return alert('Please fill the form first')
+    }
     this.isEdit = false;
 
     let data: any ={

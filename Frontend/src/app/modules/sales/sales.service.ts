@@ -15,6 +15,7 @@ import { RouteDays } from './route/models/route-days';
 import { Trip } from './route/models/trip';
 import { RouteOrder } from './route/models/route-order';
 import { RouteOrderDetails } from './route/models/route-order-details';
+import { RouteEntry } from './route/models/route-entry';
 
 @Injectable({
   providedIn: 'root'
@@ -334,4 +335,12 @@ export class SalesService {
 
   }
 
+  //SALES ENTRY
+  addRouteEntry(data: any){
+    return this._http.post(this.url +'routeentry', data);
+  }
+
+  getRouteEntry(){
+    return this._http.get<RouteEntry[]>(this.url+'routeentry');
+  }
 }

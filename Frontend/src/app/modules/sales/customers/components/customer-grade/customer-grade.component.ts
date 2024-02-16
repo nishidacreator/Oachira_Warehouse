@@ -129,6 +129,9 @@ export class CustomerGradeComponent implements OnInit {
 
   edit!: Subscription;
   editFunction(){
+    if(!this.customerGradeForm.valid){
+      return alert('Please fill the form first')
+    }
     this.isEdit = false;
 
     let data: any ={
