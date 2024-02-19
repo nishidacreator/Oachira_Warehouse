@@ -16,6 +16,8 @@ import { UsersComponent } from 'src/app/modules/users/components/users/users.com
 import { User } from 'src/app/modules/users/models/user';
 import { UsersService } from 'src/app/modules/users/users.service';
 import { PurchaseService } from '../../purchase.service';
+import { SlipComponent } from '../slip/slip.component';
+import { Distributor } from 'src/app/modules/products/models/distributor';
 
 @Component({
   selector: 'app-entry',
@@ -44,7 +46,16 @@ export class EntryComponent implements OnInit {
   id!: number;
   addStatus!: string;
   editstatus!: boolean;
+  finalMonth: any;
+  finalDay: any;
+  date1 = new Date();
+  currentYear = this.date1.getUTCFullYear();
+  currentMonth = this.date1.getUTCMonth() + 1;
+  currentDay = this.date1.getUTCDate();
+
+  todayDate = "12-01-2011";
   ngOnInit(): void {
+    this.getDistributors()
     this.getStores();
     this.getUsers();
     this.getProduct();
@@ -55,6 +66,31 @@ export class EntryComponent implements OnInit {
   //   if(requestId){
   //     this.patchData(requestId)
   //   }
+
+  
+  if (this.currentMonth < 10) {
+    this.finalMonth = "0" + this.currentMonth;
+  } else {
+    this.finalMonth = String(this.currentMonth);
+  }
+
+  if (this.currentDay < 10) {
+    this.finalDay = "0" + this.currentDay;
+  } else {
+    this.finalDay = String(this.currentDay);
+  }
+
+  
+  this.todayDate =
+    this.currentYear + "-" + this.finalMonth + "-" + this.finalDay;
+
+  
+  const formattedDate = new Date(this.todayDate);
+;
+
+// this.purchaseEntryForm
+// .get("purachseDate")
+// ?.setValue(formattedDate.toISOString().split("T")[0]);
   }
 
   purchaseEntryForm = this.fb.group({
@@ -64,6 +100,7 @@ export class EntryComponent implements OnInit {
     purchaseInvoice :  ["" ],
     purachseDate:  [],
     paymentMode:  ["" ],
+    payMode:[""],
     purchaseAmount: [],
     eWayBillNo:  [ ],
     loading: [],
@@ -463,4 +500,33 @@ export class EntryComponent implements OnInit {
 
   }
   
+  addSlip(): void {
+    const dialogRef = this.dialog.open(SlipComponent, {
+      data: { status: 'add', type: 'add', unit: 'secondary' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      // Handle the result if needed
+      // this.getUnit(result?.unit);
+    });
+  }
+
+  onRadioChange(): void {
+    console.log('Radio changed');
+    const payModeControl = this.purchaseEntryForm.get('payMode');
+
+    if (payModeControl && payModeControl.value === 'slipissued') {
+      this.addSlip();
+    }
+  }
+
+  
+  distributors :any;
+  getDistributors(){
+   this.productService.getDistributor().subscribe((res=>{
+    this.distributors = res;
+   }))
+ 
+  }
+
 }
