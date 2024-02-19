@@ -386,5 +386,10 @@
   .container {
   overflow-x: auto;
   }
+  //----------------Radio button css---------------------
+  .mat-mdc-radio-button ~ .mat-mdc-radio-button {
+    margin-left: 16px;
+  }
+  
   
   

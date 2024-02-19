@@ -16,6 +16,8 @@ import { UsersComponent } from 'src/app/modules/users/components/users/users.com
 import { User } from 'src/app/modules/users/models/user';
 import { UsersService } from 'src/app/modules/users/users.service';
 import { PurchaseService } from '../../purchase.service';
+import { SlipComponent } from '../slip/slip.component';
+import { Distributor } from 'src/app/modules/products/models/distributor';
 
 @Component({
   selector: 'app-entry',
@@ -53,6 +55,7 @@ export class EntryComponent implements OnInit {
 
   todayDate = "12-01-2011";
   ngOnInit(): void {
+    this.getDistributors()
     this.getStores();
     this.getUsers();
     this.getProduct();
@@ -97,6 +100,7 @@ export class EntryComponent implements OnInit {
     purchaseInvoice :  ["" ],
     purachseDate:  [],
     paymentMode:  ["" ],
+    payMode:[""],
     purchaseAmount: [],
     eWayBillNo:  [ ],
     loading: [],
@@ -495,7 +499,34 @@ export class EntryComponent implements OnInit {
 
 
   }
+  
+  addSlip(): void {
+    const dialogRef = this.dialog.open(SlipComponent, {
+      data: { status: 'add', type: 'add', unit: 'secondary' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      // Handle the result if needed
+      // this.getUnit(result?.unit);
+    });
+  }
+
+  onRadioChange(): void {
+    console.log('Radio changed');
+    const payModeControl = this.purchaseEntryForm.get('payMode');
+
+    if (payModeControl && payModeControl.value === 'slipissued') {
+      this.addSlip();
+    }
+  }
 
   
-  
+  distributors :any;
+  getDistributors(){
+   this.productService.getDistributor().subscribe((res=>{
+    this.distributors = res;
+   }))
+ 
+  }
+
 }
