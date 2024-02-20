@@ -90,12 +90,13 @@ const tripDetails = require('../sales/routers/tripDetails');
 const routeSO = require('../sales/routers/routeSO');
 const routeSODetails = require('../sales/routers/routeSODetails');
 const routeSE = require('../sales/routers/routeSE');
-
-
+const cl = require('../sales/routers/customerLedger');
 app.use('/sales/customer',customer);
 app.use('/sales/loyaltypoint',loyaltyPoint);
 app.use('/sales/customercategory',customerCategory);
 app.use('/sales/customergrade',customerGrade);
+app.use('/sales/ledger',cl);
+
 app.use('/sales/vehicletype',vehicleType);
 app.use('/sales/vehicle',vehicle);
 app.use('/sales/route',route);

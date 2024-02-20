@@ -44,4 +44,16 @@ export class NavbarComponent {
 
   OpenMasterSearchPage(id: any){}
 
+  isHovered = false;
+  hoveredButton: string | null = null;
+  showName(buttonName: string, i?: number){
+    this.isHovered = true;
+    this.hoveredButton = buttonName;
+  }
+
+  hideName() {
+    this.isHovered = false;
+    this.hoveredButton = null;
+  }
+
 }

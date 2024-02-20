@@ -116,24 +116,4 @@
       <mat-card-header>
           <mat-card-title style="color: green;">TRIP LIST</mat-card-title>
       </mat-card-header>
-
-      <!-- <div class="control-section">
-          <div *ngIf="combinedArray.length != 0">
-              <button ej-button id='print' (click)='print()'>Print</button>
-              <ejs-grid #grid [dataSource]="combinedArray" [toolbar]="toolbar" (toolbarClick)="toolbarClick($event)"
-                  [allowPaging]="true" [allowPdfExport]="true" (customizeExport)="onPdfExport($event)" height='272px'>
-                  <e-columns>
-                      <e-column field='productId' headerText='PRODUCT ID' width='150'></e-column>
-                      <e-column field='ProductName' headerText='PRODUCT NAME' width='150'></e-column>
-                      <e-column field='count' headerText='COUNT' width='150'></e-column>
-                      <e-column *ngIf="pdfprint" headerText='MANAGE' width='150' [visible]='false'>
-                          <ng-template #template let-data>
-                              <button mat-raised-button style="background-color: green; margin-left: 8px;"
-                                  class="main-button" (click)="viewDetails(data.productId)" type="button">View</button>
-                          </ng-template>
-                      </e-column>
-                  </e-columns>
-              </ejs-grid>
-          </div>
-      </div> -->
   </mat-card>

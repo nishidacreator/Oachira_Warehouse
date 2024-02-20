@@ -2,22 +2,20 @@
 
   <mat-sidenav-content>
     <!-- <mat-toolbar style="background-color: rgb(24, 139, 32); color: white;" > -->
-      <mat-toolbar style="background-color: #2D6A4F; color: white;" >
-      <img style="height: 100%;" src="../../../../../assets/img/oachira_white.png" routerLink="home">
+      <mat-toolbar style="background: linear-gradient(0deg, #b0c8c5, #014f43);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25); color: white;" >
+      <img style="height: 100%;" src="../../../../../assets/img/oachira.png" routerLink="home">
 
       <!-- <div class="search-box">
         <input type="text" #searchInput placeholder="Search Product">
         <button class='bx bx-search' type="button" (click)="OpenMasterSearchPage(searchInput.value)"></button>
       </div> -->
       <!-- <div class="nav_main"> -->
-        <h6 class="nav_main"> Welcome {{userName}}</h6> &nbsp;&nbsp;
-        <span class="material-icons">notifications</span> &nbsp;&nbsp;
-        <mat-icon class="nav_username" routerLink="settings">settings</mat-icon> &nbsp;&nbsp;
-        <mat-icon class="nav_username" (click)="logout()">power_settings_new</mat-icon> &nbsp;
+
         <!-- <mat-icon>settings</mat-icon> -->
         <!-- </div> -->
-    </mat-toolbar>
-    <div class="bg-green-700 button-container" style="background: #2D6A4F">
+    <!-- </mat-toolbar> -->
+    <!-- <div class="bg-green-700 button-container" style="background: #2D6A4F">
 
       <div class="dropdown">
         <button class="dropbtn" [routerLink]="'/admin'"><span class="material-icons"
@@ -67,6 +65,11 @@
             <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
            Sales Order
           </a>
+
+          <a routerLink="sales/routesale/viewrouteentry" >
+            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
+           Sales Entry
+          </a>
           <a routerLink="sales/routesale/trip" >
             <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
            Trip
@@ -80,68 +83,260 @@
             style="color:white; font-size: 25px; margin-right: 6px;">request_quote</span><span
             style="color: white; margin-right: 6px;">COLLECTIONS</span></button>
         <div class="dropdown-content">
-          <!-- <a [routerLink]="'viewPendingRFQ'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            CREATE
-          </a> -->
-          <!-- <a [routerLink]="'viewPendingRFQ'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            VIEW
-          </a> -->
+
         </div>
       </div>
       <div class="dropdown">
         <button class="dropbtn"><span class="material-icons"
             style="color:white; font-size: 25px; margin-right: 6px;">assignment</span><span
             style="color: white; margin-right: 6px;">DAY BOOK</span></button>
-        <!-- <div class="dropdown-content">
-          <a [routerLink]="'purchaseOrder'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-         Add
-          </a>
-          <a [routerLink]="'viewPurchaseOrder'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-         View
-          </a>
 
-        </div> -->
       </div>
       <div class="dropdown">
         <button class="dropbtn"><span class="material-icons"
             style="color:white; font-size: 25px; margin-right: 6px;">assignment</span><span
             style="color: white; margin-right: 6px;">C-LEDGER</span></button>
-        <!-- <div class="dropdown-content">
-          <a [routerLink]="'pe'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            Add
-          </a>
-          <a [routerLink]="'viewPurchaseEntry'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            Verify PO
-          </a>
-
-        </div> -->
       </div>
       <div class="dropdown">
         <button class="dropbtn"><span class="material-icons"
             style="color:white; font-size: 25px; margin-right: 6px;">assignment</span><span
             style="color: white; margin-right: 6px;">REPORTS</span></button>
-        <!-- <div class="dropdown-content">
-          <a [routerLink]="'pe'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            Add
-          </a>
-          <a [routerLink]="'viewPurchaseEntry'">
-            <span class="material-icons" style="color: rgb(10, 111, 189); font-size: 20px; "></span>
-            Verify PO
-          </a>
-
-        </div> -->
       </div>
-    </div>
+    </div> -->
+    <!-- <body> -->
+      <!-- <div class="bg-green-700 button-container" style="background: #2D6A4F"> -->
+        <div class="navigation">
+          <ul>
+            <li class="list active">
+              <a routerLink="/login">
+                <span class="icon">
+                  <mat-icon>home</mat-icon>
+                </span>
+                <span class="text">Home</span>
+              </a>
+            </li>
+            <li class="list">
+              <a>
+                <span class="icon">
+                  <mat-icon>shopping_cart</mat-icon>
+                </span>
+                <span class="text">Purchase</span>
+              </a>
+              <div class="sub-menu-1">
+                <ul>
+                  <li><a routerLink="purachases/viewpurchaserequest">
+                    <span class="icon">
+                      <mat-icon>request_quote</mat-icon>
+                    </span>
+                    <span class="text">Request</span>
+                  </a></li>
+                  <li><a routerLink="purachases/viewpurchaseorder">
+                    <span class="icon">
+                      <mat-icon>format_list_numbered_rtl</mat-icon>
+                    </span>
+                    <span class="text">Order</span>
+                  </a></li>
+                  <li><a routerLink="purachases/viewpurchaseentry">
+                    <span class="icon">
+                      <mat-icon>receipt</mat-icon>
+                    </span>
+                    <span class="text">Entry</span>
+                  </a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="list">
+              <a href="#">
+                <span class="icon">
+                  <mat-icon>inventory_2</mat-icon>
+                </span>
+                <span class="text">Stock</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#">
+                <span class="icon">
+                  <mat-icon>directions_bike</mat-icon>
+                </span>
+                <span class="text">Route</span>
+              </a>
+              <div class="sub-menu-1">
+                <ul>
+                  <li>
+                    <a routerLink="sales/routesale/viewrouteorder">
+                      <span class="icon">
+                        <mat-icon>format_list_numbered_rtl</mat-icon>
+                      </span>
+                      <span class="text">Order</span>
+                    </a>
+                  </li>
+                  <li><a routerLink="sales/routesale/viewrouteentry">
+                    <span class="icon">
+                      <mat-icon>receipt</mat-icon>
+                    </span>
+                    <span class="text">Entry</span>
+                  </a></li>
+                  <li><a routerLink="sales/routesale/viewtrip">
+                    <span class="icon">
+                      <mat-icon>local_shipping</mat-icon>
+                    </span>
+                    <span class="text">Trip</span>
+                  </a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="list">
+              <a href="#">
+                <span class="icon">
+                  <mat-icon>menu_book</mat-icon>
+                </span>
+                <span class="text">Daybook</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#">
+                <span class="icon">
+                  <mat-icon>summarize</mat-icon>
+                </span>
+                <span class="text">Report</span>
+              </a>
+            </li>
+            <!-- <div class="indicator"></div> -->
+          </ul>
+        </div>
+        <script>
+          const list = document.querySelectorAll('.list');
+          function aciveLink(){
+            list.forEach(item)
+            item.classList.remove('active');
+            this.classList.add('active');
+
+          }
+          list.forEach(item)
+          list.addEventListener('click', aciveLink);
+        </script>
+
+
+      <div class="vector-parent">
+        <h6 class="nav_main"> Welcome {{userName}}</h6>
+        <mat-icon class="vector-icon">notifications</mat-icon>
+        <mat-icon class="vector-icon" routerLink="settings">settings</mat-icon>
+        <mat-icon class="vector-icon" (click)="logout()">power_settings_new</mat-icon>
+      </div>
+      <!-- <span class="material-icons">notifications</span> &nbsp;&nbsp;
+       -->
+      <!-- </div> -->
+    <!-- </body> -->
+    </mat-toolbar>
 
    <div class="content-section">
     <router-outlet></router-outlet>
    </div>
+
+   <div class="bottom-bar">
+      <img class="bottom-bar-child" alt="" src="../../../../../assets/img/line-1.svg" />
+
+      <div class="powered-by">Powered by : Carving Soft</div>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"
+    />
+  </head>
+  <body>
+    <div class="desktop-route-sale">
+      <div class="desktop-route-sale-child">
+        <app-dashboard></app-dashboard>
+      </div>
+      <div class="background"></div>
+      <div class="bottom-bar">
+        <img class="bottom-bar-child" alt="" src="../../../../../assets/img/line-1.svg" />
+
+        <div class="powered-by">Powered by : Carving Soft</div>
+      </div>
+      <img class="logo-icon" alt="" src="../../../../../assets/img/logo@2x.png" />
+
+      <img
+        class="desktop-route-sale-item"
+        alt=""
+        src="../../../../../assets/img/rectangle-46.svg"
+      />
+
+      <img class="oachira-logo-1" alt="" src="../../../../../assets/img/oachira-logo-1@2x.png" />
+
+      <div class="instance-parent">
+        <div class="search-parent" id="frameContainer">
+          <img class="search-icon" alt="" src="../../../../../assets/img/search.svg" />
+
+          <b class="home">Home</b>
+        </div>
+        <div class="search-group" id="frameContainer1">
+          <img class="search-icon" alt="" src="../../../../../assets/img/search.svg" />
+
+          <div class="home1">Purchase</div>
+        </div>
+        <div class="search-group" id="frameContainer2">
+          <img class="search-icon" alt="" src="../../../../../assets/img/search.svg" />
+
+          <div class="home1">Stock</div>
+        </div>
+        <div class="search-group" id="frameContainer3">
+          <img class="search-icon" alt="" src="../../../../../assets/img/search.svg" />
+
+          <div class="home1">Route</div>
+        </div>
+        <div class="search-group" id="frameContainer4">
+          <img class="search-icon" alt="" src="../../../../../assets/img/search.svg" />
+
+          <div class="home1">Collection</div>
+        </div>
+        <div class="search-group" id="frameContainer5">
+          <img class="search-icon" alt="" src="../../../../../assets/img/search.svg" />
+
+          <div class="home1">Day Book</div>
+        </div>
+        <div class="search-group" id="frameContainer6">
+          <img class="search-icon" alt="" src="../../../../../assets/img/search.svg" />
+
+          <div class="home1">C-Ledger</div>
+        </div>
+        <div class="search-group" id="frameContainer7">
+          <img class="search-icon" alt="" src="../../../../../assets/img/search.svg" />
+
+          <div class="home1">Reports</div>
+        </div>
+      </div>
+      <div class="desktop-route-sale-inner"></div>
+
+      <div class="vector-parent">
+        <img class="vector-icon" alt="" src="../../../../../assets/img/vector.svg" />
+
+        <img class="vector-icon" alt="" src="../../../../../assets/img/vector.svg" />
+
+        <img class="vector-icon" alt="" src="../../../../../assets/img/vector.svg" />
+      </div>
+    </div>
+
+    <div
+      id="frameProductSearchContainer"
+      class="popup-overlay"
+      style="display: none"
+    >
+    </div>
+  </body>
+</html> -->

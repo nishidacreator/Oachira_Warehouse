@@ -27,46 +27,52 @@
     </div>
   </div>
 
-  <mat-form-field>
-    <mat-label>Search</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
-  </mat-form-field>
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+    <mat-tab label="Orders">
+      <mat-form-field>
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+      </mat-form-field>
 
-  <table class="styled-table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Route</th>
-            <th>Customer</th>
-            <th>User</th>
-            <th>Date</th>
-            <th>Expecte Date</th>
-            <th>Status</th>
-            <th>Manage</th>
-            <th>Sales Entry</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let element of filtered">
-            <td>{{element.id}}</td>
-            <td>{{element.route.routeName}}</td>
-            <td>{{element.customer.name}}</td>
-            <td>{{element.pickSalesExecutive.name}}</td>
-            <td>{{element.date | date: 'dd/MM/yyyy'}}</td>
-            <td>{{element.deliveryDate | date: 'dd/MM/yyyy'}}</td>
-            <td>{{element.status}}</td>
-            <td>
-              <mat-icon (click)="viewRouteOrderDetails(element.id)">open_in_new</mat-icon>
-              <mat-icon (click)="editRouteOrder(element.id)" >edit</mat-icon>
-              <mat-icon (click)="deleteRouteOrder(element.id)">delete</mat-icon>
-            </td>
-            <td>
-              <mat-icon (click)="generateRSE(element.id)">receipt_long</mat-icon>
-            </td>
-        </tr>
-    </tbody>
-  </table>
+      <table class="styled-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Route</th>
+                <th>Customer</th>
+                <th>User</th>
+                <th>Date</th>
+                <th>Expecte Date</th>
+                <th>Status</th>
+                <th>Manage</th>
+                <th>Sales Entry</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let element of filtered">
+                <td [style.background-color]="element.status.toLowerCase()== 'invoiceissued' ? 'pink' : null">{{element.id}}</td>
+                <td [style.background-color]="element.status.toLowerCase()== 'invoiceissued' ? 'pink' : null">{{element.route.routeName}}</td>
+                <td [style.background-color]="element.status.toLowerCase()== 'invoiceissued' ? 'pink' : null">{{element.customer.name}}</td>
+                <td [style.background-color]="element.status.toLowerCase()== 'invoiceissued' ? 'pink' : null">{{element.pickSalesExecutive.name}}</td>
+                <td [style.background-color]="element.status.toLowerCase()== 'invoiceissued' ? 'pink' : null">{{element.date | date: 'dd/MM/yyyy'}}</td>
+                <td [style.background-color]="element.status.toLowerCase()== 'invoiceissued' ? 'pink' : null">{{element.deliveryDate | date: 'dd/MM/yyyy'}}</td>
+                <td [style.background-color]="element.status.toLowerCase()== 'invoiceissued' ? 'pink' : null">{{element.status}}</td>
+                <td [style.background-color]="element.status.toLowerCase()== 'invoiceissued' ? 'pink' : null">
+                  <mat-icon (click)="viewRouteOrderDetails(element.id)">open_in_new</mat-icon>
+                  <mat-icon (click)="editRouteOrder(element.id)" >edit</mat-icon>
+                  <mat-icon (click)="deleteRouteOrder(element.id)">delete</mat-icon>
+                </td>
+                <td [style.background-color]="element.status.toLowerCase()== 'invoiceissued' ? 'pink' : null">
+                  <mat-icon *ngIf="element.status.toLowerCase() != 'invoiceissued'" (click)="generateRSE(element.id)">receipt_long</mat-icon>
+                </td>
+            </tr>
+        </tbody>
+      </table>
+    </mat-tab>
 
+    <mat-tab label="Invoice Issued">
 
+    </mat-tab>
+  </mat-tab-group>
 </mat-card>
 

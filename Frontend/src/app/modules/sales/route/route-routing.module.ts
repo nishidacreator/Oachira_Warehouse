@@ -1,3 +1,4 @@
+import { ViewRouteEntryComponent } from './components/view-route-entry/view-route-entry.component';
 import { NgModule } from '@angular/core';
 import { RouteConfigLoadStart, RouterModule, Routes } from '@angular/router';
 import { ManageRouteComponent } from './components/manage-route/manage-route.component';
@@ -16,6 +17,7 @@ import { ViewRouteOrderComponent } from './components/view-route-order/view-rout
 import { RouteOrderComponent } from './components/route-order/route-order.component';
 import { ViewRouteOrderDetailsComponent } from './components/view-route-order-details/view-route-order-details.component';
 import { RouteEntryComponent } from './components/route-entry/route-entry.component';
+import { ViewRouteEntryDetailsComponent } from './components/view-route-entry-details/view-route-entry-details.component';
 
 const routes: Routes = [
   {path: '', component: ManageRouteComponent},
@@ -38,6 +40,9 @@ const routes: Routes = [
   {path: 'routeorder', component: RouteOrderComponent},
   {path: 'routeorder/:id', component: RouteOrderComponent},
   {path: 'routeentry/:id', component: RouteEntryComponent},
+  {path: 'editrouteentry/:editid', component: RouteEntryComponent},
+  {path: 'viewrouteentry', component: ViewRouteEntryComponent},
+  {path: 'viewrouteentry/details/:id', component: ViewRouteEntryDetailsComponent},
 ];
 
 @NgModule({
