@@ -5,7 +5,6 @@ import { Subscription, forkJoin, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ExcelExportService, GridComponent, PageService, PdfExportProperties, PdfExportService, ToolbarService } from '@syncfusion/ej2-angular-grids';
 import { environment } from 'src/environments/environment';
-
 @Component({
   selector: 'app-trip-list',
   templateUrl: './trip-list.component.html',
@@ -25,8 +24,7 @@ export class TripListComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private adminService: SalesService,
-    // private sEService: SalesExecutiveService,
+    private salesService: SalesService,
     private router: Router,
     private http: HttpClient
   ) {}
@@ -72,29 +70,29 @@ export class TripListComponent implements OnInit {
   combinedArray: { productId: string; productName: string; count: number }[] =
     [];
   tripSubscription!: Subscription;
-  routeOrderId: any;
+  pickListId: any;
   getTrip() {
-    return this.adminService.getTripById(this.tripId).subscribe((res) => {
+    return this.salesService.getTripById(this.tripId).subscribe((res) => {
       this.routeId = res.routeId;
-      this.adminService
+      this.salesService
         .getRouteOrderByRouteId(this.routeId)
         .pipe(map((x) => x.filter((y) => y.status === "pending")))
         .subscribe((res) => {
           const observables = res.map((pick) => {
-            return this.adminService.getRouteOrderDetails(pick.id);
+            return this.salesService.getRouteOrderDetails(pick.id);
           });
 
-          forkJoin(observables).subscribe((routeOrderDetails) => {
+          forkJoin(observables).subscribe((pickListDetails) => {
             const countMap = new Map<any, any>(); // Map to store productId and its count
             const productMap = new Map<any, any>();
 
-            for (let i = 0; i < routeOrderDetails.length; i++) {
-              // for (let j = 0; j < routeOrderDetails[i].length; j++) {
-              //   this.productList.push(routeOrderDetails[i][j]);
+            for (let i = 0; i < pickListDetails.length; i++) {
+              // for (let j = 0; j < pickListDetails[i].length; j++) {
+              //   this.productList.push(pickListDetails[i][j]);
 
-              //   const productId = routeOrderDetails[i][j].product.id;
-              //   const productCount = routeOrderDetails[i][j].quantity;
-              //   const productName = routeOrderDetails[i][j].product.productName;
+              //   const productId = pickListDetails[i][j].product.id;
+              //   const productCount = pickListDetails[i][j].quantity;
+              //   const productName = pickListDetails[i][j].product.productName;
 
               //   if (countMap.has(productId)) {
               //     countMap.set(
@@ -121,7 +119,7 @@ export class TripListComponent implements OnInit {
 
   viewDetails(id: any) {
     this.router.navigateByUrl(
-      "/admin/sales/viewrouteorder/triplist/products/view/" +
+      "/admin/sales/viewpicklist/triplist/products/view/" +
         id +
         "/" +
         this.routeId
@@ -132,15 +130,15 @@ export class TripListComponent implements OnInit {
     this.toolbar = ["PdfExport"];
   }
   pdfprint = true;
-  // toolbarClick(args: ClickEventArgs): void {
-  //   this.onPdfExport(args);
-  //   console.log(this.combinedArray, this.grid);
-  //   switch (args.item.id) {
-  //     case "AdvancedExport_pdfexport":
-  //       this.grid.pdfExport(this.getPdfExportProperties());
-  //       break;
-  //   }
-  // }
+  toolbarClick(args: any): void {
+    this.onPdfExport(args);
+    console.log(this.combinedArray, this.grid);
+    switch (args.item.id) {
+      case "AdvancedExport_pdfexport":
+        this.grid.pdfExport(this.getPdfExportProperties());
+        break;
+    }
+  }
   // toolbarClick(args: ClickEventArgs): void {
   //   if (this.grid && args.item.id === 'AdvancedExport_pdfexport' && this.grid.pdfExport) {
   //     this.grid.pdfExport(this.getPdfExportProperties());
@@ -220,5 +218,5 @@ export class TripListComponent implements OnInit {
         }
       });
   }
-}
 
+}

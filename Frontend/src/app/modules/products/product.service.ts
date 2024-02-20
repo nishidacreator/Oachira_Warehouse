@@ -270,6 +270,10 @@ export class ProductService {
     return this._http.get<Product[]>(this.url + `?search=${search}&page=${page}&pageSize=${pageSize}`);
   }
 
+  getProductById(id: number): Observable<Product>{
+    return this._http.get<Product>(this.url + '/' + id);
+  }
+
   updateProduct(id:number, data:any){
     return this._http.patch<Product>(this.url+'/' + id, data);
   }

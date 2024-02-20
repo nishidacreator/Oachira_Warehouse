@@ -8,6 +8,8 @@ const RouteSE = sequelize.define('routeSE',{
     userId : {type: DataTypes.INTEGER, allowNull :false},
     paymentMode : {type: DataTypes.STRING},
     invoiceDate : {type: DataTypes.DATE, defaultValue : new Date()},
+    creditBalance : {type: DataTypes.FLOAT},
+    status : {type: DataTypes.STRING, defaultValue: 'Issued'}
 },
 {
     freezeTableName: true,

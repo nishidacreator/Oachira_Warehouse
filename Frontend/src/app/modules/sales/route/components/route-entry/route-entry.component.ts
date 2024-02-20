@@ -11,9 +11,11 @@ import { Gst } from 'src/app/modules/products/models/gst';
 import { Hsn } from 'src/app/modules/products/models/hsn';
 import { Product } from 'src/app/modules/products/models/product';
 import { SecondaryUnit } from 'src/app/modules/products/models/secondary-unit';
-import { ProductService } from 'src/app/modules/products/product.service';
 import { SalesService } from '../../../sales.service';
 import { ActivatedRoute } from '@angular/router';
+import { RouteDetails } from '../../models/route-details';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ProductService } from 'src/app/modules/products/product.service';
 
 @Component({
   selector: 'app-route-entry',
@@ -22,46 +24,74 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RouteEntryComponent implements OnInit, OnDestroy {
 
-  constructor(private fb: FormBuilder, private dialog: MatDialog, private productService: ProductService,
-    private salesService: SalesService, private purchaseService: PurchaseService, private route: ActivatedRoute) {}
+  constructor(private fb: FormBuilder, private dialog: MatDialog, private productservice: ProductService,
+    private salesService: SalesService, private purchaseService: PurchaseService, private route: ActivatedRoute,
+    private _snackBar: MatSnackBar) {}
 
   ngOnDestroy(): void {
-    this.productSub?.unsubscribe();
+    this.detailsub?.unsubscribe();
     this.unitSub?.unsubscribe();
     this.edit?.unsubscribe();
     this.submit?.unsubscribe();
     this.gstSub?.unsubscribe();
     this.hsnSub?.unsubscribe();
     this.orderSub?.unsubscribe();
+    this.edit?.unsubscribe();
   }
 
   orderId!: number;
+  entryId!: number;
   userId!: number;
   ngOnInit(): void {
-    this.orderId = this.route.snapshot.params['id']
+    this.orderId = this.route.snapshot.params['id'];
+    this.entryId = this.route.snapshot.params['editid'];
 
     const token: any = localStorage.getItem('token')
     let user = JSON.parse(token)
     console.log(user);
     this.userId = user.id
 
+    if(this.orderId){
+      this.getRO();
+    }else if(this.entryId){
+      this.patchData()
+    }
     this.getProduct();
     this.getSecondaryUnit();
     this.getGST();
     this.getHsn();
-    this.addDetails();
     this.generateInvoiceNumber();
-    this.getRO();
+  }
+
+
+  purchaseAmount: number = 0;
+  onAmountChange(){
+    let details = this.routeSEDetails().length;
+    for(let i = 0; i < details; i++) {
+      let grossAmount = this.routeSEDetails().at(i).get("amount")?.value;
+      console.log(grossAmount);
+      if (grossAmount) {
+        console.log(grossAmount);
+
+        this.purchaseAmount = grossAmount + this.purchaseAmount;
+        this.routeEntryForm.get("totalAmount")?.setValue(this.purchaseAmount);
+      }
+    }
+
+      // }
+    // }
   }
 
   routeEntryForm = this.fb.group({
     invoiceNo : ['', Validators.required],
     amount : [''],
-    paymentMode : ['', Validators.required],
+    paymentMode : [''],
     routeSEDetails : this.fb.array([]),
     invoiceDate : [''],
     routeSOId : [0],
-    userId : [0]
+    userId : [0],
+    creditBalance : [0],
+    totalAmount : [0]
   });
 
   pModes = [
@@ -109,8 +139,8 @@ export class RouteEntryComponent implements OnInit, OnDestroy {
     });
   }
 
-  addDetails(){
-    this.routeSEDetails().push(this.newProduct());
+  addDetails(value?: any){
+    this.routeSEDetails().push(this.newProduct(value));
   }
 
   removeDetails(i: number){
@@ -120,8 +150,55 @@ export class RouteEntryComponent implements OnInit, OnDestroy {
   orderSub!: Subscription;
   getRO(){
     this.orderSub = this.salesService.getRouteOrderById(this.orderId).subscribe(r =>{
-      console.log(r);
+      this.getLedger(r.customer.id)
+      let details = r.routeSODetails;
+      for(let i = 0; i < details.length; i++){
+        console.log(details[i]);
+
+        this.addDetails(details[i])
+        let gst = details[i].product.gst?.gstName;
+        let hsn = details[i].product.hsn?.hsnName;
+        this.routeSEDetails().at(i).get("gst")?.setValue(gst);
+        this.routeSEDetails().at(i).get("hsn")?.setValue(hsn);
+      }
     });
+  }
+
+  getDetails(i: number, id:number){
+    this.productservice.getProductById(id).subscribe(details=>{
+      let gst = details.gst?.gstName;
+      let hsn = details.hsn?.hsnName;
+      this.routeSEDetails().at(i).get("gst")?.setValue(gst);
+      this.routeSEDetails().at(i).get("hsn")?.setValue(hsn);
+    })
+  }
+
+  ledgerSub!: Subscription;
+  getLedger(id: number){
+    this.ledgerSub = this.salesService.getLedgerByCustomer(id).subscribe(ledger=>{
+      console.log(ledger);
+      let amount = 0;
+      for(let i=0; i<ledger.length; i++){
+        console.log(amount);
+
+        if(ledger[i].credit){
+          amount = ledger[i].credit + amount;
+          console.log(amount);
+
+        }else{
+          amount = ledger[i].debit - amount;
+          console.log(amount);
+
+        }
+      }
+      console.log(amount);
+
+      this.routeEntryForm.get("creditBalance")?.setValue(amount)
+    })
+  }
+
+  calculateLineAmount(){
+
   }
 
   ivNum: string = "";
@@ -131,7 +208,6 @@ export class RouteEntryComponent implements OnInit, OnDestroy {
   generateInvoiceNumber() {
     this.prSub = this.salesService.getRouteEntry().subscribe((res) => {
       let entry = res;
-      console.log(entry);
 
       // Check if there are any employees in the array
       if ( entry.length > 0) {
@@ -171,12 +247,12 @@ export class RouteEntryComponent implements OnInit, OnDestroy {
     return input.replace(/[^a-zA-Z]/g, "");
   }
 
-  productSub!: Subscription;
+  detailsub!: Subscription;
   product: Product[] = [];
   getProduct(value?:any){
-    this.productService.getProduct().subscribe((products) =>{
-      this.product = products
-      this.filteredProduct = products
+    this.productservice.getProduct().subscribe((details) =>{
+      this.product = details
+      this.filteredProduct = details
       if(value){
         this.filterProduct(value)
       }
@@ -221,7 +297,7 @@ export class RouteEntryComponent implements OnInit, OnDestroy {
   unitSub!: Subscription;
   units: SecondaryUnit[] = [];
   getSecondaryUnit(value?: string){
-    this.unitSub = this.productService.getSecondaryUnit().subscribe(data => {
+    this.unitSub = this.productservice.getSecondaryUnit().subscribe(data => {
       this.units = data;
       this.filteredSecondaryUnit = this.units;
       if(value){
@@ -267,7 +343,7 @@ export class RouteEntryComponent implements OnInit, OnDestroy {
   hsnSub!: Subscription;
   hsn: Hsn[] = [];
   getHsn(value?: string){
-    this.hsnSub = this.productService.getHsn().subscribe(data => {
+    this.hsnSub = this.productservice.getHsn().subscribe(data => {
       this.hsn = data;
       this.filteredHsn = this.hsn;
       if(value){
@@ -313,7 +389,7 @@ export class RouteEntryComponent implements OnInit, OnDestroy {
   gstSub!: Subscription;
   gst: Gst[] = [];
   getGST(value?: string){
-    this.unitSub = this.productService.getGst().subscribe(data => {
+    this.unitSub = this.productservice.getGst().subscribe(data => {
       this.gst = data;
       this.filteredGst = this.gst;
       if(value){
@@ -358,19 +434,91 @@ export class RouteEntryComponent implements OnInit, OnDestroy {
 
   submit!: Subscription;
   onSubmit(){
+    if(!this.routeEntryForm.valid){
+      return alert("Please fill the form completely")
+    }
     let data = {
       ...this.routeEntryForm.value
     }
     data.routeSOId = this.orderId
     data.userId = this.userId
+    console.log(data);
+
     this.salesService.addRouteEntry(data).subscribe(res=>{
       console.log(res);
+      history.back();
+      // if(!this.dialogRef){
+      //   history.back();
+      // }
+      this._snackBar.open("RouteEntry added successfully...","" ,{duration:3000})
+      this.clearControls()
     });
   }
 
+  clearControls(){
+    this.routeEntryForm.reset()
+  }
+
   isEdit: boolean = false;
+  seId!: number;
+  patchData(){
+    this.isEdit = true;
+    this.salesService.getRouteEntryById(this.entryId).subscribe(data =>{
+      let list = data
+      console.log(list);
+
+      this.seId = list.id;
+      let invoiceNo = list.invoiceNo
+      let date: any = list.invoiceDate;
+      let balance: any = list.creditBalance;
+
+      this.routeEntryForm.patchValue({
+        invoiceNo: invoiceNo,
+        invoiceDate: date,
+        creditBalance: balance
+      })
+
+      const pl = this.routeEntryForm.get("routeSEDetails") as FormArray;
+        pl.clear();
+        let details = list.routeSEDetails;
+        console.log(details);
+
+        if (details && details.length > 0) {
+          details.forEach((detail: any) => {
+            console.log(detail);
+
+          const details = this.fb.group({
+            productId : detail.productId,
+            quantity : detail.quantity,
+            secondaryUnitId : detail.secondaryUnitId,
+            mrp: detail.mrp,
+            hsnCode: detail.hsnCode,
+            gst: detail.gst,
+            rate: detail.rate,
+            amount: detail.amount
+          });
+
+          pl.push(details);
+        })
+      }
+    });
+  }
+
   edit!: Subscription;
   editFunction(){
+    this.isEdit = false;
+    let data = {
+      ...this.routeEntryForm.value
+    }
+    data.routeSOId = this.orderId
+    data.userId = this.userId
+    console.log(data);
 
+    this.edit = this.salesService.updateRouteEntry(this.seId, data).subscribe(res=>{
+      console.log(res);
+      history.back();
+      this._snackBar.open("RouteEntry updated successfully...","" ,{duration:3000})
+      this.clearControls()
+    })
   }
 }
