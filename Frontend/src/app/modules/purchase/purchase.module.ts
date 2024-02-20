@@ -10,6 +10,7 @@ import { ViewOrderComponent } from './components/view-order/view-order.component
 import { ViewRequestComponent } from './components/view-request/view-request.component';
 import { ViewPrComponent } from './components/view-pr/view-pr.component';
 import { ListProductsComponent } from './components/list-products/list-products.component';
+import { SlipComponent } from './components/slip/slip.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ListProductsComponent } from './components/list-products/list-products.
     ViewOrderComponent,
     ViewRequestComponent,
     ViewPrComponent,
-    ListProductsComponent
+    ListProductsComponent,
+    SlipComponent
   ],
   imports: [
     CommonModule,

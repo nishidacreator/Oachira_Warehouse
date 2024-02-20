@@ -97,6 +97,10 @@
     }
   },
   "cli": {
+<<<<<<< HEAD
     "analytics": "1628ae89-8172-4780-b61b-340057aa7341"
+=======
+    "analytics": "7c247400-9e80-4350-ae03-5dc1b685abf7"
+>>>>>>> cb40c0e (Update after angular JSON)
   }
 }
