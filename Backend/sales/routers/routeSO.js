@@ -50,11 +50,10 @@ router.get('/', authenticateToken,async(req,res)=>{
 })
 
 router.get('/routeid/:id', authenticateToken, async(req,res)=>{
-
   try {
       const result = await RouteSO.findAll({
         where: {routeId: req.params.id},
-        include: [Route, Customer, 'salesexecutive']});
+        include: [Route, Customer, 'pickSalesExecutive', {model: RouteSODetails, include: [SecondaryUnit]}]});
       res.send(result);
       
   } catch (error) {

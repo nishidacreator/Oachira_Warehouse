@@ -45,6 +45,6 @@ export class ViewTripDetailsComponent implements OnInit, OnDestroy {
 
   viewTrip(){
     let routeId = this.trip.routeId
-    this.router.navigateByUrl('login/sales/routesale/viewtrip/details/list/' + this.tripId + '/' + routeId)
+    this.router.navigateByUrl('login/sales/routesale/viewtrip/details/picklist/' + this.tripId + '/' + routeId)
   }
 }

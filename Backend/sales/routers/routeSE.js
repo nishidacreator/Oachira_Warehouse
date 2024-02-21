@@ -23,9 +23,9 @@ router.post('/', authenticateToken, async (req, res) => {
     try {
         const data = req.body;
 
-        const { routeSEId, invoiceNo, totalAmount, userId, paymentMode, invoiceDate, routeSEDetails, creditBalance } = data;
+        const { routeSOId, invoiceNo, totalAmount, userId, paymentMode, invoiceDate, routeSEDetails, creditBalance } = data;
   
-        const se = await RouteSE.create( {routeSEId, invoiceNo, totalAmount, userId, paymentMode, invoiceDate, creditBalance} );
+        const se = await RouteSE.create( {routeSOId, invoiceNo, totalAmount, userId, paymentMode, invoiceDate, creditBalance} );
   
         const seId = se.id
   
@@ -35,12 +35,12 @@ router.post('/', authenticateToken, async (req, res) => {
   
         let seDetails = await RouteSEDetails.bulkCreate(routeSEDetails)
 
-        const so = await RouteSE.findByPk(routeSEId)
+        const so = await RouteSO.findByPk(routeSOId)
         const customerId = so.customerId;
 
         const ledger = await CustomerLedger.create( {customerId, invoiceNo, date: new Date(), debit: 0, credit: totalAmount} );
 
-        const rso = await RouteSE.findByPk(routeSEId)
+        const rso = await RouteSO.findByPk(routeSOId)
         rso.status = 'InvoiceIssued';
         await rso.save();
 
