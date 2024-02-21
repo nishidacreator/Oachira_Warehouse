@@ -2,19 +2,22 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../../utils/db');
 
 const Entry = sequelize.define('entry',{
-    purchaseOrderId : {type : DataTypes.INTEGER, },
-    userId : {type : DataTypes.INTEGER, },
-    purchaseInvoice : {type : DataTypes.STRING, },
-    purachseDate: {type : DataTypes.DATEONLY, defaultValue: Date.now()},
-    paymentMode: {type : DataTypes.STRING, },
-    purchaseAmount: {type :DataTypes.FLOAT, },
-    eWayBillNo: {type : DataTypes.STRING, },
-    loading:{type: DataTypes.INTEGER},
-    transportationCharge: {type : DataTypes.FLOAT, },
-    unloading: {type : DataTypes.BOOLEAN, },
-    unloadingTeam: {type : DataTypes.STRING, },
-    commission: {type : DataTypes.BOOLEAN, },
-    chequeNo:{type: DataTypes.INTEGER}
+    purchaseInvoice : {type : DataTypes.STRING, allowNull: false},
+    purachseDate: {type : DataTypes.DATEONLY, defaultValue: Date.now(), allowNull: false},
+    distributorId: {type : DataTypes.INTEGER, allowNull: false},
+    purchaseAmount: {type :DataTypes.FLOAT, allowNull: false},
+    eWayBillNo: {type : DataTypes.STRING},
+    status: {type : DataTypes.STRING, allowNull: false},
+    chequeNo: {type : DataTypes.STRING},
+    chequeIssuedDate: {type : DataTypes.DATEONLY},
+    invoiceDate: {type : DataTypes.DATEONLY},
+    transportation: {type : DataTypes.FLOAT, defaultValue: 0},
+    unloading: {type : DataTypes.BOOLEAN, defaultValue: 0},
+    commission: {type : DataTypes.BOOLEAN, defaultValue: 0},
+    paymentMode: {type : DataTypes.STRING},
+    purchaseOrderId : {type : DataTypes.INTEGER},
+    userId : {type : DataTypes.INTEGER, allowNull: false },
+    remarks : {type: DataTypes.STRING}
 },
 {
     freezeTableName: true,

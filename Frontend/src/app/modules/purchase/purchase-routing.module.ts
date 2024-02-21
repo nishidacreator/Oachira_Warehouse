@@ -6,6 +6,7 @@ import { EntryComponent } from './components/entry/entry.component';
 import { ViewOrderComponent } from './components/view-order/view-order.component';
 import { ViewRequestComponent } from './components/view-request/view-request.component';
 import { ViewPrComponent } from './components/view-pr/view-pr.component';
+import { ViewEntryComponent } from './components/view-entry/view-entry.component';
 
 const routes: Routes = [
   {path: 'purchaserequest', component: RequestComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'purchaseentry', component: EntryComponent},
   {path: 'viewpurchaserequest', component: ViewRequestComponent},
   {path: 'viewpurchaseorder', component: ViewOrderComponent},
+  {path: 'viewpurchaseentry', component: ViewEntryComponent},
   {path: 'purchaserequest/view/:id', component: ViewPrComponent},
 ];
 

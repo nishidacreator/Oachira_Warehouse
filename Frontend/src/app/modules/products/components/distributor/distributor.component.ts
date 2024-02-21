@@ -56,7 +56,9 @@ export class DistributorComponent implements OnInit {
     if (this.dialogRef) {
       this.addStatus = this.dialogData?.status;
 
-      this.patchData()
+      if (this.dialogData?.type == 'edit'){
+        this.patchData()
+      }
     }
     this.distributorForm.get('status')?.setValue(true);
     this.getDistributor()
@@ -209,8 +211,6 @@ export class DistributorComponent implements OnInit {
   clearControls(){
     this.getDistributor()
     this.distributorForm.reset()
-    this.distributorForm.setErrors(null)
-    Object.keys(this.distributorForm.controls).forEach(key=>{this.distributorForm.get(key)?.setErrors(null)})
     this.file = null;
     this.imageUrl = '';
   }
