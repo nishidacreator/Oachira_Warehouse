@@ -43,8 +43,7 @@ router.post('/', authenticateToken, async (req, res) => {
 router.get('/', async (req, res) => {
 
     const entry = await EntryDetails.findAll({
-        order:['id'],
-        include : [User]
+     
   
     })
 
