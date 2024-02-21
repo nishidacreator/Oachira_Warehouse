@@ -2,21 +2,16 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../../utils/db');
 
 const EntryDetails = sequelize.define('entryDetails',{
-    entryId: {type : DataTypes.INTEGER, },
-    productId : {type : DataTypes.INTEGER, },
-    mrp:{type: DataTypes.INTEGER, },
-    rate:{type: DataTypes.INTEGER, },
-    gross:{type: DataTypes.INTEGER, },
-    discount : {type: DataTypes.INTEGER, },
-    sgst : {type: DataTypes.INTEGER, },
-    cgst :  {type: DataTypes.INTEGER, },
-    net :  {type: DataTypes.INTEGER, },
-    rent :  {type: DataTypes.INTEGER, },
-    commision : {type: DataTypes.INTEGER, },
-    profit : {type: DataTypes.INTEGER, },
-    salePrice : {type: DataTypes.INTEGER, },
-    quantity : {type : DataTypes.FLOAT, },
-    unitId : {type : DataTypes.INTEGER}
+    entryId: {type : DataTypes.INTEGER, allowNull: false},
+    productId : {type : DataTypes.INTEGER, allowNull: false},
+    quantity : {type : DataTypes.FLOAT, allowNull: false},
+    secondaryUnitId : {type : DataTypes.INTEGER, allowNull: false},
+    mrp:{type: DataTypes.INTEGER},
+    rate:{type: DataTypes.INTEGER, allowNull: false},
+    discount : {type: DataTypes.INTEGER, defaultValue: 0},
+    gstId : {type: DataTypes.INTEGER, },
+    gross:{type: DataTypes.INTEGER, allowNull: false},
+    net :  {type: DataTypes.INTEGER, allowNull: false}
 },
 {
     freezeTableName: true,

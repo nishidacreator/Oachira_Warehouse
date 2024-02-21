@@ -360,8 +360,8 @@ export class ProductService {
     }
   }
 
-  getDistributor(): Observable<Brand[]>{
-    return this._http.get<Brand[]>(this.url+'distributor');
+  getDistributor(): Observable<Distributor[]>{
+    return this._http.get<Distributor[]>(this.url+'distributor');
   }
 
   getPaginatedDistributor( search:String, page: number, pageSize: number): Observable<Brand[]>{

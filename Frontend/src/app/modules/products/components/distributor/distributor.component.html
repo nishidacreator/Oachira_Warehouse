@@ -1,13 +1,13 @@
 
 <form [formGroup]="distributorForm" (ngSubmit)="onSubmit()">
   <mat-card class="background">
-    <div class="row" *ngIf="addStatus != 'true'">
+    <div class="row">
       <div class="col">
         <mat-card-header>
           <mat-card-title> DISTRIBUTOR</mat-card-title>
         </mat-card-header>
       </div>
-      <div class="col">
+      <div class="col" *ngIf="addStatus != 'true'">
         <mat-card-header>
           <button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon"
           class="d-block mr-0 ml-auto" onClick="history.back()" style="margin-left: auto;">
@@ -107,10 +107,10 @@
 
       <br><div>
         <mat-slide-toggle formControlName="status">Status</mat-slide-toggle>
-      </div>
+      </div><br>
 
       <div class="col" *ngIf="!editstatus">
-        <mat-form-field class="full-width">
+        <mat-form-field class="full-width" appearance="fill">
           <mat-label>Products Distributed</mat-label>
           <mat-select formControlName="products" multiple>
             <mat-form-field class="search-field" style="width: 80%;">
@@ -118,8 +118,6 @@
                 <input matInput (input)="filterProduct($event)" placeholder="Search">
               </div>
             </mat-form-field>
-            <span *ngIf="filteredProduct.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);"
-               (click)="addProduct()">playlist_add</span>
             <mat-option *ngFor="let item of filteredProduct" [value]="item.id">
               {{ item.productName }}
             </mat-option>

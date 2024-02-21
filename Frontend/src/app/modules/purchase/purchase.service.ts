@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { PurchaseOrder } from './models/purchase-order';
 import { Observable } from 'rxjs';
 import { PurchaseRequest } from './models/purchase-request';
+import { Entry } from './models/entry';
 
 @Injectable({
   providedIn: 'root'
@@ -57,15 +58,18 @@ export class PurchaseService {
     return this._http.patch<PurchaseOrder>(this.url+'order/'+id, data);
   }
 
-    //PE
-    addPE(data : any){
-      return this._http.post(this.url + 'entry', data)
-  
-    }
-    //SLIP
-    addSlip( data : any){
-      return this._http.post(this.url + 'slip', data)
+  //PE
+  addPE(data : any){
+    return this._http.post(this.url + 'entry', data)
 
-    }
-  
+  }
+
+  getPe(): Observable<Entry[]>{
+    return this._http.get<Entry[]>(this.url+'order');
+  }
+  //SLIP
+  addSlip( data : any){
+    return this._http.post(this.url + 'slip', data)
+  }
+
 }
