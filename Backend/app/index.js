@@ -107,7 +107,7 @@ app.use('/sales/tripdetails',tripDetails);
 
 // app.use('/sales/picklist', pickList);
 // app.use('/sales/picklistdetails', pickListDetails);
-app.use('/purchases/entry',entry)
+app.use('/purchases/entry', entry)
 app.use('/entryDetails',entryDetails)
 
 app.use('/sales/routeorder', routeSO);
