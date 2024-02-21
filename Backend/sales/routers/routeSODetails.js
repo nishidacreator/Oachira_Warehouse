@@ -6,6 +6,7 @@ const Route = require('../models/route');
 const Product = require('../../products/models/product');
 const RouteSO = require('../models/routeSO');
 const Customer = require('../models/customer');
+const SecondaryUnit = require('../../products/models/secondaryUnit');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
@@ -22,7 +23,7 @@ router.post('/', authenticateToken, async (req, res) => {
     }
 })
 
-router.get('/:id', authenticateToken,async(req,res)=>{
+router.get('/routeid/:id', authenticateToken,async(req,res)=>{
 
     try {
         const result = await RouteSODetails.findAll(
@@ -33,7 +34,8 @@ router.get('/:id', authenticateToken,async(req,res)=>{
               model: Customer
             }}, {
             model: Product
-          }], order:['id']});
+          },
+          { model: SecondaryUnit}], order:['id']});
         res.send(result);
         
     } catch (error) {
@@ -41,18 +43,35 @@ router.get('/:id', authenticateToken,async(req,res)=>{
     }  
 })
 
-router.get('/byid/:id', authenticateToken, async(req,res)=>{
-
+router.get('/productid/:id/:routeid', authenticateToken, async(req,res)=>{
   try {
-      const result = await RouteSODetails.findOne(
-        {where :{id : req.params.id},
+      const result = await RouteSODetails.findAll(
+        {where :{productId : req.params.id, routeSOId : req.params.routeid},
         include: [{
           model : RouteSO, 
           include: {
             model: Customer
           }}, {
           model: Product
-        }]});
+        },
+        { model: SecondaryUnit}], order:['id']});
+      res.send(result);
+      
+  } catch (error) {
+      res.send(error.message);
+  }  
+})
+
+router.get('/byid/:id', authenticateToken, async(req,res)=>{
+
+  try {
+      const result = await RouteSODetails.findOne(
+        {where :{id : req.params.id},
+        include: [
+          { model: RouteSO, include: { model: Customer }}, 
+          { model: Product},
+          { model: SecondaryUnit}
+        ]});
       res.send(result);
       
   } catch (error) {

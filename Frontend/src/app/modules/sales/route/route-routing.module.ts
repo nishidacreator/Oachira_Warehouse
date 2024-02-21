@@ -18,6 +18,8 @@ import { RouteOrderComponent } from './components/route-order/route-order.compon
 import { ViewRouteOrderDetailsComponent } from './components/view-route-order-details/view-route-order-details.component';
 import { RouteEntryComponent } from './components/route-entry/route-entry.component';
 import { ViewRouteEntryDetailsComponent } from './components/view-route-entry-details/view-route-entry-details.component';
+import { PickListComponent } from './components/pick-list/pick-list.component';
+import { ViewPickListDetailsComponent } from './components/view-pick-list-details/view-pick-list-details.component';
 
 const routes: Routes = [
   {path: '', component: ManageRouteComponent},
@@ -32,7 +34,8 @@ const routes: Routes = [
   {path: 'trip/:id', component: TripComponent},
   {path: 'viewtrip', component: ViewTripComponent},
   {path: 'viewtrip/details/:id', component: ViewTripDetailsComponent},
-  {path: 'viewtrip/details/list/:id/:routeId', component: TripListComponent},
+  {path: 'viewtrip/details/picklist/:id/:routeId', component: PickListComponent},
+  {path: 'viewtrip/details/picklistdetails/:routeId', component: ViewPickListDetailsComponent},
   {path: 'tripdays', component: TripDaysComponent},
 
   {path: 'viewrouteorder', component: ViewRouteOrderComponent},

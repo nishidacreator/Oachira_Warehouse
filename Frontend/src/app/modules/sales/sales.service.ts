@@ -321,7 +321,7 @@ export class SalesService {
   }
 
   getRouteOrderByRouteId(id: number): Observable<RouteOrder[]>{
-    return this._http.get<RouteOrder[]>(this.url +'routeorder/byrouteid/'+id);
+    return this._http.get<RouteOrder[]>(this.url +'routeorder/routeid/'+id);
   }
 
   deleteRouteOrder(id : Number){
@@ -337,7 +337,11 @@ export class SalesService {
   }
 
   getRouteOrderDetails(id: number){
+    return this._http.get<RouteOrderDetails[]>(this.url +'routeorderdetails/routeid/'+id);
+  }
 
+  getRouteSoDetailsByProductId(id: number, routeId: number){
+    return this._http.get<RouteOrderDetails[]>(this.url +'routeorderdetails/productid/'+id + '/' + routeId);
   }
 
   //SALES ENTRY

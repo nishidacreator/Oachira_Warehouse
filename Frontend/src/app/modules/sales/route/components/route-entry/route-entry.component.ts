@@ -69,12 +69,9 @@ export class RouteEntryComponent implements OnInit, OnDestroy {
     let details = this.routeSEDetails().length;
     for(let i = 0; i < details; i++) {
       let grossAmount = this.routeSEDetails().at(i).get("amount")?.value;
-      console.log(grossAmount);
       if (grossAmount) {
-        console.log(grossAmount);
-
         this.purchaseAmount = grossAmount + this.purchaseAmount;
-        this.routeEntryForm.get("totalAmount")?.setValue(this.purchaseAmount);
+        // this.routeEntryForm.get("totalAmount")?.setValue(this.purchaseAmount);
       }
     }
 
