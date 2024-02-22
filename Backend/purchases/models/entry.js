@@ -15,9 +15,10 @@ const Entry = sequelize.define('entry',{
     unloading: {type : DataTypes.FLOAT, defaultValue: 0},
     commission: {type : DataTypes.FLOAT, defaultValue: 0},
     paymentMode: {type : DataTypes.STRING},
-    purchaseOrderId : {type : DataTypes.INTEGER},
+    orderId : {type : DataTypes.INTEGER},
     userId : {type : DataTypes.INTEGER, allowNull: false },
-    remarks : {type: DataTypes.STRING}
+    remarks : {type: DataTypes.STRING},
+    entryStatus: {type : DataTypes.STRING, defaultValue:'pending'},
 },
 {
     freezeTableName: true,
