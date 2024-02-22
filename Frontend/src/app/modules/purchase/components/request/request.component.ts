@@ -3,19 +3,21 @@ import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@ang
 import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PurchaseService } from '../../purchase.service';
-import { StoreService } from 'src/app/modules/store/store.service';
 import { Subscription } from 'rxjs';
-import { Store } from 'src/app/modules/store/models/store';
+
 import { UsersService } from 'src/app/modules/users/users.service';
 import { User } from 'src/app/modules/users/models/user';
 import { ProductService } from 'src/app/modules/products/product.service';
 import { Product } from 'src/app/modules/products/models/product';
 import { SecondaryUnit } from 'src/app/modules/products/models/secondary-unit';
-import { StoreComponent } from 'src/app/modules/store/components/store/store.component';
+
 import { UnitComponent } from 'src/app/modules/products/components/unit/unit.component';
 import { UsersComponent } from 'src/app/modules/users/components/users/users.component';
 import { ProductComponent } from 'src/app/modules/products/components/product/product.component';
 import * as moment from 'moment';
+import { company } from 'src/app/modules/company/models/company';
+import { CompanyService } from 'src/app/modules/company/company.service';
+import { CompanyComponent } from 'src/app/modules/company/components/company/company.component';
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
@@ -24,7 +26,7 @@ import * as moment from 'moment';
 export class RequestComponent implements OnInit {
 
   constructor(private fb: FormBuilder, public purchaseService: PurchaseService, public dialog: MatDialog,
-    private router: Router, private route: ActivatedRoute, private storeService: StoreService,
+    private router: Router, private route: ActivatedRoute, private companyService: CompanyService,
     private userService: UsersService, private productService: ProductService) {
     //User
     const token: any = localStorage.getItem("token");
@@ -84,10 +86,10 @@ export class RequestComponent implements OnInit {
   }
 
   storeSub!: Subscription;
-  stores: Store[] = [];
+  companies: company[] = [];
   getStores(value?: string) {
-    this.storeSub = this.storeService.getStore().subscribe((store) => {
-      this.stores = store;
+    this.storeSub = this.companyService.getCompanies().subscribe((store) => {
+      this.companies = store;
       this.filteredStore = store;
 
       if(value){
@@ -97,7 +99,7 @@ export class RequestComponent implements OnInit {
   }
 
   addStore(){
-    const dialogRef = this.dialog.open(StoreComponent, {
+    const dialogRef = this.dialog.open(CompanyComponent, {
       data: { status: "true"},
     });
 
@@ -109,7 +111,7 @@ export class RequestComponent implements OnInit {
     });
   }
 
-  filteredStore: Store[] = [];
+  filteredStore: company[] = [];
   filterStore(event: Event | string) {
     let value: string = "";
 
@@ -118,10 +120,10 @@ export class RequestComponent implements OnInit {
     } else if (event instanceof Event) {
       value = (event.target as HTMLInputElement).value;
     }
-    this.filteredStore = this.stores.filter((option) => {
+    this.filteredStore = this.companies.filter((option) => {
       if (
-        (option.storeName &&
-          option.storeName.toLowerCase().includes(value?.toLowerCase()))
+        (option.companyName &&
+          option.companyName.toLowerCase().includes(value?.toLowerCase()))
       ) {
         return true;
       } else {

@@ -61,7 +61,7 @@
                 <!-- <span *ngIf="filteredStore.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55); margin-left: 20px;"
                  (click)="addStore()">playlist_add</span> -->
                 <mat-option *ngFor="let item of filteredStore" [value]="item.id">
-                  {{item.storeName}}
+                  <!-- {{item.storeName}} -->
                 </mat-option>
                 <mat-option  *ngIf="filteredStore.length === 0">
                   <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addStore()">playlist_add</span>

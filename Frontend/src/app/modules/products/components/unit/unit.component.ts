@@ -51,7 +51,7 @@ export class UnitComponent implements OnInit {
     primaryUnit: [''],  // Add primaryUnit control
     loadingCharge: []
   });
-  
+
 
   secondaryUnits(): FormArray {
     return this.primaryUnitForm.get("secondaryUnits") as FormArray;
@@ -378,39 +378,39 @@ editPUnitFunction(){
     //   const primaryUnitId = this.secondaryUnitForm.controls['primaryUnitId'].value;
     //   const primaryFactor = this.secondaryUnitForm.controls['primaryFactor'].value;
     //   const secondaryFactor = this.secondaryUnitForm.controls['secondaryFactor'].value;
-  
+
     //   const selectedPrimaryUnit = this.pUnits.find(item => item.id === primaryUnitId);
     //   const primaryUnitName = selectedPrimaryUnit ? selectedPrimaryUnit.primaryUnitName : '';
-  
+
     //   const concatenatedName = `${primaryFactor} * ${secondaryFactor} ${primaryUnitName}`;
-  
+
     //   this.secondaryUnitForm.patchValue({
     //     secondaryUnitName: concatenatedName
     //   });
     // }
-  
+
     // Assuming you have other functions like editSUnitFunction()
-  
+
     updateSecondaryUnitName() {
       const primaryUnitId = this.secondaryUnitForm.controls['primaryUnitId'].value;
       const primaryFactor = this.secondaryUnitForm.controls['primaryFactor'].value;
       const secondaryFactor = this.secondaryUnitForm.controls['secondaryFactor'].value;
-    
+
       const selectedPrimaryUnit = this.pUnits.find(item => item.id === primaryUnitId);
       const primaryUnitName = selectedPrimaryUnit ? selectedPrimaryUnit.primaryUnitName : '';
-    
+
       // Ensure primaryFactor and secondaryFactor are not null or undefined
-      if (primaryFactor !== null && primaryFactor !== undefined &&
-          secondaryFactor !== null && secondaryFactor !== undefined) {
-    
+      if (primaryFactor != null && primaryFactor != undefined &&
+          secondaryFactor != null && secondaryFactor != undefined) {
+
         // Check if both primaryFactor and secondaryFactor are valid numbers
         const isValidNumber = !isNaN(+primaryFactor) && !isNaN(+secondaryFactor);
-    
+
         if (isValidNumber) {
           const result = (+primaryFactor) * (+secondaryFactor);
-    
+
           let secondaryUnitName = '';
-    
+
           // Determine the secondary unit name based on the chosen primary unit
        // Determine the secondary unit name based on the chosen primary unit
 // Determine the secondary unit name based on the chosen primary unit
@@ -434,7 +434,7 @@ switch (primaryUnitName.toLowerCase()) {
 }
 
 
-    
+
           // Use setValue to directly set the value of secondaryUnitName in the form
           this.secondaryUnitForm.controls['secondaryUnitName'].setValue(secondaryUnitName.trim());
         } else {
@@ -444,12 +444,12 @@ switch (primaryUnitName.toLowerCase()) {
         console.error('primaryFactor or secondaryFactor is null or undefined');
       }
     }
-    
-    
-    
-    
-    
-    
-    
- 
+
+
+
+
+
+
+
+
 }

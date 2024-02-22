@@ -1,9 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { PurchaseModule } from '../../purchase.module';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { PurchaseOrder } from '../../models/purchase-order';
 import { PurchaseService } from '../../purchase.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductComponent } from 'src/app/modules/products/components/product/product.component';
@@ -11,16 +9,13 @@ import { UnitComponent } from 'src/app/modules/products/components/unit/unit.com
 import { Product } from 'src/app/modules/products/models/product';
 import { SecondaryUnit } from 'src/app/modules/products/models/secondary-unit';
 import { ProductService } from 'src/app/modules/products/product.service';
-import { StoreComponent } from 'src/app/modules/store/components/store/store.component';
-import { Store } from 'src/app/modules/store/models/store';
-import { StoreService } from 'src/app/modules/store/store.service';
+
 import { UsersComponent } from 'src/app/modules/users/components/users/users.component';
 import { User } from 'src/app/modules/users/models/user';
 import { UsersService } from 'src/app/modules/users/users.service';
-import { Warehouse } from 'src/app/modules/store/models/warehouse';
-import { WarehouseComponent } from 'src/app/modules/store/components/warehouse/warehouse.component';
 import { DistributorComponent } from 'src/app/modules/products/components/distributor/distributor.component';
 import { Distributor } from 'src/app/modules/products/models/distributor';
+import { CompanyService } from 'src/app/modules/company/company.service';
 
 @Component({
   selector: 'app-order',
@@ -30,7 +25,7 @@ import { Distributor } from 'src/app/modules/products/models/distributor';
 export class OrderComponent implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder, public purchaseService: PurchaseService, public dialog: MatDialog,
-    private router: Router, private route: ActivatedRoute, private storeService: StoreService,
+    private router: Router, private route: ActivatedRoute, private storeService: CompanyService,
     private userService: UsersService, private productService: ProductService) {
     //User
     const token: any = localStorage.getItem("token");
@@ -103,15 +98,15 @@ export class OrderComponent implements OnInit, OnDestroy {
   //   })
   // }
 
-  addWarehouse(){
-    const dialogRef = this.dialog.open(WarehouseComponent, {
-      data: { status: "true"},
-    });
+  // addWarehouse(){
+  //   const dialogRef = this.dialog.open(WarehouseComponent, {
+  //     data: { status: "true"},
+  //   });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      // this.getWarehouse(result?.store);
-    });
-  }
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   // this.getWarehouse(result?.store);
+    // });
+
 
   // filteredWarehouse: Warehouse[] = [];
   // filterWarehouse(event: Event | string) {
@@ -395,7 +390,7 @@ export class OrderComponent implements OnInit, OnDestroy {
       }
     });
   }
-  
+
   filteredDistributor: Distributor[] = [];
   filterDistributor(event: any){
     let value: string = "";
