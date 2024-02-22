@@ -19,6 +19,8 @@ import { User } from 'src/app/modules/users/models/user';
 import { UsersService } from 'src/app/modules/users/users.service';
 import { Warehouse } from 'src/app/modules/store/models/warehouse';
 import { WarehouseComponent } from 'src/app/modules/store/components/warehouse/warehouse.component';
+import { DistributorComponent } from 'src/app/modules/products/components/distributor/distributor.component';
+import { Distributor } from 'src/app/modules/products/models/distributor';
 
 @Component({
   selector: 'app-order',
@@ -37,7 +39,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.warehouseSub?.unsubscribe();
+    // this.warehouseSub?.unsubscribe();
     this.userSub?.unsubscribe();
     this.productSub?.unsubscribe();
     this.unitSub?.unsubscribe();
@@ -47,28 +49,29 @@ export class OrderComponent implements OnInit, OnDestroy {
   addStatus!: string;
   editstatus!: boolean;
   ngOnInit(): void {
-    this.getWarehouse();
+    // this.getWarehouse();
     this.getUsers();
     this.getProduct();
     this.getSecondaryUnit();
     this.generateInvoiceNumber();
     this.addProduct();
     let requestId = this.route.snapshot.params['id'];
-    if(requestId){
-      this.patchData(requestId)
-    }
+    // if(requestId){
+    //   this.patchData(requestId)
+    // }
   }
 
-  purchaseRequestForm = this.fb.group({
-    requestNo: ["", Validators.required],
+  purchaseOrderForm = this.fb.group({
+    orderNo: ["", Validators.required],
     storeId: [Validators.required],
     userId: [],
     date: ["", Validators.required],
-    requestDetails: this.fb.array([]),
+    distributorId:[],
+    orderDetails: this.fb.array([]),
   });
 
   products(): FormArray {
-    return this.purchaseRequestForm.get("requestDetails") as FormArray;
+    return this.purchaseOrderForm.get("orderDetails") as FormArray;
   }
 
   newProduct(initialValue?: any): FormGroup {
@@ -87,18 +90,18 @@ export class OrderComponent implements OnInit, OnDestroy {
     });
   }
 
-  warehouseSub!: Subscription;
-  warehouse: Warehouse[] = [];
-  getWarehouse(value?: string) {
-    this.warehouseSub = this.storeService.getWarehouse().subscribe((store) => {
-      this.warehouse = store;
-      this.filteredWarehouse = store;
+  // warehouseSub!: Subscription;
+  // warehouse: Warehouse[] = [];
+  // getWarehouse(value?: string) {
+  //   this.warehouseSub = this.storeService.getWarehouse().subscribe((store) => {
+  //     this.warehouse = store;
+  //     this.filteredWarehouse = store;
 
-      if(value){
-        this.filterWarehouse(value);
-      }
-    })
-  }
+  //     if(value){
+  //       this.filterWarehouse(value);
+  //     }
+  //   })
+  // }
 
   addWarehouse(){
     const dialogRef = this.dialog.open(WarehouseComponent, {
@@ -106,30 +109,30 @@ export class OrderComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.getWarehouse(result?.store);
+      // this.getWarehouse(result?.store);
     });
   }
 
-  filteredWarehouse: Warehouse[] = [];
-  filterWarehouse(event: Event | string) {
-    let value: string = "";
+  // filteredWarehouse: Warehouse[] = [];
+  // filterWarehouse(event: Event | string) {
+  //   let value: string = "";
 
-    if (typeof event === "string") {
-      value = event;
-    } else if (event instanceof Event) {
-      value = (event.target as HTMLInputElement).value;
-    }
-    this.filteredWarehouse = this.warehouse.filter((option) => {
-      if (
-        (option.warehouseName &&
-          option.warehouseName.toLowerCase().includes(value?.toLowerCase()))
-      ) {
-        return true;
-      } else {
-        return null;
-      }
-    });
-  }
+  //   if (typeof event === "string") {
+  //     value = event;
+  //   } else if (event instanceof Event) {
+  //     value = (event.target as HTMLInputElement).value;
+  //   }
+  //   this.filteredWarehouse = this.warehouse.filter((option) => {
+  //     if (
+  //       (option.warehouseName &&
+  //         option.warehouseName.toLowerCase().includes(value?.toLowerCase()))
+  //     ) {
+  //       return true;
+  //     } else {
+  //       return null;
+  //     }
+  //   });
+  // }
 
   userSub!: Subscription;
   users : User[] = [];
@@ -294,7 +297,7 @@ export class OrderComponent implements OnInit, OnDestroy {
       } else {
         // If there are no employees in the array, set the employeeId to 'EMP001'
         this.nextId = 0o0;
-        this.prefix = "INVPO";
+        this.prefix = "PO";
       }
 
       const paddedId = `${this.prefix}${this.nextId
@@ -303,7 +306,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
       this.ivNum = paddedId;
 
-      this.purchaseRequestForm.get("requestNo")?.setValue(this.ivNum);
+      this.purchaseOrderForm.get("orderNo")?.setValue(this.ivNum);
     });
   }
 
@@ -321,10 +324,11 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   submitSub!: Subscription;
   onSubmit(){
-    if(!this.purchaseRequestForm.valid){
-      return alert('Please fill the form first')
-    }
-    this.submitSub = this.purchaseService.addPR(this.purchaseRequestForm.getRawValue()).subscribe(() =>{
+    // if(!this.purchaseOrderForm.valid){
+    //   return alert('Please fill the form first')
+    // }
+    let data = this.purchaseOrderForm.getRawValue()
+    this.submitSub = this.purchaseService.addPO(data).subscribe(() =>{
       this.clearControls()
     },
     (error) => {
@@ -333,51 +337,94 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   clearControls() {
-    this.purchaseRequestForm.reset();
+    this.purchaseOrderForm.reset();
     this.router.navigateByUrl("/login/purachases/viewpurchaserequest");
   }
 
-  prId!: number;
-  patchData(id: number){
-    this.purchaseService.getPRById(id).subscribe(res=>{
-      this.prId = id;
-        this.editstatus = true
-        let pr = res
+  // prId!: number;
+  // patchData(id: number){
+  //   this.purchaseService.getPRById(id).subscribe(res=>{
+  //     this.prId = id;
+  //       this.editstatus = true
+  //       let pr = res
 
-        let requestNo = pr.requestNo.toString();
-        let store: any = pr.storeId;
-        let user: any = pr.userId;
-        let date: any = pr.date;
+  //       let orderNo = pr.orderNo.toString();
+  //       let store: any = pr.storeId;
+  //       let user: any = pr.userId;
+  //       let date: any = pr.date;
 
-        this.purchaseRequestForm.patchValue({
-          requestNo : requestNo,
-          storeId : store,
-          userId : user,
-          date : date
-        })
+  //       this.purchaseOrderForm.patchValue({
+  //         orderNo : orderNo,
+  //         storeId : store,
+  //         userId : user,
+  //         date : date
+  //       })
 
-        const pd = this.purchaseRequestForm.get("requestDetails") as FormArray;
-        pd.clear();
-        let rDetails = res.requestDetails;
-        if (rDetails && rDetails.length > 0) {
-          rDetails.forEach((detail: any) => {
-            console.log(detail);
+  //       const pd = this.purchaseOrderForm.get("orderDetails") as FormArray;
+  //       pd.clear();
+  //       let rDetails = res.orderDetails;
+  //       if (rDetails && rDetails.length > 0) {
+  //         rDetails.forEach((detail: any) => {
+  //           console.log(detail);
 
-          const details = this.fb.group({
-            productId : detail.productId,
-            quantity : detail.quantity,
-            secondaryUnitId : detail.secondaryUnitId
-          });
+  //         const details = this.fb.group({
+  //           productId : detail.productId,
+  //           quantity : detail.quantity,
+  //           secondaryUnitId : detail.secondaryUnitId
+  //         });
 
-          pd.push(details);
-        });
+  //         pd.push(details);
+  //       });
+  //     }
+  //   })
+  // }
+
+  // update(){
+  //   this.purchaseService.updatePR(this.prId, this.purchaseOrderForm.getRawValue()).subscribe((res)=>{
+  //     this.clearControls()
+  //   })
+  // }
+  distributorSub!: Subscription;
+  distributors: Distributor[] = [];
+  getDistributor(value?: string){
+    this.distributorSub = this.productService.getDistributor().subscribe(distributor =>{
+      this.distributors = distributor
+      this.filteredDistributor = distributor;
+      if(value){
+        this.filterDistributor(value)
       }
-    })
+    });
+  }
+  
+  filteredDistributor: Distributor[] = [];
+  filterDistributor(event: any){
+    let value: string = "";
+
+    if (typeof event === "string") {
+      value = event;
+    } else if (event instanceof Event) {
+      value = (event.target as HTMLInputElement).value;
+    }
+    this.filteredDistributor = this.distributors.filter((option) => {
+      if (
+        (option.distributorName &&
+          option.distributorName.toLowerCase().includes(value?.toLowerCase()))
+      ) {
+        return true;
+      } else {
+        return null;
+      }
+    });
   }
 
-  update(){
-    this.purchaseService.updatePR(this.prId, this.purchaseRequestForm.getRawValue()).subscribe((res)=>{
-      this.clearControls()
-    })
+  addDistributor(){
+    const dialogRef = this.dialog.open(DistributorComponent, {
+      data: { status: "true", type: "add"},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.getDistributor(result?.distributor);
+    });
   }
+
 }
