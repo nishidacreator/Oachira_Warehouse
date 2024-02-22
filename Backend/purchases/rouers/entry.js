@@ -69,10 +69,27 @@ router.patch('/',authenticateToken ,async (req,res)=>{
 
 router.get('/', async (req, res) => {
 
-    const entry = await Entry.findAll({
-     
-    })
+    try {
+        let whereClause = {};
+        let limit;
+        let offset;
 
-    res.json(201).send(entry);
+        if (req.query.pageSize && req.query.page) {
+        limit = parseInt(req.query.pageSize, 10) || 10; // Default to 10 if not a valid number
+        offset = (parseInt(req.query.page, 10) - 1) * limit || 0;
+    }
+
+        const entry = await Entry.findAll({
+            where: whereClause,
+            order: ["id"],
+            limit, 
+            offset
+           })
+       
+           res.send(entry);
+    } catch (error) {
+        
+    }
+   
 })
 module.exports = router;
