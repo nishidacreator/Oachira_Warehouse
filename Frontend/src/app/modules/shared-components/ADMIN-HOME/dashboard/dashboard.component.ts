@@ -37,8 +37,9 @@ export class DashboardComponent {
 
 
   ngOnInit() {
-    this.createSalesGraph();
+
     this.createPurchaseGraph();
+    this.createSalesGraph();
     // this.getPendingRfqs();
     // this.getSaleCount();
     // this.getSales();
