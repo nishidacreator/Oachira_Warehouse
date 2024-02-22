@@ -414,13 +414,13 @@ editPUnitFunction(){
           // Determine the secondary unit name based on the chosen primary unit
           switch (primaryUnitName.toLowerCase()) {
             case 'kg':
-              secondaryUnitName = `${result} kg  bag`;
+              secondaryUnitName = `${result} KG  BAG`;
               break;
             case 'no':
-              secondaryUnitName = `${result} no box`;
+              secondaryUnitName = `${result} NO BOX`;
               break;
             case 'liter':
-              secondaryUnitName = `${result} liter tin`;
+              secondaryUnitName = `${result} LITRE TIN`;
               break;
            
             default:

@@ -117,16 +117,7 @@
       <form [formGroup]="secondaryUnitForm" (ngSubmit)="onSecondarySubmit()" *ngIf="unitForm.controls['unitType'].value ==='secondary'">
         <mat-card>
           <mat-card-content>
-            <div class="row">
-              <div class="col">
-                <mat-form-field class="full-width">
-                  <input matInput placeholder="Name" formControlName="secondaryUnitName">
-                  <mat-error *ngIf="secondaryUnitForm.controls['secondaryUnitName'].hasError('required')">
-                    Name <strong>required</strong>
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
+      
 
 
             <div class="row">
@@ -168,6 +159,17 @@
               <div class="col">
                 <mat-form-field class="full-width">
                   <input matInput placeholder="LoadingCharge" formControlName="loadingCharge">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="Secondary Name" formControlName="secondaryUnitName">
+                  <mat-error *ngIf="secondaryUnitForm.controls['secondaryUnitName'].hasError('required')">
+                    Name <strong>required</strong>
+                  </mat-error>
                 </mat-form-field>
               </div>
             </div>
