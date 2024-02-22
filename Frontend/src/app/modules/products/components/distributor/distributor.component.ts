@@ -197,7 +197,7 @@ export class DistributorComponent implements OnInit {
     // }else{
       this.submit = this.productService.addDistributor(data).subscribe((response)=>{
         let data = {
-          distributor: this.distributorForm.get('distributorName')?.value
+          distributor: response
         }
         this.dialogRef?.close(data);
         this._snackBar.open("Distributor added successfully...","" ,{duration:3000})
