@@ -105,10 +105,30 @@
         </div>
       </div>
 
-      <br><div>
+      <br><div class="row">
+        <div class="col">
         <mat-slide-toggle formControlName="status">Status</mat-slide-toggle>
       </div><br>
+ <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>Team</mat-label>
+                <mat-select placeholder="Team" formControlName="teamId">
+                  <mat-option *ngFor="let item of teams" [value]="item.id">
+                    {{item.teamName}}
+                  </mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf="companyForm.controls['companyTermId'].hasError('required')">
+                  companyTerm <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="companyForm.controls['companyTermId'].hasError('required')">
+                  companyTerm <strong>required</strong>
+                </mat-error> -->
+              </mat-form-field>
+              <!-- <button (click)="manageTeams()" class="material-icons"
+                style=" color: rgb(10, 111, 189); font-size: 25px; margin-right: 3px;">edit_note
+              </button> -->
 
+            </div>
       <div class="col" *ngIf="!editstatus">
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Products Distributed</mat-label>
@@ -128,7 +148,7 @@
         </mat-form-field>
       </div>
 
-
+</div>
 
     </mat-card-content>
 

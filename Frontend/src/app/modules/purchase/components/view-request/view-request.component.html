@@ -44,7 +44,7 @@
         <tr *ngFor="let element of pr">
             <td>{{element.id}}</td>
             <td>{{element.requestNo}}</td>
-            <td>{{element.store.storeName}}</td>
+            <!-- <td>{{element.store.storeName}}</td> -->
             <td>{{element.date}}</td>
             <td (mouseover)="showName('Back')" (mouseout)="hideName()">
               <mat-icon (click)="viewPurchaseRequest(element.id)">open_in_new</mat-icon>

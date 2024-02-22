@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-manage-store',
-  templateUrl: './manage-store.component.html',
-  styleUrls: ['./manage-store.component.scss']
+  selector: 'app-managae-company',
+  templateUrl: './managae-company.component.html',
+  styleUrls: ['./managae-company.component.scss']
 })
-export class ManageStoreComponent implements OnInit {
+export class ManagaeCompanyComponent implements OnInit {
 
   constructor(private router: Router) { }
 
@@ -17,3 +17,4 @@ export class ManageStoreComponent implements OnInit {
     this.router.navigateByUrl('/login/settings')
   }
 }
+

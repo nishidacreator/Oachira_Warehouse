@@ -9,162 +9,68 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
-
-<section class="home-section">
-  <!-- <div class="home-section"> -->
-    <div class="home-content">
-      <div class="overview-boxes">
-        <div class="box">
-          <div class="right-side">
-            <div class="box-topic" style="color: rgb(57, 120, 55);">Users</div>
-            <div class="number">{{ pendingRfqs }}</div>
-            <div class="indicator">
-              <!-- <i class='bx bx-up-arrow-alt'></i> -->
-              <!-- <span class="text">Up from yesterday</span> -->
+  <section class="home-section">
+    <!-- <div class="home-section"> -->
+      <div class="home-content">
+        <div class="overview-boxes">
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic" style="color: rgb(119, 181, 198);">Users</div>
+              <!-- <div class="number">{{ pendingRfqs }}</div> -->
+              <div class="number">250</div>
+              <div class="indicator">
+                <!-- <i class='bx bx-up-arrow-alt'></i> -->
+                <!-- <span class="text">Up from yesterday</span> -->
+              </div>
             </div>
+            <i class='bx bx-user cart one'></i>
           </div>
-          <i class='bx bx-user cart one'></i>
-        </div>
-        <div class="box">
-          <div class="right-side">
-            <div class="box-topic" style="color: rgb(57, 120, 55);"> Purchases</div>
-            <div class="number">{{ saleCount }}</div>
-            <div class="indicator">
-              <!-- <i class='bx bx-up-arrow-alt'></i> -->
-              <!-- <span class="text">Up from yesterday</span> -->
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic" style="color: rgb(57, 120, 55);"> Purchases</div>
+              <!-- <div class="number">{{ saleCount }}</div> -->
+              <div class="number">3200</div>
+              <div class="indicator">
+                <!-- <i class='bx bx-up-arrow-alt'></i> -->
+                <!-- <span class="text">Up from yesterday</span> -->
+              </div>
             </div>
+            <i class='bx bxs-cart-add cart two'></i>
           </div>
-          <i class='bx bxs-cart-add cart two'></i>
-        </div>
-        <div class="box">
-          <div class="right-side">
-            <div class="box-topic" style="color: rgb(57, 120, 55);">Sales</div>
-            <div class="number">{{ quotCount }}</div>
-            <div class="indicator">
-              <!-- <i class='bx bx-up-arrow-alt'></i> -->
-              <!-- <span class="text">Up from yesterday</span> -->
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic" style="color: rgb(57, 120, 55);">Sales</div>
+              <!-- <div class="number">{{ quotCount }}</div> -->
+              <div class="number">2500</div>
+              <div class="indicator">
+                <!-- <i class='bx bx-up-arrow-alt'></i> -->
+                <!-- <span class="text">Up from yesterday</span> -->
+              </div>
             </div>
+            <i class='bx bx-cart cart three'></i>
           </div>
-          <i class='bx bx-cart cart three'></i>
-        </div>
-        <div class="box">
-          <div class="right-side">
-            <div class="box-topic" style="color: rgb(57, 120, 55);"> Stock</div>
-            <div class="number">{{stockCount}}</div>
-            <div class="indicator">
-              <!-- <i class='bx bx-down-arrow-alt down'></i> -->
-              <!-- <span class="text">Down From Today</span> -->
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic" style="color: rgb(12, 30, 11);"> Stock</div>
+              <!-- <div class="number">{{stockCount}}</div> -->
+              <div class="number">1000</div>
+              <div class="indicator">
+                <!-- <i class='bx bx-down-arrow-alt down'></i> -->
+                <!-- <span class="text">Down From Today</span> -->
+              </div>
             </div>
+            <i class='bx bxs-cart-download cart four'></i>
           </div>
-          <i class='bx bxs-cart-download cart four'></i>
         </div>
-      </div>
+        </div>
+        </section>
+  <div class="graph-container">
+    <canvas id="salesChart" width="400" height="250"></canvas>
+  </div>
+  <div class="graph-container">
+    <canvas id="purchaseChart" width="400" height="250"></canvas>
+  </div>
 
-      <mat-card class="background">
-
-    <div class="header">
-        <mat-card class="dropbox" style="display: flex;align-items: center;">
-            <mat-form-field style="flex: 1;">
-                    <mat-label style="color: green;">Enter a date range</mat-label>
-                    <div class="date-range-container">
-                      <mat-date-range-input [rangePicker]="picker" class="custom-date-range-input">
-                        <input matStartDate placeholder="Start date" style="flex:1;">
-                        <input matEndDate placeholder="End date" style="flex:1;">
-                      </mat-date-range-input>
-                      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    </div>
-                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-
-                <mat-date-range-picker #picker></mat-date-range-picker>
-            </mat-form-field>
-        </mat-card>
-        <mat-card class="dropbox">
-            <mat-card-subtitle style="color: green"> Choose service </mat-card-subtitle>
-            <mat-select>
-                <mat-option value="sales">Sales</mat-option>
-                <mat-option value="purchases">Purchases</mat-option>
-            </mat-select>
-        </mat-card>
-    </div>
-
-    <div class="footer">
-        <mat-card>
-            <mat-card-header>
-                <mat-card-content style="color:green"> Top Products</mat-card-content>
-            </mat-card-header>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-
-        <!-- Position Column -->
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef> Sl. No.. </th>
-          <td mat-cell *matCellDef="let element"> {{element.serialNumber}} </td>
-        </ng-container>
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-
-        <!-- Weight Column -->
-        <ng-container matColumnDef="weight">
-          <th mat-header-cell *matHeaderCellDef> Sale </th>
-          <td mat-cell *matCellDef="let element"> {{element.sale}} </td>
-        </ng-container>
-
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="symbol">
-          <th mat-header-cell *matHeaderCellDef> Purchase </th>
-          <td mat-cell *matCellDef="let element"> {{element.purchase}} </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-        </mat-card>
-    <br>
-    <mat-card style="width:500px;">
-        <mat-card-content>
-            Graph
-          <!-- <mat-card-title>Grocery Sales and Purchases</mat-card-title>
-          <div style="display: flex; justify-content: center;">
-            <div style="width: 80%;">
-              <canvas baseChart
-                      [datasets]="barChartData"
-                      [labels]="barChartLabels"
-                      [options]="barChartOptions"
-                      [legend]="barChartLegend"
-                      [chartType]="barChartType"></canvas>
-            </div>
-          </div> -->
-        </mat-card-content>
-      </mat-card>
-    <mat-card style="width:500px;">
-        <mat-card-content>
-            Graph
-          <!-- <mat-card-title>Grocery Sales and Purchases</mat-card-title>
-          <div style="display: flex; justify-content: center;">
-            <div style="width: 80%;">
-              <canvas baseChart
-                      [datasets]="barChartData"
-                      [labels]="barChartLabels"
-                      [options]="barChartOptions"
-                      [legend]="barChartLegend"
-                      [chartType]="barChartType"></canvas>
-            </div>
-          </div> -->
-        </mat-card-content>
-      </mat-card>
-    </div>
-
-    </mat-card><br>
-    </div>
-  <!-- </div> -->
-
-  </section>
 
 
 
@@ -179,6 +85,8 @@ sidebarBtn.onclick = function() {
   sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
 }
  </script>
+
+
 
 
 </body>

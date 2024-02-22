@@ -49,10 +49,12 @@ app.use('/product/gst',gst);
 app.use('/product/distributor',distributor);
 app.use('/product/productdistributor',productDistributor);
 
-const store = require('../store/routers/store');
+const company = require('../company/companyRouter');
 const warehouse = require('../store/routers/warehouse');
-app.use('/store', store);
-app.use('/store/warehouse', warehouse);
+// app.use('/store', store);
+// app.use('/store/warehouse', warehouse);
+
+app.use('/company',company);
 
 const request = require('../purchases/rouers/request');
 const order = require('../purchases/rouers/order');
@@ -114,7 +116,11 @@ app.use('/entryDetails',entryDetails)
 app.use('/sales/routeorder', routeSO);
 app.use('/sales/routeorderdetails', routeSODetails);
 app.use('/sales/routeentry', routeSE);
+const bank = require('../company/bankRouter');
+app.use('/company/bank', bank)
 
+const team = require('../company/teamRouter');
+app.use('/team', team)
 
 const port = process.env.PORT;
 

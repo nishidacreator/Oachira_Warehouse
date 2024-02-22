@@ -135,43 +135,43 @@ export class ViewPrComponent implements OnInit, OnDestroy {
     };
   }
 
-  saveAndDownload(): void {
-    const ps = new ThermalPrinterManager();
-    ps.addLineWithClassName(`text-center font-bold`, `PURCHASE REQUEST`);
-    ps.addLineCenter(this.requests.store.storeName);
-    ps.addLineCenter(this.requests.store.storeLocation);
+  // saveAndDownload(): void {
+  //   const ps = new ThermalPrinterManager();
+  //   ps.addLineWithClassName(`text-center font-bold`, `PURCHASE REQUEST`);
+  //   ps.addLineCenter(this.requests.store.storeName);
+  //   ps.addLineCenter(this.requests.store.storeLocation);
 
-    ps.addEmptyLine();
+  //   ps.addEmptyLine();
 
-    ps.addLine(`<div style="display: flex; justify-content: space-between;">RequestNo: <span>${this.requests.requestNo}</span></div>`);
-    ps.addLine(`<div style="display: flex; justify-content: space-between;">Date: <span>${this.requests.date}</span></div>`);
-    ps.addLine(`<div style="display: flex; justify-content: space-between;">SendBy: <span>${this.requests.user.name}</span></div>`);
+  //   ps.addLine(`<div style="display: flex; justify-content: space-between;">RequestNo: <span>${this.requests.requestNo}</span></div>`);
+  //   ps.addLine(`<div style="display: flex; justify-content: space-between;">Date: <span>${this.requests.date}</span></div>`);
+  //   ps.addLine(`<div style="display: flex; justify-content: space-between;">SendBy: <span>${this.requests.user.name}</span></div>`);
 
-    ps.addEmptyLine();
+  //   ps.addEmptyLine();
 
-    // Table header
-    ps.addLine('<div style="display: flex; justify-content: space-between; font-weight: bold;">');
-    ps.addLine('<div style="flex: 1;">Product</div>');
-    ps.addLine('<div style="flex: 1;">Quantity</div>');
-    ps.addLine('<div style="flex: 1;">Unit</div>');
-    ps.addLine('</div>');
-    ps.addEmptyLine();
+  //   // Table header
+  //   ps.addLine('<div style="display: flex; justify-content: space-between; font-weight: bold;">');
+  //   ps.addLine('<div style="flex: 1;">Product</div>');
+  //   ps.addLine('<div style="flex: 1;">Quantity</div>');
+  //   ps.addLine('<div style="flex: 1;">Unit</div>');
+  //   ps.addLine('</div>');
+  //   ps.addEmptyLine();
 
-    // Table rows
-    for (let i = 0; i < this.requestDetails.length; i++) {
-      ps.addLine('<div style="display: flex; justify-content: space-between;">');
-      ps.addLine(`<div style="flex: 1;">${this.requestDetails[i].product.productName}</div>`);
-      ps.addLine(`<div style="flex: 1;">${this.requestDetails[i].quantity}</div>`);
-      ps.addLine(`<div style="flex: 1;">${this.requestDetails[i].secondaryUnit.secondaryUnitName}</div>`);
-      ps.addLine('</div>');
-    }
+  //   // Table rows
+  //   for (let i = 0; i < this.requestDetails.length; i++) {
+  //     ps.addLine('<div style="display: flex; justify-content: space-between;">');
+  //     ps.addLine(`<div style="flex: 1;">${this.requestDetails[i].product.productName}</div>`);
+  //     ps.addLine(`<div style="flex: 1;">${this.requestDetails[i].quantity}</div>`);
+  //     ps.addLine(`<div style="flex: 1;">${this.requestDetails[i].secondaryUnit.secondaryUnitName}</div>`);
+  //     ps.addLine('</div>');
+  //   }
 
 
-    ps.addEmptyLine();
-    ps.addLine(`Ticket #1 - Walk-in`);
-    ps.print();
-    this.dirToPrint.print();
-  }
+  //   ps.addEmptyLine();
+  //   ps.addLine(`Ticket #1 - Walk-in`);
+  //   ps.print();
+  //   this.dirToPrint.print();
+  // }
 }
 
 class ThermalPrinterManager {

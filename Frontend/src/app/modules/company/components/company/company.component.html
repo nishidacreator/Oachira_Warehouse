@@ -1,10 +1,10 @@
 
-<form [formGroup]="warehouseForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
   <mat-card class="background">
     <div class="row" *ngIf="addStatus != 'true'">
       <div class="col">
         <mat-card-header>
-          <mat-card-title> WAREHOUSE</mat-card-title>
+          <mat-card-title> COMPANY</mat-card-title>
         </mat-card-header>
       </div>
       <div class="col">
@@ -21,16 +21,25 @@
       <div class="row box">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Warehouse Name" formControlName="warehouseName">
-            <mat-error *ngIf="warehouseForm.controls['warehouseName'].hasError('required')">
-              Name <strong>required</strong>
+            <input matInput placeholder="Company Name" formControlName="companyName">
+            <mat-error *ngIf="companyForm.controls['companyName'].hasError('required')">
+              Company Name <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
 
         <div class="col">
           <mat-form-field class="full-width">
-            <mat-select placeholder="WarehouseInCharge" formControlName="warehouseInChargeId" #id (selectionChange)="getPhoneNumber(id.value)">
+            <input matInput placeholder="Company Code" formControlName="companyCode">
+            <!-- <mat-error *ngIf="companyForm.controls['companyCode'].hasError('required')">
+              Company code <strong>required</strong>
+            </mat-error> -->
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Company InCharge" formControlName="companyInChargeId">
               <mat-form-field class="search-field" style="width: 80%;">
                 <div class="row">
                   <!-- <mat-icon>search</mat-icon> -->
@@ -46,20 +55,13 @@
                 <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addUser()">playlist_add</span>
               </mat-option>
             </mat-select>
-            <mat-error *ngIf="warehouseForm.controls['warehouseInChargeId'].hasError('required')">
-              Name <strong>required</strong>
+            <mat-error *ngIf="companyForm.controls['companyInChargeId'].hasError('required')">
+              companyInChargeId <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
 
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="PhoneNumber" formControlName="phoneNumber">
-            <mat-error *ngIf="warehouseForm.controls['phoneNumber'].hasError('required')">
-              Name <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
+
 
         <!-- <div class="col">
           <ng-container *ngIf="imageUrl; else noImage">
@@ -78,49 +80,49 @@
       <div class="row box">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="WarehouseLocation" formControlName="warehouseLocation">
-            <mat-error *ngIf="warehouseForm.controls['warehouseLocation'].hasError('required')">
-              Name <strong>required</strong>
+            <input matInput placeholder="Location" formControlName="locationName">
+            <mat-error *ngIf="companyForm.controls['locationName'].hasError('required')">
+              Location <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
 
+        <!-- <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="CounterCount" formControlName="counterCount">
+            <mat-error *ngIf="companyForm.controls['counterCount'].hasError('required')">
+              Name <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div> -->
+
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="PanNo" formControlName="panNo">
+            <input matInput placeholder="GstId" formControlName="gstId">
           </mat-form-field>
         </div>
 
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="FssaiNo" formControlName="fssaiNo">
-          </mat-form-field>
-        </div>
-
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="GstIn" formControlName="gstIn">
-          </mat-form-field>
-        </div>
-
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="State" formControlName="state">
+            <input matInput placeholder="apiKey" formControlName="apiKey">
+            <!-- <mat-error *ngIf="companyForm.controls['apiKey'].hasError('required')">
+              ApiKey <strong>required</strong>
+            </mat-error> -->
           </mat-form-field>
         </div>
       </div>
-      <br><div>
+      <!-- <br><div>
         <mat-slide-toggle formControlName="status">Status</mat-slide-toggle>
-      </div>
+      </div> -->
 
 
     </mat-card-content>
 
     <mat-card-actions>
-      <button *ngIf="!editstatus" mat-raised-button  type="submit" [disabled]="warehouseForm.pristine || !warehouseForm.valid ">
+      <button *ngIf="!editstatus" mat-raised-button  type="submit" [disabled]="companyForm.pristine || !companyForm.valid ">
         <mat-icon style="font-size: 25px;">save</mat-icon>
       </button>&nbsp;&nbsp;
-      <button *ngIf="editstatus" mat-raised-button  type="button" [disabled]="!warehouseForm.valid" (click)="editFunction()">
+      <button *ngIf="editstatus" mat-raised-button  type="button" [disabled]="!companyForm.valid" (click)="editFunction()">
         <mat-icon style="font-size: 25px;">edit_note</mat-icon>
       </button>&nbsp;&nbsp;
 
@@ -138,7 +140,7 @@
 
 <br><mat-card *ngIf="addStatus != 'true'">
   <mat-card-header>
-    <mat-card-title style="color: green;"> WAREHOUSES</mat-card-title>
+    <mat-card-title style="color: green;"> STORES</mat-card-title>
   </mat-card-header>
 
   <mat-form-field>
@@ -151,11 +153,10 @@
           <tr>
               <th>Id</th>
               <!-- <th>Image</th> -->
-              <th>Name</th>
-              <th>CounterCount</th>
+              <th>Company Name</th>
+              <th>Code</th>
               <th>Location</th>
               <th>Incharge</th>
-              <th>PhoneNumber</th>
               <th>GstNo</th>
               <th>Url</th>
               <th>Manage</th>
@@ -179,18 +180,17 @@
                   <img src="../../../../../../assets/img/no_image_part.png" alt="Alternative Image" style="width: 50px; height: 50px;" />
                 </ng-template>
               </td> -->
-              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.warehouseName}}</td>
-              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.counterCount}}</td>
-              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.warehouseLocation}}</td>
-              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.warehouseInCharge.name}}</td>
-              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.phoneNumber}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.companyName}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.companyCode}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.locationName}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.companyInCharge.name}}</td>
               <td [style.background-color]="element.status == false ? 'pink' : null">{{element.gstId}}</td>
-              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.warehouseBaseUrl}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.apiKey}}</td>
               <td [style.background-color]="element.status == false ? 'pink' : null">
                 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-                <i  (click)="editWarehouse(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
+                <i  (click)="editStore(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
                 &nbsp;&nbsp;
-                <i  (click)="deleteWarehouse(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+                <i  (click)="deleteStore(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
               </td>
           </tr>
       </tbody>

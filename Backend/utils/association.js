@@ -61,7 +61,10 @@ const RouteSO = require('../sales/models/routeSO');
 const RouteSODetails = require('../sales/models/routeSODetails');
 const RouteSE = require('../sales/models/routeSE');
 const RouteSEDetails = require('../sales/models/routeSEDetails');
-
+const Bank = require('../company/bank');
+const Company = require('../company/company');
+const Team=require('../company/team');
+const TeamMember = require("../company/teamMember");
 
 
 
@@ -108,8 +111,8 @@ async function syncModel(){
     ProductDistributor.belongsTo(Distributor)
 
     // STORE
-    User.hasMany(Store,{foreignKey : 'storeInChargeId', as: 'storeInCharge',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    Store.belongsTo(User, {foreignKey : 'storeInChargeId', as: 'storeInCharge'})
+    User.hasMany(Company,{foreignKey : 'companyInChargeId', as: 'companyInCharge',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Company.belongsTo(User, {foreignKey : 'companyInChargeId', as: 'companyInCharge'})
 
     Store.hasMany(Warehouse,{foreignKey : 'warehouseId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Warehouse.belongsTo(Store, {foreignKey : 'warehouseId'})
@@ -170,6 +173,10 @@ async function syncModel(){
     // OrderDetails.belongsTo(PrimaryUnit)
 
     //ROUTE SALE 
+    Bank.hasMany(Company, {foreignKey : 'companyId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Company.belongsTo(Bank)
+
+
     Customer.hasMany(LoyaltyPoint, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     LoyaltyPoint.belongsTo(Customer)
 
@@ -256,7 +263,21 @@ async function syncModel(){
 
     // Gst.hasMany(RouteSEDetails, {foreignKey : 'hsnId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     // RouteSEDetails.belongsTo(Gst, {foreignKey : 'hsnId'})
+    
+    Team.belongsTo(User, {
+        foreignKey: "userId",
+        as: "leader",
+      });
 
+    Team.hasMany(TeamMember, { foreignKey: "teamId" });
+    TeamMember.belongsTo(Team);
+  
+    Team.hasMany(Company, { foreignKey: "teamId" });
+    Company.belongsTo(Team);
+
+    
+  User.hasMany(TeamMember, { foreignKey: "userId", as: "register"});
+  TeamMember.belongsTo(User, { foreignKey: "userId", as: "register"});
 
     await sequelize.sync({alter: true})
 

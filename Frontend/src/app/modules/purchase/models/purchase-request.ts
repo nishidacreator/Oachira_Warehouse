@@ -1,4 +1,4 @@
-import { Store } from "../../store/models/store"
+// import { Store } from "../../store/models/store"
 import { User } from "../../users/models/user"
 import { PurchaseRequestDetail } from "./purchase-request-detail";
 
@@ -9,7 +9,7 @@ export interface PurchaseRequest {
   date : Date
   status : string
   requestNo : string
-  store : Store
+  // store : Store
   user : User
   requestDetails : PurchaseRequestDetail[]
 }
