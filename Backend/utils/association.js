@@ -257,9 +257,7 @@ async function syncModel(){
     // Gst.hasMany(RouteSEDetails, {foreignKey : 'hsnId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     // RouteSEDetails.belongsTo(Gst, {foreignKey : 'hsnId'})
 
-
     await sequelize.sync({alter: true})
-
 
     const role = await Role.findAll({})
     if(role.length === 0){
