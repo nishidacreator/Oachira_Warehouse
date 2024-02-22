@@ -412,21 +412,28 @@ editPUnitFunction(){
           let secondaryUnitName = '';
     
           // Determine the secondary unit name based on the chosen primary unit
-          switch (primaryUnitName.toLowerCase()) {
-            case 'kg':
-              secondaryUnitName = `${result} KG  BAG`;
-              break;
-            case 'no':
-              secondaryUnitName = `${result} NO BOX`;
-              break;
-            case 'liter':
-              secondaryUnitName = `${result} LITRE TIN`;
-              break;
-           
-            default:
-              console.error('Unhandled primary unit:', primaryUnitName);
-              break;
-          }
+       // Determine the secondary unit name based on the chosen primary unit
+// Determine the secondary unit name based on the chosen primary unit
+switch (primaryUnitName.toLowerCase()) {
+  case 'kg':
+    secondaryUnitName = `${result} KG  BAG`;
+    break;
+  case 'no':
+    secondaryUnitName = `${result} NO BOX`;
+    break;
+  case 'litre':
+    secondaryUnitName = `${result} LITRE TIN`;
+    break;
+  case 'nos':
+    secondaryUnitName = `${result} NOS BOX`;
+    break;
+
+  default:
+    console.error('Unhandled primary unit:', primaryUnitName);
+    break;
+}
+
+
     
           // Use setValue to directly set the value of secondaryUnitName in the form
           this.secondaryUnitForm.controls['secondaryUnitName'].setValue(secondaryUnitName.trim());

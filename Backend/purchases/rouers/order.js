@@ -8,14 +8,14 @@ const OrderDetails = require('../models/orderDetails');
 const Distributor = require('../../products/models/distributor');
 const User = require('../../users/models/user');
 
-router.post('/', authenticateToken, async (req, res) => {
+router.post('/', async (req, res) => {
     try {
-        const { orderNo, distributorId, userId, warehouseId, date, status, orderDetails } = req.body;
+        const { orderNo, distributorId, userId,companyId, warehouseId, date, status, orderDetails } = req.body;
 
-        // Validate input data
-        if (!orderNo || !distributorId || !userId || !warehouseId || !status || !orderDetails) {
-            return res.status(400).send({ error: 'Incomplete data provided.' });
-        }
+        // // Validate input data
+        // if (!orderNo || !distributorId || !userId || companyId || !warehouseId || !status || !orderDetails) {
+        //     return res.status(400).send({ error: 'Incomplete data provided.' });
+        // }
 
         // Create a new Order instance
         const purchaseOrder = new Order({ orderNo, distributorId, userId, warehouseId, date, status });
