@@ -109,6 +109,22 @@
         </div>
 
         <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Primary unit" formControlName="primaryUnitId">
+         
+              <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addSubCategory()">playlist_add</span>
+              <mat-option *ngFor="let item of primaryUnit" [value]="item.id">
+                {{item.primaryUnitName}}
+              </mat-option>
+       
+            </mat-select>
+            <mat-error *ngIf="productForm.controls['primaryUnitId'].hasError('required')">
+              SubCategory<strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
           <div class="row">
             <ng-container *ngIf="imageUrl; else noImage">
               <img [src]="imageUrl" alt="Image" title="Image" height="100" width="100" style="margin-top: 50px;" />
@@ -127,6 +143,12 @@
         </div>
       </div>
 
+            <div class="row box">
+
+            </div>
+
+
+      
       <div class="row box">
         <div class="col">
           <mat-form-field class="full-width" *ngIf="brands">
@@ -215,10 +237,54 @@
       </div>
 
       <div class="row box">
+    
+        <div class="col">
+          <section class="example-section">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-checkbox class="example-margin" formControlName="isSpecial">Is special item</mat-checkbox>
+       &nbsp;&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;
+
+         &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;
+           
+       <mat-checkbox class="example-margin" formControlName="openingStock">Opening stock</mat-checkbox>
+       &nbsp;&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;
+
+         &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;
+
+       <mat-checkbox class="example-margin" formControlName="brokerageItem">Brokerage item</mat-checkbox>
+        &nbsp;&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;
+
+         &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;
+       <mat-checkbox class="example-margin" formControlName="isRouteItem">Is Route item</mat-checkbox>
+</section>
+        </div>
+    </div>
+
+      <div class="row box">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Loyalty Point" formControlName="loyaltyPoint">
+            <input matInput placeholder=" Warehouse Loyalty Point" formControlName="warehouseLoyalityPoint">
           </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder=" Retail Loyalty Point" formControlName="retailLoyalityPoint">
+          </mat-form-field>
+
         </div>
 
         <div class="col">
@@ -232,9 +298,7 @@
         </div>
       </div>
 
-      <div class="row box">
-
-      </div>
+  
     </mat-card-content>
 
     <mat-card-actions>
