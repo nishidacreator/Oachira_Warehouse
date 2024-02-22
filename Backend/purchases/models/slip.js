@@ -6,10 +6,9 @@ const Slip = sequelize.define('slip',{
     invoiceNo : { type: DataTypes.STRING, allowNull : false},
     amount: {type : DataTypes.FLOAT, allowNull : false},
     description: { type : DataTypes.STRING},
-    date:  {type : DataTypes.DATEONLY, defaultValue: Date.now(), allowNull : false},
-    contactPerson: { type : DataTypes.STRING, allowNull : false},
-    status : { type : DataTypes.STRING, defaultValue: 'Open'}
-
+    date:  {type : DataTypes.DATEONLY, defaultValue: Date.now()},
+    contactPerson: { type : DataTypes.STRING},
+    status : { type : DataTypes.STRING}
 },
 {
     freezeTableName: true,
