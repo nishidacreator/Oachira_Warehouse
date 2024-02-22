@@ -17,10 +17,10 @@ const Location = require('../models/location');
 router.post('/', authenticateToken, async (req, res) => {
     try {
             const { productName, code, barCode, subCategoryId, categoryId, brandId, reorderQuantity, 
-              loyaltyPoint, baseUnitId, cloudinaryId, fileUrl, brockerage} = req.body;
+              warehouseLoyalityPoint,  retailLoyalityPoint,isSpecial,isRouteItem,openingStock,brokerageItem, primaryUnitId,  baseUnitId, cloudinaryId, fileUrl, brockerage} = req.body;
 
             const result = new Product({productName, code, barCode, subCategoryId, categoryId, brandId, reorderQuantity, 
-              loyaltyPoint, baseUnitId, cloudinaryId, fileUrl, brockerage});
+              warehouseLoyalityPoint,  retailLoyalityPoint,isSpecial,isRouteItem,openingStock,brokerageItem, primaryUnitId, baseUnitId, cloudinaryId, fileUrl, brockerage});
               
             await result.save();
             res.send(result);
@@ -38,7 +38,7 @@ router.post('/fileupload', multer.single('file'), async (req, res) => {
   }
 });
 
-router.get("/", authenticateToken, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     let whereClause = {};
     
