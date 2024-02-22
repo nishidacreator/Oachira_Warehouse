@@ -499,6 +499,12 @@ align-items: center;
 display: flex;
 justify-content: space-between;
 }
+.graph-container {
+  width: 600px;
+  height: 450px;
+  float: left;
+  margin-right: 20px;
+}
 
 .dropbox {
   width: 300px; /* Adjust the width as needed */
