@@ -9,44 +9,87 @@ const User = require('../../users/models/user');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
-        const { purchaseOrderId,userId, purchaseInvoice,purachseDate ,paymentMode , purchaseAmount,eWayBillNo,loading,transportationCharge,unloading ,munloadingTeam,commission, chequeNo,entryDetails} = req.body;
 
+        const { purchaseInvoice,purachseDate,distributorId,purchaseAmount,status,chequeNo,userId} = req.body;
+
+        const EntryExist = await  Entry.findOne({ chequeNo: req.userId });
+        // if (EntryExist){
+            
+        //     return res.send("Cheque number already used");
+        // }
         // Validate input data
         // if (!orderNo || !distributorId || !userId || !warehouseId || !status || !orderDetails) {
         //     return res.status(400).send({ error: 'Incomplete data provided.' });
         // }
 
     
-        const entry = new Entry({ purchaseOrderId,userId, purchaseInvoice,purachseDate ,paymentMode , purchaseAmount,eWayBillNo,loading,transportationCharge,unloading ,munloadingTeam,commission, chequeNo ,entryDetails});
+        const entry = new Entry({purchaseInvoice,purachseDate,distributorId,purchaseAmount,status,userId,chequeNo });
         console.log(entry);
        
         await entry.save();
 
-       const entryId = entry.id
+    //    const entryId = entry.id
 
-        // Assign the orderId to each orderDetail
-        for (let i = 0; i < entryDetails.length; i++) {
-            entryDetails[i].entryId = entryId;
-        }
+    //     // Assign the orderId to each orderDetail
+    //     for (let i = 0; i < entryDetails.length; i++) {
+    //         entryDetails[i].entryId = entryId;
+    //     }
 
-        const eDetails = await EntryDetails.bulkCreate(entryDetails);
+    //     const eDetails = await EntryDetails.bulkCreate(entryDetails);
 
     
-        res.status(201).send(eDetails);
+        res.status(201).send(entry);
     } catch (error) {
       res.send(error.message)
     }
 });
 
+router.patch('/',authenticateToken ,async (req,res)=>{
+   
+    let {id,eWayBillNo,chequeIssuedDate,invoiceDate,transportation,unloading,commission,paymentMode,purchaseOrderId,remarks}= req.body
+    const entry = await Entry.findOne({ where :{ id : id}});
+    if(!entry){
+        return res.status(400).json({msg:"Entry not found"})
+    }
+    entry.eWayBillNo = eWayBillNo,
+    entry.chequeIssuedDate = chequeIssuedDate,
+    entry.invoiceDate = invoiceDate,
+    entry.transportation = transportation,
+    entry.unloading = unloading,
+    entry.commission = commission,
+    entry.paymentMode = paymentMode,
+    entry.purchaseOrderId = purchaseOrderId,
+    entry.remarks = remarks
 
+    await entry.save();
+    res.send(entry);
+
+});
+   
 
 router.get('/', async (req, res) => {
 
-    const entry = await EntryDetails.findAll({
-     
-  
-    })
+    try {
+        let whereClause = {};
+        let limit;
+        let offset;
 
-    res.send(entry);
+        if (req.query.pageSize && req.query.page) {
+        limit = parseInt(req.query.pageSize, 10) || 10; // Default to 10 if not a valid number
+        offset = (parseInt(req.query.page, 10) - 1) * limit || 0;
+    }
+
+        const entry = await Entry.findAll({
+            where: whereClause,
+            order: ["id"],
+            limit, 
+            offset
+           })
+       
+           res.send(entry);
+    } catch (error) {
+        
+    }
+   
 })
 module.exports = router;

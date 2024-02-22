@@ -281,7 +281,6 @@ async function syncModel(){
 
     await sequelize.sync({alter: true})
 
-
     const role = await Role.findAll({})
     if(role.length === 0){
         Role.bulkCreate([

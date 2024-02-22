@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -9,6 +9,7 @@ import { Distributor } from 'src/app/modules/products/models/distributor';
 import { SalesService } from 'src/app/modules/sales/sales.service';
 import { Observable } from 'rxjs';
 import { DistributorComponent } from 'src/app/modules/products/components/distributor/distributor.component';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-entry',
@@ -16,7 +17,7 @@ import { DistributorComponent } from 'src/app/modules/products/components/distri
   styleUrls: ['./entry.component.scss']
 })
 export class EntryComponent implements OnInit {
-
+  @ViewChild('stepper') stepper!: MatStepper;
 
   constructor(private fb: FormBuilder, public purchaseService: PurchaseService, public dialog: MatDialog,
     private router: Router, private route: ActivatedRoute, private salesService: SalesService,
@@ -50,13 +51,38 @@ export class EntryComponent implements OnInit {
     distributorId: ['', Validators.required],
     purchaseInvoice: ['', Validators.required],
     purchaseAmount: [0, Validators.required],
+    purachseDate: [''],
+    status: [''],
+    chequeNo: [''],
     entryDetails: this.fb.array([])
+  });
+
+  slipForm = this.fb.group({
+    distributorId: [''],
+    invoiceNo:[''],
+    amount: [''],
+
+    description: [''],
+    date: [''],
+    contactPerson: ['']
   });
 
   status = [
     { value: "ChequeIssued" },
     { value: "SlipIssued" }
   ];
+
+  isHovered = false;
+  hoveredButton: string | null = null;
+  showName(buttonName: string, i?: number){
+    this.isHovered = true;
+    this.hoveredButton = buttonName;
+  }
+
+  hideName() {
+    this.isHovered = false;
+    this.hoveredButton = null;
+  }
 
   products(): FormArray {
     return this.purchaseEntryForm.get("entryDetails") as FormArray;
@@ -134,21 +160,17 @@ export class EntryComponent implements OnInit {
     });
   }
 
-  submitSub!: Subscription;
-  onSubmit(){
-    if(this.purchaseEntryForm.valid){
-      let form = {
-        ...this.purchaseEntryForm.value
-      }
-      // form.purachseDate = moment(this.purchaseEntryForm.value.purachseDate).format('YYYY-MM-DD HH:mm:ss');
+  generateSlip(){}
 
-      this.submitSub = this.purchaseService.addPE(form).subscribe((res) =>{
-        console.log(res)
-        // this.clearControls()
-      },
-      (error) => {
-        alert(error);
-      })
+  submitSub!: Subscription;
+  onSubmit(type: string){
+    if(this.purchaseEntryForm.valid){
+      console.log(this.purchaseEntryForm.getRawValue())
+      if(type === "close"){
+        history.back();
+      }else if(type === "slip"){
+        this.stepper.next();
+      }
     }
   }
 
