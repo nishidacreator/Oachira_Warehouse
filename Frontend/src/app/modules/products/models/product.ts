@@ -17,7 +17,13 @@ export interface Product {
   gstId : number;
   hsnId : number;
   reorderQuantity : number;
-  loyaltyPoint : number;
+  warehouseLoyalityPoint : number, 
+   retailLoyalityPoint : number,
+   isSpecial : boolean,
+   isRouteItem : boolean;
+   openingStock : boolean;
+   brokerageItem : boolean;
+   primaryUnitId:number,
   status : string;
   baseUnitId : number;
 

@@ -66,6 +66,13 @@ export class ProductComponent implements OnInit {
     gstId : [],
     hsnId : [],
     reorderQuantity : [],
+    warehouseLoyalityPoint:[], 
+     retailLoyalityPoint:[],
+     isSpecial:[],
+     openingStock:[],
+     brokerageItem :[],
+     isRouteItem:[],
+     primaryUnitId:[],
     loyaltyPoint : [],
     status : [false],
 
@@ -80,6 +87,7 @@ export class ProductComponent implements OnInit {
   editstatus!: boolean;
   productId!: number;
   ngOnInit(): void {
+    this.getPrimaryUnit()
     this.productForm.get('status')?.setValue(true);
 
     if (this.dialogRef) {
@@ -155,6 +163,17 @@ export class ProductComponent implements OnInit {
         this.filterSubCategory(value);
       }
     })
+  }
+
+  primaryUnit : PrimaryUnit []=[]
+  psubscription? : Subscription
+
+  getPrimaryUnit(){
+    this.psubscription = this.productService.getPrimaryUnit().subscribe((res:any)=>{
+      this.primaryUnit = res;
+
+    })
+
   }
 
   filtSub: SubCategory[] = [];

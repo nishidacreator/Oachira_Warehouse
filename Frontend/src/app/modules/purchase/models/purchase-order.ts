@@ -3,7 +3,7 @@ export interface PurchaseOrder {
   orderNo: string;
   distributorId :number
   userId :number
-  warehouseId:number
+  // warehouseId:number
   date: Date;
   status: string;
 }
