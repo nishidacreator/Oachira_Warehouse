@@ -270,6 +270,10 @@ export class ProductService {
     return this._http.get<Product[]>(this.url + `?search=${search}&page=${page}&pageSize=${pageSize}`);
   }
 
+  getProductById(id: number): Observable<Product>{
+    return this._http.get<Product>(this.url + '/' + id);
+  }
+
   updateProduct(id:number, data:any){
     return this._http.patch<Product>(this.url+'/' + id, data);
   }
@@ -356,8 +360,8 @@ export class ProductService {
     }
   }
 
-  getDistributor(): Observable<Brand[]>{
-    return this._http.get<Brand[]>(this.url+'distributor');
+  getDistributor(): Observable<Distributor[]>{
+    return this._http.get<Distributor[]>(this.url+'distributor');
   }
 
   getPaginatedDistributor( search:String, page: number, pageSize: number): Observable<Brand[]>{

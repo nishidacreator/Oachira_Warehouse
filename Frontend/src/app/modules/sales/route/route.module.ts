@@ -23,6 +23,8 @@ import { RouteOrderComponent } from './components/route-order/route-order.compon
 import { ViewRouteOrderComponent } from './components/view-route-order/view-route-order.component';
 import { ViewRouteOrderDetailsComponent } from './components/view-route-order-details/view-route-order-details.component';
 import { RouteEntryComponent } from './components/route-entry/route-entry.component';
+import { ViewRouteEntryComponent } from './components/view-route-entry/view-route-entry.component';
+import { ViewRouteEntryDetailsComponent } from './components/view-route-entry-details/view-route-entry-details.component';
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import { RouteEntryComponent } from './components/route-entry/route-entry.compon
     RouteOrderComponent,
     ViewRouteOrderComponent,
     ViewRouteOrderDetailsComponent,
-    RouteEntryComponent
+    RouteEntryComponent,
+    ViewRouteEntryComponent,
+    ViewRouteEntryDetailsComponent
   ],
   imports: [
     CommonModule,

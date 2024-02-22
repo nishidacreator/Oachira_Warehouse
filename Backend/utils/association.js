@@ -59,6 +59,8 @@ const vehicleTypeData = require('./dataSource/vehicleType.json');
 const vehilceData = require('./dataSource/vehicle.json');
 const RouteSO = require('../sales/models/routeSO');
 const RouteSODetails = require('../sales/models/routeSODetails');
+const RouteSE = require('../sales/models/routeSE');
+const RouteSEDetails = require('../sales/models/routeSEDetails');
 
 
 
@@ -234,8 +236,28 @@ async function syncModel(){
     SecondaryUnit.hasMany(RouteSODetails, {foreignKey : 'secondaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     RouteSODetails.belongsTo(SecondaryUnit, {foreignKey : 'secondaryUnitId'})
 
-    await sequelize.sync({alter: true})
+    RouteSO.hasMany(RouteSE, {foreignKey : 'routeSOId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    RouteSE.belongsTo(RouteSO, {foreignKey : 'routeSOId'})
 
+    RouteSE.hasMany(RouteSEDetails, {foreignKey : 'routeSEId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    RouteSEDetails.belongsTo(RouteSE, {foreignKey : 'routeSEId'})
+
+    User.hasMany(RouteSE, {foreignKey : 'userId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    RouteSE.belongsTo(User, {foreignKey : 'userId'})
+
+    Product.hasMany(RouteSEDetails, {foreignKey : 'productId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    RouteSEDetails.belongsTo(Product, {foreignKey : 'productId'})
+
+    SecondaryUnit.hasMany(RouteSEDetails, {foreignKey : 'secondaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    RouteSEDetails.belongsTo(SecondaryUnit, {foreignKey : 'secondaryUnitId'})
+
+    // Hsn.hasMany(RouteSEDetails, {foreignKey : 'hsnId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    // RouteSEDetails.belongsTo(Hsn, {foreignKey : 'hsnId'})
+
+    // Gst.hasMany(RouteSEDetails, {foreignKey : 'hsnId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    // RouteSEDetails.belongsTo(Gst, {foreignKey : 'hsnId'})
+
+    await sequelize.sync({alter: true})
 
     const role = await Role.findAll({})
     if(role.length === 0){

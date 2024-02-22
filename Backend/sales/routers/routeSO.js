@@ -9,6 +9,10 @@ const User = require('../../users/models/user');
 const Product = require('../../products/models/product');
 const SecondaryUnit = require('../../products/models/secondaryUnit');
 const CustomerGrade = require('../models/customerGrade');
+const Gst = require('../../products/models/gst');
+const Hsn = require('../../products/models/hsn');
+const Category = require('../../products/models/category');
+const SubCategory = require('../../products/models/subCategory');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
@@ -46,11 +50,10 @@ router.get('/', authenticateToken,async(req,res)=>{
 })
 
 router.get('/routeid/:id', authenticateToken, async(req,res)=>{
-
   try {
       const result = await RouteSO.findAll({
         where: {routeId: req.params.id},
-        include: [Route, Customer, 'salesexecutive']});
+        include: [Route, Customer, 'pickSalesExecutive', {model: RouteSODetails, include: [SecondaryUnit]}]});
       res.send(result);
       
   } catch (error) {
@@ -73,13 +76,12 @@ router.get('/userid/:id', authenticateToken, async(req,res)=>{
 router.get('/:id', authenticateToken,async(req,res)=>{
 
   try {
-    console.log(req.params.id,'reqqqqqqqqqqqqqqqqq');
       const result = await RouteSO.findOne(
         {
           where : {id: req.params.id},
           include: [
             {model : RouteSODetails, 
-              include: [Product, SecondaryUnit]
+              include: [{model: Product, include: [Gst, Hsn, Category, SubCategory]}, SecondaryUnit]
             }, {model: Customer, include: [CustomerGrade]}, 
             Route, 'pickSalesExecutive'
           ]

@@ -24,7 +24,7 @@
 
       <div class="row box">
         <div class="col">
-          <mat-form-field class="full-width" appearance="fill">
+          <mat-form-field class="full-width" >
             <mat-label>InvoiceNo</mat-label>
             <input matInput placeholder="" formControlName="invoiceNo">
               <mat-error *ngIf="routeEntryForm.controls['invoiceNo'].hasError('required')">
@@ -34,7 +34,14 @@
         </div>
 
         <div class="col">
-          <mat-form-field class="full-width" appearance="fill">
+          <mat-form-field class="full-width" >
+            <mat-label>Credit Balance</mat-label>
+            <input matInput placeholder="" formControlName="creditBalance">
+          </mat-form-field>
+        </div>
+
+        <!-- <div class="col">
+          <mat-form-field class="full-width" >
             <mat-label>Payment Mode</mat-label>
             <mat-select formControlName="paymentMode">
               <mat-option *ngFor="let option of pModes" [value]="option.value">
@@ -43,10 +50,10 @@
             </mat-select>
           </mat-form-field>
 
-        </div>
+        </div> -->
 
         <div class="col">
-          <mat-form-field class="full-width" appearance="fill">
+          <mat-form-field class="full-width" >
             <mat-label>Date</mat-label>
             <input matInput [matDatepicker]="picker" formControlName="invoiceDate">
             <mat-hint>MM/DD/YYYY</mat-hint>
@@ -55,153 +62,159 @@
           </mat-form-field>
         </div>
       </div>
-    </mat-card-content>
-  </mat-card><br>
 
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title> DETAILS </mat-card-title>
-    </mat-card-header>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title> DETAILS </mat-card-title>
+      </mat-card-header>
 
-    <mat-card-content style="overflow-x: auto;">
-      <div>
-        <table formArrayName="routeSEDetails">
-          <table *ngFor="let quantity of routeSEDetails().controls; let i=index" [formGroupName]="i">
-            <tr class="box">
+      <mat-card-content style="overflow-x: auto;">
+        <div>
+          <table formArrayName="routeSEDetails">
+            <table *ngFor="let quantity of routeSEDetails().controls; let i=index" [formGroupName]="i">
+              <tr class="box">
+                <td>
+
+                  <!-- Search in MAT SELECT -->
+                  <mat-form-field class="full-width" >
+                    <mat-label>Product</mat-label>
+                    <mat-select formControlName="productId" #id (selectionChange)="getDetails(i, id.value)">
+                      <mat-form-field class="full-width">
+                        <div class="row">
+                          <input matInput (input)="filterProduct($event)" placeholder="Search">
+                        </div>
+                      </mat-form-field>
+                      <mat-option *ngFor="let option of filteredProduct" [value]="option.id">
+                        {{ option.productName }}
+                      </mat-option>
+                      <mat-option *ngIf="filteredProduct.length === 0" [value]="'add'">
+                        <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addNewProduct(i)">playlist_add</span>
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+                  <!-- END -->
+                <td colspan="2">
+                  <mat-form-field appearance="fill"class="full-width">
+                    <mat-label>Quantity</mat-label>
+                    <input matInput placeholder="" formControlName="quantity">
+                  </mat-form-field>
+                </td>
+
+                <td>
+                  <mat-form-field class="full-width" >
+                    <mat-label>Secondary Unit</mat-label>
+                    <mat-select placeholder="" formControlName="secondaryUnitId">
+                      <mat-form-field class="full-width">
+                        <div class="row">
+                          <input matInput (input)="filterProduct($event)" placeholder="Search">
+                        </div>
+                      </mat-form-field>
+                      <mat-option *ngFor="let item of filteredSecondaryUnit" [value]="item.id">
+                        {{item.secondaryUnitName | titlecase}}
+                      </mat-option>
+                      <mat-option *ngIf="filteredSecondaryUnit.length === 0" [value]="'add'">
+                        <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addSecondaryUnit(i)">playlist_add</span>
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+
+                <td>
+                  <mat-form-field class="full-width" >
+                    <mat-label>GST</mat-label>
+                    <mat-select placeholder="" formControlName="gst">
+                      <mat-form-field class="full-width">
+                        <div class="row">
+                          <input matInput (input)="filterGst($event)" placeholder="Search">
+                        </div>
+                      </mat-form-field>
+                      <mat-option *ngFor="let item of filteredGst" [value]="item.gstName">
+                        {{item.gstName| titlecase}}
+                      </mat-option>
+                      <mat-option *ngIf="filteredGst.length === 0" [value]="'add'">
+                        <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);"
+                        (click)="addGst(i)">playlist_add</span>
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+
+                <td>
+                  <mat-form-field class="full-width" >
+                    <mat-label>HSN Code</mat-label>
+                    <mat-select placeholder="" formControlName="hsnCode">
+                      <mat-form-field class="full-width">
+                        <div class="row">
+                          <input matInput (input)="filterHsn($event)" placeholder="Search">
+                        </div>
+                      </mat-form-field>
+                      <mat-option *ngFor="let item of filteredHsn" [value]="item.hsnName">
+                        {{item.hsnName| titlecase}}
+                      </mat-option>
+                      <mat-option *ngIf="filteredHsn.length === 0" [value]="'add'">
+                        <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);"
+                        (click)="addHsn(i)">playlist_add</span>
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+
+                <td colspan="2">
+                  <mat-form-field appearance="fill"class="full-width">
+                    <mat-label>MRP</mat-label>
+                    <input matInput placeholder="" formControlName="mrp">
+                  </mat-form-field>
+                </td>
+
+                <td colspan="2">
+                  <mat-form-field appearance="fill"class="full-width">
+                    <mat-label>Rate</mat-label>
+                    <input matInput placeholder="" formControlName="rate">
+                  </mat-form-field>
+                </td>
+
+                <td>
+                  <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Amount </mat-label>
+                    <input matInput placeholder="Amount" formControlName="amount">
+                  </mat-form-field>
+                </td>
+
+                <td>
+                  <span class="material-icons" style="color: rgb(255, 0, 0); font-size: 25px; margin-top: 17px; margin-left: 75px;" (click)="removeDetails(i)">cancel</span>
+                </td>
+              </tr>
+            </table>
+            <tr>
               <td>
-
-                <!-- Search in MAT SELECT -->
-                <mat-form-field class="full-width" appearance="fill">
-                  <mat-label>Product</mat-label>
-                  <mat-select formControlName="productId">
-                    <mat-form-field class="full-width">
-                      <div class="row">
-                        <input matInput (input)="filterProduct($event)" placeholder="Search">
-                      </div>
-                    </mat-form-field>
-                    <mat-option *ngFor="let option of filteredProduct" [value]="option.id">
-                      {{ option.productName }}
-                    </mat-option>
-                    <mat-option *ngIf="filteredProduct.length === 0" [value]="'add'">
-                      <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addNewProduct(i)">playlist_add</span>
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </td>
-                <!-- END -->
-              <td colspan="2">
-                <mat-form-field appearance="fill"class="full-width">
-                  <mat-label>Quantity</mat-label>
-                  <input matInput placeholder="" formControlName="quantity">
-                </mat-form-field>
-              </td>
-
-              <td>
-                <mat-form-field class="full-width" appearance="fill">
-                  <mat-label>Secondary Unit</mat-label>
-                  <mat-select placeholder="" formControlName="secondaryUnitId">
-                    <mat-form-field class="full-width">
-                      <div class="row">
-                        <input matInput (input)="filterProduct($event)" placeholder="Search">
-                      </div>
-                    </mat-form-field>
-                    <mat-option *ngFor="let item of filteredSecondaryUnit" [value]="item.id">
-                      {{item.secondaryUnitName | titlecase}}
-                    </mat-option>
-                    <mat-option *ngIf="filteredSecondaryUnit.length === 0" [value]="'add'">
-                      <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addSecondaryUnit(i)">playlist_add</span>
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </td>
-
-              <td>
-                <mat-form-field class="full-width" appearance="fill">
-                  <mat-label>GST</mat-label>
-                  <mat-select placeholder="" formControlName="gst">
-                    <mat-form-field class="full-width">
-                      <div class="row">
-                        <input matInput (input)="filterGst($event)" placeholder="Search">
-                      </div>
-                    </mat-form-field>
-                    <mat-option *ngFor="let item of filteredGst" [value]="item.gstName">
-                      {{item.gstName| titlecase}}
-                    </mat-option>
-                    <mat-option *ngIf="filteredGst.length === 0" [value]="'add'">
-                      <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);"
-                       (click)="addGst(i)">playlist_add</span>
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </td>
-
-              <td>
-                <mat-form-field class="full-width" appearance="fill">
-                  <mat-label>HSN Code</mat-label>
-                  <mat-select placeholder="" formControlName="hsnCode">
-                    <mat-form-field class="full-width">
-                      <div class="row">
-                        <input matInput (input)="filterHsn($event)" placeholder="Search">
-                      </div>
-                    </mat-form-field>
-                    <mat-option *ngFor="let item of filteredHsn" [value]="item.hsnName">
-                      {{item.hsnName| titlecase}}
-                    </mat-option>
-                    <mat-option *ngIf="filteredHsn.length === 0" [value]="'add'">
-                      <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);"
-                       (click)="addHsn(i)">playlist_add</span>
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </td>
-
-              <td colspan="2">
-                <mat-form-field appearance="fill"class="full-width">
-                  <mat-label>MRP</mat-label>
-                  <input matInput placeholder="" formControlName="mrp">
-                </mat-form-field>
-              </td>
-
-              <td colspan="2">
-                <mat-form-field appearance="fill"class="full-width">
-                  <mat-label>Rate</mat-label>
-                  <input matInput placeholder="" formControlName="rate">
-                </mat-form-field>
-              </td>
-
-              <td colspan="2">
-                <mat-form-field appearance="fill"class="full-width">
-                  <mat-label>Amount</mat-label>
-                  <input matInput placeholder="" formControlName="amount">
-                </mat-form-field>
-              </td>
-
-              <td>
-                <span class="material-icons" style="color: rgb(255, 0, 0); font-size: 25px; margin-top: 17px; margin-left: 75px;" (click)="removeDetails(i)">cancel</span>
+                <div>
+                  <span class="material-icons" style="font-size: 35px; color: green;"(click)="addDetails()">add_box</span>
+                </div>
               </td>
             </tr>
           </table>
-          <tr>
-            <td>
-              <div>
-                <span class="material-icons" style="font-size: 35px; color: green;"(click)="addDetails()">add_box</span>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </mat-card-content>
+        </div>
+      </mat-card-content>
+    </mat-card><br>
 
+    <div class="col" style="margin-left: auto; width: 40%;">
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Total Amount</mat-label>
+        <input matInput placeholder="" formControlName="totalAmount">{{onAmountChange()}}
+      </mat-form-field>
+    </div>
     <mat-card-actions>
-    <button *ngIf="!isEdit" mat-raised-button type="submit" class="btn btn-success" [disabled]="!routeEntryForm.valid">
-      <span class="material-icons" style="font-size: 25px;">save</span>
-    </button>
+      <button *ngIf="!isEdit" mat-raised-button type="submit" class="btn btn-success" [disabled]="!routeEntryForm.valid">
+        <span class="material-icons" style="font-size: 25px;">save</span>
+      </button>
 
-    <button *ngIf="isEdit" mat-raised-button  type="button" (click)="editFunction()">
-      <span class="material-icons" style="font-size: 30px;">edit_note</span>
-    </button>&nbsp;&nbsp;
-    </mat-card-actions>
-  </mat-card>
+      <button *ngIf="isEdit" mat-raised-button  type="button" (click)="editFunction()">
+        <span class="material-icons" style="font-size: 30px;">edit_note</span>
+      </button>&nbsp;&nbsp;
+      </mat-card-actions>
+  </mat-card-content>
+</mat-card><br>
 
 
 

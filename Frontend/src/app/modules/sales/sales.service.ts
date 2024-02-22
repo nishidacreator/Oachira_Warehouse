@@ -16,6 +16,7 @@ import { Trip } from './route/models/trip';
 import { RouteOrder } from './route/models/route-order';
 import { RouteOrderDetails } from './route/models/route-order-details';
 import { RouteEntry } from './route/models/route-entry';
+import { CustomerLedger } from './route/models/customer-ledger';
 
 @Injectable({
   providedIn: 'root'
@@ -99,6 +100,10 @@ export class SalesService {
 
   deleteCustomer(id:number){
     return this._http.delete(this.url+'customer/'+id);
+  }
+
+  getLedgerByCustomer(id: number): Observable<CustomerLedger[]>{
+    return this._http.get<CustomerLedger[]>(this.url+'ledger/cutomer/' + id);
   }
 
   addVehicleType(data: any){
@@ -316,7 +321,7 @@ export class SalesService {
   }
 
   getRouteOrderByRouteId(id: number): Observable<RouteOrder[]>{
-    return this._http.get<RouteOrder[]>(this.url +'routeorder/byrouteid/'+id);
+    return this._http.get<RouteOrder[]>(this.url +'routeorder/routeid/'+id);
   }
 
   deleteRouteOrder(id : Number){
@@ -332,7 +337,11 @@ export class SalesService {
   }
 
   getRouteOrderDetails(id: number){
+    return this._http.get<RouteOrderDetails[]>(this.url +'routeorderdetails/routeid/'+id);
+  }
 
+  getRouteSoDetailsByProductId(id: number, routeId: number){
+    return this._http.get<RouteOrderDetails[]>(this.url +'routeorderdetails/productid/'+id + '/' + routeId);
   }
 
   //SALES ENTRY
@@ -342,5 +351,17 @@ export class SalesService {
 
   getRouteEntry(){
     return this._http.get<RouteEntry[]>(this.url+'routeentry');
+  }
+
+  getRouteEntryById(id: number): Observable<RouteEntry>{
+    return this._http.get<RouteEntry>(this.url+'routeentry/'+ id);
+  }
+
+  deleteRouteEntry(id : Number){
+    return this._http.delete(this.url+'routeentry/'+ id);
+  }
+
+  updateRouteEntry(id:Number, data:any): Observable<RouteEntry>{
+    return this._http.patch<RouteEntry>(this.url+'routeentry/'+id, data);
   }
 }
