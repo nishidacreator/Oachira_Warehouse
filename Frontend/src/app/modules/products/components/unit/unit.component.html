@@ -128,20 +128,6 @@
               </div>
             </div>
 
-            <div class="row">
-              <div class="col">
-                <mat-form-field class="full-width">
-                  <mat-select placeholder="Primary Unit" formControlName="primaryUnitId">
-                    <mat-option *ngFor="let item of pUnits" [value]="item.id">
-                      {{item.primaryUnitName | titlecase}}
-                    </mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="secondaryUnitForm.controls['primaryUnitId'].hasError('required')">
-                    Primary Unit is <strong>required</strong>
-                    </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
 
             <div class="row">
               <div class="col">
@@ -158,6 +144,22 @@
               <div class="col">
                 <mat-form-field class="full-width">
                   <input matInput placeholder="SecondaryFactor" formControlName="secondaryFactor">
+                </mat-form-field>
+              </div>
+            </div>
+
+            
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Primary Unit" formControlName="primaryUnitId" (ngModelChange)="updateSecondaryUnitName()">
+                    <mat-option *ngFor="let item of pUnits" [value]="item.id">
+                      {{item.primaryUnitName | titlecase}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="secondaryUnitForm.controls['primaryUnitId'].hasError('required')">
+                    Primary Unit is <strong>required</strong>
+                    </mat-error>
                 </mat-form-field>
               </div>
             </div>
