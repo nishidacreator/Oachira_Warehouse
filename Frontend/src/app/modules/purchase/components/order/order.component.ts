@@ -13,8 +13,6 @@ import { ProductService } from 'src/app/modules/products/product.service';
 import { UsersComponent } from 'src/app/modules/users/components/users/users.component';
 import { User } from 'src/app/modules/users/models/user';
 import { UsersService } from 'src/app/modules/users/users.service';
-import { Warehouse } from 'src/app/modules/store/models/warehouse';
-import { WarehouseComponent } from 'src/app/modules/store/components/warehouse/warehouse.component';
 import { DistributorComponent } from 'src/app/modules/products/components/distributor/distributor.component';
 import { Distributor } from 'src/app/modules/products/models/distributor';
 import { CompanyService } from 'src/app/modules/company/company.service';
@@ -105,10 +103,10 @@ export class OrderComponent implements OnInit, OnDestroy {
   //     data: { status: "true"},
   //   });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      // this.getWarehouse(result?.store);
-    });
-  }
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   // this.getWarehouse(result?.store);
+    // });
+
 
   // filteredWarehouse: Warehouse[] = [];
   // filterWarehouse(event: Event | string) {

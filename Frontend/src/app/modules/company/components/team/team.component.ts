@@ -26,7 +26,7 @@ export class TeamComponent {
    private userService: UsersService) { }
  teamForm = this.fb.group({
    teamName: ['', Validators.required],
-   userId: ['', Validators.required],
+  //  userId: ['', Validators.required],
   //  teamMembers: ['', Validators.required]
   teamMembers: [[]] // Initialize as an empty array
  });

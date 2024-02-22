@@ -1,12 +1,29 @@
-<mat-toolbar class="bg-green-900">
+<!-- <mat-toolbar class="bg-green-900">
     <p style="color:white"> ADD TEAM</p>
     <button mat-mini-fab color="primary" type="button" style="margin-left: auto;"
       aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" (click)="onCancelClick()">
       <mat-icon>arrow_back</mat-icon>
     </button>
-  </mat-toolbar>
+  </mat-toolbar> -->
 
   <form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+    <mat-card class="background">
+      <!-- <div class="row" *ngIf="addStatus != 'true'"> -->
+        <div class="col">
+          <mat-card-header>
+            <mat-card-title> TEAM</mat-card-title>
+          </mat-card-header>
+        </div>
+        <div class="col">
+          <mat-card-header>
+            <button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon"
+            class="d-block mr-0 ml-auto" onClick="history.back()" style="margin-left: auto;">
+              <mat-icon>exit_to_app</mat-icon>
+            </button>
+          </mat-card-header>
+        </div>
+      </mat-card>
+
     <mat-card class="background">
       <mat-card-content >
 
@@ -34,7 +51,7 @@
             </mat-form-field>
           </div> -->
           <div class="col">
-            <mat-form-field appearance="fill" class="full-width">
+            <mat-form-field class="full-width">
               <mat-label>Members</mat-label>
               <mat-select formControlName="teamMembers" multiple>
                 <!-- <mat-option (click)="addNewApplication()" class="custom-option">Add New</mat-option> -->

@@ -98,7 +98,7 @@
 
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="GstId" formControlName="gstId">
+            <input matInput placeholder="Gst Number" formControlName="gstId">
           </mat-form-field>
         </div>
 
@@ -110,6 +110,8 @@
             </mat-error> -->
           </mat-form-field>
         </div>
+        <mat-checkbox class="example-margin" formControlName="isStore">Is Store?</mat-checkbox> &nbsp;
+        <mat-checkbox class="example-margin" formControlName="isWarehouse">Is Warehouse?</mat-checkbox>
       </div>
       <!-- <br><div>
         <mat-slide-toggle formControlName="status">Status</mat-slide-toggle>
@@ -158,6 +160,8 @@
               <th>Location</th>
               <th>Incharge</th>
               <th>GstNo</th>
+              <th>Store</th>
+              <th>Warehouse</th>
               <th>Url</th>
               <th>Manage</th>
           </tr>
@@ -185,6 +189,8 @@
               <td [style.background-color]="element.status == false ? 'pink' : null">{{element.locationName}}</td>
               <td [style.background-color]="element.status == false ? 'pink' : null">{{element.companyInCharge.name}}</td>
               <td [style.background-color]="element.status == false ? 'pink' : null">{{element.gstId}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.isStore}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.isWarehouse}}</td>
               <td [style.background-color]="element.status == false ? 'pink' : null">{{element.apiKey}}</td>
               <td [style.background-color]="element.status == false ? 'pink' : null">
                 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />

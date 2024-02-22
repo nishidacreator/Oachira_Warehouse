@@ -38,8 +38,8 @@ export class CompanyComponent implements OnInit {
     companyCode: ['',Validators.required],
     locationName: ['', Validators.required],
     companyInChargeId: ['', Validators.required],
-    isStore: [ Validators.required],
-    isWarehouse: [ Validators.required],
+    isStore: [],
+    isWarehouse: [],
     gstId: [],
     apiKey: [ '',Validators.required],
 
