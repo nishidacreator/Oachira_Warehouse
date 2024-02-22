@@ -6,11 +6,14 @@ const authenticateToken = require('../../middleware/authorization');
 const Entry = require('../models/entry')
 const EntryDetails = require('../models/entryDetails');
 const User = require('../../users/models/user');
+const Distributor = require('../../products/models/distributor');
+const Order = require('../../purchases/models/order');
+const Slip = require('../models/slip');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
 
-        const { purchaseInvoice,purachseDate,distributorId,purchaseAmount,status,chequeNo,userId} = req.body;
+        const { purchaseInvoice,purachseDate,distributorId,purchaseAmount,status,chequeNo,userId,entryStatus = 'pending'} = req.body;
 
         const EntryExist = await  Entry.findOne({ chequeNo: req.userId });
         // if (EntryExist){
@@ -21,9 +24,12 @@ router.post('/', authenticateToken, async (req, res) => {
         // if (!orderNo || !distributorId || !userId || !warehouseId || !status || !orderDetails) {
         //     return res.status(400).send({ error: 'Incomplete data provided.' });
         // }
+        if(chequeNo != null){
+            this.chequeIssuedDate = purachseDate
+        }
 
     
-        const entry = new Entry({purchaseInvoice,purachseDate,distributorId,purchaseAmount,status,userId,chequeNo });
+        const entry = new Entry({purchaseInvoice,purachseDate,distributorId,purchaseAmount,status,userId, chequeNo, entryStatus, chequeIssuedDate: this.chequeIssuedDate });
         console.log(entry);
        
         await entry.save();
@@ -44,29 +50,28 @@ router.post('/', authenticateToken, async (req, res) => {
     }
 });
 
-router.patch('/',authenticateToken ,async (req,res)=>{
+router.patch('/:id',authenticateToken ,async (req,res)=>{
    
-    let {id,eWayBillNo,chequeIssuedDate,invoiceDate,transportation,unloading,commission,paymentMode,purchaseOrderId,remarks}= req.body
-    const entry = await Entry.findOne({ where :{ id : id}});
+    let {eWayBillNo,chequeIssuedDate,invoiceDate,transportation,unloading,commission,paymentMode,orderId,remarks}= req.body
+    const entry = await Entry.findOne({ where :{ id : req.params.id}});
     if(!entry){
         return res.status(400).json({msg:"Entry not found"})
     }
     entry.eWayBillNo = eWayBillNo,
-    entry.chequeIssuedDate = chequeIssuedDate,
     entry.invoiceDate = invoiceDate,
     entry.transportation = transportation,
     entry.unloading = unloading,
     entry.commission = commission,
     entry.paymentMode = paymentMode,
-    entry.purchaseOrderId = purchaseOrderId,
+    entry.orderId = orderId,
     entry.remarks = remarks
+    entry.entryStatus = 'completed'
 
     await entry.save();
     res.send(entry);
 
 });
    
-
 router.get('/', async (req, res) => {
 
     try {
@@ -81,6 +86,7 @@ router.get('/', async (req, res) => {
 
         const entry = await Entry.findAll({
             where: whereClause,
+            include: [Distributor, Order],
             order: ["id"],
             limit, 
             offset
@@ -88,8 +94,45 @@ router.get('/', async (req, res) => {
        
            res.send(entry);
     } catch (error) {
-        
+        res.send(error.message);
     }
    
 })
+
+router.get('/:id', async (req, res) => {
+
+    try {
+        const entry = await Entry.findOne({
+            where: {id: req.params.id},
+            include: [Distributor, Order],
+           })
+       
+           res.send(entry);
+    } catch (error) {
+        res.send(error.message);
+    }
+   
+})
+
+router.patch('/statusupdate/:id', authenticateToken, async(req,res)=>{
+    try {
+        const{status, chequeNo} = req.body;
+
+        let pe = await Entry.findByPk(req.params.id);
+        pe.status = status
+        pe.chequeNo = chequeNo;
+        pe.chequeIssuedDate = new Date();
+
+        await pe.save();
+
+        let slip = await Slip.findOne({where: {entryId: req.params.id}})
+        slip.status = 'closed';
+
+        await slip.save();
+        
+        res.send(pe);
+      } catch (error) {
+        res.send(error.message);
+      }
+  })
 module.exports = router;

@@ -2,14 +2,15 @@ const express = require('express');
 
 const router = express.Router();
 const Slip = require('../models/slip')
-
+const Distributor = require('../../products/models/distributor');
+const Entry = require('../models/entry');
 
 router.post('/', async (req, res) => {
     try {
     
-    const { purchaseEntryId , amount,InvoiceNo, description , date, contactPerson , status  } = req.body;
+    const { entryId, distributorId, purchaseInvoice, amount,invoiceNo, description , date, contactPerson , status  } = req.body;
 
-            const slip = new Slip({ purchaseEntryId ,amount , InvoiceNo, description , date, contactPerson , status  });
+            const slip = new Slip({ entryId, distributorId, purchaseInvoice, amount , invoiceNo, description , date, contactPerson , status  });
 
             await slip.save();
 
@@ -21,19 +22,31 @@ router.post('/', async (req, res) => {
 })
 
 router.get('/', async (req, res) => {
+    try {
+        const slip = await Slip.findAll({order:['id']})
 
-    const slip = await Slip.findAll({order:['id']})
+        res.send(slip);
+    } catch (error) {
+        res.send(error.message);
+    }
 
-    res.send(slip);
 })
 
 
 
 router.get('/:id', async (req, res) => {
-
-  const slip = await Slip.findOne({where: {id: req.params.id}, order:['id']})
-
-  res.send(slip);
+    try {
+        const slip = await Slip.findOne({
+            where: {id: req.params.id}, 
+            order:['id'],
+            include: [Distributor]
+        })
+        
+        res.send(slip);
+    } catch (error) {
+        res.send(error.message)
+    }
+  
 })
 
 

@@ -7,6 +7,8 @@ import { ViewOrderComponent } from './components/view-order/view-order.component
 import { ViewRequestComponent } from './components/view-request/view-request.component';
 import { ViewPrComponent } from './components/view-pr/view-pr.component';
 import { ViewEntryComponent } from './components/view-entry/view-entry.component';
+import { ViewSlipComponent } from './components/view-slip/view-slip.component';
+import { SlipComponent } from './components/slip/slip.component';
 
 const routes: Routes = [
   {path: 'purchaserequest', component: RequestComponent},
@@ -17,6 +19,8 @@ const routes: Routes = [
   {path: 'viewpurchaseorder', component: ViewOrderComponent},
   {path: 'viewpurchaseentry', component: ViewEntryComponent},
   {path: 'purchaserequest/view/:id', component: ViewPrComponent},
+  {path: 'viewslip', component: ViewSlipComponent},
+  {path: 'printslip/:id', component: SlipComponent},
 ];
 
 @NgModule({

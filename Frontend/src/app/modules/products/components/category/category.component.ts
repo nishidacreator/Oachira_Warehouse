@@ -25,8 +25,7 @@ export class CategoryComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private productService: ProductService,
-    public dialog: MatDialog,
-    @Optional() public dialogRef: MatDialogRef<CategoryComponent>,
+    public dialog: MatDialog, @Optional() public dialogRef: MatDialogRef<CategoryComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any
   ){}
 
