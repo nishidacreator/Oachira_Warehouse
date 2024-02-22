@@ -10,8 +10,8 @@ const EntryDetails = sequelize.define('entryDetails',{
     rate:{type: DataTypes.INTEGER, allowNull: false},
     discount : {type: DataTypes.INTEGER, defaultValue: 0},
     gstId : {type: DataTypes.INTEGER, },
-    gross:{type: DataTypes.INTEGER, allowNull: false},
-    net :  {type: DataTypes.INTEGER, allowNull: false}
+    grossAmount:{type: DataTypes.INTEGER, allowNull: false},
+    netAmount :  {type: DataTypes.INTEGER, allowNull: false}
 },
 {
     freezeTableName: true,
