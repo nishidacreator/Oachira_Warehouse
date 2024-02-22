@@ -9,6 +9,7 @@ const Slip = sequelize.define('slip',{
     date:  {type : DataTypes.DATEONLY, defaultValue: Date.now(), allowNull : false},
     contactPerson: { type : DataTypes.STRING, allowNull : false},
     status : { type : DataTypes.STRING, defaultValue: 'Open'}
+
 },
 {
     freezeTableName: true,
