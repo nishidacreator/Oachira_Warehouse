@@ -53,19 +53,19 @@
           <mat-form-field class="full-width">
             <mat-select placeholder="Store" formControlName="storeId">
               <mat-form-field class="search-field" style="width: 80%;">
-                <div class="row">
-                  <!-- <mat-icon>search</mat-icon> -->
+                <!-- <div class="row">
+                  <mat-icon>search</mat-icon>
                   <input matInput (input)="filterWarehouse($event)" placeholder="Search">
-                </div>
+                </div> -->
               </mat-form-field>
               <!-- <span *ngIf="filteredWarehouse.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55); margin-left: 20px;"
                (click)="addWarehouse()">playlist_add</span> -->
-              <mat-option *ngFor="let item of filteredWarehouse" [value]="item.id">
+              <!-- <mat-option *ngFor="let item of filteredWarehouse" [value]="item.id">
                 {{item.warehouseName}}
-              </mat-option>
-              <mat-option  *ngIf="filteredWarehouse.length === 0">
+              </mat-option> -->
+              <!-- <mat-option  *ngIf="filteredWarehouse.length === 0">
                 <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addWarehouse()">playlist_add</span>
-              </mat-option>
+              </mat-option> -->
             </mat-select>
             <mat-error *ngIf="purchaseRequestForm.controls['storeId'].hasError('required')">
               User <strong>required</strong>
