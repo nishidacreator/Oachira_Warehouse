@@ -30,7 +30,10 @@ const Customer = require('../sales/models/customer');
 const CustomerCategory = require('../sales/models/customerCategory');
 const CustomerGrade = require('../sales/models/customerGrade');
 const LoyaltyPoint = require('../sales/models/loyaltyPoint');
-
+const RouteSO = require('../sales/models/routeSO');
+const RouteSODetails = require('../sales/models/routeSODetails');
+const RouteSE = require('../sales/models/routeSE');
+const RouteSEDetails = require('../sales/models/routeSEDetails');
 const Warehouse = require('../store/models/warehouse');
 const CustomerPhone = require('../sales/models/customerPhone');
 const VehicleType = require('../sales/models/vehicleType');
@@ -41,10 +44,6 @@ const RouteDetails = require('../sales/models/routeDetails');
 const Trip = require('../sales/models/trip');
 const TripDay = require('../sales/models/tripDays');
 const TripDetails = require('../sales/models/tripDetails');
-const RouteSO = require('../sales/models/routeSO');
-const RouteSODetails = require('../sales/models/routeSODetails');
-const RouteSE = require('../sales/models/routeSE');
-const RouteSEDetails = require('../sales/models/routeSEDetails');
 const Slip = require('../purchases/models/slip');
 
 // // BULK CREATE
@@ -113,15 +112,15 @@ async function syncModel(){
     User.hasMany(Company,{foreignKey : 'companyInChargeId', as: 'companyInCharge',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Company.belongsTo(User, {foreignKey : 'companyInChargeId', as: 'companyInCharge'})
 
-    Store.hasMany(Warehouse,{foreignKey : 'warehouseId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    Warehouse.belongsTo(Store, {foreignKey : 'warehouseId'})
+    // Store.hasMany(Warehouse,{foreignKey : 'warehouseId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    // Warehouse.belongsTo(Store, {foreignKey : 'warehouseId'})
 
     Warehouse.hasMany(User,{foreignKey : 'warehouseInChargeId', as: 'warehouseInCharge',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     User.belongsTo(Warehouse, {foreignKey : 'warehouseInChargeId', as: 'warehouseInCharge'})
    
     // PURCHASES
-    Store.hasMany(Request, {foreignKey : 'storeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    Request.belongsTo(Store)
+    Company.hasMany(Request, {foreignKey : 'companyId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Request.belongsTo(Company)
 
     User.hasMany(Request, {foreignKey : 'userId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Request.belongsTo(User)

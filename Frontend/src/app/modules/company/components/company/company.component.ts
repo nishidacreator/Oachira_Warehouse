@@ -51,10 +51,20 @@ export class CompanyComponent implements OnInit {
 
   addStatus!: string;
   editstatus!: boolean;
+  
   ngOnInit(): void {
 
     this.getCompanies()
     this.getUsers()
+    if(this.dialogRef){
+      this.addStatus = this.dialogData?.status;
+      if(this.dialogData.type === 'edit'){
+        this.patchData()
+      }
+      // if(this.dialogData.category){
+      //   this.getCategory(this.dialogData.category)
+      // }
+    }
   }
 
   users!: User[];
@@ -230,26 +240,26 @@ export class CompanyComponent implements OnInit {
   }
 
   delete!: Subscription;
-  deleteStore(id : any){
+  deleteCompany(id : any){
     const dialogRef = this.dialog.open(DeleteDialogueComponent, {
       data: {}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // if (result === true) {
-      //   this.delete = this.storeService.deleteStore(id).subscribe((res)=>{
-      //     this.getstore()
-      //     this._snackBar.open("store deleted successfully...","" ,{duration:3000})
-      //   },(error=>{
-      //     this._snackBar.open(error.error.message,"" ,{duration:3000})
-      //   }))
-      // }
+      if (result === true) {
+        this.delete = this.companyService.deleteCompany(id).subscribe((res)=>{
+          this.getCompanies()
+          this._snackBar.open("Company deleted successfully...","" ,{duration:3000})
+        },(error=>{
+          this._snackBar.open(error.error.message,"" ,{duration:3000})
+        }))
+      }
     })
   }
 
   isEdit = false;
   storeId : any;
-  editStore(id : any){
+  editCompany(id : any){
     this.isEdit = true;
     const dialogRef = this.dialog.open(CompanyComponent, {
       data: { status: "true" , type : "edit", id: id},
@@ -259,22 +269,56 @@ export class CompanyComponent implements OnInit {
       this.getCompanies();
     });
   }
-
+  companyId : any;
   patchData(){
-    this.companyService.getCompanies().subscribe(res=>{
-      if(this.dialogData?.type === 'edit'){
-        this.editstatus = true
-        let store: any= res.find(x =>x.id == this.dialogData?.id)
-        console.log(store)
+    // this.isEdit = true;
+    // this.companyService.getCompanies().subscribe(res=>{
+    //   if(this.dialogData?.type === 'edit'){
+    //     this.editstatus = true
+    //     let company: any= res.find(x =>x.id == this.dialogData?.id)
+    //     console.log(company)
 
-        let companyName = store.companyName;
-        let companyCode = store.companyCode;
-        let locationName = store.locationName;
-        let companyInChargeId = store.companyInChargeId;
+    //     let companyName = company.companyName;
+    //     let companyCode = company.companyCode;
+    //     let locationName = company.locationName;
+    //     let companyInChargeId = company.companyInChargeId;
 
-        let gstId = store.gstId;
-        let apiKey = store.apiKey;
-        let isStore = store.isStore;
+    //     let gstId = company.gstId;
+    //     let apiKey = company.apiKey;
+    //     let isStore = company.isStore;
+    //     let isWarehouse= company.isWarehouse;
+    //     // this.imageUrl = store.fileUrl;
+    //     // console.log(this.imageUrl)
+
+    //     this.companyForm.patchValue({
+    //       companyName : companyName,
+    //       companyCode: companyCode,
+    //       locationName : locationName,
+    //       companyInChargeId : companyInChargeId,
+    //       isStore : isStore,
+    //       isWarehouse: isWarehouse,
+    //       gstId : gstId,
+    //       apiKey : apiKey
+    //     })
+    //     this.storeId = this.dialogData?.id;
+    //   }
+    // })
+    this.isEdit = true;
+    this.companyService.getCompanies().subscribe((result) => {
+      let company = result.find(x=>x.id === this.dialogData.id)
+      console.log(company);
+
+      this.companyId = this.dialogData.id
+
+           let companyName = company?.companyName;
+        let companyCode = company?.companyCode;
+        let locationName = company?.locationName;
+        let companyInChargeId = company?.companyInChargeId;
+
+        let gstId = company?.gstId;
+        let apiKey = company?.apiKey;
+        let isStore = company?.isStore;
+        let isWarehouse= company?.isWarehouse;
         // this.imageUrl = store.fileUrl;
         // console.log(this.imageUrl)
 
@@ -282,14 +326,16 @@ export class CompanyComponent implements OnInit {
           companyName : companyName,
           companyCode: companyCode,
           locationName : locationName,
-
-          companyInChargeId : companyInChargeId,
-          isStore : isStore,
-          gstId : gstId,
+          // companyInChargeId : companyInChargeId,
+          // isStore : isStore,
+          // isWarehouse: isWarehouse,
+          // gstId : gstId,
           apiKey : apiKey
         })
         this.storeId = this.dialogData?.id;
-      }
+
+
+
     })
   }
 
@@ -331,27 +377,30 @@ export class CompanyComponent implements OnInit {
     //   })
     // }else{
       let data={
-        storeName  : this.companyForm.get('storeName')?.value,
-        storeLocation  : this.companyForm.get('storeLocation')?.value,
+        companyName  : this.companyForm.get('companyName')?.value,
+        companyCode:  this.companyForm.get('companyCode')?.value,
+        locationName  : this.companyForm.get('locationName')?.value,
         counterCount : this.companyForm.get('counterCount')?.value,
-        storeInChargeId : this.companyForm.get('storeInChargeId')?.value,
+        companyInChargeId : this.companyForm.get('companyInChargeId')?.value,
         phoneNumber : this.companyForm.get('phoneNumber')?.value,
+        isStore : this.companyForm.get('isStore')?.value,
+        isWarehouse : this.companyForm.get('isWarehouse')?.value,
         gstId : this.companyForm.get('gstId')?.value,
-        storeBaseUrl : this.companyForm.get('storeBaseUrl')?.value,
-        status : this.companyForm.get('status')?.value
+        apiKey : this.companyForm.get('storeBaseUrl')?.value,
+        // status : this.companyForm.get('status')?.value
       }
       console.log(data);
-      // this.submit = this.storeService.updateStore(this.storeId, data).subscribe((res)=>{
-      //   console.log(res);
+      this.submit = this.companyService.updateCompany(this.storeId, data).subscribe((res)=>{
+        console.log(res);
 
-      //   this._snackBar.open("store updated successfully...","" ,{duration:3000})
-      //   this.dialogRef.close();
-      //   this.clearControls();
-      // },(error=>{
-      //       alert(error.message)
-      //     }))
-    // }
-  }
+        this._snackBar.open("company updated successfully...","" ,{duration:3000})
+        this.dialogRef.close();
+        this.clearControls();
+      },(error=>{
+            alert(error.message)
+          }))
+    }
+
 
   onCancelClick(): void {
     this.dialogRef.close();

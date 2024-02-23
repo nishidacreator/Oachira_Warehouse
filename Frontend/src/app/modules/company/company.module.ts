@@ -7,13 +7,15 @@ import { ManagaeComponentComponent } from './components/managae-component/managa
 import { ManagaeCompanyComponent } from './components/managae-company/managae-company.component';
 import { CompanyComponent } from './components/company/company.component';
 import { TeamComponent } from './components/team/team.component';
+import { CompanyBankComponent } from './components/company-bank/company-bank.component';
 
 @NgModule({
   declarations: [
     ManagaeComponentComponent,
     ManagaeCompanyComponent,
     CompanyComponent,
-    TeamComponent
+    TeamComponent,
+    CompanyBankComponent
   ],
   imports: [
     CommonModule,

@@ -23,8 +23,6 @@
     "@syncfusion/ej2-angular-grids": "^22.1.39",
     "@syncfusion/ej2-angular-pdfviewer": "^22.1.39",
     "@syncfusion/ej2-material-theme": "~22.1.39",
-    "chart": "^0.1.2",
-    "chart.js": "^4.4.1",
     "codemirror": "^5.45.0",
     "moment": "^2.30.1",
     "rxjs": "~7.5.0",

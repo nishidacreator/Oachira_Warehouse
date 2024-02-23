@@ -18,6 +18,7 @@ import * as moment from 'moment';
 import { company } from 'src/app/modules/company/models/company';
 import { CompanyService } from 'src/app/modules/company/company.service';
 import { CompanyComponent } from 'src/app/modules/company/components/company/company.component';
+import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
@@ -35,7 +36,7 @@ export class RequestComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.storeSub?.unsubscribe();
+    // this.storeSub?.unsubscribe();
     this.userSub?.unsubscribe();
     this.productSub?.unsubscribe();
     this.unitSub?.unsubscribe();
@@ -45,7 +46,7 @@ export class RequestComponent implements OnInit {
   addStatus!: string;
   editstatus!: boolean;
   ngOnInit(): void {
-    this.getStores();
+    this.getCompanies();
     this.getUsers();
     this.getProduct();
     this.getSecondaryUnit();
@@ -59,7 +60,7 @@ export class RequestComponent implements OnInit {
 
   purchaseRequestForm = this.fb.group({
     requestNo: ["", Validators.required],
-    storeId: [Validators.required],
+    companyId: [Validators.required],
     userId: [],
     date: ["", Validators.required],
     requestDetails: this.fb.array([]),
@@ -84,35 +85,37 @@ export class RequestComponent implements OnInit {
       ]
     });
   }
-
-  storeSub!: Subscription;
-  companies: company[] = [];
-  getStores(value?: string) {
-    this.storeSub = this.companyService.getCompanies().subscribe((store) => {
-      this.companies = store;
-      this.filteredStore = store;
-
-      if(value){
-        this.filterStore(value);
-      }
+  totalItems = 0;
+  filtered!: any[];
+  filterValue = "";
+  company: company[] = [];
+  companySubscription? : Subscription
+  dataSource! : MatTableDataSource<any>
+  getCompanies(){
+    // this.filterValue, this.currentPage, this.pageSize
+    this.companySubscription = this.companyService.getCompanies().subscribe((res:any)=>{
+      this.filtered = res;
+      console.log('comp',this.filtered)
+      this.company = this.filtered;
+      this.totalItems = res.count;
     })
   }
 
-  addStore(){
+  addCompany(){
     const dialogRef = this.dialog.open(CompanyComponent, {
       data: { status: "true"},
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.getStores()
-      console.log((result.store.id));
+      this.getCompanies()
+      console.log((result.company.id));
 
-      this.purchaseRequestForm.get('storeId')?.setValue(result.store.id);
+      this.purchaseRequestForm.get('companyId')?.setValue(result.company.id);
     });
   }
-
-  filteredStore: company[] = [];
-  filterStore(event: Event | string) {
+companies: company[] = [];
+  filteredCompany: company[] = [];
+  filterCompany(event: Event | string) {
     let value: string = "";
 
     if (typeof event === "string") {
@@ -120,7 +123,7 @@ export class RequestComponent implements OnInit {
     } else if (event instanceof Event) {
       value = (event.target as HTMLInputElement).value;
     }
-    this.filteredStore = this.companies.filter((option) => {
+    this.filteredCompany = this.companies.filter((option) => {
       if (
         (option.companyName &&
           option.companyName.toLowerCase().includes(value?.toLowerCase()))
@@ -340,7 +343,7 @@ export class RequestComponent implements OnInit {
       ...this.purchaseRequestForm.value
     }
     form.date = moment(this.purchaseRequestForm.value.date).format('YYYY-MM-DD HH:mm:ss');
-
+    console.log('form submitted', form)
     this.submitSub = this.purchaseService.addPR(form).subscribe(() =>{
       this.clearControls()
     },
@@ -363,13 +366,13 @@ export class RequestComponent implements OnInit {
         let pr = res
 
         let requestNo = pr.requestNo.toString();
-        let store: any = pr.storeId;
+        let company: any = pr.companyId;
         let user: any = pr.userId;
         let date: any = pr.date;
 
         this.purchaseRequestForm.patchValue({
           requestNo : requestNo,
-          storeId : store,
+          companyId : company,
           userId : user,
           date : date
         })

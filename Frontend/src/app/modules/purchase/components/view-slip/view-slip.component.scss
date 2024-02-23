@@ -17,9 +17,9 @@ button:enabled {
   margin-left: 25px;
 }
 
-table{
-  width : 100%
-}
+// table{
+//   width : 100%
+// }
 
 .row {
   display: flex;
@@ -66,22 +66,10 @@ transform: translateY(5px);
   }
 }
 
-
-
-@media(max-width:576px)
-{
-  .boxsmall{
-      padding: 0px;
-      margin: 0px;
-      display: flex;
-      flex-direction: column;
-  }
-}
-
 table{
   width: 100%;
   border-collapse: separate;
-border-spacing: 0;
+  border-spacing: 0;
 }
 
 
@@ -91,7 +79,7 @@ padding: 5px;
 }
 
 .container{
-  overflow-x: auto;
+
 }
 
 .styled-table {

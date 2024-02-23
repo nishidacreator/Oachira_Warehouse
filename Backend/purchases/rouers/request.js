@@ -11,18 +11,20 @@ const authenticateToken = require('../../middleware/authorization');
 const Request = require('../models/request');
 const RequestDetails = require('../models/requestDetails');
 const User = require('../../users/models/user');
-const Store = require('../../store/models/store');
+// const Store = require('../../store/models/store');
 const Product = require('../../products/models/product');
 const SecondaryUnit = require('../../products/models/secondaryUnit');
+const Company = require('../../company/company');
 
 const downloadsDir = path.join(__dirname, "../invoices");
 fs.mkdirSync(downloadsDir, { recursive: true });
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
-        const { requestNo, storeId, userId, date, status, requestDetails } = req.body;
+        const { requestNo, companyId, userId, date, status, requestDetails } = req.body;
         // Validate input data
-        if (!requestNo || !userId || !storeId || !requestDetails) {
+        console.log('reqqqqqqqqq',req.body)
+        if (!requestNo || !userId || !companyId || !requestDetails) {
             return res.status(400).send({ error: 'Incomplete data provided.' });
         }
 
@@ -32,7 +34,7 @@ router.post('/', authenticateToken, async (req, res) => {
         }
 
         // Create a new Request instance
-        const purchaseRequest = new Request({ requestNo, storeId, userId, date, status });
+        const purchaseRequest = new Request({ requestNo, companyId, userId, date, status });
         // Save the request to the database
         await purchaseRequest.save();
 
@@ -58,7 +60,7 @@ router.get('/', authenticateToken, async (req, res) => {
   try {
     const request = await Request.findAll({
       order :[['id', 'DESC']],
-      include : [User, RequestDetails, Store]
+      include : [User, RequestDetails, Company]
     })
 
     res.send(request);
@@ -74,7 +76,7 @@ router.get('/byid/:id', authenticateToken, async (req, res) => {
       where : {id : req.params.id},
       order :['id'],
       include : [
-          {model: User}, {model: Store},  
+          {model: User}, {model: Company},  
           {model: RequestDetails, 
               include: [
               { model: Product }, {model: SecondaryUnit},

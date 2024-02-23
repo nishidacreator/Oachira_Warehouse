@@ -9,6 +9,13 @@ import { DistributorComponent } from 'src/app/modules/products/components/distri
 import { MatStepper } from '@angular/material/stepper';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Slip } from '../../models/slip';
+import { ProductComponent } from 'src/app/modules/products/components/product/product.component';
+import { Product } from 'src/app/modules/products/models/product';
+import { UnitComponent } from 'src/app/modules/products/components/unit/unit.component';
+import { SecondaryUnit } from 'src/app/modules/products/models/secondary-unit';
+import { GstComponent } from 'src/app/modules/products/components/gst/gst.component';
+import { Gst } from 'src/app/modules/products/models/gst';
 
 @Component({
   selector: 'app-entry',
@@ -22,7 +29,7 @@ export class EntryComponent implements OnInit, OnDestroy {
   isChecked: boolean = false;
   constructor(private fb: FormBuilder, public purchaseService: PurchaseService, public dialog: MatDialog,
     private productService: ProductService, private _snackBar: MatSnackBar, private router: Router,
-    @Optional() public dialogRef: MatDialogRef<EntryComponent>,
+    @Optional() public dialogRef: MatDialogRef<EntryComponent>, private productservice: ProductService,
     @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any) {
     //User
     const token: any = localStorage.getItem("token");
@@ -34,31 +41,76 @@ export class EntryComponent implements OnInit, OnDestroy {
     this.distributorSub?.unsubscribe();
     this.submitSub?.unsubscribe();
     this.slipSub?.unsubscribe();
+    this.productSub?.unsubscribe();
+    this.unitSub?.unsubscribe();
+    this.gstSub?.unsubscribe();
   }
 
+  entryStatus: boolean = false;
+  isInvoiceNoDisabled: boolean = true;
   addStatus: boolean = false;
   ngOnInit(): void {
     this.getDistributor()
-    this.addProduct();
+    this.getProduct();
+    this.getUnit();
+    this.getGST();
     if (this.dialogRef) {
-      this.addStatus = false;
-
-      this.patchData(this.dialogData.id)
+      this.addStatus = true;
+      if(this.dialogData.status === 'update'){
+        this.patchData(this.dialogData.id)
+      }else if(this.dialogData.status === 'true'){
+        if(this.dialogData.type === "slipedit"){
+          this.selectedIndex = 1;
+          this.getSlipAndPatch(this.dialogData.id)
+        }
+      }
     }
+  }
+
+  slipId!: number;
+  getSlipAndPatch(id: number){
+    this.purchaseService.getSlipById(id).subscribe(data =>{
+      console.log(data);
+
+      this.slipId = data.id;
+      let distributorId = data.distributorId;
+      let date:any = data.date;
+      let purchaseInvoice = data.purchaseInvoice;
+      let amount:any = data.amount;
+      let contactPerson = data.contactPerson;
+      let description = data.description;
+      this.generateInvoiceNumber()
+      this.slipForm.patchValue({
+        distributorId: distributorId,
+        date: date,
+        purchaseInvoice: purchaseInvoice,
+        amount: amount,
+        contactPerson: contactPerson,
+        description: description
+      })
+    })
+  }
+
+  updateSlip(){
+    if(!this.slipForm.valid){
+      return alert("Please fill form completely");
+    }
+
+    this.slipSub = this.purchaseService.updateSlip(this.slipId, this.slipForm.getRawValue()).subscribe(res=>{
+      console.log(res);
+      this.dialogRef?.close();
+      this._snackBar.open("Slip updated successfully...","" ,{duration:3000})
+    })
   }
 
   patchData(id: number){
     this.purchaseService.getPeById(id).subscribe(data =>{
       console.log(data);
       let distributorId = data.distributorId;
-      let date: any = data.purachseDate;
-      let purchaseInvoice = data.purchaseInvoice;
       let amount = data.purchaseAmount;
 
       this.purchaseEntryForm.patchValue({
         distributorId: distributorId,
-        purachseDate: date,
-        purchaseInvoice: purchaseInvoice,
         purchaseAmount: amount,
         status: "ChequeIssued"
       })
@@ -78,13 +130,12 @@ export class EntryComponent implements OnInit, OnDestroy {
 
   purchaseEntryForm = this.fb.group({
     distributorId: [0, Validators.required],
-    purchaseInvoice: ['', Validators.required],
     purchaseAmount: [0, Validators.required],
-    purachseDate: [''],
     status: [''],
     chequeNo: [''],
-    entryDetails: this.fb.array([]),
-    userId: [0]
+    userId: [0],
+    advanceAmount: [0],
+    date: ['']
   });
 
   slipForm = this.fb.group({
@@ -111,6 +162,10 @@ export class EntryComponent implements OnInit, OnDestroy {
     remarks:['']
   });
 
+  entryDetailsForm = this.fb.group({
+    products: this.fb.array([])
+  });
+
   modes = [
     { value: "Cheque" },
     { value: "Cash" }
@@ -128,37 +183,169 @@ export class EntryComponent implements OnInit, OnDestroy {
     this.hoveredButton = null;
   }
 
-  products(): FormArray {
-    return this.purchaseEntryForm.get("entryDetails") as FormArray;
+  products() : FormArray {
+    return this.entryDetailsForm.get("products") as FormArray
   }
 
-  newProduct(): FormGroup {
+  newProduct(id?:number): FormGroup {
     return this.fb.group({
-      purchaseEntryId: [ , ],
-      productId : [],
-      quantity :  [],
-      unitId : [],
-      mrp: [],
-      rate: [],
-      gross: [],
-      discount : [],
-      sgst :  [],
-      cgst :  [],
-      net :  [],
-      rent : [],
-      commision :  [],
-      profit : [],
-      salePrice : [],
+      entryId: [id],
+      productId : [0,Validators.required],
+      quantity :  [0,Validators.required],
+      secondaryUnitId :  [0,Validators.required],
+      mrp: [0,Validators.required],
+      rate: [0,Validators.required],
+      discount :  [0],
+      gstId :  [0],
+      grossAmount:  [0,Validators.required],
+      netAmount :   [0,Validators.required],
+      taxableAmount : [0,Validators.required]
+    })
+  }
 
+  addProduct() {
+    this.products().push(this.newProduct(this.peId));
+  }
+
+  removeProduct(i:number) {
+    this.products().removeAt(i);
+  }
+
+  detailsSub!: Subscription;
+  saveDetails(){
+    this.purchaseService.addPEDetails(this.entryDetailsForm.getRawValue()).subscribe(data => {
+      this._snackBar.open("Entry Details updated successfully...","" ,{duration:3000})
+      history.back();
+    })
+  }
+
+  product: Product[] = [];
+  productSub!: Subscription;
+  getProduct(value?: string){
+    this.productSub = this.productService.getProduct().subscribe(res=>{
+      this.product = res;
+      this.filteredProduct = res;
+    })
+  }
+
+  addProducts(){
+    const dialogRef = this.dialog.open(ProductComponent, {
+      data: { status: "true"},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.getProduct(result?.route);
     });
   }
 
-  addProduct(){
-    this.products().push(this.newProduct());
+  filteredProduct: Product[] = [];
+  filterProduct(event: Event | string) {
+    let value: string = "";
+
+    if (typeof event === "string") {
+      value = event;
+    } else if (event instanceof Event) {
+      value = (event.target as HTMLInputElement).value;
+    }
+    this.filteredProduct = this.product.filter((option) => {
+      if (
+        (option.productName &&
+          option.productName.toLowerCase().includes(value?.toLowerCase()))
+      ) {
+        return true;
+      } else {
+        return null;
+      }
+    });
   }
 
-  removeProduct(i: number){
-    this.products().removeAt(i);
+  units: SecondaryUnit[] = [];
+  unitSub!: Subscription;
+  getUnit(value?:string){
+    this.unitSub = this.productService.getSecondaryUnit().subscribe(unit=>{
+      this.units = unit;
+      this.filteredUnit = unit;
+      if(value){
+        this.filterUnit(value);
+      }
+    });
+  }
+
+  addUnit(){
+    const dialogRef = this.dialog.open(UnitComponent, {
+      data: { status: "add", type : "add", unit: "secondary" },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.getUnit(result?.unit);
+    });
+  }
+
+  filteredUnit: SecondaryUnit[] = [];
+  filterUnit(event: Event | string) {
+    let value: string = "";
+
+    if (typeof event === "string") {
+      value = event;
+    } else if (event instanceof Event) {
+      value = (event.target as HTMLInputElement).value;
+    }
+    this.filteredUnit = this.units.filter((option) => {
+      if (
+        (option.secondaryUnitName &&
+          option.secondaryUnitName.toLowerCase().includes(value?.toLowerCase()))
+      ) {
+        return true;
+      } else {
+        return null;
+      }
+    });
+  }
+
+  gstSub!: Subscription;
+  gst: Gst[] = [];
+  getGST(value?: string){
+    this.unitSub = this.productservice.getGst().subscribe(data => {
+      this.gst = data;
+      this.filteredGst = this.gst;
+      if(value){
+        this.filterGst(value);
+      }
+    })
+  }
+
+  filteredGst: Gst[] = [];
+  filterGst(event: Event | string) {
+    let value: string = "";
+
+    if (typeof event === "string") {
+      value = event;
+    } else if (event instanceof Event) {
+      value = (event.target as HTMLInputElement).value;
+    }
+    this.filteredGst = this.gst.filter((option) => {
+      if (
+        (option.gstName &&
+          option.gstName.toLowerCase().includes(value?.toLowerCase()))
+      ) {
+        return true;
+      } else {
+        return null;
+      }
+    });
+  }
+
+  addGst(i : number){
+    const dialogRef = this.dialog.open(GstComponent, {
+      data: { status: "add"},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.getGST()
+      console.log((result.gst.id));
+
+      this.products().at(i).get('gstId')?.setValue(result.gst.id);
+    });
   }
 
   distributorSub!: Subscription;
@@ -208,24 +395,27 @@ export class EntryComponent implements OnInit, OnDestroy {
   selectedIndex = 0;
   onSubmit(type: string){
     if(this.purchaseEntryForm.valid){
-      this.addStatus = true;
+      this.entryStatus = true;
       let data = {
         ...this.purchaseEntryForm.value
       }
       data.userId = this.id
+
+      console.log(data);
+
       this.submitSub = this.purchaseService.addPE(data).subscribe(data=>{
         console.log(data);
 
         this._snackBar.open("Entry added successfully...","" ,{duration:3000})
-        if(type === "close"){
-          history.back();
-        }else if(type === "slip"){
-          this.stepper.next();
-          this.patchSlip(data)
-        }else if(type === "next"){
-          this.stepper.selectedIndex = 2;
-          this.patchSlip(data);
-        }
+        // if(type === "close"){
+        //   history.back();
+        // }else if(type === "slip"){
+        //   this.stepper.next();
+        //   this.patchSlip(data)
+        // }else if(type === "next"){
+        //   this.stepper.selectedIndex = 2;
+        //   this.patchSlip(data);
+        // }
       });
     }
   }
@@ -308,9 +498,10 @@ export class EntryComponent implements OnInit, OnDestroy {
     data.entryId = this.peId
     this.slipSub = this.purchaseService.addSlip(data).subscribe(res=>{
       console.log(res);
+      let op: any = res
       this._snackBar.open("Slip created successfully...","" ,{duration:3000})
       if(type === "print"){
-        this.router.navigateByUrl('/login/purachases/viewslip')
+        this.router.navigateByUrl('/login/purachases/printslip/'+op.id)
       }else if(type === "next"){
         this.stepper.next();
       }
@@ -335,8 +526,15 @@ export class EntryComponent implements OnInit, OnDestroy {
     console.log(data, this.peId);
     this.purchaseService.updatePE(this.peId, data).subscribe(data => {
       this._snackBar.open("Entry updated successfully...","" ,{duration:3000})
-      history.back();
+      this.selectedIndex = 3
+      this.getPe(data)
     })
+  }
+
+  getPe(data: any){
+    console.log(data);
+    this.peId = data.id
+    this.addProduct();
   }
 
   clearControls() {
@@ -353,4 +551,6 @@ export class EntryComponent implements OnInit, OnDestroy {
   onCancelClick(): void {
     this.dialogRef.close();
   }
+
+
 }

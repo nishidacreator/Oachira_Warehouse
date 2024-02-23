@@ -7,12 +7,17 @@ const EntryDetails = require('../models/entryDetails');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
-
             const products = req.body.products
+            
+            let peId = products[0].entryId;
+            let pe = await Entry.findOne({where:{ id: peId}})
+            pe.entryStatus = 'completed';
+            await pe.save();
+
             const entryDetails = await EntryDetails.bulkCreate(
                products
             )
-          
+                
             res.send(entryDetails);
 
     } catch (error) {

@@ -56,6 +56,7 @@
       <div class="row box">
         <div class="col">
           <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Tax Expiry</mat-label>
             <input matInput type="date" placeholder="Tax Expiry" formControlName="taxExpiry">
             <mat-error *ngIf="vehicleForm.controls['taxExpiry'].hasError('required')">
               field <strong>required</strong>
@@ -65,6 +66,7 @@
 
         <div class="col">
           <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Insurance Expiry</mat-label>
             <input matInput type="date" placeholder="Insurance Expiry" formControlName="insuranceExpiry">
             <mat-error *ngIf="vehicleForm.controls['insuranceExpiry'].hasError('required')">
               field <strong>required</strong>
@@ -74,6 +76,7 @@
 
         <div class="col">
           <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Polution Expiry</mat-label>
             <input matInput type="date" placeholder="Polution Expiry" formControlName="polutionExpiry">
             <mat-error *ngIf="vehicleForm.controls['polutionExpiry'].hasError('required')">
               field <strong>required</strong>
@@ -83,6 +86,7 @@
 
         <div class="col">
           <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Fitness Expiry</mat-label>
             <input matInput type="date" placeholder="Tax Expiry" formControlName="fitnessExpiry">
             <mat-error *ngIf="vehicleForm.controls['fitnessExpiry'].hasError('required')">
               field <strong>required</strong>
@@ -92,6 +96,7 @@
 
         <div class="col">
           <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Permit Expiry</mat-label>
             <input matInput type="date" placeholder="Permit Expiry" formControlName="permitExpiry">
             <mat-error *ngIf="vehicleForm.controls['permitExpiry'].hasError('required')">
               field <strong>required</strong>

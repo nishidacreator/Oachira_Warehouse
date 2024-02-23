@@ -6,6 +6,7 @@ import { company } from './models/company';
 import { Team } from './models/team';
 import { User } from '../users/models/user';
 import { TeamMember } from './models/teamMembers';
+import { Gst } from '../products/models/gst';
 
 
 @Injectable({
@@ -24,6 +25,9 @@ export class CompanyService {
 
   getTeams(): Observable<Team[]>{
     return this._http.get<Team[]>(this.url + '/team')
+  }
+  getGst(): Observable<Gst[]>{
+    return this._http.get<Gst[]>(this.url + '/product/gst');
   }
 
   getCompanies(): Observable<company[]>{
@@ -58,13 +62,13 @@ export class CompanyService {
   //   return this._http.get<Store[]>(this.url + `?search=${search}&page=${page}&pageSize=${pageSize}`);
   // }
 
-  // updateStore(id:Number, data:any){
-  //   return this._http.patch<Store>(this.url + id, data);
-  // }
+  updateCompany(id:Number, data:any){
+    return this._http.patch<company>(this.url+'/company/' + id, data);
+  }
 
-  // deleteStore(id:Number){
-  //   return this._http.delete(this.url+id);
-  // }
+  deleteCompany(id:Number){
+    return this._http.delete(this.url+'/company/' +id);
+  }
 
   // //WAREHOUSE
   // addWarehouse(data : any){
