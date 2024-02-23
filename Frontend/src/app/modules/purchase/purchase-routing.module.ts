@@ -14,6 +14,7 @@ const routes: Routes = [
   {path: 'purchaserequest', component: RequestComponent},
   {path: 'purchaserequest/:id', component: RequestComponent},
   {path: 'purchaseorder', component: OrderComponent},
+  {path: 'purchaseorder/:id', component: OrderComponent},
   {path: 'purchaseentry', component: EntryComponent},
   {path: 'viewpurchaserequest', component: ViewRequestComponent},
   {path: 'viewpurchaseorder', component: ViewOrderComponent},

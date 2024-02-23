@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { PurchaseOrder } from './models/purchase-order';
+import { Order } from './models/order';
 import { Observable } from 'rxjs';
 import { PurchaseRequest } from './models/purchase-request';
 import { Entry } from './models/entry';
@@ -43,12 +43,12 @@ export class PurchaseService {
     return this._http.post(this.url + 'order', data)
   }
 
-  getPO(): Observable<PurchaseOrder[]>{
-    return this._http.get<PurchaseOrder[]>(this.url+'order');
+  getPO(): Observable<Order[]>{
+    return this._http.get<Order[]>(this.url+'order');
   }
 
-  getPOById(id: number): Observable<PurchaseOrder>{
-    return this._http.get<PurchaseOrder>(this.url+'order/'+ id);
+  getPOById(id: number): Observable<Order>{
+    return this._http.get<Order>(this.url+'order/'+ id);
   }
 
   deletePO(id:Number){
@@ -56,7 +56,7 @@ export class PurchaseService {
   }
 
   updatePO(id:Number, data:any){
-    return this._http.patch<PurchaseOrder>(this.url+'order/'+id, data);
+    return this._http.patch<Order>(this.url+'order/'+id, data);
   }
 
   //PE

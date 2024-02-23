@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PurchaseService } from '../../purchase.service';
 import { Subscription } from 'rxjs';
-import { PurchaseOrder } from '../../models/purchase-order';
+import { Order } from '../../models/order';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,7 +21,7 @@ export class ViewOrderComponent implements OnInit, OnDestroy {
     this.getPO()
   }
 
-  po: PurchaseOrder[] = [];
+  po: Order[] = [];
   poSub!: Subscription;
   getPO(){
     this.poSub = this.purchaseService.getPO().subscribe(po =>{
@@ -33,5 +33,18 @@ export class ViewOrderComponent implements OnInit, OnDestroy {
   addPO(){
     this.router.navigateByUrl('/login/purachases/purchaseorder')
   }
+editPO(id:number){
 
 }
+deletePO(id:number){
+
+}
+
+
+editRequest(id: number){
+  this.router.navigateByUrl('/login/purachases/purchaseorder/'+id)
+}
+
+
+}
+

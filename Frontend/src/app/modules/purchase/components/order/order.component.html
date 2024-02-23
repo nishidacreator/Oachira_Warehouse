@@ -46,6 +46,8 @@
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </div>
+        </div>
+        <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
             <mat-label>Distributor</mat-label>
@@ -68,6 +70,29 @@
             </mat-error>
           </mat-form-field>
         </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Company</mat-label>
+            <mat-select placeholder="" formControlName="companyId">
+             <!-- <mat-form-field class="full-width">
+                <div class="row">
+                  <mat-icon>search</mat-icon>
+                  <input matInput (input)="filterDistributor($event)" placeholder="Search">
+                </div> 
+              </mat-form-field>  -->
+              <mat-option *ngFor="let item of company" [value]="item.id">
+                {{item.companyName}}
+              </mat-option>
+              <mat-option  >
+                <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addCompany()">playlist_add</span>
+              </mat-option>
+            </mat-select>
+            <!-- <mat-error *ngIf="purchaseOrderForm.controls['companyId'].hasError('required')">
+              User <strong>required</strong> -->
+            <!-- </mat-error> -->
+          </mat-form-field>
+        </div>
+        
       </div>
 
 
@@ -174,9 +199,9 @@
   <button mat-raised-button *ngIf="!editstatus" type="submit" class="btn btn-success" [disabled]="!purchaseOrderForm.valid ">
     <span class="material-icons" style="font-size: 25px;">save</span>
   </button>
-  <!-- <button *ngIf="editstatus" mat-raised-button  type="button" [disabled]="!purchaseOrderForm.valid" (click)="update()">
+  <button *ngIf="editstatus" mat-raised-button  type="button" [disabled]="!purchaseOrderForm.valid" (click)="update()">
     <mat-icon style="font-size: 25px;">edit_note</mat-icon>
-  </button>&nbsp;&nbsp; -->
+  </button>&nbsp;&nbsp;
   </mat-card-actions>
   </mat-card><br>
 </form>

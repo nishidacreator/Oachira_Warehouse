@@ -1,7 +1,7 @@
 import { Distributor } from "../../products/models/distributor";
 import { User } from "../../users/models/user";
 import { EntryDetails } from "./entryDetails";
-import { PurchaseOrder } from "./purchase-order";
+import { Order } from "./order";
 // j
 
 export interface Entry{
@@ -24,8 +24,8 @@ export interface Entry{
     eWayBillNo: string
     remarks : string
 
-    purchaseOrderId : number
-    purchaseOrder: PurchaseOrder
+    OrderId : number
+    Order: Order
     userId : number
     user: User
 }
