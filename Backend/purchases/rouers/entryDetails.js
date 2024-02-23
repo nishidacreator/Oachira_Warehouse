@@ -12,7 +12,7 @@ router.post('/', authenticateToken, async (req, res) => {
             const entryDetails = await EntryDetails.bulkCreate(
                products
             )
-          
+                
             res.send(entryDetails);
 
     } catch (error) {

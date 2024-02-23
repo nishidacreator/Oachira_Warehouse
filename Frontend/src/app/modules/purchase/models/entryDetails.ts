@@ -1,20 +1,21 @@
-export interface EntryDetails {
-    entryId : number,
-    productId  : number,
-    mrp : number,
-    rate :number,
-    gross:number,
-    discount :number,
-    sgst :number,
-    cgst :number,
-    net:number,
-    rent:number,
-    commision :number,
-    profit :number,
-    salePrice :number,
-    quantity :number,
-    unitId :number,
+import { Product } from "../../products/models/product";
+import { SecondaryUnit } from "../../products/models/secondary-unit";
+import { Entry } from "./entry";
 
-    // L
-    
+export interface EntryDetails {
+  id : number;
+  entryId: number
+  entry: Entry
+  productId : number
+  product: Product
+  quantity : number
+  secondaryUnitId : number
+  secondaryUnit: SecondaryUnit
+  mrp:number
+  rate:number
+  discount : number
+  gstId : number
+  grossAmount: number
+  netAmount :  number
+  taxableAmount: number
 }

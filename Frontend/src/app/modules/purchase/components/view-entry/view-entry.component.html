@@ -10,7 +10,7 @@
       <mat-card-header>
         <button (mouseover)="showName('PE')" (mouseout)="hideName()" mat-mini-fab type="button"
         style="margin-left: auto;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" (click)="addPE()">
-          <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'PE')">request_quote</mat-icon>
+          <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'PE')">playlist_add_circle</mat-icon>
           <div class="icon_name" *ngIf="isHovered && hoveredButton === 'PE'">PE</div>
         </button>
         <!-- <div *ngIf="isHovered">Add Purchase Request</div> -->

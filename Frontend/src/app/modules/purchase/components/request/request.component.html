@@ -29,7 +29,7 @@
               </mat-form-field> -->
               <!-- <span class="material-icons" (click)="generateInvoiceNumber()" style="margin-top: 20px;">repeat_one</span> -->
               <mat-form-field class="full-width">
-                <input matInput placeholder="RequestNo" formControlName="requestNo">
+                <input matInput placeholder="RequestNo" formControlName="requestNo" readonly>
                   <mat-error *ngIf="purchaseRequestForm.controls['requestNo'].hasError('required')">
                     Invoice <strong>required</strong>
                   </mat-error>
