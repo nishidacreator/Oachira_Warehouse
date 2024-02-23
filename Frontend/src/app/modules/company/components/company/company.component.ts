@@ -51,10 +51,20 @@ export class CompanyComponent implements OnInit {
 
   addStatus!: string;
   editstatus!: boolean;
+  
   ngOnInit(): void {
 
     this.getCompanies()
     this.getUsers()
+    if(this.dialogRef){
+      this.addStatus = this.dialogData?.status;
+      if(this.dialogData.type === 'edit'){
+        this.patchData()
+      }
+      // if(this.dialogData.category){
+      //   this.getCategory(this.dialogData.category)
+      // }
+    }
   }
 
   users!: User[];

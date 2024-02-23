@@ -20,9 +20,9 @@ fs.mkdirSync(downloadsDir, { recursive: true });
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
-        const { requestNo, storeId, userId, date, status, requestDetails } = req.body;
+        const { requestNo, companyId, userId, date, status, requestDetails } = req.body;
         // Validate input data
-        if (!requestNo || !userId || !storeId || !requestDetails) {
+        if (!requestNo || !userId || !companyId || !requestDetails) {
             return res.status(400).send({ error: 'Incomplete data provided.' });
         }
 
