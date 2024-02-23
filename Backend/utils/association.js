@@ -137,6 +137,12 @@ async function syncModel(){
     Distributor.hasMany(Order, {foreignKey : 'distributorId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Order.belongsTo(Distributor)
 
+    Company.hasMany(Order, {foreignKey : 'companyId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Order.belongsTo(Company)
+
+    SecondaryUnit.hasMany(Order, {foreignKey : 'secondaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Order.belongsTo(SecondaryUnit)
+
     User.hasMany(Order, {foreignKey : 'userId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Order.belongsTo(User)
 
