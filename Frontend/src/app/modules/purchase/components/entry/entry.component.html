@@ -7,7 +7,7 @@
         </mat-card-header>
       </div>
 
-      <div class="col" *ngIf="addStatus">
+      <div class="col" *ngIf="!addStatus">
         <mat-card-header>
           <button mat-mini-fab color="primary" type="button" style="margin-left: auto;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onclick="history.back()">
             <mat-icon>exit_to_app</mat-icon>
@@ -17,7 +17,7 @@
     </div>
 
     <mat-horizontal-stepper #stepper linear [selectedIndex]="selectedIndex">
-      <mat-step [stepControl]="purchaseEntryForm" label="PurchaseEntry" completed={{addStatus}}>
+      <mat-step [stepControl]="purchaseEntryForm" label="PurchaseEntry" completed={{entryStatus}}>
         <form [formGroup]="purchaseEntryForm">
           <mat-card-content>
             <div class="row">
@@ -104,7 +104,7 @@
                 </button>
               </div>
 
-              <div *ngIf="purchaseEntryForm.controls['status'].value !='SlipIssued' && addStatus">
+              <div *ngIf="purchaseEntryForm.controls['status'].value !='SlipIssued' && !addStatus">
                 <button (mouseover)="showName('Close')" (mouseout)="hideName()" mat-raised-button type="submit" class="btn btn-success"
                 [disabled]="!purchaseEntryForm.valid" style="margin-right: 10px;" (click)="onSubmit('close')">
                 <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'Close')">cancel_schedule_send</mat-icon>
@@ -112,7 +112,7 @@
                 </button>
               </div>
 
-              <div *ngIf="purchaseEntryForm.controls['status'].value !='SlipIssued' && addStatus">
+              <div *ngIf="purchaseEntryForm.controls['status'].value !='SlipIssued' && !addStatus">
                 <button (mouseover)="showName('Next')" (mouseout)="hideName()" mat-raised-button type="submit" class="btn btn-success"
                 [disabled]="!purchaseEntryForm.valid" (click)="onSubmit('next')">
                 <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'Next')">next_plan</mat-icon>
@@ -120,13 +120,13 @@
                 </button>
               </div>
 
-              <button *ngIf="!addStatus && purchaseEntryForm.controls['chequeNo'].value !=''" (mouseover)="showName('save')" (mouseout)="hideName()" mat-raised-button type="button" (click)="updateStatus()"
+              <button *ngIf="addStatus && purchaseEntryForm.controls['chequeNo'].value !=''" (mouseover)="showName('save')" (mouseout)="hideName()" mat-raised-button type="button" (click)="updateStatus()"
               [disabled]="!finalForm.valid" style="margin-right: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto">
               <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'save')">edit_note</mat-icon>
               <div class="icon_name" *ngIf="isHovered && hoveredButton === 'save'">Update</div>
             </button>
 
-            <button mat-raised-button *ngIf="!addStatus" type="button" class="cancel-button" (click)="onCancelClick()">
+            <button mat-raised-button *ngIf="addStatus" type="button" class="cancel-button" (click)="onCancelClick()">
               <mat-icon style="font-size: 25px;">cancel_presentation</mat-icon>
             </button>
             </div>
@@ -141,7 +141,7 @@
 
               <div class="col">
                 <mat-form-field class="full-width">
-                  <input matInput placeholder="InvoiceNo" formControlName="invoiceNo">
+                  <input matInput readonly placeholder="InvoiceNo" formControlName="invoiceNo">
                     <mat-error *ngIf="slipForm.controls['invoiceNo'].hasError('required')">
                       Invoice <strong>required</strong>
                     </mat-error>
@@ -150,11 +150,9 @@
 
               <div class="col">
                 <mat-form-field class="full-width">
-                  <mat-label>Distributor</mat-label>
-                  <mat-select placeholder="" formControlName="distributorId">
+                  <mat-select placeholder="" formControlName="distributorId" [disabled]="true" >
                     <mat-form-field class="full-width">
                       <div class="row">
-                        <!-- <mat-icon>search</mat-icon> -->
                         <input matInput (input)="filterDistributor($event)" placeholder="Search">
                       </div>
                     </mat-form-field>
@@ -174,7 +172,7 @@
               <div class="col">
                 <mat-form-field class="full-width">
                   <mat-label>Date</mat-label>
-                  <input matInput [matDatepicker]="picker1" formControlName="date">
+                  <input matInput [matDatepicker]="picker1" formControlName="date" readonly>
                   <mat-hint>MM/DD/YYYY</mat-hint>
                   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                   <mat-datepicker #picker1></mat-datepicker>
@@ -184,7 +182,7 @@
               <div class="col">
                 <mat-form-field class="full-width">
                   <mat-label>Purchase Invoice</mat-label>
-                  <input matInput placeholder="" formControlName="purchaseInvoice">
+                  <input matInput placeholder="" formControlName="purchaseInvoice" readonly>
                     <mat-error *ngIf="slipForm.controls['purchaseInvoice'].hasError('required')">
                       field <strong>required</strong>
                     </mat-error>
@@ -194,7 +192,7 @@
               <div class="col">
                 <mat-form-field class="full-width">
                   <mat-label>Amount</mat-label>
-                  <input matInput placeholder="" formControlName="amount">
+                  <input matInput placeholder="" formControlName="amount" readonly>
                     <mat-error *ngIf="slipForm.controls['amount'].hasError('required')">
                       field <strong>required</strong>
                     </mat-error>
@@ -228,7 +226,7 @@
           <mat-card-actions>
 
         <div class="row">
-          <div>
+          <div *ngIf="!addStatus">
             <button (mouseover)="showName('print')" (mouseout)="hideName()" mat-raised-button type="button" (click)="generateSlip('print')"
               [disabled]="!slipForm.valid" style="margin-right: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto">
               <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'print')">print</mat-icon>
@@ -238,6 +236,20 @@
               [disabled]="!slipForm.valid" style="margin-right: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto">
               <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'next')">next_plan</mat-icon>
               <div class="icon_name" *ngIf="isHovered && hoveredButton === 'next'">Save&Next</div>
+            </button>
+          </div>
+
+          <div *ngIf="addStatus">
+            <button *ngIf="addStatus" (mouseover)="showName('save')" (mouseout)="hideName()" mat-raised-button type="button" (click)="updateSlip()"
+              [disabled]="!finalForm.valid" style="margin-right: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto">
+              <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'save')">edit_note</mat-icon>
+              <div class="icon_name" *ngIf="isHovered && hoveredButton === 'save'">Update</div>
+            </button>
+
+            <button mat-raised-button *ngIf="addStatus" type="button" (mouseover)="showName('close')" (mouseout)="hideName()"
+              class="cancel-button"(click)="onCancelClick()">
+              <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'close')" style="font-size: 25px;">cancel_presentation</mat-icon>
+              <div class="icon_name" *ngIf="isHovered && hoveredButton === 'close'">Close</div>
             </button>
           </div>
         </div>
@@ -325,6 +337,101 @@
               <div class="icon_name" *ngIf="isHovered && hoveredButton === 'save'">Submit</div>
             </button>
           </mat-card-actions>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="requestDetailsForm" label="Details" completed={{finalStatus}} optional>
+        <form [formGroup]="requestDetailsForm">
+          <mat-card>
+            <mat-card-content>
+              <div>
+                <table formArrayName="products">
+                  <table *ngFor="let quantity of products().controls; let i=index" [formGroupName]="i">
+                    <tr class="box">
+                      <td>
+
+                        <!-- Search in MAT SELECT -->
+                        <mat-form-field class="full-width" appearance="fill">
+                          <mat-label>Product</mat-label>
+                          <mat-select formControlName="productId">
+                            <mat-form-field class="full-width">
+                              <div class="row">
+                                <input matInput (input)="filterProduct($event)" placeholder="Search">
+                              </div>
+                            </mat-form-field>
+                            <mat-option *ngFor="let option of filteredProduct" [value]="option.id">
+                              {{ option.productName }}
+                            </mat-option>
+                            <mat-option *ngIf="filteredProduct.length === 0" [value]="'add'">
+                              <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addProducts()">playlist_add</span>
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </td>
+                        <!-- END -->
+                      <td>
+                        <mat-form-field class="full-width" appearance="fill">
+                          <mat-select placeholder="Secondary Unit" formControlName="secondaryUnitId">
+                            <mat-form-field class="full-width">
+                              <div class="row">
+                                <input matInput (input)="filterProduct($event)" placeholder="Search">
+                              </div>
+                            </mat-form-field>
+                            <mat-option *ngFor="let item of filteredUnit" [value]="item.id">
+                              {{item.secondaryUnitName | titlecase}}
+                            </mat-option>
+                            <mat-option *ngIf="filteredUnit.length === 0" [value]="'add'">
+                              <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addUnit()">playlist_add</span>
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </td>
+
+                      <td colspan="2">
+                        <mat-form-field appearance="fill"class="full-width">
+                          <input matInput placeholder="MRP" formControlName="mrp">
+                        </mat-form-field>
+                      </td>
+
+                      <td colspan="2">
+                        <mat-form-field appearance="fill"class="full-width">
+                          <input matInput placeholder="Quantity" formControlName="quantity">
+                        </mat-form-field>
+                      </td>
+
+                      <td colspan="2">
+                        <mat-form-field appearance="fill"class="full-width">
+                          <input matInput placeholder="Rate" formControlName="rate">
+                        </mat-form-field>
+                      </td>
+
+
+                      <td>
+                        <span class="material-icons" style="color: rgb(255, 0, 0); font-size: 25px; margin-top: 17px; margin-left: 75px;" (click)="removeProduct(i)">cancel</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <tr>
+                    <td>
+                      <div>
+                        <span class="material-icons" style="font-size: 35px; color: green;"(click)="addProduct()">add_box</span>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </mat-card-content>
+
+            <mat-card-actions>
+            <button mat-raised-button type="submit" class="btn btn-success" [disabled]="!purchaseEntryForm.valid">
+              <span class="material-icons" style="font-size: 25px;">save</span>
+            </button>
+
+            <button mat-raised-button  type="button">
+              <span class="material-icons" style="font-size: 30px;">edit_note</span>
+            </button>&nbsp;&nbsp;
+            </mat-card-actions>
+          </mat-card>
         </form>
       </mat-step>
     </mat-horizontal-stepper>

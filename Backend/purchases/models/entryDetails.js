@@ -6,12 +6,12 @@ const EntryDetails = sequelize.define('entryDetails',{
     productId : {type : DataTypes.INTEGER, allowNull: false},
     quantity : {type : DataTypes.FLOAT, allowNull: false},
     secondaryUnitId : {type : DataTypes.INTEGER, allowNull: false},
-    mrp:{type: DataTypes.INTEGER},
-    rate:{type: DataTypes.INTEGER, allowNull: false},
-    discount : {type: DataTypes.INTEGER, defaultValue: 0},
+    mrp:{type: DataTypes.FLOAT},
+    rate:{type: DataTypes.FLOAT, allowNull: false},
+    discount : {type: DataTypes.FLOAT, defaultValue: 0},
     gstId : {type: DataTypes.INTEGER, },
-    grossAmount:{type: DataTypes.INTEGER, allowNull: false},
-    netAmount :  {type: DataTypes.INTEGER, allowNull: false}
+    grossAmount:{type: DataTypes.FLOAT, allowNull: false},
+    netAmount :  {type: DataTypes.FLOAT, allowNull: false}
 },
 {
     freezeTableName: true,
