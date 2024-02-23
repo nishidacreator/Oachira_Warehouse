@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { PurchaseOrder } from '../../models/purchase-order';
+
 import { PurchaseService } from '../../purchase.service';
 import { PurchaseRequest } from '../../models/purchase-request';
 import { MatDialog } from '@angular/material/dialog';
@@ -44,8 +44,8 @@ export class ViewRequestComponent implements OnInit {
     this.router.navigateByUrl('/login/purachases/purchaserequest/view/'+id)
   }
 
-  addPurchaseOrder(id: number){
-    this.router.navigateByUrl('/login/purachases/purchaseorder/'+id)
+  addOrder(id: number){
+    this.router.navigateByUrl('/login/purachases/Order/'+id)
   }
 
   editRequest(id: number){
@@ -83,6 +83,6 @@ export class ViewRequestComponent implements OnInit {
   }
 
   addPO(){
-    this.router.navigateByUrl('/login/purachases/purchaseorder')
+    this.router.navigateByUrl('/login/purachases/Order')
   }
 }

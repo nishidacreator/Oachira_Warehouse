@@ -391,60 +391,114 @@ editPUnitFunction(){
 
     // Assuming you have other functions like editSUnitFunction()
 
-    updateSecondaryUnitName() {
-      const primaryUnitId = this.secondaryUnitForm.controls['primaryUnitId'].value;
-      const primaryFactor = this.secondaryUnitForm.controls['primaryFactor'].value;
-      const secondaryFactor = this.secondaryUnitForm.controls['secondaryFactor'].value;
+//     updateSecondaryUnitName() {
+//       const primaryUnitId = this.secondaryUnitForm.controls['primaryUnitId'].value;
+//       const primaryFactor = this.secondaryUnitForm.controls['primaryFactor'].value;
+//       const secondaryFactor = this.secondaryUnitForm.controls['secondaryFactor'].value;
 
-      const selectedPrimaryUnit = this.pUnits.find(item => item.id === primaryUnitId);
-      const primaryUnitName = selectedPrimaryUnit ? selectedPrimaryUnit.primaryUnitName : '';
+//       const selectedPrimaryUnit = this.pUnits.find(item => item.id === primaryUnitId);
+//       const primaryUnitName = selectedPrimaryUnit ? selectedPrimaryUnit.primaryUnitName : '';
 
-      // Ensure primaryFactor and secondaryFactor are not null or undefined
-      if (primaryFactor != null && primaryFactor != undefined &&
-          secondaryFactor != null && secondaryFactor != undefined) {
+//       // Ensure primaryFactor and secondaryFactor are not null or undefined
+//       if (primaryFactor != null && primaryFactor != undefined &&
+//           secondaryFactor != null && secondaryFactor != undefined) {
 
-        // Check if both primaryFactor and secondaryFactor are valid numbers
-        const isValidNumber = !isNaN(+primaryFactor) && !isNaN(+secondaryFactor);
+//         // Check if both primaryFactor and secondaryFactor are valid numbers
+//         const isValidNumber = !isNaN(+primaryFactor) && !isNaN(+secondaryFactor);
 
-        if (isValidNumber) {
-          const result = (+primaryFactor) * (+secondaryFactor);
+//         if (isValidNumber) {
+//           const result = (+primaryFactor) * (+secondaryFactor);
 
-          let secondaryUnitName = '';
+//           let secondaryUnitName = '';
 
-          // Determine the secondary unit name based on the chosen primary unit
-       // Determine the secondary unit name based on the chosen primary unit
-// Determine the secondary unit name based on the chosen primary unit
-switch (primaryUnitName.toLowerCase()) {
-  case 'kg':
-    secondaryUnitName = `${result} KG  BAG`;
-    break;
-  case 'no':
-    secondaryUnitName = `${result} NO BOX`;
-    break;
-  case 'litre':
-    secondaryUnitName = `${result} LITRE TIN`;
-    break;
-  case 'nos':
-    secondaryUnitName = `${result} NOS BOX`;
-    break;
+//           // Determine the secondary unit name based on the chosen primary unit
+//        // Determine the secondary unit name based on the chosen primary unit
+// // Determine the secondary unit name based on the chosen primary unit
+// switch (primaryUnitName.toLowerCase()) {
+//   case 'kg':
+//     secondaryUnitName = `${result} KG  BAG`;
+//     break;
+//   case 'no':
+//     secondaryUnitName = `${result} NO BOX`;
+//     break;
+//   case 'litre':
+//     secondaryUnitName = `${result} LITRE TIN`;
+//     break;
+//   case 'nos':
+//     secondaryUnitName = `${result} NOS BOX`;
+//     break;
 
-  default:
-    console.error('Unhandled primary unit:', primaryUnitName);
-    break;
-}
+//   default:
+//     console.error('Unhandled primary unit:', primaryUnitName);
+//     break;
+// }
 
 
 
-          // Use setValue to directly set the value of secondaryUnitName in the form
-          this.secondaryUnitForm.controls['secondaryUnitName'].setValue(secondaryUnitName.trim());
-        } else {
-          console.error('Invalid numeric values for primaryFactor or secondaryFactor');
-        }
+//           // Use setValue to directly set the value of secondaryUnitName in the form
+//           this.secondaryUnitForm.controls['secondaryUnitName'].setValue(secondaryUnitName.trim());
+//         } else {
+//           console.error('Invalid numeric values for primaryFactor or secondaryFactor');
+//         }
+//       } else {
+//         console.error('primaryFactor or secondaryFactor is null or undefined');
+//       }
+//     }
+
+updateSecondaryUnitName() {
+  const primaryUnitId = this.secondaryUnitForm.controls['primaryUnitId'].value;
+  const primaryFactor = this.secondaryUnitForm.controls['primaryFactor'].value;
+  const secondaryFactor = this.secondaryUnitForm.controls['secondaryFactor'].value;
+
+  const selectedPrimaryUnit = this.pUnits.find(item => item.id === primaryUnitId);
+  const primaryUnitName = selectedPrimaryUnit ? selectedPrimaryUnit.primaryUnitName : '';
+
+  // Ensure primaryFactor and secondaryFactor are not null or undefined
+  if (
+    primaryFactor !== null && primaryFactor !== undefined &&
+    secondaryFactor !== null && secondaryFactor !== undefined
+  ) {
+    // Check if both primaryFactor and secondaryFactor are valid numbers
+    const isValidNumber = !isNaN(+primaryFactor) && !isNaN(+secondaryFactor);
+
+    if (isValidNumber) {
+      // Check if both primaryFactor and secondaryFactor are 1, and handle accordingly
+      if (+primaryFactor === 1 && +secondaryFactor === 1) {
+        this.secondaryUnitForm.controls['secondaryUnitName'].setValue(primaryUnitName.toUpperCase());
       } else {
-        console.error('primaryFactor or secondaryFactor is null or undefined');
-      }
-    }
+        const result = (+primaryFactor) * (+secondaryFactor);
+        let secondaryUnitName = '';
 
+        // Determine the secondary unit name based on the chosen primary unit
+        switch (primaryUnitName.toLowerCase()) {
+          case 'kg':
+            secondaryUnitName = `${result} KG  BAG`;
+            break;
+          case 'no':
+            secondaryUnitName = `${result} NO BOX`;
+            break;
+      
+          case 'nos':
+            secondaryUnitName = `${result} NOS BOX`;
+            break;
+          case 'litre':
+            secondaryUnitName = `${result} LITRE TIN`;
+            break;
+          default:
+            console.error('Unhandled primary unit:', primaryUnitName);
+            break;
+        }
+
+        // Use setValue to directly set the value of secondaryUnitName in the form
+        this.secondaryUnitForm.controls['secondaryUnitName'].setValue(secondaryUnitName.trim());
+      }
+    } else {
+      console.error('Invalid numeric values for primaryFactor or secondaryFactor');
+    }
+  } else {
+    console.error('primaryFactor or secondaryFactor is null or undefined');
+  }
+}
 
 
 
