@@ -9,7 +9,7 @@ const PurchaseTransporter = sequelize.define('purchasetransporter',{
     from: {type : DataTypes.STRING},
     noOfBags: {type : DataTypes.STRING},
     advance: {type : DataTypes.FLOAT, defaultValue: 0},
-    peId: {type : DataTypes.INTEGER},
+    entryId: {type : DataTypes.INTEGER},
     status: {type : DataTypes.STRING}
 
 },

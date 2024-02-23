@@ -1,14 +1,13 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes,Sequelize } = require('sequelize');
 const sequelize = require('../../utils/db');
 
 const Entry = sequelize.define('entry',{
-    purchaseInvoice : {type : DataTypes.STRING, allowNull: false},
-    purachseDate: {type : DataTypes.DATEONLY, defaultValue: Date.now(), allowNull: false},
+    purchaseInvoice : {type : DataTypes.STRING},
+    purachseDate: {type : DataTypes.DATEONLY},
     distributorId: {type : DataTypes.INTEGER, allowNull: false},
     purchaseAmount: {type :DataTypes.FLOAT, allowNull: false},
     eWayBillNo: {type : DataTypes.STRING},
     status: {type : DataTypes.STRING, allowNull: false},
-    chequeNo: {type : DataTypes.ARRAY(DataTypes.STRING)},
     chequeIssuedDate: {type : DataTypes.DATEONLY},
     invoiceDate: {type : DataTypes.DATEONLY},
     transportation: {type : DataTypes.FLOAT, defaultValue: 0},

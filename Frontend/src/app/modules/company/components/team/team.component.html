@@ -9,22 +9,22 @@
   <form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
     <mat-card class="background">
       <!-- <div class="row" *ngIf="addStatus != 'true'"> -->
-        <div class="col">
-          <mat-card-header>
-            <mat-card-title> TEAM</mat-card-title>
-          </mat-card-header>
+        <div class="row">
+          <div class="col">
+            <mat-card-header>
+              <mat-card-title> TEAM</mat-card-title>
+            </mat-card-header>
+          </div>
+          <div class="col">
+            <mat-card-header>
+              <button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon"
+              class="d-block mr-0 ml-auto" onClick="history.back()" style="margin-left: auto;">
+                <mat-icon>exit_to_app</mat-icon>
+              </button>
+            </mat-card-header>
+          </div>
         </div>
-        <div class="col">
-          <mat-card-header>
-            <button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon"
-            class="d-block mr-0 ml-auto" onClick="history.back()" style="margin-left: auto;">
-              <mat-icon>exit_to_app</mat-icon>
-            </button>
-          </mat-card-header>
-        </div>
-      </mat-card>
-
-    <mat-card class="background">
+        
       <mat-card-content >
 
         <div class="row">
