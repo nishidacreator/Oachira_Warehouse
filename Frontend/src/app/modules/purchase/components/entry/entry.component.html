@@ -27,7 +27,6 @@
                   <mat-select placeholder="" formControlName="distributorId">
                     <mat-form-field class="full-width">
                       <div class="row">
-                        <!-- <mat-icon>search</mat-icon> -->
                         <input matInput (input)="filterDistributor($event)" placeholder="Search">
                       </div>
                     </mat-form-field>
@@ -56,18 +55,6 @@
 
               <div class="col">
                 <mat-form-field class="full-width">
-                  <mat-label>PurchaseInvoice</mat-label>
-                  <input matInput placeholder="" formControlName="purchaseInvoice">
-                    <mat-error *ngIf="purchaseEntryForm.controls['purchaseInvoice'].hasError('required')">
-                      Invoice <strong>required</strong>
-                    </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col">
-                <mat-form-field class="full-width">
                   <mat-label>PurchaseAmount</mat-label>
                   <input matInput placeholder="" formControlName="purchaseAmount">
                     <mat-error *ngIf="purchaseEntryForm.controls['purchaseAmount'].hasError('required')">
@@ -76,19 +63,40 @@
                 </mat-form-field>
               </div>
 
+              <!-- <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>PurchaseInvoice</mat-label>
+                  <input matInput placeholder="" formControlName="purchaseInvoice">
+                    <mat-error *ngIf="purchaseEntryForm.controls['purchaseInvoice'].hasError('required')">
+                      Invoice <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+              </div> -->
+            </div>
+
+            <div class="row">
+
+
               <div class="col" style="margin-top: 23px;">
                 <label>Status: &nbsp;&nbsp;&nbsp;&nbsp;</label>
                 <mat-radio-group formControlName="status">
                   <mat-radio-button value="ChequeIssued">Cheque Issued</mat-radio-button>&nbsp;&nbsp;&nbsp;&nbsp;
                   <mat-radio-button value="SlipIssued">Slip Issued</mat-radio-button>&nbsp;&nbsp;&nbsp;&nbsp;
-                  <!-- <mat-radio-button value="BankTransfer">Bank Transfer</mat-radio-button>&nbsp;&nbsp;&nbsp;&nbsp; -->
+                  <mat-radio-button value="AdvanceIssued">Advance Issued</mat-radio-button>&nbsp;&nbsp;&nbsp;&nbsp;
                 </mat-radio-group>
               </div>
 
-              <div *ngIf="purchaseEntryForm.controls['status'].value==='ChequeIssued'" class="col">
+              <div *ngIf="purchaseEntryForm.controls['status'].value==='ChequeIssued' || purchaseEntryForm.controls['status'].value==='AdvanceIssued'" class="col">
                 <mat-form-field class="full-width">
                   <mat-label>ChequeNo</mat-label>
                   <input matInput formControlName="chequeNo">
+                </mat-form-field>
+              </div>
+
+              <div *ngIf="purchaseEntryForm.controls['status'].value==='AdvanceIssued'" class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>Advance Amount</mat-label>
+                  <input matInput formControlName="advanceAmount">
                 </mat-form-field>
               </div>
             </div>
