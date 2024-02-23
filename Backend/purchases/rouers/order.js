@@ -58,7 +58,7 @@ router.get('/:id', authenticateToken, async(req,res)=>{
     try {
         const orderDetail = await Order.findOne({
             where:{id: req.params.id}, 
-            include : [ Distributor  , Company , OrderDetails , SecondaryUnit], order:['id']
+            include : [ OrderDetails , SecondaryUnit]
         });
         res.send(orderDetail);
         
