@@ -49,7 +49,7 @@ export class RouteOrderComponent implements OnInit {
   ngOnInit(): void {
     this.getRoute();
     this.getCustomer();
-    this.getProduct();
+    this.getAllRouteProducts();
     this.getUnit();
     this.addProduct();
     this.getDeliveryDays();
@@ -220,8 +220,8 @@ export class RouteOrderComponent implements OnInit {
 
   product: Product[] = [];
   productSub!: Subscription;
-  getProduct(value?: string){
-    this.productSub = this.productService.getProduct().subscribe(res=>{
+  getAllRouteProducts(value?: string){
+    this.productSub = this.productService.getAllRouteProducts().subscribe(res=>{
       this.product = res;
       this.filteredProduct = res;
     })
@@ -233,7 +233,7 @@ export class RouteOrderComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.getProduct(result?.route);
+      this.getAllRouteProducts(result?.route);
     });
   }
 

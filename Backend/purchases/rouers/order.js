@@ -10,6 +10,7 @@ const User = require('../../users/models/user');
 const Company = require('../../company/company');
 const Product = require('../../products/models/product');
 const SecondaryUnit = require('../../products/models/secondaryUnit');
+const PrimaryUnit = require('../../products/models/primayUnit');
 
 router.post('/', async (req, res) => {
     try {
@@ -47,25 +48,34 @@ router.get('/', async (req, res) => {
 
     const order = await Order.findAll({
         order:['id'],
-        include : [Distributor, User ,Company,OrderDetails]
+        include : [Distributor, User ,Company,
+          {model: OrderDetails, include:[SecondaryUnit, Product, PrimaryUnit]}]
     })
 
     res.send(order);
 })
 
 
-router.get('/:id', authenticateToken, async(req,res)=>{
-    try {
-        const orderDetail = await Order.findOne({
-            where:{id: req.params.id}, 
-            include : [ OrderDetails , SecondaryUnit]
-        });
-        res.send(orderDetail);
-        
-    } catch (error) {
-        res.send(error.message);
-    }  
-})
+router.get('/:id', authenticateToken, async (req, res) => {
+  try {
+      const orderDetail = await Order.findOne({
+          where: { id: req.params.id }, 
+          include: [
+              Distributor, User,
+              Company,
+              {
+                  model: OrderDetails,
+                  include: [Product,SecondaryUnit] // Include Product model inside OrderDetails
+              },
+              
+          ],
+          order: ['id']
+      });
+      res.send(orderDetail);
+  } catch (error) {
+      res.send(error.message);
+  }  
+});
 
 
 router.patch('/:id', authenticateToken, async(req,res)=>{

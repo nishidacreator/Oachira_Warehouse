@@ -273,7 +273,8 @@ async function syncModel(){
 
     SecondaryUnit.hasMany(RouteSEDetails, {foreignKey : 'secondaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     RouteSEDetails.belongsTo(SecondaryUnit, {foreignKey : 'secondaryUnitId'})
-
+    SecondaryUnit.hasMany(OrderDetails, {foreignKey : 'secondaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    OrderDetails.belongsTo(SecondaryUnit, {foreignKey : 'secondaryUnitId'})
 
     // Hsn.hasMany(RouteSEDetails, {foreignKey : 'hsnId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     // RouteSEDetails.belongsTo(Hsn, {foreignKey : 'hsnId'})
@@ -296,7 +297,10 @@ async function syncModel(){
   User.hasMany(TeamMember, { foreignKey: "userId", as: "register"});
   TeamMember.belongsTo(User, { foreignKey: "userId", as: "register"});
 
-    await sequelize.sync({alter: true})
+  await sequelize.sync({alter: true})
+
+
+   
 
     const role = await Role.findAll({})
     if(role.length === 0){
@@ -413,13 +417,166 @@ async function syncModel(){
         }
     }
 
+     
+    const team = await Team.findAll({});
+  
+    if (team.length === 0) {
+      Team.bulkCreate([
+        { teamName: "Team A", userId: 1 }
+        // { teamName: "Team B", userId: 2 }
+      ]).then(async () => {
+        const teams = await Team.findAll(); // Fetch all teams created just now
+        for (const team of teams) {
+          // const teamId = team.id;
+          const teamMembers = [
+            { teamId:1, userId: 3 }, // Add team members here
+            { teamId:1, userId: 4 },  // Add more members if needed
+  
+          
+          ];
+          await TeamMember.bulkCreate(teamMembers);
+        }
+      });
+    }
+  
+ 
+
+    const distributor = await Distributor.findAll({});
+    if (distributor.length === 0) {
+        Distributor.bulkCreate([
+        {
+            distributorName: "Ashirvad",
+            state:"Kerala",
+          locationName: "Palode",
+          address1:
+            "333+JJJ, Near Juma Masjid",
+          address2: "Palode, Kerala 695563.",
+          phoneNumber:"9846335504",
+          contactPerson: "Ashir",
+          status: true,
+          panNo:"AKZPH6789",
+          gstNo:'32087G578990' ,
+          fssaiNo: "1235667799"
+        },
+        {
+            distributorName: "Dishgold",
+            state:"Kerala",
+            status: true,
+          locationName: "Plavara",
+          address1:
+            "Aluva, Ernakulam",
+          address2: "Aluva, Kerala 695563.",
+          phoneNumber:"9846335504",
+          panNo:"AKZPH6789",
+          gstNo:'32087G578990' ,
+          fssaiNo: "1235667799",
+          contactPerson: "Ashir",
+          companyInChargeId:1,
+          gstId:'32087G578990' 
+        },
+        {
+            distributorName: "ABU TRADERS",
+            state:"Kerala",
+            status: true,
+          phoneNumber:"9846335504",
+          contactPerson: "Ashir",
+
+          locationName: "Nedumanagad",
+          address1:
+            "ZP34, Near Juma Masjid",
+          address2: "Palode, Kerala 695563.",
+          gstId:'32087G578990' ,
+          panNo:"AKZPH6789",
+          gstNo:'32087G578990' ,
+          fssaiNo: "1235667799"
+        }
+       
+      ]);
+    }
+
+
+
+    const secUnit = await SecondaryUnit.findAll({});
+    if (secUnit.length === 0) {
+        SecondaryUnit.bulkCreate([
+        {
+            secondaryUnitName:"50KG BAG",
+            primaryUnitId: 2,
+            primaryFactor: 50,
+            secondaryFactor:1,
+            loadingCharge: 2,
+            status:true,
+        
+        },
+        {
+            secondaryUnitName:"48 NOS BOX",
+            primaryUnitId: 1,
+            primaryFactor: 48,
+            secondaryFactor:1,
+            loadingCharge: 3,
+            status:true,
+        
+        }
+        
+       
+      ]);
+    } 
+
+
+    const company = await Company.findAll({});
+    if (company.length === 0) {
+      Company.bulkCreate([
+        {
+          companyName: "OACHIRA TRADERS",
+          companyCode: 101,
+          locationName: "Palode",
+          address1:
+            "P2CH+JJJ, Near Juma Masjid",
+          address2: "Palode, Kerala 695563.",
+          isStore:true,
+          isWarehouse: false,
+          apiKey: 123459000000,
+          companyInChargeId:1,
+          gstId:'32087G578990' 
+        },
+        {
+          companyName: "OACHIRA TRADERS",
+          companyCode: 102,
+          locationName: "Plavara",
+          address1:
+            "P2CH+JJJ, Near Juma Masjid",
+          address2: "Palode, Kerala 695563.",
+          isStore:true,
+          isWarehouse: true,
+          apiKey: 123459000000,
+          companyInChargeId:1,
+          gstId:'32087G578990' 
+        },
+        {
+          companyName: "OACHIRA TRADERS",
+          companyCode: 103,
+          locationName: "Nedumanagad",
+          address1:
+            "P2CH+JJJ, Near Juma Masjid",
+          address2: "Palode, Kerala 695563.",
+          isStore:true,
+          isWarehouse: true,
+          apiKey: 123459000000,
+          companyInChargeId:1,
+          gstId:'32087G578990' 
+        }
+       
+      ]);
+    } 
+}
+
     // const bankAccount = await BankAccount.findAll({})
     // if(bankAccount.length === 0){
     //     for(let i = 0; i < bankAccountData.length; i++){
     //         BankAccount.bulkCreate([bankAccountData[i]])
     //     }
     // }
-}
+
 
 
 

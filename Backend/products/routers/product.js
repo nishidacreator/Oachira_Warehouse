@@ -29,6 +29,20 @@ router.post('/', authenticateToken, async (req, res) => {
   }
 });
 
+
+router.get('/routeProducts', async (req, res) => {
+  try {
+    const products = await Product.findAll({
+      where: {
+        isRouteItem: true
+      }
+    });
+    res.send(products);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
 router.post('/fileupload', multer.single('file'), async (req, res) => {
   try {
       const result = await cloudinary.uploader.upload(req.file.path);
