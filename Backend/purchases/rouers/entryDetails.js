@@ -7,46 +7,11 @@ const EntryDetails = require('../models/entryDetails');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
-            const {
-               entryId,
-                productId ,
-                mrp,
-                rate,
-                gross,
-                discount ,
-                sgst ,
-                cgst ,
-                net,
-                rent,
-                commision,
-                profit ,
-                salePrice,
-                quantity,
-                unitId
 
-            } = req.body;
-            
-
+            const products = req.body.products
             const entryDetails = await EntryDetails.bulkCreate(
-                entryId,
-                productId ,
-                mrp,
-                rate,
-                gross,
-                discount ,
-                sgst ,
-                cgst ,
-                net,
-                rent,
-                commision,
-                profit ,
-                salePrice,
-                quantity,
-                unitId
-
+               products
             )
-
-            await entryDetails.save();
           
             res.send(entryDetails);
 
