@@ -14,6 +14,8 @@ import { ProductComponent } from 'src/app/modules/products/components/product/pr
 import { Product } from 'src/app/modules/products/models/product';
 import { UnitComponent } from 'src/app/modules/products/components/unit/unit.component';
 import { SecondaryUnit } from 'src/app/modules/products/models/secondary-unit';
+import { GstComponent } from 'src/app/modules/products/components/gst/gst.component';
+import { Gst } from 'src/app/modules/products/models/gst';
 
 @Component({
   selector: 'app-entry',
@@ -27,7 +29,7 @@ export class EntryComponent implements OnInit, OnDestroy {
   isChecked: boolean = false;
   constructor(private fb: FormBuilder, public purchaseService: PurchaseService, public dialog: MatDialog,
     private productService: ProductService, private _snackBar: MatSnackBar, private router: Router,
-    @Optional() public dialogRef: MatDialogRef<EntryComponent>,
+    @Optional() public dialogRef: MatDialogRef<EntryComponent>, private productservice: ProductService,
     @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any) {
     //User
     const token: any = localStorage.getItem("token");
@@ -41,14 +43,17 @@ export class EntryComponent implements OnInit, OnDestroy {
     this.slipSub?.unsubscribe();
     this.productSub?.unsubscribe();
     this.unitSub?.unsubscribe();
+    this.gstSub?.unsubscribe();
   }
 
-  entryStatus: boolean = true;
+  entryStatus: boolean = false;
   isInvoiceNoDisabled: boolean = true;
   addStatus: boolean = false;
   ngOnInit(): void {
     this.getDistributor()
-    this.addProduct();
+    this.getProduct();
+    this.getUnit();
+    this.getGST();
     if (this.dialogRef) {
       this.addStatus = true;
       if(this.dialogData.status === 'update'){
@@ -97,7 +102,6 @@ export class EntryComponent implements OnInit, OnDestroy {
       this._snackBar.open("Slip updated successfully...","" ,{duration:3000})
     })
   }
-
 
   patchData(id: number){
     this.purchaseService.getPeById(id).subscribe(data =>{
@@ -163,7 +167,7 @@ export class EntryComponent implements OnInit, OnDestroy {
     remarks:['']
   });
 
-  requestDetailsForm = this.fb.group({
+  entryDetailsForm = this.fb.group({
     products: this.fb.array([])
   });
 
@@ -185,12 +189,12 @@ export class EntryComponent implements OnInit, OnDestroy {
   }
 
   products() : FormArray {
-    return this.requestDetailsForm.get("products") as FormArray
+    return this.entryDetailsForm.get("products") as FormArray
   }
 
-  newProduct(): FormGroup {
+  newProduct(id?:number): FormGroup {
     return this.fb.group({
-      entryId: [0],
+      entryId: [id],
       productId : [0,Validators.required],
       quantity :  [0,Validators.required],
       secondaryUnitId :  [0,Validators.required],
@@ -205,11 +209,19 @@ export class EntryComponent implements OnInit, OnDestroy {
   }
 
   addProduct() {
-    this.products().push(this.newProduct());
+    this.products().push(this.newProduct(this.peId));
   }
 
   removeProduct(i:number) {
     this.products().removeAt(i);
+  }
+
+  detailsSub!: Subscription;
+  saveDetails(){
+    this.purchaseService.addPEDetails(this.entryDetailsForm.getRawValue()).subscribe(data => {
+      this._snackBar.open("Entry Details updated successfully...","" ,{duration:3000})
+      history.back();
+    })
   }
 
   product: Product[] = [];
@@ -292,6 +304,52 @@ export class EntryComponent implements OnInit, OnDestroy {
       } else {
         return null;
       }
+    });
+  }
+
+  gstSub!: Subscription;
+  gst: Gst[] = [];
+  getGST(value?: string){
+    this.unitSub = this.productservice.getGst().subscribe(data => {
+      this.gst = data;
+      this.filteredGst = this.gst;
+      if(value){
+        this.filterGst(value);
+      }
+    })
+  }
+
+  filteredGst: Gst[] = [];
+  filterGst(event: Event | string) {
+    let value: string = "";
+
+    if (typeof event === "string") {
+      value = event;
+    } else if (event instanceof Event) {
+      value = (event.target as HTMLInputElement).value;
+    }
+    this.filteredGst = this.gst.filter((option) => {
+      if (
+        (option.gstName &&
+          option.gstName.toLowerCase().includes(value?.toLowerCase()))
+      ) {
+        return true;
+      } else {
+        return null;
+      }
+    });
+  }
+
+  addGst(i : number){
+    const dialogRef = this.dialog.open(GstComponent, {
+      data: { status: "add"},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.getGST()
+      console.log((result.gst.id));
+
+      this.products().at(i).get('gstId')?.setValue(result.gst.id);
     });
   }
 
@@ -470,8 +528,15 @@ export class EntryComponent implements OnInit, OnDestroy {
     console.log(data, this.peId);
     this.purchaseService.updatePE(this.peId, data).subscribe(data => {
       this._snackBar.open("Entry updated successfully...","" ,{duration:3000})
-      history.back();
+      this.selectedIndex = 3
+      this.getPe(data)
     })
+  }
+
+  getPe(data: any){
+    console.log(data);
+    this.peId = data.id
+    this.addProduct();
   }
 
   clearControls() {
