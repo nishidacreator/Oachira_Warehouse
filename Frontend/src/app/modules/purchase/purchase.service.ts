@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { PurchaseRequest } from './models/purchase-request';
 import { Entry } from './models/entry';
 import { Slip } from './models/slip';
+import { Transporter } from './models/transporter';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,22 @@ export class PurchaseService {
 
   constructor(private _http:HttpClient) { }
 
+
+  updateTransporter(id:Number, data:any){
+    return this._http.patch<Transporter>(this.url+'transporter/' + id, data);
+  }
+
+  deleteTransporter(id:Number){
+    return this._http.delete(this.url+'transporter/' +id);
+  }
+
+  getTransporters(): Observable<Transporter[]>{
+    return this._http.get<Transporter[]>(this.url+'transporter');
+  }
+
+  addTransporter(data : any){
+    return this._http.post(this.url+ "transporter", data)
+  }
   //PR
   addPR(data : any){
     return this._http.post(this.url + 'request', data)

@@ -13,6 +13,7 @@ import { ListProductsComponent } from './components/list-products/list-products.
 import { SlipComponent } from './components/slip/slip.component';
 import { ViewEntryComponent } from './components/view-entry/view-entry.component';
 import { ViewSlipComponent } from './components/view-slip/view-slip.component';
+import { TransporterComponent } from './components/transporter/transporter.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ViewSlipComponent } from './components/view-slip/view-slip.component';
     ListProductsComponent,
     SlipComponent,
     ViewEntryComponent,
-    ViewSlipComponent
+    ViewSlipComponent,
+    TransporterComponent
   ],
   imports: [
     CommonModule,
