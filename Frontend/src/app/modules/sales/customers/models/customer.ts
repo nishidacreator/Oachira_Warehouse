@@ -9,6 +9,7 @@ export interface Customer {
   address1 : string
   address2 : string
   state : string
+  email: string
   gstNo : string
   remarks : string
   loyaltyPoint : string

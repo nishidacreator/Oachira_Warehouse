@@ -189,10 +189,11 @@
                 <th>Subledger</th>
                 <th>Category</th>
                 <th>Grade</th>
-                <th>Address</th>
-                <th>Location</th>
-                <th>Tin</th>
-                <!-- <th>Contact</th> -->
+                <th>Address 1</th>
+                <th>Address 2</th>
+                <th>GST</th>
+                <th>Email</th>
+                <th>Contact</th>
                 <th>Remarks</th>
                 <th>Manage</th>
             </tr>
@@ -207,7 +208,18 @@
                 <td>{{element.address1}}</td>
                 <td>{{element.address2}}</td>
                 <td>{{element.gstNo}}</td>
+                <td>{{element.email}}</td>
+                <td>
+                  <span *ngIf="element.customerPhones && element.customerPhones.length > 0">
+                      <div *ngFor="let data of element.customerPhones">
+                          {{data.phoneNumber}}
+                      </div>
+                  </span>
+                  <span *ngIf="!element.customerPhones || element.customerPhones.length === 0">0</span>
+              </td>
+                <!-- <td>{{element.customerPhones.phoneNumber}}</td> -->
                 <td>{{element.remarks}}</td>
+
                 <!-- <td><span class="material-icons" (click)="openContacts(element.id)">contacts</span></td> -->
                 <td>
                   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />

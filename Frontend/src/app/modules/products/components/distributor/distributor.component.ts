@@ -13,6 +13,7 @@ import { ProductDistributorComponent } from '../product-distributor/product-dist
 import { ProductComponent } from '../product/product.component';
 import { Team } from 'src/app/modules/company/models/team';
 import { CompanyService } from 'src/app/modules/company/company.service';
+import { TeamComponent } from 'src/app/modules/company/components/team/team.component';
 
 @Component({
   selector: 'app-distributor',
@@ -74,7 +75,18 @@ export class DistributorComponent implements OnInit {
     this.getComplete()
     this.getProduct()
   }
+  addTeam(){
+    const dialogRef = this.dialog.open(TeamComponent, {
+      data: { status: "add"},
+    });
 
+    dialogRef.afterClosed().subscribe((result) => {
+      this.getTeams()
+      console.log((result.hsn.hsnName));
+
+      // this.routeSEDetails().at(i).get('hsn')?.setValue(result.hsn.hsnName);
+    });
+  }
   file!: any;
   url!: any;
   uploadStatus = false
