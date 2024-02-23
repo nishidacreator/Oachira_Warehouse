@@ -11,6 +11,8 @@ import { ProductService } from '../../product.service';
 import { Product } from '../../models/product';
 import { ProductDistributorComponent } from '../product-distributor/product-distributor.component';
 import { ProductComponent } from '../product/product.component';
+import { Team } from 'src/app/modules/company/models/team';
+import { CompanyService } from 'src/app/modules/company/company.service';
 
 @Component({
   selector: 'app-distributor',
@@ -19,7 +21,7 @@ import { ProductComponent } from '../product/product.component';
 })
 export class DistributorComponent implements OnInit {
 
-  constructor(private fb: FormBuilder,public productService: ProductService, private _snackBar: MatSnackBar,
+  constructor(private fb: FormBuilder,public productService: ProductService,public companyService: CompanyService, private _snackBar: MatSnackBar,
     public dialog: MatDialog,
     @Optional() public dialogRef: MatDialogRef<DistributorComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any
@@ -31,7 +33,13 @@ export class DistributorComponent implements OnInit {
     this.submit?.unsubscribe();
     this.distributorSub?.unsubscribe();
   }
-
+  teams: Team[] = []
+  getTeams() {
+    this.companyService.getTeams().subscribe((res) => {
+      this.teams = res;
+      console.log('teams',res);
+    })
+  }
   distributorForm = this.fb.group({
     distributorName: ['', Validators.required],
     phoneNumber: ['', Validators.required],
@@ -53,6 +61,7 @@ export class DistributorComponent implements OnInit {
   addStatus!: string;
   editstatus!: boolean;
   ngOnInit(): void {
+    this.getTeams()
     if (this.dialogRef) {
       this.addStatus = this.dialogData?.status;
 
@@ -197,7 +206,7 @@ export class DistributorComponent implements OnInit {
     // }else{
       this.submit = this.productService.addDistributor(data).subscribe((response)=>{
         let data = {
-          distributor: this.distributorForm.get('distributorName')?.value
+          distributor: response
         }
         this.dialogRef?.close(data);
         this._snackBar.open("Distributor added successfully...","" ,{duration:3000})

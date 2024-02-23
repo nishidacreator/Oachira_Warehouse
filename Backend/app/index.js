@@ -49,10 +49,12 @@ app.use('/product/gst',gst);
 app.use('/product/distributor',distributor);
 app.use('/product/productdistributor',productDistributor);
 
-const store = require('../store/routers/store');
+const company = require('../company/companyRouter');
 const warehouse = require('../store/routers/warehouse');
-app.use('/store', store);
-app.use('/store/warehouse', warehouse);
+// app.use('/store', store);
+// app.use('/store/warehouse', warehouse);
+
+app.use('/company',company);
 
 const request = require('../purchases/rouers/request');
 const order = require('../purchases/rouers/order');
@@ -60,7 +62,6 @@ const entry = require('../purchases/rouers/entry');
 const entryDetails = require('../purchases/rouers/entryDetails')
 // const requestDetails = require('../purchases/rouers/');
 const orderDetails = require('../purchases/rouers/orderDetails');
-// const entryDetails = require('../purchases/rouers/entryDetails');
 const coolie = require('../purchases/rouers/coolie');
 const slip = require('../purchases/rouers/slip')
 
@@ -69,7 +70,7 @@ app.use('/purchases/order',order);
 // app.use('/purchases/entry',entry);
 // app.use('/purchases/requestdetails',requestDetails);
 app.use('/purchases/orderdetails',orderDetails);
-// app.use('/purchases/entrydetails',entryDetails);
+app.use('/purchases/pentrydetails',entryDetails);
 app.use('/purchases/coolie',coolie);
 app.use('/purchases/slip',slip)
 
@@ -109,12 +110,16 @@ app.use('/sales/tripdetails',tripDetails);
 // app.use('/sales/picklist', pickList);
 // app.use('/sales/picklistdetails', pickListDetails);
 app.use('/purchases/entry', entry)
-app.use('/entryDetails',entryDetails)
+
 
 app.use('/sales/routeorder', routeSO);
 app.use('/sales/routeorderdetails', routeSODetails);
 app.use('/sales/routeentry', routeSE);
+const bank = require('../company/bankRouter');
+app.use('/company/bank', bank)
 
+const team = require('../company/teamRouter');
+app.use('/team', team)
 
 const port = process.env.PORT;
 

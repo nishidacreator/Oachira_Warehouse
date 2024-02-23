@@ -41,10 +41,14 @@ const RouteDetails = require('../sales/models/routeDetails');
 const Trip = require('../sales/models/trip');
 const TripDay = require('../sales/models/tripDays');
 const TripDetails = require('../sales/models/tripDetails');
+const RouteSO = require('../sales/models/routeSO');
+const RouteSODetails = require('../sales/models/routeSODetails');
+const RouteSE = require('../sales/models/routeSE');
+const RouteSEDetails = require('../sales/models/routeSEDetails');
+const Slip = require('../purchases/models/slip');
 
 // // BULK CREATE
 const userData = require('./dataSource/user.json');
-
 const brandData = require('./dataSource/products/brandFirst.json');
 const categoryData = require('./dataSource/products/categoryFirst.json');
 const subCategoryData = require('./dataSource/products/subCategory.json');
@@ -54,14 +58,16 @@ const locationData = require('./dataSource/products/location.json');
 const productData = require('./dataSource/products/productsOachiraFirst.json');
 const customerCategoryData = require('./dataSource/routeSale/customerCategory.json');
 const customerGradeData = require('./dataSource/routeSale/customerGrade.json');
-
 const vehicleTypeData = require('./dataSource/vehicleType.json');
 const vehilceData = require('./dataSource/vehicle.json');
 const RouteSO = require('../sales/models/routeSO');
 const RouteSODetails = require('../sales/models/routeSODetails');
 const RouteSE = require('../sales/models/routeSE');
 const RouteSEDetails = require('../sales/models/routeSEDetails');
-
+const Bank = require('../company/bank');
+const Company = require('../company/company');
+const Team=require('../company/team');
+const TeamMember = require("../company/teamMember");
 
 
 
@@ -108,8 +114,8 @@ async function syncModel(){
     ProductDistributor.belongsTo(Distributor)
 
     // STORE
-    User.hasMany(Store,{foreignKey : 'storeInChargeId', as: 'storeInCharge',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    Store.belongsTo(User, {foreignKey : 'storeInChargeId', as: 'storeInCharge'})
+    User.hasMany(Company,{foreignKey : 'companyInChargeId', as: 'companyInCharge',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Company.belongsTo(User, {foreignKey : 'companyInChargeId', as: 'companyInCharge'})
 
     Store.hasMany(Warehouse,{foreignKey : 'warehouseId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Warehouse.belongsTo(Store, {foreignKey : 'warehouseId'})
@@ -154,6 +160,18 @@ async function syncModel(){
     SecondaryUnit.hasMany(Coolie, {foreignKey : 'secondaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Coolie.belongsTo(SecondaryUnit)
 
+    Distributor.hasMany(Slip, {foreignKey : 'distributorId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Slip.belongsTo(Distributor, {foreignKey : 'distributorId'})
+
+    Entry.hasMany(Slip, {foreignKey : 'entryId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Slip.belongsTo(Entry, {foreignKey : 'entryId'})
+
+    Distributor.hasMany(Entry, {foreignKey : 'distributorId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Entry.belongsTo(Distributor, {foreignKey : 'distributorId'})
+
+    Order.hasMany(Entry, {foreignKey : 'orderId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Entry.belongsTo(Order, {foreignKey : 'orderId'})
+
     // Distributor.hasMany(Order, {foreignKey : 'distributorId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     // Order.belongsTo(Store)
 
@@ -170,6 +188,10 @@ async function syncModel(){
     // OrderDetails.belongsTo(PrimaryUnit)
 
     //ROUTE SALE 
+    Bank.hasMany(Company, {foreignKey : 'companyId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Company.belongsTo(Bank)
+
+
     Customer.hasMany(LoyaltyPoint, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     LoyaltyPoint.belongsTo(Customer)
 
@@ -251,11 +273,27 @@ async function syncModel(){
     SecondaryUnit.hasMany(RouteSEDetails, {foreignKey : 'secondaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     RouteSEDetails.belongsTo(SecondaryUnit, {foreignKey : 'secondaryUnitId'})
 
+
     // Hsn.hasMany(RouteSEDetails, {foreignKey : 'hsnId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     // RouteSEDetails.belongsTo(Hsn, {foreignKey : 'hsnId'})
 
     // Gst.hasMany(RouteSEDetails, {foreignKey : 'hsnId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     // RouteSEDetails.belongsTo(Gst, {foreignKey : 'hsnId'})
+    
+    Team.belongsTo(User, {
+        foreignKey: "userId",
+        as: "leader",
+      });
+
+    Team.hasMany(TeamMember, { foreignKey: "teamId" });
+    TeamMember.belongsTo(Team);
+  
+    Team.hasMany(Company, { foreignKey: "teamId" });
+    Company.belongsTo(Team);
+
+    
+  User.hasMany(TeamMember, { foreignKey: "userId", as: "register"});
+  TeamMember.belongsTo(User, { foreignKey: "userId", as: "register"});
 
     await sequelize.sync({alter: true})
 

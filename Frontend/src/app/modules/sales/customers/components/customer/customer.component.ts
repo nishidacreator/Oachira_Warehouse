@@ -137,7 +137,7 @@ export class CustomerComponent implements OnInit {
       let data = {
         customer: this.customerForm.get('name')?.value
       }
-      this.dialogRef.close(data);
+      this.dialogRef?.close(data);
       this._snackBar.open("Customer added successfully...","" ,{duration:3000})
       this.clearControls()
     },(error=>{

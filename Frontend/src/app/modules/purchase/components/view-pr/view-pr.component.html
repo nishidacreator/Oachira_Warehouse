@@ -1,88 +1,94 @@
+<br><mat-card>
+  <mat-card *ngIf="requests">
+    <div class="row">
+      <div class="col">
+        <mat-card-header>
+          <mat-card-title> {{requests.requestNo}} </mat-card-title>
+        </mat-card-header>
+      </div>
 
-<!DOCTYPE html>
-    <html>
-      <head>
-        <title>Print</title>
-        <div class="print-content">
-          <style>
+      <div class="col">
+        <mat-card-header>
+          <button mat-mini-fab color="primary" type="button" style="margin-left: auto;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onclick="history.back()">
+            <mat-icon>exit_to_app</mat-icon>
+          </button>
+        </mat-card-header>
+      </div>
+    </div>
+    <br>
+      <html>
 
-            html {
-              padding: 0;
-              margin: 0;
-              font-family: monospace;
-              width: 80mm;
-            }
+      <body>
+          <div class="invoice-box">
+              <table cellpadding="0" cellspacing="0">
+                  <tr class="top">
+                      <td colspan="2">
+                          <table>
+                              <tr>
+                                  <td class="title">
+                                      <!-- <img src="../../../../assets/img/oachira_small.png" style="width:100%; max-width:300px;" /> -->
+                                  </td>
+                                  <td class="right-colomn">
+                                      Invoice #: {{requests.requestNo}}
+                                      <br> Created: {{requests.date}}
+                                    <!-- <br> Due: {{testData.nowPlus20Days}} -->
+                                  </td>
+                              </tr>
+                          </table>
+                      </td>
+                  </tr>
+                  <tr class="information">
+                      <td colspan="2 ">
+                          <table>
+                              <tr>
+                                  <td>
+                                      {{requests.user.name}}<br>
+                                      {{requests.store.storeName}}<br>
+                                      {{requests.store.storeLocation}}
+                                  </td>
+                                  <!-- <td>
+                                      {{requests.}}<br>
+                                      {{testData.buyer.road}}<br>
+                                      {{testData.buyer.country}}
+                                  </td> -->
+                              </tr>
+                          </table>
+                      </td>
+                  </tr>
+                  <tr class="heading ">
+                      <td>
+                          Item
+                      </td>
+                      <td>
+                          Quantity
+                      </td>
+                      <td>
+                          Unit
+                      </td>
 
-            body {
-              margin: 0;
-              padding: 8px;
-            }
+                  </tr>
+                  <!-- {{#each items}} -->
+                  <tr *ngFor="let item of requestDetails">
+                      <td>{{ item.product.productName }}</td>
+                      <td>{{ item.quantity }}</td>
+                      <td>{{ item.secondaryUnit.secondaryUnitName }}</td>
+                      <!-- <td>
+                      <button mat-raised-button style="background-color: green; margin-left: 8px;" class="main-button" type="button">View</button>
+                    </td> -->
+                  </tr>
+                  <!-- {{/each}} -->
+                  <tr class="total ">
+                      <td></td>
+                      <td>
+                          <!-- Total: ${{total items}} -->
+                      </td>
+                  </tr>
+              </table>
+              <button class="print-button" (click)="saveAndDownload()">Print</button>
+          </div>
+      </body>
 
-            p {
-              margin-top: 0.25rem;
-              margin-bottom: 0.25rem;
-              white-space: pre-wrap;
-            }
+      </html>
+  </mat-card>
 
-            .text-center {
-              text-align: center;
-            }
-
-            .text-right {
-              text-align: right;
-            }
-
-            .text-left {
-              text-align: left;
-            }
-
-            .font-bold {
-              font-weight: bold;
-            }
-
-            table {
-              width: 100%;
-            }
-
-            tr, th, td {
-              padding: 0;
-            }
-
-            .grid-line {
-              overflow: hidden;
-              text-overflow: clip;
-              white-space: nowrap;
-              grid-column: span 3 / span 3;
-            }
-
-            .nowrap {
-              overflow: hidden;
-              text-overflow: clip;
-              white-space: nowrap;
-            }
-
-            .col-span-2 {
-              grid-column: span 2 / span 2;
-            }
-
-            .max-line-2 {
-
-              overflow: hidden;
-              text-overflow: ellipsis;
-              display: -webkit-box;
-              -webkit-line-clamp: 2;
-              -webkit-box-orient: vertical;
-            }
-
-          </style>
-          <script>
-            window.onafterprint = event => {
-              window.close();
-            };
-          </script>
-        </div>
-
-      </head>
-      <button (click)="saveAndDownload()">Print</button>
-    </html>
-
+</mat-card>

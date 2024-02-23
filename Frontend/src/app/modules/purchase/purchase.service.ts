@@ -5,6 +5,7 @@ import { PurchaseOrder } from './models/purchase-order';
 import { Observable } from 'rxjs';
 import { PurchaseRequest } from './models/purchase-request';
 import { Entry } from './models/entry';
+import { Slip } from './models/slip';
 
 @Injectable({
   providedIn: 'root'
@@ -61,15 +62,35 @@ export class PurchaseService {
   //PE
   addPE(data : any){
     return this._http.post(this.url + 'entry', data)
+  }
 
+  updatePE(id:Number, data:any){
+    return this._http.patch<Entry>(this.url+'entry/'+id, data);
   }
 
   getPe(): Observable<Entry[]>{
-    return this._http.get<Entry[]>(this.url+'order');
+    return this._http.get<Entry[]>(this.url+'entry');
   }
+
+  getPeById(id: number): Observable<Entry>{
+    return this._http.get<Entry>(this.url+'entry/' + id);
+  }
+
+  updatePEStatus(id:Number, data:any){
+    return this._http.patch<Entry>(this.url+'entry/statusupdate/'+id, data);
+  }
+
   //SLIP
   addSlip( data : any){
     return this._http.post(this.url + 'slip', data)
+  }
+
+  getSlip(): Observable<Slip[]>{
+    return this._http.get<Slip[]>(this.url+'slip');
+  }
+
+  getSlipById(id: number): Observable<Slip>{
+    return this._http.get<Slip>(this.url+'slip/'+id);
   }
 
 }

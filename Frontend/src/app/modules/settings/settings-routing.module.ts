@@ -4,12 +4,14 @@ import { SettingHomeComponent } from './components/setting-home/setting-home.com
 import { CategoryComponent } from '../products/components/category/category.component';
 import { BrandComponent } from '../products/components/brand/brand.component';
 import { AuthGuard } from '../shared-components/guards/auth.guard';
+import { TeamComponent } from '../company/components/team/team.component';
 
 const routes: Routes = [
   {path: '', component: SettingHomeComponent},
+  // {path: 'team', component: TeamComponent},
   {path:'product', loadChildren:()=>import('../../modules/products/products.module').then(x=>x.ProductsModule), canActivate: [AuthGuard]},
   {path:'user', loadChildren:()=>import('../../modules/users/users.module').then(x=>x.UsersModule), canActivate: [AuthGuard]},
-  {path:'store', loadChildren:()=>import('../../modules/store/store.module').then(x=>x.StoreModule), canActivate: [AuthGuard]},
+  {path:'company', loadChildren:()=>import('../../modules/company/company.module').then(x=>x.CompanyModule), canActivate: [AuthGuard]},
   {path:'sales', loadChildren:()=>import('../../modules/sales/sales.module').then(x=>x.SalesModule), canActivate: [AuthGuard]}
 ];
 

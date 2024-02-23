@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 // import { AdminService } from "../../../admin.service";
 // import { MasterSearchComponent } from "../../master-search/master-search.component";
-
+import Chart from 'chart.js/auto';
 export interface GroceryProduct {
   serialNumber: number;
   name: string;
@@ -37,6 +37,9 @@ export class DashboardComponent {
 
 
   ngOnInit() {
+
+    this.createPurchaseGraph();
+    this.createSalesGraph();
     // this.getPendingRfqs();
     // this.getSaleCount();
     // this.getSales();
@@ -82,7 +85,51 @@ export class DashboardComponent {
   //   });
   // }
 
+  createSalesGraph() {
+    const ctx = document.getElementById('salesChart') as HTMLCanvasElement;
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+          label: 'Sales',
+          data: [15, 29, 40, 51, 56, 55, 90],
+          borderColor: 'rgba(75, 192, 192, 1)',
+          fill: false
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
 
+  createPurchaseGraph() {
+    const ctx = document.getElementById('purchaseChart') as HTMLCanvasElement;
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+          label: 'Purchases',
+          data: [15, 19, 10, 81, 46, 145, 190],
+          borderColor: 'rgba(255, 99, 132, 1)',
+          fill: false
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
   // getSales() {
   //   this.adminService.getSales().subscribe((res: any) => {
   //     this.sales = res;

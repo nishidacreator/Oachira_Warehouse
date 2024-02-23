@@ -138,9 +138,15 @@
                   </a></li>
                   <li><a routerLink="purachases/viewpurchaseentry">
                     <span class="icon">
-                      <mat-icon>receipt</mat-icon>
+                      <mat-icon>receipt_long</mat-icon>
                     </span>
                     <span class="text">Entry</span>
+                  </a></li>
+                  <li><a routerLink="purachases/viewslip">
+                    <span class="icon">
+                      <mat-icon>receipt</mat-icon>
+                    </span>
+                    <span class="text">Slip</span>
                   </a></li>
                 </ul>
               </div>
@@ -218,7 +224,9 @@
 
 
       <div class="vector-parent">
-        <h6 class="nav_main"> Welcome {{userName}}</h6>
+        <h6 class="nav_main"> Hello {{userName}}</h6>
+
+        <mat-icon class="vector-icon">account_box</mat-icon>
         <mat-icon class="vector-icon">notifications</mat-icon>
         <mat-icon class="vector-icon" routerLink="settings">settings</mat-icon>
         <mat-icon class="vector-icon" (click)="logout()">power_settings_new</mat-icon>
@@ -232,14 +240,15 @@
    <div class="content-section">
     <router-outlet></router-outlet>
    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
    <div class="bottom-bar">
       <img class="bottom-bar-child" alt="" src="../../../../../assets/img/line-1.svg" />
 
       <div class="powered-by">Powered by : Carving Soft</div>
     </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+
 
 
 

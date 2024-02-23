@@ -318,11 +318,11 @@
   width: 25.3px;
   position: relative;
   height: 26px;
-  color:#7d5607;
+  color:#060501;
 }
 
 .vector-icon:hover{
-  color: #000;
+  color: #ca7f46;
   font-weight: bolder;
   cursor: pointer;
   // font-size: 50px;
@@ -600,7 +600,9 @@
 //   position: fixed;
 //   inset: 0;
 // }
-
+.content-section{
+  min-height: 500px;
+}
 
 *{
   margin: 0;
@@ -740,7 +742,7 @@ body{
   font-size: 0.75em;
   letter-spacing: 0.05em;
   border-radius: 10px; /* Adjust the value as needed for the desired curvature */
-  width: 200px; /* Adjust the width as needed */
+  width: auto; /* Adjust the width as needed */
   height: 40px; /* Adjust the height as needed */
   // margin-left: 50px;
 }

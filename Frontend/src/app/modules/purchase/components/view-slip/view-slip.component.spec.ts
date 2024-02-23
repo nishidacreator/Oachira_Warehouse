@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WarehouseComponent } from './warehouse.component';
+import { ViewSlipComponent } from './view-slip.component';
 
-describe('WarehouseComponent', () => {
-  let component: WarehouseComponent;
-  let fixture: ComponentFixture<WarehouseComponent>;
+describe('ViewSlipComponent', () => {
+  let component: ViewSlipComponent;
+  let fixture: ComponentFixture<ViewSlipComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WarehouseComponent ]
+      declarations: [ ViewSlipComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(WarehouseComponent);
+    fixture = TestBed.createComponent(ViewSlipComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

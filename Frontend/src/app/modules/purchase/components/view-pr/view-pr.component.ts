@@ -29,7 +29,7 @@ export class ViewPrComponent implements OnInit, OnDestroy {
 
     this.getRequestId();
   }
-  
+
   requests!: PurchaseRequest;
   requestDetails: PurchaseRequestDetail[] = [];
   requestSub!: Subscription;
@@ -136,41 +136,41 @@ export class ViewPrComponent implements OnInit, OnDestroy {
   }
 
   saveAndDownload(): void {
-    const ps = new ThermalPrinterManager();
-    ps.addLineWithClassName(`text-center font-bold`, `PURCHASE REQUEST`);
-    ps.addLineCenter(this.requests.store.storeName);
-    ps.addLineCenter(this.requests.store.storeLocation);
+    // const ps = new ThermalPrinterManager();
+    // ps.addLineWithClassName(`text-center font-bold`, `PURCHASE REQUEST`);
+    // ps.addLineCenter(this.requests.store.storeName);
+    // ps.addLineCenter(this.requests.store.storeLocation);
 
-    ps.addEmptyLine();
+    // ps.addEmptyLine();
 
-    ps.addLine(`<div style="display: flex; justify-content: space-between;">RequestNo: <span>${this.requests.requestNo}</span></div>`);
-    ps.addLine(`<div style="display: flex; justify-content: space-between;">Date: <span>${this.requests.date}</span></div>`);
-    ps.addLine(`<div style="display: flex; justify-content: space-between;">SendBy: <span>${this.requests.user.name}</span></div>`);
+    // ps.addLine(`<div style="display: flex; justify-content: space-between;">RequestNo: <span>${this.requests.requestNo}</span></div>`);
+    // ps.addLine(`<div style="display: flex; justify-content: space-between;">Date: <span>${this.requests.date}</span></div>`);
+    // ps.addLine(`<div style="display: flex; justify-content: space-between;">SendBy: <span>${this.requests.user.name}</span></div>`);
 
-    ps.addEmptyLine();
+    // ps.addEmptyLine();
 
-    // Table header
-    ps.addLine('<div style="display: flex; justify-content: space-between; font-weight: bold;">');
-    ps.addLine('<div style="flex: 1;">Product</div>');
-    ps.addLine('<div style="flex: 1;">Quantity</div>');
-    ps.addLine('<div style="flex: 1;">Unit</div>');
-    ps.addLine('</div>');
-    ps.addEmptyLine();
+    // // Table header
+    // ps.addLine('<div style="display: flex; justify-content: space-between; font-weight: bold;">');
+    // ps.addLine('<div style="flex: 1;">Product</div>');
+    // ps.addLine('<div style="flex: 1;">Quantity</div>');
+    // ps.addLine('<div style="flex: 1;">Unit</div>');
+    // ps.addLine('</div>');
+    // ps.addEmptyLine();
 
-    // Table rows
-    for (let i = 0; i < this.requestDetails.length; i++) {
-      ps.addLine('<div style="display: flex; justify-content: space-between;">');
-      ps.addLine(`<div style="flex: 1;">${this.requestDetails[i].product.productName}</div>`);
-      ps.addLine(`<div style="flex: 1;">${this.requestDetails[i].quantity}</div>`);
-      ps.addLine(`<div style="flex: 1;">${this.requestDetails[i].secondaryUnit.secondaryUnitName}</div>`);
-      ps.addLine('</div>');
-    }
+    // // Table rows
+    // for (let i = 0; i < this.requestDetails.length; i++) {
+    //   ps.addLine('<div style="display: flex; justify-content: space-between;">');
+    //   ps.addLine(`<div style="flex: 1;">${this.requestDetails[i].product.productName}</div>`);
+    //   ps.addLine(`<div style="flex: 1;">${this.requestDetails[i].quantity}</div>`);
+    //   ps.addLine(`<div style="flex: 1;">${this.requestDetails[i].secondaryUnit.secondaryUnitName}</div>`);
+    //   ps.addLine('</div>');
+    // }
 
 
-    ps.addEmptyLine();
-    ps.addLine(`Ticket #1 - Walk-in`);
-    ps.print();
-    this.dirToPrint.print();
+    // ps.addEmptyLine();
+    // ps.addLine(`Ticket #1 - Walk-in`);
+    // ps.print();
+    // this.dirToPrint.print();
   }
 }
 
@@ -219,27 +219,101 @@ class ThermalPrinterManager {
     this.addLineWithClassName("text-center", text);
   }
 
-
-  printDiv() {
-		var divContents = document.getElementById("print-content")?.innerHTML;
-    if(divContents){
-      var a = window.open('', '', 'height=500, width=1000');
-      a?.document.write('<html>');
-      a?.document.write('<body style="display:flex;align-items:center;">');
-      a?.document.write(divContents);
-      a?.document.write('</body></html>');
-      a?.document.close();
-      a?.print();
-    }
-  }
-
   print() {
-    const printerWindow = window.open('', '', 'height=500, width=1000');
-    // const contentHeight = this.calculateContentHeight(); // Add a function to calculate content height
-    // console.log(contentHeight);
+    const printerWindow = window.open(``, `_blank`);
+    const contentHeight = this.calculateContentHeight(); // Add a function to calculate content height
+    console.log(contentHeight);
 
     printerWindow?.document.write(`
+    <!DOCTYPE html>
+    <html>
 
+    <head>
+      <title>Print</title>
+      <style>
+
+        html {
+          padding: 0;
+          margin: 0;
+          font-family: monospace;
+          width: 80mm;
+        }
+
+        body {
+          margin: 0;
+          padding: 8px;
+        }
+
+        p {
+          margin-top: 0.25rem;
+          margin-bottom: 0.25rem;
+          white-space: pre-wrap;
+        }
+
+        .text-center {
+          text-align: center;
+        }
+
+        .text-right {
+          text-align: right;
+        }
+
+        .text-left {
+          text-align: left;
+        }
+
+        .font-bold {
+          font-weight: bold;
+        }
+
+        table {
+          width: 100%;
+        }
+
+        tr, th, td {
+          padding: 0;
+        }
+
+        .grid-line {
+          overflow: hidden;
+          text-overflow: clip;
+          white-space: nowrap;
+          grid-column: span 3 / span 3;
+        }
+
+        .nowrap {
+          overflow: hidden;
+          text-overflow: clip;
+          white-space: nowrap;
+        }
+
+        .col-span-2 {
+          grid-column: span 2 / span 2;
+        }
+
+        .max-line-2 {
+          max-height: ${contentHeight}px; /* Set to calculated content height */
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+        }
+
+      </style>
+      <script>
+        window.onafterprint = event => {
+          window.close();
+        };
+      </script>
+    </head>
+
+    <body>
+      ${this.printContent}
+    </body>
+
+
+    </html>
 
     `);
 
@@ -255,5 +329,4 @@ class ThermalPrinterManager {
     // Adjust this logic based on your specific requirements
     return document.body.scrollHeight;
   }
-  // max-height: ${contentHeight}px; /* Set to calculated content height */
 }
