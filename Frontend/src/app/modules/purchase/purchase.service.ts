@@ -80,6 +80,10 @@ export class PurchaseService {
     return this._http.patch<Entry>(this.url+'entry/statusupdate/'+id, data);
   }
 
+  addPEDetails(data : any){
+    return this._http.post(this.url + 'pentrydetails', data)
+  }
+
   //SLIP
   addSlip( data : any){
     return this._http.post(this.url + 'slip', data)
@@ -98,8 +102,6 @@ export class PurchaseService {
   }
 
   updateSlip(id:Number, data:any){
-    console.log("hiiiiiiiii");
-
     return this._http.patch<Slip>(this.url+'slip/'+id, data);
   }
 

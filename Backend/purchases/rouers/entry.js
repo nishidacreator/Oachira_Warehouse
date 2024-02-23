@@ -65,7 +65,6 @@ router.patch('/:id',authenticateToken ,async (req,res)=>{
     entry.paymentMode = paymentMode,
     entry.orderId = orderId,
     entry.remarks = remarks
-    entry.entryStatus = 'completed'
 
     await entry.save();
     res.send(entry);
