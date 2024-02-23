@@ -103,7 +103,7 @@
                     <mat-option *ngFor="let option of filteredProduct" [value]="option.id">
                       {{ option.productName }}
                     </mat-option>
-                    <mat-option *ngIf="filteredRoute.length === 0" [value]="'add'">
+                    <mat-option *ngIf="filteredProduct.length === 0" [value]="'add'">
                       <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addProducts()">playlist_add</span>
                     </mat-option>
                   </mat-select>

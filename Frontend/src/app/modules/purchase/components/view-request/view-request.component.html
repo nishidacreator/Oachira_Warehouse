@@ -37,7 +37,6 @@
             <th>Store</th>
             <th>Date</th>
             <th>Manage</th>
-            <th>Purchase Order</th>
         </tr>
     </thead>
     <tbody>
@@ -46,9 +45,9 @@
             <td>{{element.requestNo}}</td>
             <!-- <td>{{element.store.storeName}}</td> -->
             <td>{{element.date}}</td>
-            <td (mouseover)="showName('Back')" (mouseout)="hideName()">
+            <!-- <td (mouseover)="showName('Back')" (mouseout)="hideName()">
               <mat-icon (click)="viewPurchaseRequest(element.id)">open_in_new</mat-icon>
-            </td>
+            </td> -->
             <td>
               <mat-icon (click)="editRequest(element.id)" >edit</mat-icon>
               <!-- &nbsp;&nbsp; -->

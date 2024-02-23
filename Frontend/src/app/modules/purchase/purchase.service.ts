@@ -93,4 +93,14 @@ export class PurchaseService {
     return this._http.get<Slip>(this.url+'slip/'+id);
   }
 
+  deleteSlip(id:Number){
+    return this._http.delete(this.url+'slip/'+id);
+  }
+
+  updateSlip(id:Number, data:any){
+    console.log("hiiiiiiiii");
+
+    return this._http.patch<Slip>(this.url+'slip/'+id, data);
+  }
+
 }
