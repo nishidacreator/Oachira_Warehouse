@@ -10,6 +10,7 @@ const EntryDetails = sequelize.define('entryDetails',{
     rate:{type: DataTypes.FLOAT, allowNull: false},
     discount : {type: DataTypes.FLOAT, defaultValue: 0},
     gstId : {type: DataTypes.INTEGER, },
+    taxableAmount : {type: DataTypes.FLOAT},
     grossAmount:{type: DataTypes.FLOAT, allowNull: false},
     netAmount :  {type: DataTypes.FLOAT, allowNull: false}
 },

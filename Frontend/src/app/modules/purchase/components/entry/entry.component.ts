@@ -199,7 +199,8 @@ export class EntryComponent implements OnInit, OnDestroy {
       discount :  [0],
       gstId :  [0],
       grossAmount:  [0,Validators.required],
-      netAmount :   [0,Validators.required]
+      netAmount :   [0,Validators.required],
+      taxableAmount : [0,Validators.required]
     })
   }
 

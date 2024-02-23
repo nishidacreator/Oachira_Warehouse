@@ -371,6 +371,7 @@
                         <!-- END -->
                       <td>
                         <mat-form-field class="full-width" appearance="fill">
+                          <mat-label>Unit</mat-label>
                           <mat-select placeholder="Secondary Unit" formControlName="secondaryUnitId">
                             <mat-form-field class="full-width">
                               <div class="row">
@@ -389,23 +390,60 @@
 
                       <td colspan="2">
                         <mat-form-field appearance="fill"class="full-width">
-                          <input matInput placeholder="MRP" formControlName="mrp">
+                          <mat-label>Mrp</mat-label>
+                          <input matInput placeholder="" formControlName="mrp">
                         </mat-form-field>
                       </td>
 
                       <td colspan="2">
                         <mat-form-field appearance="fill"class="full-width">
-                          <input matInput placeholder="Quantity" formControlName="quantity">
+                          <mat-label>Quantity</mat-label>
+                          <input matInput placeholder="" formControlName="quantity">
                         </mat-form-field>
                       </td>
 
                       <td colspan="2">
                         <mat-form-field appearance="fill"class="full-width">
-                          <input matInput placeholder="Rate" formControlName="rate">
+                          <mat-label>Rate</mat-label>
+                          <input matInput placeholder="" formControlName="rate">
                         </mat-form-field>
                       </td>
 
+                      <td colspan="2">
+                        <mat-form-field appearance="fill"class="full-width">
+                          <mat-label>Discount</mat-label>
+                          <input matInput placeholder="" formControlName="discount">
+                        </mat-form-field>
+                      </td>
 
+                      <td colspan="2">
+                        <mat-form-field appearance="fill"class="full-width">
+                          <mat-label>TaxableAmount</mat-label>
+                          <input matInput placeholder="" formControlName="taxableAmount">
+                        </mat-form-field>
+                      </td>
+
+                      <td colspan="2">
+                        <mat-form-field appearance="fill"class="full-width">
+                          <mat-label>Tax</mat-label>
+                          <input matInput placeholder="" formControlName="gstId">
+                        </mat-form-field>
+                      </td>
+
+                      <td colspan="2">
+                        <mat-form-field appearance="fill"class="full-width">
+                          <mat-label>GrossAmount</mat-label>
+                          <input matInput placeholder="" formControlName="grossAmount">
+                        </mat-form-field>
+                      </td>
+
+                      <td colspan="2">
+                        <mat-form-field appearance="fill"class="full-width">
+                          <mat-label>NetAmount</mat-label>
+                          <input matInput placeholder="" formControlName="netAmount">
+                        </mat-form-field>
+                      </td>
+                      
                       <td>
                         <span class="material-icons" style="color: rgb(255, 0, 0); font-size: 25px; margin-top: 17px; margin-left: 75px;" (click)="removeProduct(i)">cancel</span>
                       </td>

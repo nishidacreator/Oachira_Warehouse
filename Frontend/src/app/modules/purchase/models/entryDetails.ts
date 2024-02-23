@@ -17,4 +17,5 @@ export interface EntryDetails {
   gstId : number
   grossAmount: number
   netAmount :  number
+  taxableAmount: number
 }
