@@ -63,7 +63,7 @@
                 <mat-option *ngFor="let item of company" [value]="item.id">
                   {{item.companyName}}
                 </mat-option>
-                <mat-option  *ngIf="filterCompany.length === 0">
+                <mat-option>
                   <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addCompany()">playlist_add</span>
                 </mat-option>
               </mat-select>

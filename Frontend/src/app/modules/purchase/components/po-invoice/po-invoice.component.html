@@ -1,0 +1,38 @@
+<!-- invoice.component.html -->
+
+<div class="invoice-container">
+  <h1>Invoice</h1>
+  <div class="invoice-details">
+    <div class="row">
+      <div class="col">
+        <p><strong>Invoice Number:</strong> {{ invoiceNumber }}</p>
+        <p><strong>Date:</strong> {{ currentDate | date }}</p>
+      </div>
+      <div class="col">
+        <p><strong>Customer Name:</strong> {{ customerName }}</p>
+        <p><strong>Email:</strong> {{ customerEmail }}</p>
+      </div>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{ item.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.quantity * item.price }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="total">
+    <p><strong>Total:</strong> {{ getTotal() }}</p>
+  </div>
+</div>
