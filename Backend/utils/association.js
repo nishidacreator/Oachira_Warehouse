@@ -34,12 +34,6 @@ const RouteSO = require('../sales/models/routeSO');
 const RouteSODetails = require('../sales/models/routeSODetails');
 const RouteSE = require('../sales/models/routeSE');
 const RouteSEDetails = require('../sales/models/routeSEDetails');
-
-// const RouteSO = require('../sales/models/routeSO');
-// const RouteSODetails = require('../sales/models/routeSODetails');
-// const RouteSE = require('../sales/models/routeSE');
-// const RouteSEDetails = require('../sales/models/routeSEDetails');
-
 const Warehouse = require('../store/models/warehouse');
 const CustomerPhone = require('../sales/models/customerPhone');
 const VehicleType = require('../sales/models/vehicleType');
