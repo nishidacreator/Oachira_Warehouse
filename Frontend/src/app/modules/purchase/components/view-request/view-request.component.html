@@ -45,14 +45,14 @@
             <td>{{element.requestNo}}</td>
             <td>{{element.company.companyName}}</td>
             <td>{{element.date}}</td>
-            <!-- <td (mouseover)="showName('Back')" (mouseout)="hideName()">
+            <td (mouseover)="showName('Back')" (mouseout)="hideName()">
               <mat-icon (click)="viewPurchaseRequest(element.id)">open_in_new</mat-icon>
-            </td> -->
+            </td>
             <td>
               <mat-icon (click)="editRequest(element.id)" >edit</mat-icon>
               <!-- &nbsp;&nbsp; -->
               <mat-icon (click)="deleteRequest(element.id)">delete</mat-icon>
-              <mat-icon (click)="addPurchaseOrder(element.id)">post_add</mat-icon>
+              <!-- <mat-icon (click)="addPurchaseOrder(element.id)">post_add</mat-icon> -->
             </td>
         </tr>
     </tbody>
