@@ -41,10 +41,6 @@ const RouteDetails = require('../sales/models/routeDetails');
 const Trip = require('../sales/models/trip');
 const TripDay = require('../sales/models/tripDays');
 const TripDetails = require('../sales/models/tripDetails');
-const RouteSO = require('../sales/models/routeSO');
-const RouteSODetails = require('../sales/models/routeSODetails');
-const RouteSE = require('../sales/models/routeSE');
-const RouteSEDetails = require('../sales/models/routeSEDetails');
 const Slip = require('../purchases/models/slip');
 
 // // BULK CREATE

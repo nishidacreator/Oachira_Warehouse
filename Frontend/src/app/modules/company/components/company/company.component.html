@@ -142,7 +142,7 @@
 
 <br><mat-card *ngIf="addStatus != 'true'">
   <mat-card-header>
-    <mat-card-title style="color: green;"> STORES</mat-card-title>
+    <mat-card-title style="color: green;"> COMPANIES</mat-card-title>
   </mat-card-header>
 
   <mat-form-field>
@@ -194,9 +194,9 @@
               <td [style.background-color]="element.status == false ? 'pink' : null">{{element.apiKey}}</td>
               <td [style.background-color]="element.status == false ? 'pink' : null">
                 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-                <i  (click)="editStore(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
+                <i  (click)="editCompany(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
                 &nbsp;&nbsp;
-                <i  (click)="deleteStore(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+                <i  (click)="deleteCompany(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
               </td>
           </tr>
       </tbody>

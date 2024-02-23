@@ -9,6 +9,7 @@ const Customer = sequelize.define('customer',{
     state : {type : DataTypes.STRING},
     gstNo : {type : DataTypes.STRING},
     remarks : {type : DataTypes.STRING},
+    email: {type : DataTypes.STRING},
     loyaltyPoint : {type : DataTypes.STRING, allowNull : false},
     customerCategoryId : {type: DataTypes.INTEGER, allowNull : false},
     customerGradeId : {type: DataTypes.INTEGER, allowNull : false},

@@ -116,6 +116,10 @@
                   <mat-option *ngFor="let item of teams" [value]="item.id">
                     {{item.teamName}}
                   </mat-option>
+                  <mat-option>
+                    <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);"
+                    (click)="addTeam()">playlist_add</span>
+                  </mat-option>
                 </mat-select>
                 <!-- <mat-error *ngIf="companyForm.controls['companyTermId'].hasError('required')">
                   companyTerm <strong>required</strong>

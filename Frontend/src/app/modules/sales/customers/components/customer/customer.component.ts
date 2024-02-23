@@ -211,7 +211,7 @@ export class CustomerComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.getCategory();
+      this.getCustomers();
     });
   }
 
@@ -229,7 +229,7 @@ export class CustomerComponent implements OnInit {
       let address1 = customer?.address1?.toString();
       let address2 = customer?.address2?.toString();
       let gstNo = customer?.gstNo.toString();
-      // let email = customer?..toString();
+      let email = customer?.email.toString();
       let remarks = customer?.remarks.toString();
       let subledgerCode = customer?.subledgerCode.toString();
 

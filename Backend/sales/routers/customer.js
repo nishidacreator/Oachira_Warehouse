@@ -16,10 +16,10 @@ router.post('/', authenticateToken, async (req, res) => {
   try {
       const data = req.body;
 
-      const { name, subledgerCode, address1, address2, state, gstNo, remarks, loyaltyPoint = 0,
+      const { name,email, subledgerCode, address1, address2, state, gstNo, remarks, loyaltyPoint = 0,
          customerCategoryId, customerGradeId, numbers } = data;
 
-      const newCustomer = await Customer.create( {name, subledgerCode, address1, address2, state,
+      const newCustomer = await Customer.create( {name,email, subledgerCode, address1, address2, state,
          gstNo, remarks, loyaltyPoint, customerCategoryId, customerGradeId} );
 
       const custId = newCustomer.id
