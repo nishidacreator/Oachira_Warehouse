@@ -67,29 +67,41 @@ router.get('/:id', async (req, res) => {
 })
 
 
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', async(req,res)=>{
     try {
-        Team.update(req.body, {
-            where: { id: req.params.id }
+      Team.update(req.body, {
+          where: { id: req.params.id }
         })
-            .then(num => {
-                if (num == 1) {
-                    res.send({
-                        message: "Team updated successfully."
-                    });
-                } else {
-                    res.send({
-                        message: `Cannot update Team with id=${id}. Maybe Team was not found or req.body is empty!`
-                    });
-                }
-            })
+          .then(num => {
+            if (num == 1) {
+              res.send({
+                message: "Team was updated successfully."
+              });
+            } else {
+              res.send({
+                message: `Cannot update Team with id=${id}. Maybe Team was not found or req.body is empty!`
+              });
+            }
+          })
+  
+          const teaId = req.params.id;
+  
+          const result = await TeamMember.destroy({
+            where: { teamId: teaId},
+            force: true,
+          });
+  
+          let details = req.body.teamMembers;
+          for(let i = 0; i < details.length; i++){
+            details[i].teamId = teaId;
+          }
+  
+          let cp = await TeamMember.bulkCreate(details)
+          console.log(cp);
     } catch (error) {
-        res.status(500).json({
-            status: "error",
-            message: error.message,
-        });
+      res.send(error.message);
     }
-})
+  })
 
 
 router.delete('/:id', async (req, res) => {
