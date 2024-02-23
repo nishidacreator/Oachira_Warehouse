@@ -146,7 +146,7 @@ router.patch('/imageupdate', async (req, res) => {
   } catch (error) {
     res.send(error.message);
   }
-  })
+})
 
 router.get('/byfileurl', authenticateToken, async (req, res) => {
 try {
