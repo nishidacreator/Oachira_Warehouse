@@ -64,6 +64,8 @@ const entryDetails = require('../purchases/rouers/entryDetails')
 const orderDetails = require('../purchases/rouers/orderDetails');
 const coolie = require('../purchases/rouers/coolie');
 const slip = require('../purchases/rouers/slip')
+const transporter = require('../purchases/rouers/transporter');
+
 
 app.use('/purchases/request',request);
 app.use('/purchases/order',order);
@@ -73,6 +75,7 @@ app.use('/purchases/orderdetails',orderDetails);
 app.use('/purchases/pentrydetails',entryDetails);
 app.use('/purchases/coolie',coolie);
 app.use('/purchases/slip',slip)
+app.use('/purchases/transporter',transporter)
 
 
 
