@@ -69,8 +69,8 @@
 
       <mat-card-actions>
         <button *ngIf="!isEdit" mat-raised-button color="primary" type="submit" [disabled]="!teamForm.valid">ADD</button>&nbsp;&nbsp;
-      <!--   <button *ngIf="isEdit" color="primary"   mat-raised-button type="button" [disabled]="!teamForm.valid" (click)="edit()">UPDATE</button>&nbsp;&nbsp;
-        <button color="primary" mat-raised-button type="button" (click)="clear()">CLEAR</button>&nbsp;&nbsp; -->
+       <button *ngIf="isEdit" color="primary"   mat-raised-button type="button" [disabled]="!teamForm.valid" (click)="edit()">UPDATE</button>&nbsp;&nbsp;
+       <!--   <button color="primary" mat-raised-button type="button" (click)="clear()">CLEAR</button>&nbsp;&nbsp; -->
         <!-- <button mat-mini-fab color="primary" aria-label="Example icon button with a home icon" (click)="onCancelClick()">
           <mat-icon>arrow_back</mat-icon>
         </button> -->
@@ -121,9 +121,9 @@
       <th mat-header-cell *matHeaderCellDef>Manage </th>
       <td mat-cell *matCellDef="let element">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-        <i  class="fa fa-edit" style="font-size: 20px; color:green"></i>
+        <i (click)="editFunction(element.id)" class="fa fa-edit" style="font-size: 20px; color:green"></i>
         &nbsp;&nbsp;
-        <i  class="fa fa-trash" style="font-size: 20px; color:red"></i>
+        <i  (click)="deleteFunction(element.id)"  class="fa fa-trash" style="font-size: 20px; color:red"></i>
         <!-- <i  class="fa fa-edit" (click)="editFunction(element.id)" style="font-size: 16px; color:green"></i>
         &nbsp;&nbsp;
         <i class="fa fa-trash" (click)="deleteFunction(element.id)" style="font-size: 16px; color:rgb(151, 70, 70)"></i> -->
