@@ -107,14 +107,10 @@ export class EntryComponent implements OnInit, OnDestroy {
     this.purchaseService.getPeById(id).subscribe(data =>{
       console.log(data);
       let distributorId = data.distributorId;
-      let date: any = data.purachseDate;
-      let purchaseInvoice = data.purchaseInvoice;
       let amount = data.purchaseAmount;
 
       this.purchaseEntryForm.patchValue({
         distributorId: distributorId,
-        purachseDate: date,
-        purchaseInvoice: purchaseInvoice,
         purchaseAmount: amount,
         status: "ChequeIssued"
       })
@@ -134,13 +130,12 @@ export class EntryComponent implements OnInit, OnDestroy {
 
   purchaseEntryForm = this.fb.group({
     distributorId: [0, Validators.required],
-    purchaseInvoice: ['', Validators.required],
     purchaseAmount: [0, Validators.required],
-    purachseDate: [''],
     status: [''],
     chequeNo: [''],
-    entryDetails: this.fb.array([]),
-    userId: [0]
+    userId: [0],
+    advanceAmount: [0],
+    date: ['']
   });
 
   slipForm = this.fb.group({
@@ -405,19 +400,22 @@ export class EntryComponent implements OnInit, OnDestroy {
         ...this.purchaseEntryForm.value
       }
       data.userId = this.id
+
+      console.log(data);
+
       this.submitSub = this.purchaseService.addPE(data).subscribe(data=>{
         console.log(data);
 
         this._snackBar.open("Entry added successfully...","" ,{duration:3000})
-        if(type === "close"){
-          history.back();
-        }else if(type === "slip"){
-          this.stepper.next();
-          this.patchSlip(data)
-        }else if(type === "next"){
-          this.stepper.selectedIndex = 2;
-          this.patchSlip(data);
-        }
+        // if(type === "close"){
+        //   history.back();
+        // }else if(type === "slip"){
+        //   this.stepper.next();
+        //   this.patchSlip(data)
+        // }else if(type === "next"){
+        //   this.stepper.selectedIndex = 2;
+        //   this.patchSlip(data);
+        // }
       });
     }
   }

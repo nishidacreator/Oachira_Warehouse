@@ -9,46 +9,47 @@ const User = require('../../users/models/user');
 const Distributor = require('../../products/models/distributor');
 const Order = require('../../purchases/models/order');
 const Slip = require('../models/slip');
+const EntryCheque = require('../models/entryCheque');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
+        const { distributorId, purchaseAmount, status, userId, entryStatus, chequeNo, date, advanceAmount } = req.body;
 
-        const { purchaseInvoice,purachseDate,distributorId,purchaseAmount,status,chequeNo,userId,entryStatus = 'pending'} = req.body;
 
-        const EntryExist = await  Entry.findOne({ chequeNo: req.userId });
-        // if (EntryExist){
-            
-        //     return res.send("Cheque number already used");
+
+
+        // Check if the chequeNo already exists
+        // const entryExist = await Entry.findOne({ chequeNo });
+        // if (entryExist) {
+        //     return res.status(400).send("Cheque number already used");
         // }
-        // Validate input data
-        // if (!orderNo || !distributorId || !userId || !warehouseId || !status || !orderDetails) {
+
+        // Validate input data (customize based on your requirements)
+        // if (!distributorId || !purchaseAmount || !status || !chequeNo || !userId) {
         //     return res.status(400).send({ error: 'Incomplete data provided.' });
         // }
-        if(chequeNo != null){
-            this.chequeIssuedDate = purachseDate
-        }
 
-    
-        const entry = new Entry({purchaseInvoice,purachseDate,distributorId,purchaseAmount,status,userId, chequeNo, entryStatus, chequeIssuedDate: this.chequeIssuedDate });
-        console.log(entry);
-       
+        const entry = new Entry({distributorId, purchaseAmount, status, userId, entryStatus });
         await entry.save();
+        let entryId = entry.id;
 
-    //    const entryId = entry.id
+        const cheque = new EntryCheque({ entryId, chequeNo, amount: advanceAmount, date });
+        await cheque.save();
 
-    //     // Assign the orderId to each orderDetail
-    //     for (let i = 0; i < entryDetails.length; i++) {
-    //         entryDetails[i].entryId = entryId;
-    //     }
+        // Uncomment and customize the following if you have additional code related to entryDetails
+        // const entryId = entry.id;
+        // for (let i = 0; i < entryDetails.length; i++) {
+        //     entryDetails[i].entryId = entryId;
+        // }
+        // const entryDetailsResult = await EntryDetails.bulkCreate(entryDetails);
 
-    //     const eDetails = await EntryDetails.bulkCreate(entryDetails);
-
-    
-        res.status(201).send(entry);
+        res.send(entry);
     } catch (error) {
-      res.send(error.message)
+        console.error(error);
+        res.send(error.message);
     }
 });
+
 
 router.patch('/:id',authenticateToken ,async (req,res)=>{
    

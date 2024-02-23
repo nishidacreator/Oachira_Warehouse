@@ -54,6 +54,7 @@ export class DistributorComponent implements OnInit {
     status : [false ,Validators.required],
     cloudinaryId : [''],
     fileUrl : [''],
+    teamId : [''],
     products : ['']
   });
 
