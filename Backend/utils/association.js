@@ -34,7 +34,6 @@ const RouteSO = require('../sales/models/routeSO');
 const RouteSODetails = require('../sales/models/routeSODetails');
 const RouteSE = require('../sales/models/routeSE');
 const RouteSEDetails = require('../sales/models/routeSEDetails');
-
 const Warehouse = require('../store/models/warehouse');
 const CustomerPhone = require('../sales/models/customerPhone');
 const VehicleType = require('../sales/models/vehicleType');
@@ -113,15 +112,15 @@ async function syncModel(){
     User.hasMany(Company,{foreignKey : 'companyInChargeId', as: 'companyInCharge',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Company.belongsTo(User, {foreignKey : 'companyInChargeId', as: 'companyInCharge'})
 
-    Store.hasMany(Warehouse,{foreignKey : 'warehouseId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    Warehouse.belongsTo(Store, {foreignKey : 'warehouseId'})
+    // Store.hasMany(Warehouse,{foreignKey : 'warehouseId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    // Warehouse.belongsTo(Store, {foreignKey : 'warehouseId'})
 
     Warehouse.hasMany(User,{foreignKey : 'warehouseInChargeId', as: 'warehouseInCharge',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     User.belongsTo(Warehouse, {foreignKey : 'warehouseInChargeId', as: 'warehouseInCharge'})
    
     // PURCHASES
-    Store.hasMany(Request, {foreignKey : 'storeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    Request.belongsTo(Store)
+    Company.hasMany(Request, {foreignKey : 'companyId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Request.belongsTo(Company)
 
     User.hasMany(Request, {foreignKey : 'userId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Request.belongsTo(User)
