@@ -7,6 +7,7 @@ import { PurchaseRequest } from '../../models/purchase-request';
 import { MatDialog } from '@angular/material/dialog';
 import { RequestComponent } from '../request/request.component';
 import { DeleteDialogueComponent } from 'src/app/modules/shared-components/delete-dialogue/delete-dialogue.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-view-request',
@@ -15,7 +16,7 @@ import { DeleteDialogueComponent } from 'src/app/modules/shared-components/delet
 })
 export class ViewRequestComponent implements OnInit {
 
-  constructor(private purchaseService: PurchaseService, private router: Router, private dialog: MatDialog) { }
+  constructor( private _snackBar: MatSnackBar, private purchaseService: PurchaseService, private router: Router, private dialog: MatDialog) { }
 
   ngOnDestroy(): void {
     this.prSub?.unsubscribe();
@@ -58,9 +59,14 @@ export class ViewRequestComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if(result==true){
         this.deleteSub = this.purchaseService.deletePR(id).subscribe(result => {
+          this._snackBar.open("Purchase request successfully...","" ,{duration:3000})
           this.getPR();
+
         })
+      }
+
     })
   }
 

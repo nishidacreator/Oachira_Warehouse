@@ -343,7 +343,7 @@ companies: company[] = [];
       ...this.purchaseRequestForm.value
     }
     form.date = moment(this.purchaseRequestForm.value.date).format('YYYY-MM-DD HH:mm:ss');
-
+    console.log('form submitted', form)
     this.submitSub = this.purchaseService.addPR(form).subscribe(() =>{
       this.clearControls()
     },
@@ -366,13 +366,13 @@ companies: company[] = [];
         let pr = res
 
         let requestNo = pr.requestNo.toString();
-        // let company: any = pr.companyId;
+        let company: any = pr.companyId;
         let user: any = pr.userId;
         let date: any = pr.date;
 
         this.purchaseRequestForm.patchValue({
           requestNo : requestNo,
-          // companyId : company,
+          companyId : company,
           userId : user,
           date : date
         })
