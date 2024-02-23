@@ -4,7 +4,7 @@ import { PurchaseRequestDetail } from "./purchase-request-detail";
 
 export interface PurchaseRequest {
   id : number;
-  storeId : number
+  companyId : number
   userId : number
   date : Date
   status : string
