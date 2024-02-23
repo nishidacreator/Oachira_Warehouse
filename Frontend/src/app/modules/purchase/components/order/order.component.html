@@ -78,10 +78,10 @@
                 <div class="row">
                   <mat-icon>search</mat-icon>
                   <input matInput (input)="filterDistributor($event)" placeholder="Search">
-                </div> 
+                </div>
               </mat-form-field>  -->
               <mat-option *ngFor="let item of company" [value]="item.id">
-                {{item.companyName}}
+                {{item.companyName}} - {{item.companyCode}} - {{item.locationName}}
               </mat-option>
               <mat-option  >
                 <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addCompany()">playlist_add</span>
@@ -92,7 +92,7 @@
             <!-- </mat-error> -->
           </mat-form-field>
         </div>
-        
+
       </div>
 
 

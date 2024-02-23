@@ -39,7 +39,9 @@ editPO(id:number){
 deletePO(id:number){
 
 }
-
+viewPurchaseOrder(id: number){
+  this.router.navigateByUrl('/login/purachases/purchaseOrder/view/'+id)
+}
 
 editRequest(id: number){
   this.router.navigateByUrl('/login/purachases/purchaseorder/'+id)

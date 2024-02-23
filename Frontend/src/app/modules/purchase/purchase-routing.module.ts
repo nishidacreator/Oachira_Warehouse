@@ -10,6 +10,7 @@ import { ViewEntryComponent } from './components/view-entry/view-entry.component
 import { ViewSlipComponent } from './components/view-slip/view-slip.component';
 import { SlipComponent } from './components/slip/slip.component';
 import { TransporterComponent } from './components/transporter/transporter.component';
+import { PoInvoiceComponent } from './components/po-invoice/po-invoice.component';
 
 const routes: Routes = [
   {path: 'purchaserequest', component: RequestComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'viewslip', component: ViewSlipComponent},
   {path: 'printslip/:id', component: SlipComponent},
   {path: 'transporter', component: TransporterComponent},
+  {path: 'purchaseOrder/view/:id', component: PoInvoiceComponent},
 ];
 
 @NgModule({

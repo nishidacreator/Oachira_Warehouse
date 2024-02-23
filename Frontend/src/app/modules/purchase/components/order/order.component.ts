@@ -47,7 +47,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   editstatus!: boolean;
   ngOnInit(): void {
     this.getCompany()
-    // this.getWarehouse();
+    this.getDistributor();
     this.getUsers();
     this.getProduct();
     this.getSecondaryUnit();
@@ -285,7 +285,7 @@ export class OrderComponent implements OnInit, OnDestroy {
           if (!isNaN(idNumber)) {
             return idNumber > prevMax ? idNumber : prevMax;
           } else {
-            
+
             // If the extracted part is not a valid number, return the previous max
             return prevMax;
           }
@@ -295,8 +295,8 @@ export class OrderComponent implements OnInit, OnDestroy {
         console.log(this.nextId);
       } else {
         // If there are no employees in the array, set the employeeId to 'EMP001'
-        this.nextId = 0o0;
-        this.prefix = "PO";
+        this.nextId = 0o1;
+        this.prefix = "PO#";
       }
 
       const paddedId = `${this.prefix}${this.nextId
@@ -327,8 +327,11 @@ export class OrderComponent implements OnInit, OnDestroy {
     //   return alert('Please fill the form first')
     // }
     let data = this.purchaseOrderForm.getRawValue()
+    console.log('dta',data);
+
     this.submitSub = this.purchaseService.addPO(data).subscribe((res) =>{
       console.log('API Response:', res);
+      history.back()
       this.clearControls()
     },
     (error) => {
@@ -338,7 +341,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   clearControls() {
     this.purchaseOrderForm.reset();
-    this.router.navigateByUrl("/login/purachases/viewpurchaserequest");
+    // this.router.navigateByUrl("/login/purachases/viewpurchaserequest");
   }
 
 
@@ -400,18 +403,18 @@ export class OrderComponent implements OnInit, OnDestroy {
         this.editstatus = true
         let po = res
 
-      
+
 
 
         console.log("GET API BY ID " , po)
 
-   
+
         let orderNo : any = po.orderNo
         let companyId: any = po.companyId;
         let date: any = po.date;
-        let distributorId : any = po.distributor.distributorName;
-      
-        
+        let distributorId : any = po.distributorId;
+
+
 
         this.purchaseOrderForm.patchValue({
           orderNo : orderNo,
@@ -442,6 +445,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   update(){
     this.purchaseService.updatePO(this.poId, this.purchaseOrderForm.getRawValue()).subscribe((res)=>{
       this.clearControls()
+      history.back()
     })
   }
   addCompany(){
