@@ -192,6 +192,18 @@ export class ProductComponent implements OnInit {
     });
   }
 
+addPrimaryUnit(){
+
+  const dialogRef = this.dialog.open(UnitComponent, {
+
+  });
+
+  dialogRef.afterClosed().subscribe((result) => {
+   
+  });
+
+}
+
   mySubCat = new FormControl<string | SubCategory>("");
   filteredSubCat: SubCategory[] = [];
   filterSubCategory(event: Event | string) {
@@ -500,7 +512,7 @@ export class ProductComponent implements OnInit {
           product: this.productForm.get('productName')?.value
         }
         this.dialogRef?.close(data);
-        this._snackBar.open("SubCategory added successfully...","" ,{duration:3000})
+        this._snackBar.open("Product  added successfully...","" ,{duration:3000})
         this.clearControls()
       },(error=>{
         alert(error)

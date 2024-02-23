@@ -114,7 +114,7 @@
           <mat-form-field class="full-width">
             <mat-select placeholder="Primary unit" formControlName="primaryUnitId">
          
-              <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addSubCategory()">playlist_add</span>
+              <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addPrimaryUnit()">playlist_add</span>
               <mat-option *ngFor="let item of primaryUnit" [value]="item.id">
                 {{item.primaryUnitName}}
               </mat-option>

@@ -117,15 +117,31 @@ export class TeamComponent {
 
  edit() {
 
+  let teamMem: any = this.teamForm.getRawValue();
+  console.log(teamMem);
 
+  let teamM = [];
+  for(let i = 0; i< teamMem.teamMembers.length; i++) {
+   teamM[i] = {
+       userId : teamMem.teamMembers[i]
+     }
+   }
+
+   let  data = {
+     teamName: teamMem.teamName,
+     userId: teamMem.userId,
+     teamMembers: teamM
+   }
+
+  console.log(data)
 
    this.isEdit = true
-   let data = {
-     teamName: this.teamForm.get('teamName')?.value,
+  //  let data = {
+  //    teamName: this.teamForm.get('teamName')?.value,
 
 
-   }
-   console.log(data)
+  //  }
+  //  console.log(data)
    console.log(this.teamId)
    this.companyService.updateTeam(this.teamId, data).subscribe((res) => {
      this._snackbar.open("Team updated successfully...", "", { duration: 3000 })
