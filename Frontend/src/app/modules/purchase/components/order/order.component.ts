@@ -16,6 +16,9 @@ import { UsersService } from 'src/app/modules/users/users.service';
 import { DistributorComponent } from 'src/app/modules/products/components/distributor/distributor.component';
 import { Distributor } from 'src/app/modules/products/models/distributor';
 import { CompanyService } from 'src/app/modules/company/company.service';
+import { company } from 'src/app/modules/company/models/company';
+import { CompanyComponent } from 'src/app/modules/company/components/company/company.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-order',
@@ -24,8 +27,8 @@ import { CompanyService } from 'src/app/modules/company/company.service';
 })
 export class OrderComponent implements OnInit, OnDestroy {
 
-  constructor(private fb: FormBuilder, public purchaseService: PurchaseService, public dialog: MatDialog,
-    private router: Router, private route: ActivatedRoute, private storeService: CompanyService,
+  constructor(  private _snackBar: MatSnackBar,private fb: FormBuilder, public purchaseService: PurchaseService, public dialog: MatDialog,
+    private router: Router, private route: ActivatedRoute, private companyService: CompanyService,
     private userService: UsersService, private productService: ProductService) {
     //User
     const token: any = localStorage.getItem("token");
@@ -44,21 +47,23 @@ export class OrderComponent implements OnInit, OnDestroy {
   addStatus!: string;
   editstatus!: boolean;
   ngOnInit(): void {
+    this.getCompany()
     // this.getWarehouse();
     this.getUsers();
     this.getProduct();
     this.getSecondaryUnit();
     this.generateInvoiceNumber();
     this.addProduct();
-    let requestId = this.route.snapshot.params['id'];
-    // if(requestId){
-    //   this.patchData(requestId)
-    // }
+    let orderId = this.route.snapshot.params['id'];
+    if(orderId){
+      this.patchData(orderId)
+    }
+    this.getDistributor()
   }
 
   purchaseOrderForm = this.fb.group({
     orderNo: ["", Validators.required],
-    storeId: [Validators.required],
+    companyId: [Validators.required],
     userId: [],
     date: ["", Validators.required],
     distributorId:[],
@@ -282,6 +287,7 @@ export class OrderComponent implements OnInit, OnDestroy {
           if (!isNaN(idNumber)) {
             return idNumber > prevMax ? idNumber : prevMax;
           } else {
+            
             // If the extracted part is not a valid number, return the previous max
             return prevMax;
           }
@@ -323,7 +329,9 @@ export class OrderComponent implements OnInit, OnDestroy {
     //   return alert('Please fill the form first')
     // }
     let data = this.purchaseOrderForm.getRawValue()
-    this.submitSub = this.purchaseService.addPO(data).subscribe(() =>{
+    this.submitSub = this.purchaseService.addPO(data).subscribe((res) =>{
+      this._snackBar.open("Purchase order added successfully...","" ,{duration:3000})
+      console.log('API Response:', res);
       this.clearControls()
     },
     (error) => {
@@ -333,52 +341,10 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   clearControls() {
     this.purchaseOrderForm.reset();
-    this.router.navigateByUrl("/login/purachases/viewpurchaserequest");
+    this.router.navigateByUrl("/login/purachases/viewpurchaseorder");
   }
 
-  // prId!: number;
-  // patchData(id: number){
-  //   this.purchaseService.getPRById(id).subscribe(res=>{
-  //     this.prId = id;
-  //       this.editstatus = true
-  //       let pr = res
 
-  //       let orderNo = pr.orderNo.toString();
-  //       let store: any = pr.storeId;
-  //       let user: any = pr.userId;
-  //       let date: any = pr.date;
-
-  //       this.purchaseOrderForm.patchValue({
-  //         orderNo : orderNo,
-  //         storeId : store,
-  //         userId : user,
-  //         date : date
-  //       })
-
-  //       const pd = this.purchaseOrderForm.get("orderDetails") as FormArray;
-  //       pd.clear();
-  //       let rDetails = res.orderDetails;
-  //       if (rDetails && rDetails.length > 0) {
-  //         rDetails.forEach((detail: any) => {
-  //           console.log(detail);
-
-  //         const details = this.fb.group({
-  //           productId : detail.productId,
-  //           quantity : detail.quantity,
-  //           secondaryUnitId : detail.secondaryUnitId
-  //         });
-
-  //         pd.push(details);
-  //       });
-  //     }
-  //   })
-  // }
-
-  // update(){
-  //   this.purchaseService.updatePR(this.prId, this.purchaseOrderForm.getRawValue()).subscribe((res)=>{
-  //     this.clearControls()
-  //   })
-  // }
   distributorSub!: Subscription;
   distributors: Distributor[] = [];
   getDistributor(value?: string){
@@ -389,6 +355,14 @@ export class OrderComponent implements OnInit, OnDestroy {
         this.filterDistributor(value)
       }
     });
+  }
+
+  company :company[]=[]
+  getCompany(){
+   this.companyService.getCompanies().subscribe((res)=>{
+    this.company = res;
+   })
+
   }
 
   filteredDistributor: Distributor[] = [];
@@ -422,4 +396,65 @@ export class OrderComponent implements OnInit, OnDestroy {
     });
   }
 
-}
+  poId!: number;
+  patchData(id: number){
+    this.purchaseService.getPOById(id).subscribe(res=>{
+      this.poId = id;
+        this.editstatus = true
+        let po = res
+
+      
+
+
+        console.log("GET API BY ID " , po)
+
+   
+        let orderNo : any = po.orderNo
+        let companyId: any = po.companyId;
+        let date: any = po.date;
+        let distributorId : any = po.distributorId;
+      
+        
+
+        this.purchaseOrderForm.patchValue({
+          orderNo : orderNo,
+          companyId : companyId,
+          date : date,
+          distributorId : distributorId
+        })
+
+        const pd = this.purchaseOrderForm.get("orderDetails") as FormArray;
+        pd.clear();
+        let rDetails = res.orderDetails;
+        if (rDetails && rDetails.length > 0) {
+          rDetails.forEach((detail: any) => {
+            console.log(detail);
+
+          const details = this.fb.group({
+            productId : detail.productId,
+            quantity : detail.quantity,
+            secondaryUnitId : detail.secondaryUnitId
+          });
+
+          pd.push(details);
+        });
+      }
+    })
+  }
+
+  update(){
+    this.purchaseService.updatePO(this.poId, this.purchaseOrderForm.getRawValue()).subscribe((res)=>{
+      this.clearControls()
+    })
+  }
+  addCompany(){
+    const dialogRef = this.dialog.open(CompanyComponent, {
+      // data: { status: "true", type: "add"},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      // this.getDistributor(result?.distributor);
+    });
+  }
+  }
+
