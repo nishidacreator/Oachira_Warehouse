@@ -18,6 +18,7 @@ import { Distributor } from 'src/app/modules/products/models/distributor';
 import { CompanyService } from 'src/app/modules/company/company.service';
 import { company } from 'src/app/modules/company/models/company';
 import { CompanyComponent } from 'src/app/modules/company/components/company/company.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-order',
@@ -26,7 +27,7 @@ import { CompanyComponent } from 'src/app/modules/company/components/company/com
 })
 export class OrderComponent implements OnInit, OnDestroy {
 
-  constructor(private fb: FormBuilder, public purchaseService: PurchaseService, public dialog: MatDialog,
+  constructor(  private _snackBar: MatSnackBar,private fb: FormBuilder, public purchaseService: PurchaseService, public dialog: MatDialog,
     private router: Router, private route: ActivatedRoute, private companyService: CompanyService,
     private userService: UsersService, private productService: ProductService) {
     //User
@@ -57,6 +58,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     if(orderId){
       this.patchData(orderId)
     }
+    this.getDistributor()
   }
 
   purchaseOrderForm = this.fb.group({
@@ -328,6 +330,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     // }
     let data = this.purchaseOrderForm.getRawValue()
     this.submitSub = this.purchaseService.addPO(data).subscribe((res) =>{
+      this._snackBar.open("Purchase order added successfully...","" ,{duration:3000})
       console.log('API Response:', res);
       this.clearControls()
     },
@@ -338,7 +341,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   clearControls() {
     this.purchaseOrderForm.reset();
-    this.router.navigateByUrl("/login/purachases/viewpurchaserequest");
+    this.router.navigateByUrl("/login/purachases/viewpurchaseorder");
   }
 
 
@@ -409,7 +412,7 @@ export class OrderComponent implements OnInit, OnDestroy {
         let orderNo : any = po.orderNo
         let companyId: any = po.companyId;
         let date: any = po.date;
-        let distributorId : any = po.distributor.distributorName;
+        let distributorId : any = po.distributorId;
       
         
 
