@@ -29,10 +29,7 @@ router.get('/', async (req, res) => {
     } catch (error) {
         res.send(error.message);
     }
-
 })
-
-
 
 router.get('/:id', async (req, res) => {
     try {
@@ -48,6 +45,53 @@ router.get('/:id', async (req, res) => {
     }
   
 })
+
+// router.delete('/:id', authenticateToken, async(req,res)=>{
+//     try {
+//       const brands = await Slip.findOne({
+//         where: {id: req.params.id},
+//         order: ["id"]
+//       });
+  
+//         try {
+//           const file = brands.cloudinaryId;
+//           console.log(file);
+//           if(file){
+//             const result = await cloudinary.uploader.destroy(file);
+//           }
+    
+//         } catch (error) {
+//           res.send(error.message);
+//         }
+  
+//         const result = await brands.destroy({
+//             force: true
+//         });
+  
+//         if (result === 0) {
+//             return res.status(404).json({
+//               status: "fail",
+//               message: "Brand with that ID not found",
+//             });
+//           }
+      
+//           res.status(204).json();
+//         }  catch (error) {
+//           res.send(error.message);
+//     }
+    
+//   })
+  
+//   router.patch('/imageupdate', async (req, res) => {
+//     try {
+//       // Use the `upload` method with the `public_id` of the image you want to update
+//       const result = await cloudinary.uploader.upload(req.body.fileUrl, req.file.path);
+  
+//       res.send(result);
+//     } catch (error) {
+//       res.send(error.message);
+//     }
+//   })
 
 
 
