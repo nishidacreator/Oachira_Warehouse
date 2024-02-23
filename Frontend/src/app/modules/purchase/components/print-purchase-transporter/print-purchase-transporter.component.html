@@ -1,0 +1,87 @@
+<div class="col">
+  <mat-card-header style="display: flex; justify-content: flex-end;">
+    <button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onclick="history.back()">
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+</mat-card-header>
+</div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Return Slip</title>
+    <style>
+        .print-button {
+          display: block;
+          margin: 20px auto;
+          text-align: center;
+        }
+
+        @media print {
+          router-outlet{
+            visibility: hidden;
+          }
+          .return-slip{
+            visibility: visible;
+          }
+          @page{
+            margin: 0.3in 1in 0.3in 1in !important
+          }
+          .print-button {
+            display: none;
+          }
+          .mat-toolbar-row{
+            display: none;
+          }
+        }
+    </style>
+</head>
+<body style="font-family: Arial, sans-serif; align-content: flex-start;" id="return-slip" class="return-slip">
+
+    <div style="max-width: 600px;margin: 20px auto;padding: 20px;border: 1px solid #ccc;border-radius: 8px; " *ngIf="slips">
+        <h2 style=" text-align: center;">Transporter Slip</h2>
+
+        <div style="margin-top: 20px;">
+          <div style="display: flex; flex-direction: row;">
+            <div style="flex: 1; margin-right: 20px; width: 100%;">
+              <p><strong style="margin-right: 8px;">Transporter:</strong> {{slips.transporter.name}}</p>
+              <p><strong style="margin-right: 8px;">Address:</strong>{{slips.transporter.address}}</p>
+              <p><strong style="margin-right: 8px;">ContactNumber:</strong>{{slips.transporter.contactNumber}}</p>
+            </div>
+
+            <div style="flex: 1; margin-right: 20px; width: 100%; text-align: end;">
+              <p><strong style="margin-right: 8px;">PurchaseInvoice:</strong> {{slips.entry.purchaseInvoice}}</p>
+              <p><strong style="margin-right: 8px;">Date:</strong> {{slips.entry.purachseDate}}</p>
+              <p><strong style="margin-right: 8px;">Date:</strong> {{slips.entry.purchaseAmount}}</p>
+            </div>
+          </div>
+
+            <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                <tr>
+                  <th style="border: 1px solid #ddd;padding: 8px;text-align: left;">InvoiceNO</th>
+                  <th style="border: 1px solid #ddd;padding: 8px;text-align: left;">ChequeNo</th>
+                  <th style="border: 1px solid #ddd;padding: 8px;text-align: left;">Date</th>
+                  <th style="border: 1px solid #ddd;padding: 8px;text-align: left;">Advance</th>
+                  <th style="border: 1px solid #ddd;padding: 8px;text-align: left;">Amount</th>
+                  <th style="border: 1px solid #ddd;padding: 8px;text-align: left;">ClosedDate</th>
+                </tr>
+                <!-- Sample Return Items (Replace with actual data) -->
+                <tr>
+                  <td style="border: 1px solid #ddd;padding: 8px;text-align: left;">{{slips.invoiceNo}}</td>
+                  <td style="border: 1px solid #ddd;padding: 8px;text-align: left;">{{slips.chequeNo}}</td>
+                  <td style="border: 1px solid #ddd;padding: 8px;text-align: left;">{{slips.date}}</td>
+                  <td style="border: 1px solid #ddd;padding: 8px;text-align: left;">{{slips.advance}}</td>
+                  <td style="border: 1px solid #ddd;padding: 8px;text-align: left;">{{slips.amount}}</td>
+                  <td style="border: 1px solid #ddd;padding: 8px;text-align: left;">{{slips.closedDate}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+<div class="print-button">
+  <button (click)="printDiv()">Print</button>
+</div>
+
+</html>
