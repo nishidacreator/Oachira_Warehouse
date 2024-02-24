@@ -8,6 +8,8 @@ const BrockerAccount = sequelize.define('brockerAccount',{
     bagNo : {type : DataTypes.INTEGER, allowNull : false},
     amount : {type : DataTypes.FLOAT, allowNull : false},
     status : {type : DataTypes.STRING, defaultValue : "opened"},
+    closedDate : {type : DataTypes.DATEONLY},
+    invoiceNo: {type : DataTypes.STRING}
 },
 {
     freezeTableName: true,

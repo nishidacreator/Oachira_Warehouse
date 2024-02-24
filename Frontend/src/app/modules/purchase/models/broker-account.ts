@@ -9,6 +9,7 @@ export interface BrokerAccount {
   amount : number
   status : string
   invoiceNo: string
+  closedDate: Date
 
   id: number;
   brocker: Broker

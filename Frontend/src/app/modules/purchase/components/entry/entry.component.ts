@@ -89,6 +89,11 @@ export class EntryComponent implements OnInit, OnDestroy {
           this.selectedIndex = 2;
           this.getTransAndPatch(this.dialogData.id)
         }
+
+        if(this.dialogData.type === "beokerslipedit"){
+          this.selectedIndex = 3;
+          this.getBrokerAndPatch(this.dialogData.id)
+        }
       }
     }
   }
@@ -509,16 +514,16 @@ export class EntryComponent implements OnInit, OnDestroy {
       console.log(data);
 
       this.brokerId = data.id;
-      let brockerId:any = data.brockerId;
+      let brId:any = data.brockerId.toString();
       let invoiceNo = data.invoiceNo;
       let amount:any = data.amount;
       let date: any = data.date;
       let bagNo = data.bagNo;
       let entryId: any = data.entryId;
-      this.generateTransInvoiceNumber()
+      // this.generateBrokerInvoiceNumber()
 
       this.brokerageForm.patchValue({
-        brockerId : brockerId,
+        brockerId : brId,
         invoiceNo: invoiceNo,
         amount : amount,
         date: date,
@@ -529,14 +534,14 @@ export class EntryComponent implements OnInit, OnDestroy {
   }
 
   updateBroker(){
-    if(!this.purchaseTransportForm.valid){
+    if(!this.brokerageForm.valid){
       return alert("Please fill form completely");
     }
 
-    this.slipSub = this.purchaseService.updatePurchaseTransporter(this.transId, this.purchaseTransportForm.getRawValue()).subscribe(res=>{
+    this.slipSub = this.purchaseService.updateBrokerAccount(this.brokerId, this.brokerageForm.getRawValue()).subscribe(res=>{
       console.log(res);
       this.dialogRef?.close();
-      this._snackBar.open("Purchase Transporter updated successfully...","" ,{duration:3000})
+      this._snackBar.open("Brokerage updated successfully...","" ,{duration:3000})
     })
   }
 
