@@ -85,7 +85,7 @@ this.cusId = this.dailyCollectionForm.get('customerId')
 
     this.salesService.addDailyCollection(this.dailyCollectionForm.getRawValue()).subscribe((result) => {
       console.log('POST API' ,result);
-      this._snackBar.open( "Daily collection updated successfully...","" ,{duration:3000})
+      this._snackBar.open( "Daily collection added successfully...","" ,{duration:3000})
      this.clearControls();
 
   })
