@@ -53,7 +53,7 @@
             <div class="col">
               <mat-form-field class="full-width">
                 <mat-label>Amount</mat-label>
-                <input matInput placeholder="" formControlName="amount">
+                <input matInput placeholder="" formControlName="amount" (input)="onAmountChange()">
                   <mat-error *ngIf="dailyCollectionForm.controls['amount'].hasError('required')">
                     field <strong>required</strong>
                   </mat-error>
@@ -171,7 +171,7 @@
       <div class="col">
         <mat-form-field class="full-width">
           <mat-label>Credit balance</mat-label>
-          <input matInput placeholder="" formControlName="creditBalance">
+          <input matInput  readonly placeholder="" formControlName="creditBalance" >
             <mat-error *ngIf="dailyCollectionForm.controls['creditBalance'].hasError('required')">
               field <strong>required</strong>
             </mat-error>

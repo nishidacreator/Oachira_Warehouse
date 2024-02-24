@@ -45,6 +45,8 @@ export class DailyCollectionComponent implements OnInit {
 
 
   ngOnInit(): void {
+    // this.updateCreditBalance() 
+   this.getCustomerLedgerByCustomer()
     this.getCustomer()
     this.getUsers()
     this.getRoutes()
@@ -53,7 +55,7 @@ export class DailyCollectionComponent implements OnInit {
 
 
     this.dailyCollectionForm.get('userId')?.setValue(this.currentUser)
-    this.cusId = this.dailyCollectionForm.get('customerId')
+    this.cusId = this.dailyCollectionForm.get('customerId')?.value
 
   }
 
@@ -75,7 +77,7 @@ export class DailyCollectionComponent implements OnInit {
     paymentMode  :  [],
     remarks : [],
     routeId :  [''],
-    creditBalance  :  [],
+    creditBalance: [], 
  
   });
 
@@ -246,20 +248,14 @@ routeDetails:RouteDetails[]=[]
   filterRoutesByCustomer(customerId: any) {
     this.filteredRoutes = this.routeDetails.filter(route => route.customerId === customerId);
 
-    console.log("On Submit result of Customer",this.filteredRoutes)
+    console.log("FILITERED ROUTE",this.filteredRoutes)
   }
 
-  filiteredCusLedger :CustomerLedger[]=[]
-  getCustomerLedger( cId : any){
-    this.salesService.getLedgerByCustomer(this.cId).subscribe((res)=>{
-      this.cusLedger = res;
-      console.log("FILITERED CUST LED",this.cusLedger)
-    })
-    
-  }
+
+
 
   cusLedger :CustomerLedger[]=[]
-  getCustomerLedgerByCustomerId(){
+  getCustomerLedgerByCustomer(){
     this.salesService.getLedger().subscribe((res)=>{
       this.cusLedger = res;
       console.log("ALL CUST LED",this.cusLedger)
@@ -267,7 +263,92 @@ routeDetails:RouteDetails[]=[]
     
   }
 
+  filiterledger: CustomerLedger[] = [];
+  filiterLedgerByCustomer(customerId: any) {
+    this.filiterledger = this.cusLedger.filter(x => x.customerId === customerId);
+  
+    console.log("FILITERED LEDGER", this.filiterledger);
+  
+  // Assign debit value to const debit
+  const debit = this.filiterledger.find(x => x.debit !== undefined)?.debit;
+  console.log("DEBIT", debit);
+
+  // Assign amount value to const amount
+  const amount = this.dailyCollectionForm.get('amount')?.value;
+
+  // Type check to ensure amount is defined
+  if (amount !== null && amount !== undefined) {
+    // Calculate the difference between debit and amount
+    const difference: any = amount - (debit || 0);
+
+    console.log("DIFFERENCE", difference);
+
+    // Patch the credit balance form control
+    const creditBalanceControl = this.dailyCollectionForm.get('creditBalance');
+    if (creditBalanceControl !== null) {
+      creditBalanceControl.patchValue(difference);
+    }
+  }
+
+  }
+  onAmountChange() {
+    const customerId = this.dailyCollectionForm.get('customerId')?.value;
+    const amount = this.dailyCollectionForm.get('amount')?.value;
+  
+    if (customerId !== null && customerId !== undefined && amount !== null && amount !== undefined) {
+      const debit = this.filiterledger.find(x => x.debit !== undefined)?.debit || 0;
+  
+      // Reverse the calculation: debit - amount
+      const creditBalanceValue = debit - amount;
+  
+      // Patch the credit balance form control with type assertion
+      const creditBalanceControl = this.dailyCollectionForm.get('creditBalance');
+      if (creditBalanceControl !== null) {
+        creditBalanceControl.patchValue(creditBalanceValue as any);
+      }
+    }
+  }
+  
+  
+  // private updateCreditBalance() {
+  //   const customerId = this.dailyCollectionForm.get('customerId')?.value;
+  //   const amount = this.dailyCollectionForm.get('amount')?.value;
+  
+  //   console.log('customerId:', customerId);
+  //   console.log('amount:', amount);
+  
+  //   // Check if customerId and amount are not null or undefined
+  //   if (customerId !== null && customerId !== undefined && amount !== null && amount !== undefined) {
+  //     const debit = this.filiterledger.find(x => x.customerId === customerId)?.debit || 0;
+  //     const difference = amount - debit;
+  
+  //     console.log('debit:', debit);
+  //     console.log('difference:', difference);
+  
+  //     // Patch the credit balance form control
+  //     const creditBalanceControl = this.dailyCollectionForm.get('creditBalance');
+  //     if (creditBalanceControl !== null) {
+  //       console.log('Patching credit balance:', difference);
+  //       creditBalanceControl.patchValue(difference !== null ? difference : (null as any));
+  //     }
+  //   }
+  // }
+  
+  
+  
+
+  filiteredCusLedger :CustomerLedger[]=[]
+  getCustomerLedger( customerId : any){
+    // this.salesService.getLedgerByCustomer(this.cId).subscribe((res)=>{
+      this.filiteredCusLedger = this.cusLedger.filter(x=>x.customerId==customerId)
+      console.log("FILITERED CUST LED",this.cusLedger)
  
+    
+  }
+
+
+
+   
   filiterCustomerBalance(customerId: any): void {
     // this.salesService.getCustomerLedgerByCustomerId(customerId)
     //   .subscribe(
@@ -286,10 +367,12 @@ routeDetails:RouteDetails[]=[]
   
   onCustomerChange(): void {
     const selectedCustomerId = this.dailyCollectionForm.get('customerId')?.value;
-    this.filterRoutesByCustomer(selectedCustomerId); // You need to implement this method
-    this.cId = selectedCustomerId;
-    this.filiterCustomerBalance(selectedCustomerId);
-    // this.getCustomerLedgerByCustomerId(); // You need to implement this method
+    this.filterRoutesByCustomer(selectedCustomerId); 
+    // this.updateCreditBalance();
+    // this.updateCreditBalance
+    this.filiterLedgerByCustomer(selectedCustomerId)
+    this.getCustomerLedger(selectedCustomerId); /// You need to implement this method
+ // You need to implement this method
     
   }
 }  
