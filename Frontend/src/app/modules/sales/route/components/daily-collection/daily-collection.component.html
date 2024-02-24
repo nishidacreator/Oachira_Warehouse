@@ -29,13 +29,18 @@
                           <input matInput (input)="filterCustomer($event)" placeholder="Search">
                         </div>
                       </mat-form-field>
-                      &nbsp;&nbsp; &nbsp;&nbsp;<span *ngIf="filteredCustomer.length === 0" class="material-icons" style="font-size: 30px; color: rgb(0, 128, 55);" (click)="addCustomer()">playlist_add</span>
                    
-                 
                       <mat-option *ngFor="let item of filteredCustomer" [value]="item.id">
                           {{item.name}}
                       </mat-option>
-                    
+                      <mat-option  [value]="'add'" (click)="addCustomer()">
+                        <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);">playlist_add</span>
+                      </mat-option>
+
+
+                      <!-- &nbsp;&nbsp; &nbsp;&nbsp;<span *ngIf="filteredCustomer.length === 0" class="material-icons" style="font-size: 30px; color: rgb(0, 128, 55);" (click)="addCustomer()">playlist_add</span>
+                    -->
+                 
                      
                   </mat-select>
                     <mat-error *ngIf="dailyCollectionForm.controls['customerId'].hasError('required')">
