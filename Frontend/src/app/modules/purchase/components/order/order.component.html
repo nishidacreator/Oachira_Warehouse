@@ -74,16 +74,18 @@
           <mat-form-field class="full-width">
             <mat-label>Company</mat-label>
             <mat-select placeholder="" formControlName="companyId">
-             <!-- <mat-form-field class="full-width">
-                <div class="row">
-                  <mat-icon>search</mat-icon>
-                  <input matInput (input)="filterDistributor($event)" placeholder="Search">
-                </div>
-              </mat-form-field>  -->
-              <mat-option *ngFor="let item of company" [value]="item.id">
+
+
+                <mat-form-field class="search-field">
+                  <div class="row">
+                    <!-- <mat-icon>search</mat-icon> -->
+                    <input matInput (input)="filterCompany($event)" placeholder="Search">
+                  </div>
+                </mat-form-field>
+              <mat-option *ngFor="let item of filteredCompany" [value]="item.id">
                 {{item.companyName}} - {{item.companyCode}} - {{item.locationName}}
               </mat-option>
-              <mat-option  >
+              <mat-option   *ngIf="filteredCompany.length === 0" >
                 <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addCompany()">playlist_add</span>
               </mat-option>
             </mat-select>
@@ -92,6 +94,7 @@
             <!-- </mat-error> -->
           </mat-form-field>
         </div>
+
 
       </div>
 

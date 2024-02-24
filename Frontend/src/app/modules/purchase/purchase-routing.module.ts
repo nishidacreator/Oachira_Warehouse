@@ -11,6 +11,7 @@ import { ViewSlipComponent } from './components/view-slip/view-slip.component';
 import { SlipComponent } from './components/slip/slip.component';
 import { TransporterComponent } from './components/transporter/transporter.component';
 import { PoInvoiceComponent } from './components/po-invoice/po-invoice.component';
+import { RequestSlipComponent } from './components/request-slip/request-slip.component';
 
 const routes: Routes = [
   {path: 'purchaserequest', component: RequestComponent},
@@ -21,7 +22,7 @@ const routes: Routes = [
   {path: 'viewpurchaserequest', component: ViewRequestComponent},
   {path: 'viewpurchaseorder', component: ViewOrderComponent},
   {path: 'viewpurchaseentry', component: ViewEntryComponent},
-  {path: 'purchaserequest/view/:id', component: ViewPrComponent},
+  {path: 'purchaserequest/view/:id', component: RequestSlipComponent},
   {path: 'viewslip', component: ViewSlipComponent},
   {path: 'printslip/:id', component: SlipComponent},
   {path: 'transporter', component: TransporterComponent},

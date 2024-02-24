@@ -8,11 +8,11 @@
 
     <div class="col">
       <mat-card-header>
-        <button (mouseover)="showName('PO')" (mouseout)="hideName()" mat-mini-fab type="button" style="margin-left: auto;"
+        <!-- <button (mouseover)="showName('PO')" (mouseout)="hideName()" mat-mini-fab type="button" style="margin-left: auto;"
         aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" (click)="addPO()">
           <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'PO')">add_shopping_cart</mat-icon>
           <div class="icon_name" *ngIf="isHovered && hoveredButton === 'PO'">PO</div>
-        </button>
+        </button> -->
 
         <button (mouseover)="showName('PR')" (mouseout)="hideName()" mat-mini-fab type="button" style="margin-left: 10px;"
          aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" (click)="addPR()">
@@ -36,6 +36,7 @@
             <th>RequestNo</th>
             <th>Company</th>
             <th>Date</th>
+            <th>View</th>
             <th>Manage</th>
         </tr>
     </thead>

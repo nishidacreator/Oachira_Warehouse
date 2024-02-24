@@ -15,6 +15,7 @@ import { ViewEntryComponent } from './components/view-entry/view-entry.component
 import { ViewSlipComponent } from './components/view-slip/view-slip.component';
 import { TransporterComponent } from './components/transporter/transporter.component';
 import { PoInvoiceComponent } from './components/po-invoice/po-invoice.component';
+import { RequestSlipComponent } from './components/request-slip/request-slip.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { PoInvoiceComponent } from './components/po-invoice/po-invoice.component
     ViewEntryComponent,
     ViewSlipComponent,
     TransporterComponent,
-    PoInvoiceComponent
+    PoInvoiceComponent,
+    RequestSlipComponent
   ],
   imports: [
     CommonModule,
