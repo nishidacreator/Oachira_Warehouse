@@ -47,7 +47,7 @@ export class DailyCollectionComponent implements OnInit {
   ngOnInit(): void {
     this.getCustomer()
     this.getUsers()
-    this.getRoutes()
+    this.getRoute()
 
     this.dailyCollectionForm.get('userId')?.setValue(this.currentUser)
 this.cusId = this.dailyCollectionForm.get('customerId')
@@ -211,20 +211,33 @@ clearControls() {
     });
   }
   
-  routes: RouteDetails[] = [];
+  routes: Route[] = [];
   routeSub!: Subscription
  
   getRoutes(value?: string) {
-    this.routeSub = this.salesService.getRouteDetails().subscribe(data => {
+    this.routeSub = this.salesService.getRoute().subscribe(data => {
       this.routes = data;
-      if (value) {
-        this.filterRoutesByCustomer(+value); // Convert value to number if needed
-      }
+      // if (value) {
+      //   this.filterRoutesByCustomer(+value); // Convert value to number if needed
+      // }
     });
+  }
+
+rts:Route[]=[]
+  getRoute(){
+    this.routeSub = this.salesService.getRoute().subscribe(data => {
+      this.rts= data
+      
+      // if (value) {
+      //   this.filterRoutesByCustomer(+value); // Convert value to number if needed
+      // }
+    });
+    
+
   }
   filteredRoutes:RouteDetails[]=[]
   filterRoutesByCustomer(customerId: any) {
-    this.filteredRoutes = this.routes.filter(route => route.customerId === customerId);
+    // this.filteredRoutes = this.routes.filter(route => route.customerId === customerId);
   }
 
   // cusLedger :CustomerLedger[]=[]
@@ -248,16 +261,16 @@ clearControls() {
   filiterCusLedger!: CustomerLedger;
 
   filiterCustomerBalance(customerId: any): void {
-    this.salesService.getCustomerLedgerByCustomerId(customerId)
-      .subscribe(
-        (data: CustomerLedger) => {
-          this.filiterCusLedger = data;
-          console.log("Happy", this.filiterCusLedger);
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
+    // this.salesService.getCustomerLedgerByCustomerId(customerId)
+    //   .subscribe(
+    //     (data: CustomerLedger) => {
+    //       this.filiterCusLedger = data;
+    //       console.log("Happy", this.filiterCusLedger);
+    //     },
+    //     (error) => {
+    //       console.error(error);
+    //     }
+    //   );
   }
   
   // Add this method to your component
