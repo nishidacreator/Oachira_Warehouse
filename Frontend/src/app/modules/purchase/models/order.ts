@@ -1,5 +1,6 @@
 import { company } from "../../company/models/company";
 import { Distributor } from "../../products/models/distributor";
+import { User } from "../../users/models/user";
 import { PurchaseOrderDetails } from "./purchase-order-details";
 
 export interface Order {
@@ -14,6 +15,6 @@ export interface Order {
   distributor :Distributor ,
   company:company,
   orderDetails:PurchaseOrderDetails[]
- 
- 
+ user: User
+
 }
