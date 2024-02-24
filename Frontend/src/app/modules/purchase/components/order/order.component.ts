@@ -345,9 +345,8 @@ export class OrderComponent implements OnInit, OnDestroy {
   clearControls() {
     this.purchaseOrderForm.reset();
     // this.router.navigateByUrl("/login/purachases/viewpurchaserequest");
+
   }
-
-
   distributorSub!: Subscription;
   distributors: Distributor[] = [];
   getDistributor(value?: string){
@@ -451,6 +450,7 @@ export class OrderComponent implements OnInit, OnDestroy {
         let companyId: any = po.companyId;
         let date: any = po.date;
         let distributorId : any = po.distributorId;
+
 
 
 
