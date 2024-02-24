@@ -548,7 +548,7 @@ export class EntryComponent implements OnInit, OnDestroy {
   slipForm = this.fb.group({
     purchaseInvoice: ['', Validators.required],
     distributorId: [0],
-    invoiceNo:['', Validators.required],
+    invoiceNo:[''],
     amount: [''],
     entryId: [0],
     description: [''],
