@@ -149,12 +149,13 @@
                 <input matInput (input)="filterRoute($event)" placeholder="Search">
               </div>
             </mat-form-field> -->
-            <mat-option *ngFor="let item of routes" [value]="item.id">
-              {{item.routeName}}
-            </mat-option>
             <mat-option  [value]="'add'" (click)="addRoute()">
               <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);">playlist_add</span>
             </mat-option>
+            <mat-option *ngFor="let item of routes" [value]="item.id">
+              {{item.routeName}}
+            </mat-option>
+      
           </mat-select>
         </mat-form-field>
       </div>

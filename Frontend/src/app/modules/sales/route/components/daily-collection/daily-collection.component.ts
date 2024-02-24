@@ -47,7 +47,7 @@ export class DailyCollectionComponent implements OnInit {
   ngOnInit(): void {
     this.getCustomer()
     this.getUsers()
-    this.getRoute()
+    this.getRoutes()
 
     this.dailyCollectionForm.get('userId')?.setValue(this.currentUser)
 this.cusId = this.dailyCollectionForm.get('customerId')
@@ -201,7 +201,7 @@ clearControls() {
     {value : "Cash"},
     {value : "Cheque"}
   ]
-  addRoute(){
+  addRoute(value?: string){
     const dialogRef = this.dialog.open(RouteComponent, {
       data: { status: "true"},
     });
@@ -217,9 +217,9 @@ clearControls() {
   getRoutes(value?: string) {
     this.routeSub = this.salesService.getRoute().subscribe(data => {
       this.routes = data;
-      // if (value) {
-      //   this.filterRoutesByCustomer(+value); // Convert value to number if needed
-      // }
+      if (value) {
+        this.filterRoutesByCustomer(+value); // Convert value to number if needed
+      }
     });
   }
 
