@@ -17,7 +17,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, .15);
             font-size: 14px;
             line-height: 24px;" id="invoice-box">
-  <div class="invoice-details">
+  <div class="invoice-details" *ngIf="orders">
     <table cellpadding="0" cellspacing="0">
       <tr class="top">
         <td colspan="2">
@@ -32,7 +32,7 @@
                 Invoice #: {{orders.orderNo}}<br>
                 Created: {{ orders.date | date:'dd/MM/yyyy' }}<br>
 
-                <!-- Created By: {{orders.date}}<br> -->
+                Created By: {{orders.user?.name}}<br>
                 <!-- Additional invoice details like due date, etc. -->
               </td>
             </tr>
@@ -56,7 +56,7 @@
     </div>
     <div class="to-address" style="width: 45%;">
       <!-- To Address -->
-      
+
       {{orders.distributor.distributorName}}<br>
       {{orders.distributor.address1}}<br>
       {{orders.distributor.address2}}<br>

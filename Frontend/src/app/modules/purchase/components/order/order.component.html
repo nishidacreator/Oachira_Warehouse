@@ -46,8 +46,7 @@
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </div>
-        </div>
-        <div class="row">
+
         <div class="col">
           <mat-form-field class="full-width">
             <mat-label>Distributor</mat-label>
@@ -95,6 +94,29 @@
           </mat-form-field>
         </div>
 
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="User" formControlName="userId">
+              <mat-form-field class="search-field">
+                <div class="row">
+                  <!-- <mat-icon>search</mat-icon> -->
+                  <input matInput (input)="filterUser($event)" placeholder="Search">
+                </div>
+              </mat-form-field>
+              <!-- <span *ngIf="filteredUser.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55); margin-left: 20px;"
+                (click)="addUser()">playlist_add</span> -->
+              <mat-option *ngFor="let item of filteredUser" [value]="item.id">
+                {{item.name}}
+              </mat-option>
+              <mat-option  *ngIf="filteredUser.length === 0">
+                <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addUser()">playlist_add</span>
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="purchaseOrderForm.controls['userId'].hasError('required')">
+              User <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
 
       </div>
 
