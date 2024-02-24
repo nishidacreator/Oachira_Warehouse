@@ -63,6 +63,8 @@ const Bank = require('../company/bank');
 const Company = require('../company/company');
 const Team=require('../company/team');
 const TeamMember = require("../company/teamMember");
+const DailyCollection = require('../sales/models/dailyCollection');
+const CustomerLedger = require('../sales/models/customerLedger');
 
 
 
@@ -295,6 +297,19 @@ async function syncModel(){
     
   User.hasMany(TeamMember, { foreignKey: "userId", as: "register"});
   TeamMember.belongsTo(User, { foreignKey: "userId", as: "register"});
+
+  //-------------------Daily collections--------------------------------------------------
+  Customer.hasMany(DailyCollection, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+  DailyCollection.belongsTo(Customer)
+  
+  Route.hasMany(DailyCollection, {foreignKey : 'routeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+  DailyCollection.belongsTo(Route)
+
+  User.hasMany(DailyCollection, {foreignKey : 'userId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+  DailyCollection.belongsTo(User)
+
+  Customer.hasMany(CustomerLedger, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+  CustomerLedger.belongsTo(Customer)
 
     await sequelize.sync({alter: true})
 

@@ -11,7 +11,7 @@ const Company = require('../../company/company');
 const Product = require('../../products/models/product');
 const SecondaryUnit = require('../../products/models/secondaryUnit');
 
-router.post('/', async (req, res) => {
+router.post('/',authenticateToken, async (req, res) => {
     try {
         const { orderNo, distributorId, userId,companyId, warehouseId, date, status, orderDetails } = req.body;
 
@@ -43,7 +43,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.get('/', async (req, res) => {
+router.get('/', authenticateToken,async (req, res) => {
 
     const order = await Order.findAll({
         order:['id'],
