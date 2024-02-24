@@ -102,6 +102,10 @@ export class PurchaseService {
     return this._http.post(this.url+ "brokeraccount", data)
   }
 
+  updateBrokerAccountStatus(id:number, data:any){
+    return this._http.patch<BrokerAccount>(this.url+'brokeraccount/statusupdate/' + id, data);
+  }
+
   //PR
   addPR(data : any){
     return this._http.post(this.url + 'request', data)
