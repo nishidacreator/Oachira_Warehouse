@@ -25,7 +25,14 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./request.component.scss']
 })
 export class RequestComponent implements OnInit {
+  date1 = new Date();
+  currentYear = this.date1.getUTCFullYear();
+  currentMonth = this.date1.getUTCMonth() + 1;
+  currentDay = this.date1.getUTCDate();
 
+  todayDate = "12-01-2011";
+  finalMonth: any;
+  finalDay: any;
   constructor(private fb: FormBuilder, public purchaseService: PurchaseService, public dialog: MatDialog,
     private router: Router, private route: ActivatedRoute, private companyService: CompanyService,
     private userService: UsersService, private productService: ProductService) {
@@ -56,8 +63,21 @@ export class RequestComponent implements OnInit {
     if(requestId){
       this.patchData(requestId)
     }
-  }
+  // Set today's date
+  this.setTodaysDate();
 
+  }
+  setTodaysDate() {
+    // Calculate today's date in 'YYYY-MM-DD' format
+    let currentDate = new Date();
+    let year = currentDate.getFullYear();
+    let month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+    let day = currentDate.getDate().toString().padStart(2, '0');
+    this.todayDate = `${year}-${month}-${day}`;
+
+    // Set the value of the "date" form control
+    this.purchaseRequestForm.get("date")?.setValue(this.todayDate);
+}
   purchaseRequestForm = this.fb.group({
     requestNo: ["", Validators.required],
     companyId: [Validators.required],
