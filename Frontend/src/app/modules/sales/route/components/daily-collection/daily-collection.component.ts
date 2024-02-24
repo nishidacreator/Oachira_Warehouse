@@ -48,9 +48,12 @@ export class DailyCollectionComponent implements OnInit {
     this.getCustomer()
     this.getUsers()
     this.getRoutes()
+    this.getRouteDetails();
+    // this.filterRoutesByCustomer(customerId: any)
+
 
     this.dailyCollectionForm.get('userId')?.setValue(this.currentUser)
-this.cusId = this.dailyCollectionForm.get('customerId')
+    this.cusId = this.dailyCollectionForm.get('customerId')
 
   }
 
@@ -223,10 +226,13 @@ clearControls() {
     });
   }
 
-rts:Route[]=[]
-  getRoute(){
-    this.routeSub = this.salesService.getRoute().subscribe(data => {
-      this.rts= data
+
+routeDetails:RouteDetails[]=[]
+  getRouteDetails(){
+    this.routeSub = this.salesService.getRouteDetails().subscribe(res => {
+      this.routeDetails= res
+
+      console.log("ROUTE DETAILS",this.routeDetails)
       
       // if (value) {
       //   this.filterRoutesByCustomer(+value); // Convert value to number if needed
@@ -235,31 +241,33 @@ rts:Route[]=[]
     
 
   }
+
   filteredRoutes:RouteDetails[]=[]
   filterRoutesByCustomer(customerId: any) {
-    // this.filteredRoutes = this.routes.filter(route => route.customerId === customerId);
+    this.filteredRoutes = this.routeDetails.filter(route => route.customerId === customerId);
+
+    console.log("On Submit result of Customer",this.filteredRoutes)
   }
 
-  // cusLedger :CustomerLedger[]=[]
-  // getCustomerLedgerByCustomerId( cId : any){
-  //   this.salesService.getLedgerByCustomer(this.cId).subscribe((res)=>{
-  //     this.cusLedger = res;
-  //     console.log("Jiiiiii",this.cusLedger)
-  //   })
+  filiteredCusLedger :CustomerLedger[]=[]
+  getCustomerLedger( cId : any){
+    this.salesService.getLedgerByCustomer(this.cId).subscribe((res)=>{
+      this.cusLedger = res;
+      console.log("FILITERED CUST LED",this.cusLedger)
+    })
     
-  // }
+  }
 
   cusLedger :CustomerLedger[]=[]
   getCustomerLedgerByCustomerId(){
     this.salesService.getLedger().subscribe((res)=>{
       this.cusLedger = res;
-      console.log("Jiiiiii",this.cusLedger)
+      console.log("ALL CUST LED",this.cusLedger)
     })
     
   }
 
-  filiterCusLedger!: CustomerLedger;
-
+ 
   filiterCustomerBalance(customerId: any): void {
     // this.salesService.getCustomerLedgerByCustomerId(customerId)
     //   .subscribe(
@@ -278,9 +286,11 @@ rts:Route[]=[]
   
   onCustomerChange(): void {
     const selectedCustomerId = this.dailyCollectionForm.get('customerId')?.value;
+    this.filterRoutesByCustomer(selectedCustomerId); // You need to implement this method
     this.cId = selectedCustomerId;
     this.filiterCustomerBalance(selectedCustomerId);
     // this.getCustomerLedgerByCustomerId(); // You need to implement this method
-    this.filterRoutesByCustomer(selectedCustomerId); // You need to implement this method
+    
   }
 }  
+

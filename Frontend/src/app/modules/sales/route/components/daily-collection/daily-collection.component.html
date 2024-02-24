@@ -152,9 +152,15 @@
             <mat-option  [value]="'add'" (click)="addRoute()">
               <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);">playlist_add</span>
             </mat-option>
-            <mat-option *ngFor="let item of routes" [value]="item.id">
-              {{item.routeName}}
+            <!-- filteredRoutes -->
+
+            <mat-option *ngFor="let item of filteredRoutes" [value]="item.id">
+              {{item.route.routeName}}
             </mat-option>
+
+            <!-- <mat-option *ngFor="let item of routes" [value]="item.id">
+              {{item.routeName}}
+            </mat-option> -->
       
           </mat-select>
         </mat-form-field>
