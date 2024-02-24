@@ -7,6 +7,9 @@ import { PurchaseRequest } from './models/purchase-request';
 import { Entry } from './models/entry';
 import { Slip } from './models/slip';
 import { Transporter } from './models/transporter';
+import { PurchaseTransporter } from './models/purchase-transporter';
+import { Broker } from './models/broker';
+import { BrokerAccount } from './models/broker-account';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +36,72 @@ export class PurchaseService {
   addTransporter(data : any){
     return this._http.post(this.url+ "transporter", data)
   }
+
+  addPurchaseTransporter(data : any){
+    return this._http.post(this.url+ "purchasetransporter", data)
+  }
+
+  getPurchaseTransporter(): Observable<PurchaseTransporter[]>{
+    return this._http.get<PurchaseTransporter[]>(this.url+'purchasetransporter');
+  }
+
+  getPurchaseTransporterById(id: number): Observable<PurchaseTransporter>{
+    return this._http.get<PurchaseTransporter>(this.url+'purchasetransporter/'+id);
+  }
+
+  updatePurchaseTransporter(id:Number, data:any){
+    return this._http.patch<PurchaseTransporter>(this.url+'purchasetransporter/' + id, data);
+  }
+
+  deletePurchaseTransporter(id:Number){
+    return this._http.delete(this.url+'purchasetransporter/' +id);
+  }
+
+  updatePurchaseTransporterStatus(id:number, data:any){
+    return this._http.patch<PurchaseTransporter>(this.url+'purchasetransporter/statusupdate/' + id, data);
+  }
+
+  // BROKER
+  updateBroker(id:Number, data:any){
+    return this._http.patch<Broker>(this.url+'broker/' + id, data);
+  }
+
+  deleteBroker(id:Number){
+    return this._http.delete(this.url+'broker/' +id);
+  }
+
+  getBroker(): Observable<Broker[]>{
+    return this._http.get<Broker[]>(this.url+'broker');
+  }
+
+  getBrokerById(id: number): Observable<Broker>{
+    return this._http.get<Broker>(this.url+'broker/'+id);
+  }
+
+  addBroker(data : any){
+    return this._http.post(this.url+ "broker", data)
+  }
+
+  updateBrokerAccount(id:Number, data:any){
+    return this._http.patch<BrokerAccount>(this.url+'brokeraccount/' + id, data);
+  }
+
+  deleteBrokerAccount(id:Number){
+    return this._http.delete(this.url+'brokeraccount/' +id);
+  }
+
+  getBrokerAccount(): Observable<BrokerAccount[]>{
+    return this._http.get<BrokerAccount[]>(this.url+'brokeraccount');
+  }
+
+  getBrokerAccountById(id: number): Observable<BrokerAccount>{
+    return this._http.get<BrokerAccount>(this.url+'brokeraccount/'+id);
+  }
+
+  addBrokerAccount(data : any){
+    return this._http.post(this.url+ "brokeraccount", data)
+  }
+
   //PR
   addPR(data : any){
     return this._http.post(this.url + 'request', data)
@@ -121,5 +190,7 @@ export class PurchaseService {
   updateSlip(id:Number, data:any){
     return this._http.patch<Slip>(this.url+'slip/'+id, data);
   }
+
+
 
 }

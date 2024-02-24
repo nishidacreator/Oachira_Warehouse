@@ -1,0 +1,130 @@
+
+<form [formGroup]="brokerForm" (ngSubmit)="onSubmit()">
+  <mat-card class="background">
+    <div class="row" >
+      <div class="col">
+        <mat-card-header>
+          <mat-card-title> BROKER</mat-card-title>
+        </mat-card-header>
+      </div>
+      <div class="col" *ngIf="addStatus != 'true'">
+        <mat-card-header>
+          <button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon"
+          class="d-block mr-0 ml-auto" onClick="history.back()" style="margin-left: auto;">
+            <mat-icon>exit_to_app</mat-icon>
+          </button>
+        </mat-card-header>
+      </div>
+    </div>
+    <mat-card-content >
+
+      <div class="row box">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Product</mat-label>
+            <mat-select formControlName="productId">
+              <mat-form-field class="full-width">
+                <div class="row">
+                  <input matInput (input)="filterOptions($event)" placeholder="Search">
+                </div>
+              </mat-form-field>
+              <mat-option *ngFor="let option of filteredOptions" [value]="option.id">
+                {{ option.productName }}
+              </mat-option>
+
+              <mat-option *ngIf="product.length === 0 || filteredOptions.length === 0" [value]="'add'">
+                <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);"
+                  (click)="addNewProduct()">playlist_add</span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Name" formControlName="brokerName">
+            <mat-error *ngIf="brokerForm.controls['brokerName'].hasError('required')">
+             Name <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="rate" formControlName="rate">
+            <mat-error *ngIf="brokerForm.controls['rate'].hasError('required')">
+              Field <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+      </div>
+      <!-- <br><div>
+        <mat-slide-toggle formControlName="status">Status</mat-slide-toggle>
+      </div> -->
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button *ngIf="!editstatus" mat-raised-button  type="submit" [disabled]="brokerForm.pristine || !brokerForm.valid ">
+        <mat-icon style="font-size: 25px;">save</mat-icon>
+      </button>&nbsp;&nbsp;
+      <button *ngIf="editstatus" mat-raised-button  type="button" [disabled]="!brokerForm.valid" (click)="editFunction()">
+        <mat-icon style="font-size: 25px;">edit_note</mat-icon>
+      </button>&nbsp;&nbsp;
+
+      <button mat-raised-button *ngIf="addStatus === 'true'" type="button" class="cancel-button" (click)="onCancelClick()">
+        <mat-icon style="font-size: 25px;">cancel_presentation</mat-icon>
+      </button>
+    </mat-card-actions>
+
+  </mat-card>
+
+</form>
+
+
+<!-- --------------------------------------------------------------------------------------------------------------------------- -->
+
+<br><mat-card *ngIf="addStatus != 'true'">
+  <mat-card-header>
+    <mat-card-title style="color: green;"> BROKERS </mat-card-title>
+  </mat-card-header>
+
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+  <div style="overflow-x: auto;">
+    <table class="styled-table">
+      <thead>
+          <tr>
+              <th>Id</th>
+              <!-- <th>Image</th> -->
+              <th>BrokerName</th>
+              <th>Product</th>
+              <th>Rate</th>
+
+              <th>Manage</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let element of filtered let i=index">
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.id}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.brokerName}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.product.productName}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.rate}}</td>
+
+              <td [style.background-color]="element.status == false ? 'pink' : null">
+                <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+                <i  (click)="editBroker(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
+                &nbsp;&nbsp;
+                <i  (click)="deleteBroker(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+              </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageIndex]="currentPage - 1"
+  (page)="onPageChange($event)" [pageSizeOptions]="[10, 20,30,40,50,100]">
+</mat-paginator> -->
+</mat-card>

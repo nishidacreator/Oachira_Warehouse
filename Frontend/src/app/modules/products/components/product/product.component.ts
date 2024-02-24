@@ -66,7 +66,7 @@ export class ProductComponent implements OnInit {
     gstId : [],
     hsnId : [],
     reorderQuantity : [],
-    warehouseLoyalityPoint:[], 
+    warehouseLoyalityPoint:[],
      retailLoyalityPoint:[],
      isSpecial:[],
      openingStock:[],
@@ -199,7 +199,7 @@ addPrimaryUnit(){
   });
 
   dialogRef.afterClosed().subscribe((result) => {
-   
+
   });
 
 }

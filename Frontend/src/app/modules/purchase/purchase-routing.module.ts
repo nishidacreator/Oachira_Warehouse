@@ -12,8 +12,13 @@ import { SlipComponent } from './components/slip/slip.component';
 import { TransporterComponent } from './components/transporter/transporter.component';
 import { PoInvoiceComponent } from './components/po-invoice/po-invoice.component';
 import { RequestSlipComponent } from './components/request-slip/request-slip.component';
+import { PurchaseTransporterComponent } from './components/purchase-transporter/purchase-transporter.component';
+import { PrintPurchaseTransporterComponent } from './components/print-purchase-transporter/print-purchase-transporter.component';
+import { PurchaseManagementComponent } from './components/purchase-management/purchase-management.component';
+import { BrokerComponent } from './components/broker/broker.component';
 
 const routes: Routes = [
+  {path: '', component: PurchaseManagementComponent},
   {path: 'purchaserequest', component: RequestComponent},
   {path: 'purchaserequest/:id', component: RequestComponent},
   {path: 'purchaseorder', component: OrderComponent},
@@ -25,8 +30,13 @@ const routes: Routes = [
   {path: 'purchaserequest/view/:id', component: RequestSlipComponent},
   {path: 'viewslip', component: ViewSlipComponent},
   {path: 'printslip/:id', component: SlipComponent},
+  {path: 'viewtransportslip', component: PurchaseTransporterComponent},
+  {path: 'printtransportslip/:id', component: PrintPurchaseTransporterComponent},
+  {path: 'viewbrokerslip', component: PurchaseTransporterComponent},
+  {path: 'printbrokerslip/:id', component: PrintPurchaseTransporterComponent},
   {path: 'transporter', component: TransporterComponent},
   {path: 'purchaseOrder/view/:id', component: PoInvoiceComponent},
+  {path: 'broker', component: BrokerComponent},
 ];
 
 @NgModule({

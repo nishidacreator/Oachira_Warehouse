@@ -16,6 +16,12 @@ import { ViewSlipComponent } from './components/view-slip/view-slip.component';
 import { TransporterComponent } from './components/transporter/transporter.component';
 import { PoInvoiceComponent } from './components/po-invoice/po-invoice.component';
 import { RequestSlipComponent } from './components/request-slip/request-slip.component';
+import { PurchaseTransporterComponent } from './components/purchase-transporter/purchase-transporter.component';
+import { PrintPurchaseTransporterComponent } from './components/print-purchase-transporter/print-purchase-transporter.component';
+import { PurchaseManagementComponent } from './components/purchase-management/purchase-management.component';
+import { BrokerComponent } from './components/broker/broker.component';
+import { BrokerageComponent } from './components/brokerage/brokerage.component';
+import { PrintBrokerSlipComponent } from './components/print-broker-slip/print-broker-slip.component';
 
 
 @NgModule({
@@ -32,7 +38,13 @@ import { RequestSlipComponent } from './components/request-slip/request-slip.com
     ViewSlipComponent,
     TransporterComponent,
     PoInvoiceComponent,
-    RequestSlipComponent
+    RequestSlipComponent,
+    PurchaseTransporterComponent,
+    PrintPurchaseTransporterComponent,
+    PurchaseManagementComponent,
+    BrokerComponent,
+    BrokerageComponent,
+    PrintBrokerSlipComponent
   ],
   imports: [
     CommonModule,

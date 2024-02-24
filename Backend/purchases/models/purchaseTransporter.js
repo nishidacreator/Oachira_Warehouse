@@ -2,6 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../../utils/db');
 
 const PurchaseTransporter = sequelize.define('purchasetransporter',{
+    invoiceNo: {type : DataTypes.STRING, allowNull : false},
     transporterId : {type : DataTypes.INTEGER, allowNull : false},
     amount : {type : DataTypes.FLOAT, defaultValue : 0},
     date: {type : DataTypes.DATEONLY, defaultValue :new Date()},
@@ -10,8 +11,9 @@ const PurchaseTransporter = sequelize.define('purchasetransporter',{
     noOfBags: {type : DataTypes.STRING},
     advance: {type : DataTypes.FLOAT, defaultValue: 0},
     entryId: {type : DataTypes.INTEGER},
-    status: {type : DataTypes.STRING}
-
+    status: {type : DataTypes.STRING, defaultValue: "generated"},
+    closedDate: {type : DataTypes.DATEONLY},
+    chequeNo: {type : DataTypes.STRING}
 },
 {
     freezeTableName: true,

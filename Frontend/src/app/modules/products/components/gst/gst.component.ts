@@ -82,8 +82,6 @@ export class GstComponent implements OnInit {
 
   clearControls(){
     this.gstForm.reset()
-    this.gstForm.setErrors(null)
-    Object.keys(this.gstForm.controls).forEach(key=>{this.gstForm.get(key)?.setErrors(null)})
     this.getGst()
   }
 
