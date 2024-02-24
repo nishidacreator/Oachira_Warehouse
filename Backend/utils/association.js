@@ -318,8 +318,8 @@ async function syncModel(){
   User.hasMany(TeamMember, { foreignKey: "userId", as: "register"});
   TeamMember.belongsTo(User, { foreignKey: "userId", as: "register"});
 
-  Company.hasMany(DailyCollection, {foreignKey : 'companyId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-  DailyCollection.belongsTo(Company)
+  Customer.hasMany(DailyCollection, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+  DailyCollection.belongsTo(Customer)
 
   await sequelize.sync({alter: true})
 
