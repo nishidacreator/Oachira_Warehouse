@@ -6,6 +6,14 @@
     "roleId": 1,
     "status": true
     },
+    
+    {"name": "Anu",
+    "phoneNumber": "1234567890",
+    "password": "123456",
+    "roleId": 1,
+    "status": true
+    },
+
     {"name": "qwerty",
     "phoneNumber": "2222222222",
     "password": "123456",

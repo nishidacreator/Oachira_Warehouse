@@ -2,12 +2,12 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../../utils/db');
 
 const Order = sequelize.define('order',{
-    orderNo : {type : DataTypes.STRING},
-    distributorId : {type : DataTypes.INTEGER},
+    orderNo : {type : DataTypes.STRING , allowNull : false},
+    distributorId : {type : DataTypes.INTEGER, allowNull : false},
     userId : {type : DataTypes.INTEGER},
-    companyId : { type : DataTypes.INTEGER},
+    companyId : { type : DataTypes.INTEGER, allowNull : false},
     // warehouseId: {type : DataTypes.INTEGER},
-    date: {type : DataTypes.DATEONLY, defaultValue: Date.now()},
+    date: {type : DataTypes.DATEONLY, defaultValue: Date.now(), allowNull : false},
     status: {type : DataTypes.STRING},
 
 },

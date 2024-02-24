@@ -38,9 +38,14 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     // this.warehouseSub?.unsubscribe();
+    this.productSub?.unsubscribe();
     this.userSub?.unsubscribe();
     this.productSub?.unsubscribe();
     this.unitSub?.unsubscribe();
+    this.prSub?.unsubscribe();
+    this.submitSub.unsubscribe();
+    this.poIdSub .unsubscribe();
+    this.updateSub .unsubscribe();
   }
   date1 = new Date();
   currentYear = this.date1.getUTCFullYear();
@@ -86,7 +91,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     companyId: [Validators.required],
     userId: [],
     date: ["", Validators.required],
-    distributorId:[],
+    distributorId:[ Validators.required],
     orderDetails: this.fb.array([]),
   });
 
@@ -202,7 +207,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   productSub!: Subscription;
   product: Product[] = [];
   getProduct(value?:any){
-    this.productService.getProduct().subscribe((products) =>{
+  this.productSub =  this.productService.getProduct().subscribe((products) =>{
       this.product = products
       this.filteredOptions = products
       if(value){
@@ -455,8 +460,9 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   poId!: number;
+  poIdSub!: Subscription;
   patchData(id: number){
-    this.purchaseService.getPOById(id).subscribe(res=>{
+   this.poIdSub =  this.purchaseService.getPOById(id).subscribe(res=>{
       this.poId = id;
         this.editstatus = true
         let po = res
@@ -501,8 +507,9 @@ export class OrderComponent implements OnInit, OnDestroy {
     })
   }
 
+  updateSub!: Subscription; 
   update(){
-    this.purchaseService.updatePO(this.poId, this.purchaseOrderForm.getRawValue()).subscribe((res)=>{
+   this.updateSub =  this.purchaseService.updatePO(this.poId, this.purchaseOrderForm.getRawValue()).subscribe((res)=>{
       this.clearControls()
       history.back()
     })
