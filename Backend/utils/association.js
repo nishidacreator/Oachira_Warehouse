@@ -183,7 +183,7 @@ async function syncModel(){
     Order.hasMany(Entry, {foreignKey : 'orderId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Entry.belongsTo(Order, {foreignKey : 'orderId'})
 
-    Product.hasMany(Brocker, {foreignKey : 'productId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Product.hasMany(Brocker, {foreignKey : 'productId', onDelete : 'CASCADE'})
     Brocker.belongsTo(Product, {foreignKey : 'productId'})
 
     Brocker.hasMany(BrockerAccount, {foreignKey : 'brockerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
@@ -210,7 +210,6 @@ async function syncModel(){
     //ROUTE SALE 
     Bank.hasMany(Company, {foreignKey : 'companyId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Company.belongsTo(Bank)
-
 
     Customer.hasMany(LoyaltyPoint, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     LoyaltyPoint.belongsTo(Customer)
@@ -292,6 +291,7 @@ async function syncModel(){
 
     SecondaryUnit.hasMany(RouteSEDetails, {foreignKey : 'secondaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     RouteSEDetails.belongsTo(SecondaryUnit, {foreignKey : 'secondaryUnitId'})
+
     SecondaryUnit.hasMany(OrderDetails, {foreignKey : 'secondaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     OrderDetails.belongsTo(SecondaryUnit, {foreignKey : 'secondaryUnitId'})
 
