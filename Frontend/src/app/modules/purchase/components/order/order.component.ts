@@ -42,7 +42,14 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.productSub?.unsubscribe();
     this.unitSub?.unsubscribe();
   }
+  date1 = new Date();
+  currentYear = this.date1.getUTCFullYear();
+  currentMonth = this.date1.getUTCMonth() + 1;
+  currentDay = this.date1.getUTCDate();
 
+  todayDate = "12-01-2011";
+  finalMonth: any;
+  finalDay: any;
   id!: number;
   addStatus!: string;
   editstatus!: boolean;
@@ -59,7 +66,20 @@ export class OrderComponent implements OnInit, OnDestroy {
       this.patchData(orderId)
     }
     this.getDistributor()
+    this.setTodaysDate();
+
   }
+  setTodaysDate() {
+    // Calculate today's date in 'YYYY-MM-DD' format
+    let currentDate = new Date();
+    let year = currentDate.getFullYear();
+    let month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+    let day = currentDate.getDate().toString().padStart(2, '0');
+    this.todayDate = `${year}-${month}-${day}`;
+
+    // Set the value of the "date" form control
+    this.purchaseOrderForm.get("date")?.setValue(this.todayDate);
+}
 
   purchaseOrderForm = this.fb.group({
     orderNo: ["", Validators.required],
@@ -299,12 +319,12 @@ export class OrderComponent implements OnInit, OnDestroy {
       } else {
         // If there are no employees in the array, set the employeeId to 'EMP001'
         this.nextId = 0o1;
-        this.prefix = "PO#";
+        this.prefix = "PO";
       }
 
       const paddedId = `${this.prefix}${this.nextId
         .toString()
-        .padStart(3, "0")}`;
+        .padStart(3, "1")}`;
 
       this.ivNum = paddedId;
 
