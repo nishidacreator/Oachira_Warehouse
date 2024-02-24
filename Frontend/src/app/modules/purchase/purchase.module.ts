@@ -18,6 +18,8 @@ import { PurchaseTransporterComponent } from './components/purchase-transporter/
 import { PrintPurchaseTransporterComponent } from './components/print-purchase-transporter/print-purchase-transporter.component';
 import { PurchaseManagementComponent } from './components/purchase-management/purchase-management.component';
 import { BrokerComponent } from './components/broker/broker.component';
+import { BrokerageComponent } from './components/brokerage/brokerage.component';
+import { PrintBrokerSlipComponent } from './components/print-broker-slip/print-broker-slip.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { BrokerComponent } from './components/broker/broker.component';
     PurchaseTransporterComponent,
     PrintPurchaseTransporterComponent,
     PurchaseManagementComponent,
-    BrokerComponent
+    BrokerComponent,
+    BrokerageComponent,
+    PrintBrokerSlipComponent
   ],
   imports: [
     CommonModule,

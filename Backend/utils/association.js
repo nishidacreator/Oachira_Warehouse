@@ -66,7 +66,7 @@ const TeamMember = require("../company/teamMember");
 const PurchaseTransporter = require('../purchases/models/purchaseTransporter');
 const Transporter = require('../purchases/models/transporter');
 const Brocker = require('../purchases/models/brocker');
-const BrockerAccount = require('../purchases/models/brockeraccount');
+const BrockerAccount = require('../purchases/models/brockerAccount');
 
 
 

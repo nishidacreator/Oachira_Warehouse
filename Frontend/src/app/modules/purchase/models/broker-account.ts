@@ -7,7 +7,7 @@ export interface BrokerAccount {
   date : Date
   bagNo : number
   amount : number
-  status : boolean
+  status : string
   invoiceNo: string
 
   id: number;

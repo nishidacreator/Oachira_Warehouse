@@ -30,6 +30,8 @@ const routes: Routes = [
   {path: 'printslip/:id', component: SlipComponent},
   {path: 'viewtransportslip', component: PurchaseTransporterComponent},
   {path: 'printtransportslip/:id', component: PrintPurchaseTransporterComponent},
+  {path: 'viewbrokerslip', component: PurchaseTransporterComponent},
+  {path: 'printbrokerslip/:id', component: PrintPurchaseTransporterComponent},
   {path: 'transporter', component: TransporterComponent},
   {path: 'broker', component: BrokerComponent},
 ];

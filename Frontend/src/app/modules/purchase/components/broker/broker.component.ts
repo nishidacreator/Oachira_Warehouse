@@ -98,7 +98,7 @@ export class BrokerComponent implements OnInit, OnDestroy {
     this.submit = this.purchaseService.addBroker(this.brokerForm.getRawValue()).subscribe(response=>{
       this._snackBar.open("Broker added successfully...","" ,{duration:3000})
       let data = {
-        gst: response
+        broker: response
       }
       this.dialogRef?.close(data);
       this.clearControls()

@@ -7,7 +7,7 @@ const BrockerAccount = sequelize.define('brockerAccount',{
     date : {type : DataTypes.DATEONLY, allowNull : false},
     bagNo : {type : DataTypes.INTEGER, allowNull : false},
     amount : {type : DataTypes.FLOAT, allowNull : false},
-    status : {type : DataTypes.BOOLEAN, allowNull : false},
+    status : {type : DataTypes.STRING, defaultValue : "opened"},
 },
 {
     freezeTableName: true,

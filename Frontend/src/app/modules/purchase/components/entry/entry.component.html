@@ -1,6 +1,6 @@
 <form [formGroup]="purchaseEntryForm" >
   <mat-card class="background">
-    <div class="row box">
+    <div class="row">
       <div class="col">
         <mat-card-header>
           <mat-card-title> PURCHASE ENTRY </mat-card-title>
@@ -390,7 +390,7 @@
 
               <div *ngIf="purchaseEntryForm.controls['status'].value !='SlipIssued' && !addStatus">
                 <button (mouseover)="showName('Close')" (mouseout)="hideName()" mat-raised-button type="submit" class="btn btn-success"
-                [disabled]="!purchaseEntryForm.valid" style="margin-right: 10px;" (click)="onSubmit('close')">
+                [disabled]="!purchaseEntryForm.valid" style="margin-right: 10px;" (click)="generateTransSlip('close')">
                 <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'Close')">cancel_schedule_send</mat-icon>
                   <div class="icon_name" *ngIf="isHovered && hoveredButton === 'Close'">Save&Close</div>
                 </button>
@@ -398,7 +398,7 @@
 
               <div *ngIf="purchaseEntryForm.controls['status'].value !='SlipIssued' && !addStatus">
                 <button (mouseover)="showName('Next')" (mouseout)="hideName()" mat-raised-button type="submit" class="btn btn-success"
-                [disabled]="!purchaseEntryForm.valid" (click)="onSubmit('next')">
+                [disabled]="!purchaseEntryForm.valid" (click)="generateTransSlip('next')">
                 <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'Next')">next_plan</mat-icon>
                   <div class="icon_name" *ngIf="isHovered && hoveredButton === 'Next'">Save&Next</div>
                 </button>
@@ -488,7 +488,7 @@
 
           <mat-card-actions>
             <div class="row box">
-              <button (mouseover)="showName('print')" (mouseout)="hideName()" mat-raised-button type="button" (click)="generateTransSlip('print')"
+              <button (mouseover)="showName('print')" (mouseout)="hideName()" mat-raised-button type="button" (click)="generateBrokerSlip('print')"
                 *ngIf="!addStatus" [disabled]="!purchaseTransportForm.valid" style="margin-right: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto">
                 <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'print')">print</mat-icon>
                 <div class="icon_name" *ngIf="isHovered && hoveredButton === 'print'">Save&Print</div>
@@ -496,7 +496,7 @@
 
               <div *ngIf="purchaseEntryForm.controls['status'].value !='SlipIssued' && !addStatus">
                 <button (mouseover)="showName('Close')" (mouseout)="hideName()" mat-raised-button type="submit" class="btn btn-success"
-                [disabled]="!purchaseEntryForm.valid" style="margin-right: 10px;" (click)="onSubmit('close')">
+                [disabled]="!purchaseEntryForm.valid" style="margin-right: 10px;" (click)="generateBrokerSlip('close')">
                 <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'Close')">cancel_schedule_send</mat-icon>
                   <div class="icon_name" *ngIf="isHovered && hoveredButton === 'Close'">Save&Close</div>
                 </button>
@@ -504,7 +504,7 @@
 
               <div *ngIf="purchaseEntryForm.controls['status'].value !='SlipIssued' && !addStatus">
                 <button (mouseover)="showName('Next')" (mouseout)="hideName()" mat-raised-button type="submit" class="btn btn-success"
-                [disabled]="!purchaseEntryForm.valid" (click)="onSubmit('next')">
+                [disabled]="!purchaseEntryForm.valid" (click)="generateBrokerSlip('next')">
                 <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'Next')">next_plan</mat-icon>
                   <div class="icon_name" *ngIf="isHovered && hoveredButton === 'Next'">Save&Next</div>
                 </button>

@@ -66,7 +66,7 @@ export class EntryComponent implements OnInit, OnDestroy {
     this.slipInvSub?.unsubscribe();
   }
 
-  entryStatus: boolean = false;
+  entryStatus: boolean = true;
   isInvoiceNoDisabled: boolean = true;
   addStatus: boolean = false;
   ngOnInit(): void {
@@ -256,7 +256,7 @@ export class EntryComponent implements OnInit, OnDestroy {
       } else {
         // If there are no employees in the array, set the employeeId to 'EMP001'
         let nextId = 0o0;
-        let prefix = "INV-TS-000";
+        let prefix = "INV-TS-001";
         const paddedId = `${prefix}${nextId.toString().padStart(3, "0")}`;
 
         this.ivNum = paddedId;
@@ -327,7 +327,11 @@ export class EntryComponent implements OnInit, OnDestroy {
       if(type === "print"){
         this.router.navigateByUrl('/login/purachases/printtransportslip/'+op.id)
       }else if(type === "next"){
-        this.stepper.next();
+        this.selectedIndex = 3;
+        this.generateBrokerInvoiceNumber()
+        this.getBroker()
+      }else if(type === "close"){
+        history.back();
       }
     })
   }
@@ -419,7 +423,7 @@ export class EntryComponent implements OnInit, OnDestroy {
       } else {
         // If there are no employees in the array, set the employeeId to 'EMP001'
         let nextId = 0o0;
-        let prefix = "INV-BS-000";
+        let prefix = "INV-BS-001";
         const paddedId = `${prefix}${nextId.toString().padStart(3, "0")}`;
 
         this.ivNum = paddedId;
@@ -479,6 +483,8 @@ export class EntryComponent implements OnInit, OnDestroy {
       return alert("Please enter details completely");
     }
     this.brokerStatus = true;
+    console.log(this.brokerageForm.value);
+
     let data = {
       ...this.brokerageForm.value
     }
@@ -491,6 +497,8 @@ export class EntryComponent implements OnInit, OnDestroy {
         this.router.navigateByUrl('/login/purachases/printtransportslip/'+op.id)
       }else if(type === "next"){
         this.stepper.next();
+      }else if(type === "close"){
+        history.back();
       }
     })
   }
@@ -628,7 +636,7 @@ export class EntryComponent implements OnInit, OnDestroy {
       } else {
         // If there are no employees in the array, set the employeeId to 'EMP001'
         this.nextId = 0o0;
-        this.prefix = "INV-PRS-000";
+        this.prefix = "INV-PRS-001";
 
         const paddedId = `${this.prefix}${this.nextId.toString().padStart(3, "0")}`;
 

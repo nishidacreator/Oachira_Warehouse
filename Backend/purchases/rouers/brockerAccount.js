@@ -4,15 +4,16 @@ const router = express.Router();
 const BrockerAccount = require('../models/brockerAccount')
 const Distributor = require('../../products/models/distributor');
 const Entry = require('../models/entry');
+const Brocker = require('../models/brocker');
 
 const authenticateToken = require('../../middleware/authorization');
 
 router.post('/', async (req, res) => {
     try {
     
-    const { entryId, distributorId, purchaseInvoice, amount,invoiceNo, description , date, contactPerson , status  } = req.body;
+    const { brockerId, entryId, date, bagNo, amount, status  } = req.body;
 
-            const brockeraccount = new BrockerAccount({ entryId, distributorId, purchaseInvoice, amount , invoiceNo, description , date, contactPerson , status  });
+            const brockeraccount = new BrockerAccount({  brockerId, entryId, date, bagNo, amount, status  });
 
             await brockeraccount.save();
 
