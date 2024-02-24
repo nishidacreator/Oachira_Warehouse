@@ -13,6 +13,8 @@ const Gst = require('../../products/models/gst');
 const Hsn = require('../../products/models/hsn');
 const Category = require('../../products/models/category');
 const SubCategory = require('../../products/models/subCategory');
+const { route } = require('./routeSODetails');
+const sequelize = require('../../utils/db');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
@@ -150,5 +152,29 @@ router.patch('/:id', authenticateToken, async(req,res)=>{
     res.send(error.message);
   }
 })
+
+
+router.post('/report/picklist', async(req,res)=>{
+
+    const deliveryDate = new Date(req.body.deliveryDate)
+    
+    console.log(deliveryDate)
+    try {
+   
+   const pickList = await RouteSO.findAll({where:{deliveryDate:deliveryDate},include:[ 'RouteSODetails','Route'],attributes:['routeId']});
+  //  User.findAll({
+  //   attributes: ['age', [sequelize.fn('COUNT', sequelize.col('id')), 'count']],
+  //   group: ['age']
+
+
+    res.send(pickList)
+    
+    
+  } catch (error) {
+    console.log(error.message)
+    res.send(error.message)
+  }
+})
+
 
 module.exports = router;
