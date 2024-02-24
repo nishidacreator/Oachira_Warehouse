@@ -47,8 +47,8 @@ export class OrderComponent implements OnInit, OnDestroy {
   addStatus!: string;
   editstatus!: boolean;
   ngOnInit(): void {
-    this.getCompany()
-    // this.getWarehouse();
+    this.getCompanies()
+    this.getDistributor();
     this.getUsers();
     this.getProduct();
     this.getSecondaryUnit();
@@ -287,7 +287,7 @@ export class OrderComponent implements OnInit, OnDestroy {
           if (!isNaN(idNumber)) {
             return idNumber > prevMax ? idNumber : prevMax;
           } else {
-            
+
             // If the extracted part is not a valid number, return the previous max
             return prevMax;
           }
@@ -297,8 +297,8 @@ export class OrderComponent implements OnInit, OnDestroy {
         console.log(this.nextId);
       } else {
         // If there are no employees in the array, set the employeeId to 'EMP001'
-        this.nextId = 0o0;
-        this.prefix = "PO";
+        this.nextId = 0o1;
+        this.prefix = "PO#";
       }
 
       const paddedId = `${this.prefix}${this.nextId
@@ -329,9 +329,12 @@ export class OrderComponent implements OnInit, OnDestroy {
     //   return alert('Please fill the form first')
     // }
     let data = this.purchaseOrderForm.getRawValue()
+    console.log('dta',data);
+
     this.submitSub = this.purchaseService.addPO(data).subscribe((res) =>{
       this._snackBar.open("Purchase order added successfully...","" ,{duration:3000})
       console.log('API Response:', res);
+      history.back()
       this.clearControls()
     },
     (error) => {
@@ -341,10 +344,9 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   clearControls() {
     this.purchaseOrderForm.reset();
-    this.router.navigateByUrl("/login/purachases/viewpurchaseorder");
+    // this.router.navigateByUrl("/login/purachases/viewpurchaserequest");
+
   }
-
-
   distributorSub!: Subscription;
   distributors: Distributor[] = [];
   getDistributor(value?: string){
@@ -356,15 +358,50 @@ export class OrderComponent implements OnInit, OnDestroy {
       }
     });
   }
+  totalItems = 0;
+  filtered!: any[];
+  filterValue = "";
+  company: company[] = [];
+  companySubscription? : Subscription
+  companies: company[] = [];
+  filteredCompany: company[] = [];
+  getCompanies(value?: string){
+    // this.filterValue, this.currentPage, this.pageSize
+    this.companySubscription = this.companyService.getCompanies().subscribe((res:any)=>{
 
-  company :company[]=[]
-  getCompany(){
-   this.companyService.getCompanies().subscribe((res)=>{
-    this.company = res;
-   })
+      this.company = res;
+
+      this.filteredCompany = res;
+      if(value){
+
+        this.filterCompany(value);
+      }
+    })
 
   }
+  filterCompany(event: Event | string) {
+    let value: string = "";
 
+    if (typeof event === "string") {
+      value = event;
+    } else if (event instanceof Event) {
+      value = (event.target as HTMLInputElement).value;
+    }
+    this.filteredCompany = this.company.filter((option) => {
+
+      if (
+        (option.companyName &&
+          option.companyName.replace(/\s/g, "").toLowerCase().includes(value.replace(/\s/g, "").toLowerCase()))
+
+      )
+       {
+        return true;
+      } else {
+        return null;
+      }
+
+    });
+  }
   filteredDistributor: Distributor[] = [];
   filterDistributor(event: any){
     let value: string = "";
@@ -403,18 +440,19 @@ export class OrderComponent implements OnInit, OnDestroy {
         this.editstatus = true
         let po = res
 
-      
+
 
 
         console.log("GET API BY ID " , po)
 
-   
+
         let orderNo : any = po.orderNo
         let companyId: any = po.companyId;
         let date: any = po.date;
         let distributorId : any = po.distributorId;
-      
-        
+
+
+
 
         this.purchaseOrderForm.patchValue({
           orderNo : orderNo,
@@ -445,6 +483,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   update(){
     this.purchaseService.updatePO(this.poId, this.purchaseOrderForm.getRawValue()).subscribe((res)=>{
       this.clearControls()
+      history.back()
     })
   }
   addCompany(){

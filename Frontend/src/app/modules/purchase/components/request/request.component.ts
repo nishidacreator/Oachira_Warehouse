@@ -91,14 +91,19 @@ export class RequestComponent implements OnInit {
   company: company[] = [];
   companySubscription? : Subscription
   dataSource! : MatTableDataSource<any>
-  getCompanies(){
+  getCompanies(value?: string){
     // this.filterValue, this.currentPage, this.pageSize
     this.companySubscription = this.companyService.getCompanies().subscribe((res:any)=>{
-      this.filtered = res;
-      console.log('comp',this.filtered)
-      this.company = this.filtered;
-      this.totalItems = res.count;
+
+      this.company = res;
+
+      this.filteredCompany = res;
+      if(value){
+
+        this.filterCompany(value);
+      }
     })
+
   }
 
   addCompany(){
@@ -123,15 +128,19 @@ companies: company[] = [];
     } else if (event instanceof Event) {
       value = (event.target as HTMLInputElement).value;
     }
-    this.filteredCompany = this.companies.filter((option) => {
+    this.filteredCompany = this.company.filter((option) => {
+
       if (
         (option.companyName &&
-          option.companyName.toLowerCase().includes(value?.toLowerCase()))
-      ) {
+          option.companyName.replace(/\s/g, "").toLowerCase().includes(value.replace(/\s/g, "").toLowerCase()))
+
+      )
+       {
         return true;
       } else {
         return null;
       }
+
     });
   }
 

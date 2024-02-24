@@ -56,7 +56,7 @@ export class RouteEntryComponent implements OnInit, OnDestroy {
     }else if(this.entryId){
       this.patchData()
     }
-    this.getProduct();
+    this.getAllRouteProducts();
     this.getSecondaryUnit();
     this.getGST();
     this.getHsn();
@@ -246,8 +246,8 @@ export class RouteEntryComponent implements OnInit, OnDestroy {
 
   detailsub!: Subscription;
   product: Product[] = [];
-  getProduct(value?:any){
-    this.productservice.getProduct().subscribe((details) =>{
+  getAllRouteProducts(value?:any){
+    this.productservice.getAllRouteProducts().subscribe((details) =>{
       this.product = details
       this.filteredProduct = details
       if(value){
@@ -283,7 +283,7 @@ export class RouteEntryComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.getProduct()
+      this.getAllRouteProducts()
       console.log(result.product.id);
 
       this.routeSEDetails().at(i).get('productId')?.setValue(result.product.id);

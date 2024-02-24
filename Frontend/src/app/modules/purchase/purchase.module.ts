@@ -14,6 +14,8 @@ import { SlipComponent } from './components/slip/slip.component';
 import { ViewEntryComponent } from './components/view-entry/view-entry.component';
 import { ViewSlipComponent } from './components/view-slip/view-slip.component';
 import { TransporterComponent } from './components/transporter/transporter.component';
+import { PoInvoiceComponent } from './components/po-invoice/po-invoice.component';
+import { RequestSlipComponent } from './components/request-slip/request-slip.component';
 import { PurchaseTransporterComponent } from './components/purchase-transporter/purchase-transporter.component';
 import { PrintPurchaseTransporterComponent } from './components/print-purchase-transporter/print-purchase-transporter.component';
 import { PurchaseManagementComponent } from './components/purchase-management/purchase-management.component';
@@ -35,6 +37,8 @@ import { PrintBrokerSlipComponent } from './components/print-broker-slip/print-b
     ViewEntryComponent,
     ViewSlipComponent,
     TransporterComponent,
+    PoInvoiceComponent,
+    RequestSlipComponent,
     PurchaseTransporterComponent,
     PrintPurchaseTransporterComponent,
     PurchaseManagementComponent,

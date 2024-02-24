@@ -46,30 +46,29 @@
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
           </div>
-        </div>
 
-        <div class="row">
           <div class="col">
             <mat-form-field class="full-width">
-              <mat-select placeholder="Company" formControlName="companyId">
-                <mat-form-field class="search-field">
-                  <div class="row">
-                    <!-- <mat-icon>search</mat-icon> -->
-                    <input matInput (input)="filterCompany($event)" placeholder="Search">
-                  </div>
-                </mat-form-field>
-                <!-- <span *ngIf="filteredStore.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55); margin-left: 20px;"
-                 (click)="addStore()">playlist_add</span> -->
-                <mat-option *ngFor="let item of company" [value]="item.id">
-                  {{item.companyName}}
+              <mat-label>Company</mat-label>
+              <mat-select placeholder="" formControlName="companyId">
+
+
+                  <mat-form-field class="search-field">
+                    <div class="row">
+                      <!-- <mat-icon>search</mat-icon> -->
+                      <input matInput (input)="filterCompany($event)" placeholder="Search">
+                    </div>
+                  </mat-form-field>
+                <mat-option *ngFor="let item of filteredCompany" [value]="item.id">
+                  {{item.companyName}} - {{item.companyCode}} - {{item.locationName}}
                 </mat-option>
-                <mat-option  *ngIf="filterCompany.length === 0">
+                <mat-option   *ngIf="filteredCompany.length === 0" >
                   <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addCompany()">playlist_add</span>
                 </mat-option>
               </mat-select>
-              <mat-error *ngIf="purchaseRequestForm.controls['companyId'].hasError('required')">
-                User <strong>required</strong>
-              </mat-error>
+              <!-- <mat-error *ngIf="purchaseOrderForm.controls['companyId'].hasError('required')">
+                User <strong>required</strong> -->
+              <!-- </mat-error> -->
             </mat-form-field>
           </div>
 

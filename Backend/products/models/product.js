@@ -2,10 +2,10 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../../utils/db');
 
 const Product = sequelize.define('product',{
-    productName : {type : DataTypes.STRING, allowNull : false},
+    productName : {type : DataTypes.STRING},
     code : {type : DataTypes.STRING, unique : true},
     barCode : {type : DataTypes.STRING},
-    categoryId : {type : DataTypes.INTEGER, allowNull : false},
+    categoryId : {type : DataTypes.INTEGER},
     subCategoryId : {type : DataTypes.INTEGER},
     brandId : {type : DataTypes.INTEGER},
     locationId : {type : DataTypes.INTEGER},
