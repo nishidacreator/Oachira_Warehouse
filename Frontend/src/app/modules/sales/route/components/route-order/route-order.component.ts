@@ -166,14 +166,18 @@ export class RouteOrderComponent implements OnInit {
     });
   }
 
-  getCustomerByRoute(id: number){
-    this.salesService.getRouteDetailsByRouteId(id).subscribe(data=>{
-      this.filteredCustomer = data.map(x=> x.customer)
-      this.salesService.getTripDayByRouteId(id).subscribe(x =>{
-        console.log(x);
-        this.weekDay = x.map(x=> x.weekDay);
+  getCustomerByRoute(id: any){
+    console.log(id);
+
+    if(id!='add'){
+      this.salesService.getRouteDetailsByRouteId(id).subscribe(data=>{
+        this.filteredCustomer = data.map(x=> x.customer)
+        this.salesService.getTripDayByRouteId(id).subscribe(x =>{
+          console.log(x);
+          this.weekDay = x.map(x=> x.weekDay);
+        });
       });
-    });
+    }
   }
 
   days : TripDays[] = [];
