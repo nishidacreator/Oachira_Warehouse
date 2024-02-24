@@ -53,7 +53,7 @@
               <mat-select placeholder="" formControlName="companyId">
 
 
-                  <mat-form-field class="search-field">
+                  <mat-form-field class="full-width">
                     <div class="row">
                       <!-- <mat-icon>search</mat-icon> -->
                       <input matInput (input)="filterCompany($event)" placeholder="Search">
@@ -75,7 +75,7 @@
           <div class="col">
             <mat-form-field class="full-width">
               <mat-select placeholder="User" formControlName="userId">
-                <mat-form-field class="search-field">
+                <mat-form-field class="full-width">
                   <div class="row">
                     <!-- <mat-icon>search</mat-icon> -->
                     <input matInput (input)="filterUser($event)" placeholder="Search">
@@ -128,7 +128,7 @@
                       <mat-form-field>
                         <mat-label>Select an option</mat-label>
                         <mat-select formControlName="productId">
-                          <mat-form-field class="search-field">
+                          <mat-form-field class="full-width">
                             <div class="row">
                               <input matInput (input)="filterOptions($event)" placeholder="Search">
                             </div>

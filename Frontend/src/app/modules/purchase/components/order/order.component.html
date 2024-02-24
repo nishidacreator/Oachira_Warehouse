@@ -29,7 +29,7 @@
             </mat-form-field> -->
             <!-- <span class="material-icons" (click)="generateInvoiceNumber()" style="margin-top: 20px;">repeat_one</span> -->
             <mat-form-field class="full-width">
-              <input matInput placeholder="Order No" formControlName="orderNo">
+              <input matInput placeholder="Order No" formControlName="orderNo" readonly>
                 <mat-error *ngIf="purchaseOrderForm.controls['orderNo'].hasError('required')">
                   Invoice <strong>required</strong>
                 </mat-error>
@@ -75,7 +75,7 @@
             <mat-select placeholder="" formControlName="companyId">
 
 
-                <mat-form-field class="search-field">
+                <mat-form-field class="full-width">
                   <div class="row">
                     <!-- <mat-icon>search</mat-icon> -->
                     <input matInput (input)="filterCompany($event)" placeholder="Search">
@@ -97,7 +97,7 @@
         <div class="col">
           <mat-form-field class="full-width">
             <mat-select placeholder="User" formControlName="userId">
-              <mat-form-field class="search-field">
+              <mat-form-field class="full-width">
                 <div class="row">
                   <!-- <mat-icon>search</mat-icon> -->
                   <input matInput (input)="filterUser($event)" placeholder="Search">
@@ -153,7 +153,7 @@
                     <mat-form-field>
                       <mat-label>Select an option</mat-label>
                       <mat-select formControlName="productId">
-                        <mat-form-field class="search-field">
+                        <mat-form-field class="full-width">
                           <div class="row">
                             <input matInput (input)="filterOptions($event)" placeholder="Search">
                           </div>
@@ -179,7 +179,7 @@
                   <td>
                     <mat-form-field class="full-width">
                       <mat-select placeholder="SecondaryUnit" formControlName="secondaryUnitId">
-                        <mat-form-field class="search-field" style="width: 80%;">
+                        <mat-form-field class="full-width" style="width: 80%;">
                           <div class="row">
                             <!-- <mat-icon>search</mat-icon> -->
                             <input matInput (input)="filterSecondaryUnit($event)" placeholder="Search">
