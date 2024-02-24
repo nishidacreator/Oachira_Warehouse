@@ -47,7 +47,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   addStatus!: string;
   editstatus!: boolean;
   ngOnInit(): void {
-    this.getCompany()
+    this.getCompanies()
     this.getDistributor();
     this.getUsers();
     this.getProduct();
@@ -347,8 +347,6 @@ export class OrderComponent implements OnInit, OnDestroy {
     // this.router.navigateByUrl("/login/purachases/viewpurchaserequest");
 
   }
-
-
   distributorSub!: Subscription;
   distributors: Distributor[] = [];
   getDistributor(value?: string){
@@ -360,15 +358,50 @@ export class OrderComponent implements OnInit, OnDestroy {
       }
     });
   }
+  totalItems = 0;
+  filtered!: any[];
+  filterValue = "";
+  company: company[] = [];
+  companySubscription? : Subscription
+  companies: company[] = [];
+  filteredCompany: company[] = [];
+  getCompanies(value?: string){
+    // this.filterValue, this.currentPage, this.pageSize
+    this.companySubscription = this.companyService.getCompanies().subscribe((res:any)=>{
 
-  company :company[]=[]
-  getCompany(){
-   this.companyService.getCompanies().subscribe((res)=>{
-    this.company = res;
-   })
+      this.company = res;
+
+      this.filteredCompany = res;
+      if(value){
+
+        this.filterCompany(value);
+      }
+    })
 
   }
+  filterCompany(event: Event | string) {
+    let value: string = "";
 
+    if (typeof event === "string") {
+      value = event;
+    } else if (event instanceof Event) {
+      value = (event.target as HTMLInputElement).value;
+    }
+    this.filteredCompany = this.company.filter((option) => {
+
+      if (
+        (option.companyName &&
+          option.companyName.replace(/\s/g, "").toLowerCase().includes(value.replace(/\s/g, "").toLowerCase()))
+
+      )
+       {
+        return true;
+      } else {
+        return null;
+      }
+
+    });
+  }
   filteredDistributor: Distributor[] = [];
   filterDistributor(event: any){
     let value: string = "";
@@ -417,6 +450,9 @@ export class OrderComponent implements OnInit, OnDestroy {
         let companyId: any = po.companyId;
         let date: any = po.date;
         let distributorId : any = po.distributorId;
+
+
+
 
         this.purchaseOrderForm.patchValue({
           orderNo : orderNo,
