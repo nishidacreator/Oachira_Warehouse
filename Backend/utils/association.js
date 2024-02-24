@@ -67,6 +67,8 @@ const PurchaseTransporter = require('../purchases/models/purchaseTransporter');
 const Transporter = require('../purchases/models/transporter');
 const Brocker = require('../purchases/models/brocker');
 const BrockerAccount = require('../purchases/models/brockerAccount');
+const DailyCollection = require('../sales/models/dailyCollection');
+const CustomerLedger = require('../sales/models/customerLedger');
 
 
 
@@ -311,9 +313,10 @@ async function syncModel(){
   
     Team.hasMany(Company, { foreignKey: "teamId" });
     Company.belongsTo(Team);
-   
-    User.hasMany(TeamMember, { foreignKey: "userId", as: "register"});
-    TeamMember.belongsTo(User, { foreignKey: "userId", as: "register"});
+
+    
+  User.hasMany(TeamMember, { foreignKey: "userId", as: "register"});
+  TeamMember.belongsTo(User, { foreignKey: "userId", as: "register"});
 
   await sequelize.sync({alter: true})
 
