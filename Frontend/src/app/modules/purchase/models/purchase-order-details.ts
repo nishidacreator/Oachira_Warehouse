@@ -12,5 +12,5 @@ export interface PurchaseOrderDetails {
   order : Order;
   product : Product;
   secondaryUnit :SecondaryUnit;
- 
+
 }

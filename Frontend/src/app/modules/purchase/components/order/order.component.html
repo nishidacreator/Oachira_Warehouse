@@ -29,7 +29,7 @@
             </mat-form-field> -->
             <!-- <span class="material-icons" (click)="generateInvoiceNumber()" style="margin-top: 20px;">repeat_one</span> -->
             <mat-form-field class="full-width">
-              <input matInput placeholder="Order No" formControlName="orderNo">
+              <input matInput placeholder="Order No" formControlName="orderNo" readonly>
                 <mat-error *ngIf="purchaseOrderForm.controls['orderNo'].hasError('required')">
                   Invoice <strong>required</strong>
                 </mat-error>
@@ -46,8 +46,7 @@
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </div>
-        </div>
-        <div class="row">
+
         <div class="col">
           <mat-form-field class="full-width">
             <mat-label>Distributor</mat-label>
@@ -74,16 +73,18 @@
           <mat-form-field class="full-width">
             <mat-label>Company</mat-label>
             <mat-select placeholder="" formControlName="companyId">
-             <!-- <mat-form-field class="full-width">
-                <div class="row">
-                  <mat-icon>search</mat-icon>
-                  <input matInput (input)="filterDistributor($event)" placeholder="Search">
-                </div> 
-              </mat-form-field>  -->
-              <mat-option *ngFor="let item of company" [value]="item.id">
-                {{item.companyName}}
+
+
+                <mat-form-field class="full-width">
+                  <div class="row">
+                    <!-- <mat-icon>search</mat-icon> -->
+                    <input matInput (input)="filterCompany($event)" placeholder="Search">
+                  </div>
+                </mat-form-field>
+              <mat-option *ngFor="let item of filteredCompany" [value]="item.id">
+                {{item.companyName}} - {{item.companyCode}} - {{item.locationName}}
               </mat-option>
-              <mat-option  >
+              <mat-option   *ngIf="filteredCompany.length === 0" >
                 <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addCompany()">playlist_add</span>
               </mat-option>
             </mat-select>
@@ -92,7 +93,31 @@
             <!-- </mat-error> -->
           </mat-form-field>
         </div>
-        
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="User" formControlName="userId">
+              <mat-form-field class="full-width">
+                <div class="row">
+                  <!-- <mat-icon>search</mat-icon> -->
+                  <input matInput (input)="filterUser($event)" placeholder="Search">
+                </div>
+              </mat-form-field>
+              <!-- <span *ngIf="filteredUser.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55); margin-left: 20px;"
+                (click)="addUser()">playlist_add</span> -->
+              <mat-option *ngFor="let item of filteredUser" [value]="item.id">
+                {{item.name}}
+              </mat-option>
+              <mat-option  *ngIf="filteredUser.length === 0">
+                <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addUser()">playlist_add</span>
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="purchaseOrderForm.controls['userId'].hasError('required')">
+              User <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
       </div>
 
 
@@ -128,7 +153,7 @@
                     <mat-form-field>
                       <mat-label>Select an option</mat-label>
                       <mat-select formControlName="productId">
-                        <mat-form-field class="search-field">
+                        <mat-form-field class="full-width">
                           <div class="row">
                             <input matInput (input)="filterOptions($event)" placeholder="Search">
                           </div>
@@ -154,7 +179,7 @@
                   <td>
                     <mat-form-field class="full-width">
                       <mat-select placeholder="SecondaryUnit" formControlName="secondaryUnitId">
-                        <mat-form-field class="search-field" style="width: 80%;">
+                        <mat-form-field class="full-width" style="width: 80%;">
                           <div class="row">
                             <!-- <mat-icon>search</mat-icon> -->
                             <input matInput (input)="filterSecondaryUnit($event)" placeholder="Search">

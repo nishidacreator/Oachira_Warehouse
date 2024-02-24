@@ -24,6 +24,41 @@
   </div>
 
   <mat-stepper linear #stepper>
+    <mat-step label="Advance Issued">
+      <table class="styled-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Distributor</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>ChequeNo</th>
+                <th>Cheque Issued</th>
+                <th>purchase Entry</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let element of advancedPe">
+                <td>{{element.id}}</td>
+                <td>{{element.distributor.distributorName}}</td>
+                <td>{{element.purchaseAmount}}</td>
+                <td>{{element.purachseDate| date: 'dd/MM/yyyy'}}</td>
+                <td>{{element.chequeNo}}</td>
+                <td>
+                  <mat-slide-toggle (change)="onToggleChange(element.id)"></mat-slide-toggle>
+                </td>
+                <td>
+                  <span class="material-icons" style=" margin-left: 8px;" (click)="viewPE(element.id)">open_in_new</span>
+                </td>
+                <!-- <td>
+                  <span *ngIf="element.purchaseEntry" class="material-icons" style=" margin-left: 8px;" (click)="viewPurchaseEntry(element.id)">open_in_new</span>
+                  <span *ngIf="!element.purchaseEntry" class="material-icons" style="margin-left: 8px;" (click)="addPurchaseEntry(element.id)">post_add</span>
+                </td> -->
+            </tr>
+        </tbody>
+      </table>
+    </mat-step>
+
     <mat-step label="Slip Issued">
       <table class="styled-table">
         <thead>
@@ -129,14 +164,6 @@
       </table>
     </mat-step>
 
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
-      </div>
-    </mat-step>
   </mat-stepper>
 
     <!-- <div>

@@ -1,0 +1,108 @@
+<mat-card>
+  <div class="row">
+    <div class="col">
+      <mat-card-header>
+        <mat-card-title> BROKERAGE </mat-card-title>
+      </mat-card-header>
+    </div>
+
+    <div class="col">
+      <mat-card-header>
+        <button (mouseover)="showName('Back')" (mouseout)="hideName()" mat-mini-fab color="primary"
+         type="button" style="margin-left: 10px; margin-left: auto;"  aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onclick="history.back()">
+          <mat-icon *ngIf="!isHovered || (isHovered && hoveredButton != 'Back')">exit_to_app</mat-icon>
+          <div class="icon_name" *ngIf="isHovered && hoveredButton === 'Back'">Back</div>
+        </button>
+      </mat-card-header>
+    </div>
+  </div>
+
+  <mat-stepper linear #stepper>
+    <mat-step label="Opened">
+      <div style="overflow-x: auto;">
+        <table class="styled-table">
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>VehicleNo</th>
+                  <th>Broker</th>
+                  <th>Produt</th>
+                  <th>Rate</th>
+                  <th>Bag No</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                  <th>Close</th>
+                  <th>Print</th>
+                  <th>Manage</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let element of brokerageOpen">
+                  <td>{{element.id}}</td>
+                  <td>{{element.invoiceNo}}</td>
+                  <td>{{element.brocker.brokerName}}</td>
+                  <td>{{element.brocker.product.productName}}</td>
+                  <td>{{element.brocker.rate}}</td>
+                  <td>{{element.bagNo}}</td>
+                  <td>{{element.amount}}</td>
+                  <td>{{element.date}}</td>
+                  <td>
+                    <mat-slide-toggle (change)="onToggleChange(element.id)"></mat-slide-toggle>
+                  </td>
+                  <td>
+                    <span class="material-icons" style=" margin-left: 8px;" (click)="printBrokerSlip(element.id)">print</span>
+                  </td>
+                  <td>
+                    <span class="material-icons" style=" margin-left: 8px;" (click)="editBrokerSlip(element.id)">edit</span>
+                    <span class="material-icons" style="margin-left: 8px;" (click)="deleteBrokerSlip(element.id)">delete</span>
+                  </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-step>
+    <mat-step label="Closed">
+      <div style="overflow-x: auto;">
+        <table class="styled-table">
+          <thead>
+              <tr>
+                <th>ID</th>
+                <th>InvocieNo</th>
+                <th>Broker</th>
+                <th>Produt</th>
+                <th>Rate</th>
+                <th>Bag No</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Print</th>
+                <th>Manage</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let element of brokerageClosed">
+                <td>{{element.id}}</td>
+                <td>{{element.invoiceNo}}</td>
+                <td>{{element.brocker.brokerName}}</td>
+                <td>{{element.brocker.product.productName}}</td>
+                <td>{{element.brocker.rate}}</td>
+                <td>{{element.bagNo}}</td>
+                <td>{{element.amount}}</td>
+                <td>{{element.date}}</td>
+                  <td>
+                    <span class="material-icons" style=" margin-left: 8px;" (click)="printBrokerSlip(element.id)">print</span>
+                  </td>
+                  <td>
+                    <span class="material-icons" style=" margin-left: 8px;" (click)="editBrokerSlip(element.id)">edit</span>
+                    <span class="material-icons" style="margin-left: 8px;" (click)="deleteBrokerSlip(element.id)">delete</span>
+                  </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-step>
+  </mat-stepper>
+    <!-- <div>
+      <span class="material-icons" style="font-size: 40px; color: green;" (click)="addPO()">playlist_add</span>
+    </div> -->
+  </mat-card>
+

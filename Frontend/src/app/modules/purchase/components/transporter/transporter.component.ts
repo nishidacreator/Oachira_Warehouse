@@ -72,13 +72,13 @@ export class TransporterComponent implements OnInit {
 
       console.log(this.transporterForm.getRawValue())
       this.submit = this.purchaseService.addTransporter(this.transporterForm.getRawValue()).subscribe((response)=>{
-        // let data = {
-        //   store: response
-        // }
-        // console.log('hoi',data)
-        // this.dialogRef?.close(data);
+        let data = {
+          trans: response
+        }
+        console.log('hoi',data)
+        this.dialogRef?.close(data);
         console.log('response',response)
-        this._snackBar.open("Company added successfully...","" ,{duration:3000})
+        this._snackBar.open("Transporter added successfully...","" ,{duration:3000})
         this.clearControls()
       },(error=>{
         alert(error)

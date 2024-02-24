@@ -5,12 +5,20 @@
         <mat-card-title> PURCHASE ORDER </mat-card-title>
       </mat-card-header>
     </div>
+    <div>
 
+    </div>
     <div class="col">
       <mat-card-header>
-        <button mat-mini-fab color="primary" type="button" style="margin-left: auto;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onclick="history.back()">
+
+        <!-- <span class="material-icons" style="margin-left: auto; font-size: 40px; color: green;" (click)="addPO()">playlist_add</span> -->
+        <button mat-mini-fab color="primary" type="button" style="margin-left: auto;" aria-label="Example icon button with a home icon"  (click)="addPO()">
+         New
+        </button>
+        <button mat-mini-fab color="primary" type="button" style="margin-left: 10px" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onclick="history.back()">
           <mat-icon>exit_to_app</mat-icon>
         </button>
+
       </mat-card-header>
     </div>
   </div>
@@ -22,8 +30,9 @@
             <th>Purchase Order No</th>
             <th> Date</th>
             <th>Distributor</th>
+            <th>View</th>
             <th>Manage</th>
-           
+
         </tr>
     </thead>
     <tbody>
@@ -31,19 +40,20 @@
             <td>{{element.id}}</td>
             <td>{{element.orderNo}}</td>
             <td>{{element.date}}</td>
-          <td>{{element.distributor.distributorName}}</td> 
+          <td>{{element.distributor.distributorName}}</td>
+          <td>
+            <mat-icon (click)="viewPurchaseOrder(element.id)">open_in_new</mat-icon>
+          </td>
             <td>
               <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
               <i  (click)="editOrder(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
               &nbsp;&nbsp;
               <i  (click)="deleteOrder(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
             </td>
-           
+
         </tr>
     </tbody>
   </table>
-    <div>
-      <span class="material-icons" style="font-size: 40px; color: green;" (click)="addPO()">playlist_add</span>
-    </div>
+
   </mat-card>
 

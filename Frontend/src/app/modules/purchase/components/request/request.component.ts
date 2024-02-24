@@ -25,7 +25,14 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./request.component.scss']
 })
 export class RequestComponent implements OnInit {
+  date1 = new Date();
+  currentYear = this.date1.getUTCFullYear();
+  currentMonth = this.date1.getUTCMonth() + 1;
+  currentDay = this.date1.getUTCDate();
 
+  todayDate = "12-01-2011";
+  finalMonth: any;
+  finalDay: any;
   constructor(private fb: FormBuilder, public purchaseService: PurchaseService, public dialog: MatDialog,
     private router: Router, private route: ActivatedRoute, private companyService: CompanyService,
     private userService: UsersService, private productService: ProductService) {
@@ -56,8 +63,21 @@ export class RequestComponent implements OnInit {
     if(requestId){
       this.patchData(requestId)
     }
-  }
+  // Set today's date
+  this.setTodaysDate();
 
+  }
+  setTodaysDate() {
+    // Calculate today's date in 'YYYY-MM-DD' format
+    let currentDate = new Date();
+    let year = currentDate.getFullYear();
+    let month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+    let day = currentDate.getDate().toString().padStart(2, '0');
+    this.todayDate = `${year}-${month}-${day}`;
+
+    // Set the value of the "date" form control
+    this.purchaseRequestForm.get("date")?.setValue(this.todayDate);
+}
   purchaseRequestForm = this.fb.group({
     requestNo: ["", Validators.required],
     companyId: [Validators.required],
@@ -91,14 +111,19 @@ export class RequestComponent implements OnInit {
   company: company[] = [];
   companySubscription? : Subscription
   dataSource! : MatTableDataSource<any>
-  getCompanies(){
+  getCompanies(value?: string){
     // this.filterValue, this.currentPage, this.pageSize
     this.companySubscription = this.companyService.getCompanies().subscribe((res:any)=>{
-      this.filtered = res;
-      console.log('comp',this.filtered)
-      this.company = this.filtered;
-      this.totalItems = res.count;
+
+      this.company = res;
+
+      this.filteredCompany = res;
+      if(value){
+
+        this.filterCompany(value);
+      }
     })
+
   }
 
   addCompany(){
@@ -123,15 +148,19 @@ companies: company[] = [];
     } else if (event instanceof Event) {
       value = (event.target as HTMLInputElement).value;
     }
-    this.filteredCompany = this.companies.filter((option) => {
+    this.filteredCompany = this.company.filter((option) => {
+
       if (
         (option.companyName &&
-          option.companyName.toLowerCase().includes(value?.toLowerCase()))
-      ) {
+          option.companyName.replace(/\s/g, "").toLowerCase().includes(value.replace(/\s/g, "").toLowerCase()))
+
+      )
+       {
         return true;
       } else {
         return null;
       }
+
     });
   }
 

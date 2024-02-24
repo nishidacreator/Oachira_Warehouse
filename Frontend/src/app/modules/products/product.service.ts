@@ -322,6 +322,11 @@ export class ProductService {
   updateGstStatus(id:number, data:any){
     return this._http.patch<Gst>(this.url+'gst/statusupdate/' + id, data);
   }
+  getAllRouteProducts(): Observable<Product[]>{
+    return this._http.get<Product[]>(this.url + 'routeProducts');
+  }
+
+
 
   //HSN
   addHsn(data : any){

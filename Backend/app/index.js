@@ -65,7 +65,9 @@ const orderDetails = require('../purchases/rouers/orderDetails');
 const coolie = require('../purchases/rouers/coolie');
 const slip = require('../purchases/rouers/slip')
 const transporter = require('../purchases/rouers/transporter');
-
+const purchaseTransporter = require('../purchases/rouers/purchaseTransporter');
+const broker = require('../purchases/rouers/brocker');
+const brokerAccount = require('../purchases/rouers/brockerAccount');
 
 app.use('/purchases/request',request);
 app.use('/purchases/order',order);
@@ -76,6 +78,9 @@ app.use('/purchases/pentrydetails',entryDetails);
 app.use('/purchases/coolie',coolie);
 app.use('/purchases/slip',slip)
 app.use('/purchases/transporter',transporter)
+app.use('/purchases/purchasetransporter',purchaseTransporter)
+app.use('/purchases/broker',broker)
+app.use('/purchases/brokeraccount',brokerAccount)
 
 
 
