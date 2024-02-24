@@ -321,6 +321,14 @@ async function syncModel(){
   Customer.hasMany(DailyCollection, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
   DailyCollection.belongsTo(Customer)
 
+  Route.hasMany(DailyCollection, {foreignKey : 'routeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+  DailyCollection.belongsTo(Route)
+
+  User.hasMany(DailyCollection, {foreignKey : 'userId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+  DailyCollection.belongsTo(User)
+
+  
+
   await sequelize.sync({alter: true})
 
 
