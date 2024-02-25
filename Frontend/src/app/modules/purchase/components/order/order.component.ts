@@ -466,20 +466,12 @@ export class OrderComponent implements OnInit, OnDestroy {
       this.poId = id;
         this.editstatus = true
         let po = res
-
-
-
-
         console.log("GET API BY ID " , po)
-
 
         let orderNo : any = po.orderNo
         let companyId: any = po.companyId;
         let date: any = po.date;
         let distributorId : any = po.distributorId;
-
-
-
 
         this.purchaseOrderForm.patchValue({
           orderNo : orderNo,

@@ -190,12 +190,12 @@
         </mat-card-content>
 
         <mat-card-actions>
-          <button  mat-raised-button type="button" class="btn btn-success" [disabled]="!dailyCollectionForm.valid" (click)="onSubmit()">
+          <button *ngIf="!isEdit" mat-raised-button type="button" class="btn btn-success" [disabled]="!dailyCollectionForm.valid" (click)="onSubmit()">
             <span class="material-icons" style="font-size: 25px;">save</span>
           </button>
       
-          <button mat-raised-button  type="button" >
-            <span class="material-icons" style="font-size: 30px;">edit_note</span>
+          <button  *ngIf="isEdit"  mat-raised-button  type="button" >
+            <span class="material-icons" style="font-size: 30px;" (click)="editFunction()">edit_note</span>
           </button>&nbsp;&nbsp;
         </mat-card-actions>
 
