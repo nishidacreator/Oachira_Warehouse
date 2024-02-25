@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router} from '@angular/router';
@@ -41,10 +41,11 @@ export class DailyCollectionComponent implements OnInit {
     }
     currentUser : any;
     cusId : any ;
-
+  dailyCollectionId : any;
 
 
   ngOnInit(): void {
+    this.dailyCollectionId = this.route.snapshot.params['id']
     // this.updateCreditBalance() 
    this.getCustomerLedgerByCustomer()
     this.getCustomer()
@@ -56,7 +57,9 @@ export class DailyCollectionComponent implements OnInit {
 
     this.dailyCollectionForm.get('userId')?.setValue(this.currentUser)
     this.cusId = this.dailyCollectionForm.get('customerId')?.value
-
+if(this.dailyCollectionId){
+  this.patchData()
+}
   }
 
 
@@ -69,20 +72,21 @@ export class DailyCollectionComponent implements OnInit {
 
   dailyCollectionForm = this.fb.group({
 
-     customerId : [],
-    amount: [],
-    date : [],
-    invoiceNo : [],
-    userId :  [],
-    paymentMode  :  [],
-    remarks : [],
-    routeId :  [''],
-    creditBalance: [], 
+     customerId : [  ,Validators.required],
+     amount: [null, Validators.required],
+    date :[  , Validators.required],
+    invoiceNo :[  , Validators.required],
+    userId : [  , Validators.required],
+    paymentMode  : [  , Validators.required],
+    remarks :[  ],
+    routeId :  ['' , Validators.required],
+    creditBalance:[  , Validators.required], 
  
   });
 
 
   onSubmit(){
+    this.isEdit=true;
     if(!this.dailyCollectionForm.valid){
       return alert("Please fill the form correctly")
     }
@@ -374,6 +378,64 @@ routeDetails:RouteDetails[]=[]
     this.getCustomerLedger(selectedCustomerId); /// You need to implement this method
  // You need to implement this method
     
+  }
+isEdit : boolean = false
+  patchData(){
+    this.isEdit = true;
+    this.salesService.getDailyCollectionById(this.dailyCollectionId).subscribe((res)=>{
+      let dc = res;
+
+      console.log("GET BY ID API RES" ,dc)
+
+       let customerId : any = dc.customerId;
+       let amount : any = dc.amount;
+       let date  : any = dc.date;
+       let invoiceNo : any  = dc.invoiceNo;
+       let userId  : any  = dc.userId;
+       let paymentMode  : any  = dc.paymentMode;
+       let remarks  : any  = dc.remarks;
+       let routeId  : any = dc.routeId;
+       let creditBalance : any  = dc.creditBalance;
+
+       this.dailyCollectionForm.patchValue({
+           
+         customerId : customerId,
+         amount :amount,
+         date :date,
+         invoiceNo :invoiceNo,
+         userId : userId ,
+         paymentMode :paymentMode,
+         remarks :remarks,
+         routeId :routeId,
+         creditBalance : creditBalance
+
+
+
+       })
+
+    })
+
+
+
+
+
+  }
+
+  edit! : Subscription
+  editFunction(){
+
+    this.isEdit = true;
+    let data = {
+      ...this.dailyCollectionForm.value
+    }
+        this.edit = this.salesService.updateDailyCollection(this.dailyCollectionId , data).subscribe((res)=>{
+          console.log("Edited responses ",res)
+          history.back();
+          this._snackBar.open("Daily collection updated successfully","",{duration:3000})
+        })
+
+
+
   }
 }  
 

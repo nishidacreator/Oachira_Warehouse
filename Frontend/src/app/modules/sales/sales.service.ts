@@ -387,6 +387,18 @@ getLedger():Observable<CustomerLedger[]>{
     return this._http.get<DailyCollection[]>(this.url+'dailyCollection')
   }
 
+  getDailyCollectionById(id:number):Observable<DailyCollection>{
+    return this._http.get<DailyCollection>(this.url+ 'dailyCollection/' + id)
+  }
+
+  updateDailyCollection(id : number , data : any):Observable<DailyCollection>{
+    return this._http.patch<DailyCollection>(this.url + 'dailyCollection/' + id , data)
+  }
+
+  deleteDailyCollection(id : number){
+    return this._http.delete(this.url + 'dailyCollection/' + id)
+  }
+
   //-------------Customer ledger
   getCustomerLedgerByCustomerId(id:number):Observable<CustomerLedger>{
    

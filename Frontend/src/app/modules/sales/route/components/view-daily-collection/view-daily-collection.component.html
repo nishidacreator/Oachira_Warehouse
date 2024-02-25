@@ -61,9 +61,9 @@
                   <td >{{element.amount}}</td>
             
                   <td >
-                    <mat-icon >open_in_new</mat-icon>
-                    <mat-icon >edit</mat-icon>
-                    <mat-icon >delete</mat-icon>
+                    <mat-icon (click)="viewDailyCollection(element.id)" >open_in_new</mat-icon>
+                    <mat-icon (click)="editDailyCollection(element.id)">edit</mat-icon>
+                    <mat-icon  (click)="deleteDailyCollection(element.id)">delete</mat-icon>
                   </td>
                   <!-- <td >
                     <mat-icon *ngIf="element.status.toLowerCase() != 'invoiceissued'" (click)="generateRSE(element.id)">receipt_long</mat-icon>
