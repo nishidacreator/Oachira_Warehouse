@@ -435,14 +435,6 @@ async function syncModel(){
         }
     }
 
-    const customer = await Customer.findAll({})
-    if(customer.length == 0){
-        for(let i = 0; i < custData.length; i++){
-            Customer.bulkCreate([custData[i]])
-        }
-    }
-    
-
     const vehicleType = await VehicleType.findAll({})
     if(vehicleType.length === 0){
         for(let i = 0; i < vehicleTypeData.length; i++){
