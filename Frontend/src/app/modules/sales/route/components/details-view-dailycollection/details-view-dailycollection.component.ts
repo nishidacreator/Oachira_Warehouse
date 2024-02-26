@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { SalesService } from '../../../sales.service';
 import { Trip } from '../../models/trip';
 import { DailyCollection } from '../../models/daily-collection';
+import { Route } from '../../models/route';
 
 @Component({
   selector: 'app-details-view-dailycollection',
@@ -22,14 +23,18 @@ export class DetailsViewDailycollectionComponent implements OnInit {
   tripId!: number;
   ngOnInit(): void {
     this.tripId = this.route.snapshot.params['id'];
-    this.getTrip()
+    this.getDailyCollection()
+    
   }
 
-  dc!: DailyCollection;
+  dc!: DailyCollection | undefined;
   tripSub!: Subscription;
-  getTrip(){
+  routess:Route[]=[];
+  getDailyCollection(){
     this.tripSub = this.salesService.getDailyCollectionById(this.tripId).subscribe(data => {
       this.dc = data
+
+
 
     console.log("VIEW DETAILS INFO",this.dc)
     });
@@ -47,8 +52,5 @@ export class DetailsViewDailycollectionComponent implements OnInit {
     this.hoveredButton = null;
   }
 
-  viewTrip(){
-    let routeId = this.dc.routeId
-    this.router.navigateByUrl('login/sales/routesale/viewtrip/details/picklist/' + this.tripId + '/' + routeId)
-  }
+
 }

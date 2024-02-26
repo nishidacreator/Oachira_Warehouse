@@ -45,6 +45,7 @@ export class DailyCollectionComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.onCustomerChange();
     this.dailyCollectionId = this.route.snapshot.params['id']
     // this.updateCreditBalance() 
    this.getCustomerLedgerByCustomer()
@@ -79,7 +80,7 @@ if(this.dailyCollectionId){
     userId : [  , Validators.required],
     paymentMode  : [  , Validators.required],
     remarks :[  ],
-    routeId :  ['' , Validators.required],
+    routeId :  [  , Validators.required],
     creditBalance:[  , Validators.required], 
  
   });
@@ -380,46 +381,87 @@ routeDetails:RouteDetails[]=[]
     
   }
 isEdit : boolean = false
-  patchData(){
-    this.isEdit = true;
-    this.salesService.getDailyCollectionById(this.dailyCollectionId).subscribe((res)=>{
-      let dc = res;
 
-      console.log("GET BY ID API RES" ,dc)
+  // patchData(){
+  //   this.isEdit = true;
+  //   this.salesService.getDailyCollectionById(this.dailyCollectionId).subscribe((res)=>{
+  //     let dc = res;
 
-       let customerId : any = dc.customerId;
-       let amount : any = dc.amount;
-       let date  : any = dc.date;
-       let invoiceNo : any  = dc.invoiceNo;
-       let userId  : any  = dc.userId;
-       let paymentMode  : any  = dc.paymentMode;
-       let remarks  : any  = dc.remarks;
-       let routeId  : any = dc.routeId;
-       let creditBalance : any  = dc.creditBalance;
+  //     console.log("GET BY ID API RES" ,dc)
 
-       this.dailyCollectionForm.patchValue({
+  //      let customerId : any = dc.customerId;
+  //      let amount : any = dc.amount;
+  //      let date  : any = dc.date;
+  //      let invoiceNo : any  = dc.invoiceNo;
+  //      let userId  : any  = dc.userId;
+  //      let paymentMode  : any  = dc.paymentMode;
+  //      let remarks  : any  = dc.remarks;
+  //      let routeId  : any = dc.routeId;
+  //      console.log(dc.routeId)
+  //      let creditBalance : any  = dc.creditBalance;
+
+  //      this.dailyCollectionForm.patchValue({
            
-         customerId : customerId,
-         amount :amount,
-         date :date,
-         invoiceNo :invoiceNo,
-         userId : userId ,
-         paymentMode :paymentMode,
-         remarks :remarks,
-         routeId :routeId,
-         creditBalance : creditBalance
+  //        customerId : customerId,
+  //        amount :amount,
+  //        date :date,
+  //        invoiceNo :invoiceNo,
+  //        userId : userId ,
+  //        paymentMode :paymentMode,
+  //        remarks :remarks,
+  //        routeId :routeId,
+  //        creditBalance : creditBalance
 
 
 
-       })
+  //      })
 
-    })
-
-
+  //   })
 
 
 
-  }
+
+
+  // }
+  patchData() {
+  this.isEdit = true;
+  this.salesService.getDailyCollectionById(this.dailyCollectionId).subscribe((res) => {
+    let dc = res;
+
+    console.log("GET BY ID API RES", dc);
+
+    let customerId: any = dc.customerId;
+    let amount: any = dc.amount;
+    let date: any = dc.date;
+    let invoiceNo: any = dc.invoiceNo;
+    let userId: any = dc.userId;
+    let paymentMode: any = dc.paymentMode;
+    let remarks: any = dc.remarks;
+    let routeId: any = dc.routeId;
+    let creditBalance: any = dc.creditBalance;
+
+    this.filterRoutesByCustomer(customerId); 
+
+    // Ensure routeId is defined before patching
+    if (routeId !== undefined && routeId !== null) {
+      this.dailyCollectionForm.patchValue({
+        customerId: customerId,
+        amount: amount,
+        date: date,
+        invoiceNo: invoiceNo,
+        userId: userId,
+        paymentMode: paymentMode,
+        remarks: remarks,
+        routeId: routeId,
+        creditBalance: creditBalance,
+      });
+    } else {
+      // Handle the case where routeId is not defined
+      console.error("RouteId is not defined in the response.");
+    }
+  });
+}
+
 
   edit! : Subscription
   editFunction(){
