@@ -10,12 +10,21 @@
 
       <div class="col">
         <mat-card-header>
-          <button mat-mini-fab color="primary" type="button" style="margin-left: auto;" aria-label="Example icon button with a home icon"
-          class="d-block mr-0 ml-auto" (click)="viewTrip()" (mouseover)="showName('list')" (mouseout)="hideName()">
-            <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'list')">list</mat-icon>
-            <div class="icon_name" *ngIf="isHovered && hoveredButton === 'list'">View</div>
-          </button>&nbsp;
+          &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;
 
+          &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;
+          &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;
+          
+          &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;
+          &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;
+          &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;
+          &nbsp;&nbsp;
+          
+          &nbsp;&nbsp;
+          &nbsp;&nbsp;
+          &nbsp;&nbsp;
+          &nbsp;&nbsp;
+          &nbsp;&nbsp;
           <button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon"
           class="d-block mr-0 ml-auto" onclick="history.back()" (mouseover)="showName('back')" (mouseout)="hideName()">
             <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'back')">exit_to_app</mat-icon>
@@ -33,13 +42,14 @@
           </mat-list>
 
           <mat-list>
-            <h4>&nbsp;&nbsp;&nbsp;&nbsp;InvoiceNo :<span style="font-weight: normal;"> {{dc.invoiceNo}}</span></h4>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;InvoiceNo :<span style="font-weight: normal;"> {{dc?.invoiceNo}}</span></h4>
           </mat-list>
 
           <mat-list>
-            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Route :<span style="font-weight: normal;"> {{dc.routeId}}</span></h4>
-          </mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Route: <span style="font-weight: normal;">{{ dc?.route?.routeName }}</span></h4>
 
+          </mat-list>
+        
 
         </div>
 
@@ -48,16 +58,11 @@
             <h4>&nbsp;&nbsp;&nbsp;&nbsp;Credit balance : <span style="font-weight: normal;">{{dc.creditBalance}} </span></h4>
           </mat-list>
           <mat-list>
-            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Payment mode :<span style="font-weight: normal;"> {{dc.paymentMode}}</span></h4>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Payment mode: <span style="font-weight: normal;">{{ dc.paymentMode }}</span></h4>
+
           </mat-list>
 
-          <!-- <mat-list>
-            <h4>&nbsp;&nbsp;&nbsp;&nbsp;RouteDriver : <span style="font-weight: normal;">{{dc}} </span></h4>
-          </mat-list>
-
-          <mat-list>
-            <h4>&nbsp;&nbsp;&nbsp;&nbsp;RouteSalesMan :  <span style="font-weight: normal;">{{dc}}</span></h4>
-          </mat-list> -->
+       
         </div>
       </div>
 

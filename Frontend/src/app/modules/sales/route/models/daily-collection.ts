@@ -1,6 +1,7 @@
 import { User } from "src/app/modules/users/models/user";
 import { Customer } from "../../customers/models/customer";
-import { Route } from "@angular/router";
+import { Route } from "./route";
+
 
 export interface DailyCollection{
     id:number;
