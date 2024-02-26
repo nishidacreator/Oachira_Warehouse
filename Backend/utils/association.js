@@ -59,6 +59,8 @@ const customerCategoryData = require('./dataSource/routeSale/customerCategory.js
 const customerGradeData = require('./dataSource/routeSale/customerGrade.json');
 const vehicleTypeData = require('./dataSource/vehicleType.json');
 const vehilceData = require('./dataSource/vehicle.json');
+const custData = require('./dataSource/routeSale/customer.json');
+
 const Bank = require('../company/bank');
 const Company = require('../company/company');
 const Team=require('../company/team');
@@ -330,10 +332,6 @@ async function syncModel(){
   
 
   await sequelize.sync({alter: true})
-
-
-   
-
     const role = await Role.findAll({})
     if(role.length === 0){
         Role.bulkCreate([
@@ -431,6 +429,13 @@ async function syncModel(){
     if(customerGarde.length === 0){
         for(let i = 0; i < customerGradeData.length; i++){
             CustomerGrade.bulkCreate([customerGradeData[i]])
+        }
+    }
+
+    const customer = await Customer.findAll({})
+    if(customer.length == 0){
+        for(let i = 0; i < custData.length; i++){
+            Customer.bulkCreate([custData[i]])
         }
     }
     

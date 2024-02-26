@@ -17,10 +17,9 @@
             </div>
           </div><br>
           <mat-card-content >
-          
-            
-          <div class="row box">
 
+
+          <div class="row box">
             <div class="col">
                 <mat-form-field class="full-width" >
                     <mat-select placeholder="Customer Name" formControlName="customerId"  (selectionChange)="onCustomerChange()">
@@ -30,13 +29,12 @@
                         </div>
                       </mat-form-field>
                       &nbsp;&nbsp; &nbsp;&nbsp;<span *ngIf="filteredCustomer.length === 0" class="material-icons" style="font-size: 30px; color: rgb(0, 128, 55);" (click)="addCustomer()">playlist_add</span>
-                   
-                 
+
                       <mat-option *ngFor="let item of filteredCustomer" [value]="item.id">
                           {{item.name}}
                       </mat-option>
-                    
-                     
+
+
                   </mat-select>
                     <mat-error *ngIf="dailyCollectionForm.controls['customerId'].hasError('required')">
                       field is <strong>required</strong>
@@ -57,7 +55,6 @@
             </div>
 
             <div class="col">
-             
                 <mat-form-field class="full-width">
                   <mat-label>Date</mat-label>
                   <input matInput [matDatepicker]="picker" formControlName="date">
@@ -65,7 +62,7 @@
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
-            
+
             </div>
           </div>
 
@@ -102,7 +99,7 @@
       </mat-error>
     </mat-form-field>
   </div>
- 
+
     <div class="col">
       <mat-form-field class="full-width">
         <mat-label>Payment Mode</mat-label>
@@ -117,7 +114,7 @@
 
 
     <div class="row box">
-  
+
     <!-- <div class="col">
       <mat-form-field class="full-width" >
           <mat-select placeholder="Route Name" formControlName="routeId">
@@ -145,7 +142,7 @@
               </div>
             </mat-form-field> -->
             <mat-option *ngFor="let item of filteredRoutes" [value]="item.id">
-              {{item.route.routeName}}
+              {{item.routeName}}
             </mat-option>
             <mat-option *ngIf="filteredRoutes.length === 0" [value]="'add'" (click)="addRoute()">
               <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);">playlist_add</span>
@@ -153,8 +150,8 @@
           </mat-select>
         </mat-form-field>
       </div>
-      
-      
+
+
 
       <div class="col">
         <mat-form-field class="full-width">
@@ -164,10 +161,10 @@
               field <strong>required</strong>
             </mat-error>
         </mat-form-field>
-  
+
       </div>
 
-      
+
       <div class="col">
         <mat-form-field class="full-width">
           <textarea matInput placeholder="Remarks" formControlName="remarks"></textarea>
@@ -181,7 +178,7 @@
           <button  mat-raised-button type="button" class="btn btn-success" [disabled]="!dailyCollectionForm.valid" (click)="onSubmit()">
             <span class="material-icons" style="font-size: 25px;">save</span>
           </button>
-      
+
           <button mat-raised-button  type="button" >
             <span class="material-icons" style="font-size: 30px;">edit_note</span>
           </button>&nbsp;&nbsp;

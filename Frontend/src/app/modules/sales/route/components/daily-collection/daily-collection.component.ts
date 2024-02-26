@@ -50,7 +50,7 @@ export class DailyCollectionComponent implements OnInit {
     this.getRoutes()
 
     this.dailyCollectionForm.get('userId')?.setValue(this.currentUser)
-this.cusId = this.dailyCollectionForm.get('customerId')
+    this.cusId = this.dailyCollectionForm.get('customerId')
 
   }
 
@@ -73,7 +73,7 @@ this.cusId = this.dailyCollectionForm.get('customerId')
     remarks : [],
     routeId :  [''],
     creditBalance  :  [],
- 
+
   });
 
 
@@ -95,10 +95,10 @@ this.cusId = this.dailyCollectionForm.get('customerId')
 clearControls() {
   this.dailyCollectionForm.reset();
   this.router.navigateByUrl("/login/sales/routesale/viewDailyCollection");
-  
+
 }
 
-  
+
   customerSub!: Subscription;
   customers: Customer[] = [];
   getCustomer(value?: string){
@@ -144,7 +144,7 @@ clearControls() {
   }
 
 
-  
+
   userSub!: Subscription;
   users : User[] = [];
   getUsers(value?: string){
@@ -210,21 +210,24 @@ clearControls() {
       this.getRoutes(result?.route);
     });
   }
-  
-  routes: RouteDetails[] = [];
+
+  routes: Route[] = [];
   routeSub!: Subscription
- 
+
   getRoutes(value?: string) {
-    this.routeSub = this.salesService.getRouteDetails().subscribe(data => {
+    this.routeSub = this.salesService.getRoute().subscribe(data => {
       this.routes = data;
+      this.filteredRoutes = data;
+      console.log(this.filteredRoutes);
+
       if (value) {
         this.filterRoutesByCustomer(+value); // Convert value to number if needed
       }
     });
   }
-  filteredRoutes:RouteDetails[]=[]
+  filteredRoutes:Route[]=[]
   filterRoutesByCustomer(customerId: any) {
-    this.filteredRoutes = this.routes.filter(route => route.customerId === customerId);
+    this.filteredRoutes = this.routes.filter(route => route.routeDetails.customerId === customerId);
   }
 
   // cusLedger :CustomerLedger[]=[]
@@ -233,7 +236,7 @@ clearControls() {
   //     this.cusLedger = res;
   //     console.log("Jiiiiii",this.cusLedger)
   //   })
-    
+
   // }
 
   cusLedger :CustomerLedger[]=[]
@@ -242,7 +245,7 @@ clearControls() {
       this.cusLedger = res;
       console.log("Jiiiiii",this.cusLedger)
     })
-    
+
   }
 
   filiterCusLedger!: CustomerLedger;
@@ -259,10 +262,10 @@ clearControls() {
         }
       );
   }
-  
+
   // Add this method to your component
   cId: any;
-  
+
   onCustomerChange(): void {
     const selectedCustomerId = this.dailyCollectionForm.get('customerId')?.value;
     this.cId = selectedCustomerId;
@@ -270,4 +273,4 @@ clearControls() {
     // this.getCustomerLedgerByCustomerId(); // You need to implement this method
     this.filterRoutesByCustomer(selectedCustomerId); // You need to implement this method
   }
-}  
+}

@@ -501,7 +501,7 @@ export class EntryComponent implements OnInit, OnDestroy {
       if(type === "print"){
         this.router.navigateByUrl('/login/purachases/printtransportslip/'+op.id)
       }else if(type === "next"){
-        this.stepper.next();
+        this.selectedIndex = 5
       }else if(type === "close"){
         history.back();
       }
@@ -548,7 +548,7 @@ export class EntryComponent implements OnInit, OnDestroy {
   slipForm = this.fb.group({
     purchaseInvoice: ['', Validators.required],
     distributorId: [0],
-    invoiceNo:[''],
+    invoiceNo:['', Validators.required],
     amount: [''],
     entryId: [0],
     description: [''],
