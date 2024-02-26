@@ -1,5 +1,6 @@
 import { User } from "src/app/modules/users/models/user"
 import { Vehicle } from "./vehicle"
+import { RouteDetails } from "./route-details"
 
 export interface Route {
   id : number,
@@ -12,4 +13,5 @@ export interface Route {
   salesMan : User
   salesExecutiveId : number
   status : boolean
+  routeDetails: RouteDetails
 }

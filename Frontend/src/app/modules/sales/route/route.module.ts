@@ -27,6 +27,7 @@ import { ViewRouteEntryComponent } from './components/view-route-entry/view-rout
 import { ViewRouteEntryDetailsComponent } from './components/view-route-entry-details/view-route-entry-details.component';
 import { DailyCollectionComponent } from './components/daily-collection/daily-collection.component';
 import { ViewDailyCollectionComponent } from './components/view-daily-collection/view-daily-collection.component';
+import { DetailsViewDailycollectionComponent } from './components/details-view-dailycollection/details-view-dailycollection.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { ViewDailyCollectionComponent } from './components/view-daily-collection
     ViewRouteEntryComponent,
     ViewRouteEntryDetailsComponent,
     DailyCollectionComponent,
-    ViewDailyCollectionComponent
+    ViewDailyCollectionComponent,
+    DetailsViewDailycollectionComponent
   ],
   imports: [
     CommonModule,

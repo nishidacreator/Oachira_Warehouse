@@ -1,0 +1,71 @@
+<mat-card *ngIf="dc">
+    <div class="row">
+      <div class="col">
+        <mat-card-header>
+          <mat-card-title> DAILY COLLECTION  ({{dc.customer.name}})  
+            
+        </mat-card-title>
+        </mat-card-header>
+      </div>
+
+      <div class="col">
+        <mat-card-header>
+          &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;
+
+          &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;
+          &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;
+          
+          &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;
+          &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;
+          &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;
+          &nbsp;&nbsp;
+          
+          &nbsp;&nbsp;
+          &nbsp;&nbsp;
+          &nbsp;&nbsp;
+          &nbsp;&nbsp;
+          &nbsp;&nbsp;
+          <button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon"
+          class="d-block mr-0 ml-auto" onclick="history.back()" (mouseover)="showName('back')" (mouseout)="hideName()">
+            <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'back')">exit_to_app</mat-icon>
+            <div class="icon_name" *ngIf="isHovered && hoveredButton === 'back'">Back</div>
+          </button>
+        </mat-card-header>
+      </div>
+    </div><br>
+    <mat-card-content class="table-container">
+      <div class="row">
+
+        <div class="col">
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Date :<span style="font-weight: normal;"> {{dc.date | date:'yyyy/MM/dd'}}</span></h4>
+          </mat-list>
+
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;InvoiceNo :<span style="font-weight: normal;"> {{dc?.invoiceNo}}</span></h4>
+          </mat-list>
+
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Route: <span style="font-weight: normal;">{{ dc?.route?.routeName }}</span></h4>
+
+          </mat-list>
+        
+
+        </div>
+
+        <div class="col">
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Credit balance : <span style="font-weight: normal;">{{dc.creditBalance}} </span></h4>
+          </mat-list>
+          <mat-list>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Payment mode: <span style="font-weight: normal;">{{ dc.paymentMode }}</span></h4>
+
+          </mat-list>
+
+       
+        </div>
+      </div>
+
+
+    </mat-card-content>
+    </mat-card>

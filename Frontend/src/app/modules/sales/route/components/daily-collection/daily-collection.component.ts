@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router} from '@angular/router';
@@ -41,17 +41,27 @@ export class DailyCollectionComponent implements OnInit {
     }
     currentUser : any;
     cusId : any ;
-
+  dailyCollectionId : any;
 
 
   ngOnInit(): void {
+    this.onCustomerChange();
+    this.dailyCollectionId = this.route.snapshot.params['id']
+    // this.updateCreditBalance() 
+   this.getCustomerLedgerByCustomer()
     this.getCustomer()
     this.getUsers()
-    this.getRoute()
+    this.getRoutes()
+    this.getRouteDetails();
+    // this.filterRoutesByCustomer(customerId: any)
+
+
 
     this.dailyCollectionForm.get('userId')?.setValue(this.currentUser)
-this.cusId = this.dailyCollectionForm.get('customerId')
-
+    this.cusId = this.dailyCollectionForm.get('customerId')?.value
+if(this.dailyCollectionId){
+  this.patchData()
+}
   }
 
 
@@ -64,20 +74,21 @@ this.cusId = this.dailyCollectionForm.get('customerId')
 
   dailyCollectionForm = this.fb.group({
 
-     customerId : [],
-    amount: [],
-    date : [],
-    invoiceNo : [],
-    userId :  [],
-    paymentMode  :  [],
-    remarks : [],
-    routeId :  [''],
-    creditBalance  :  [],
- 
+     customerId : [  ,Validators.required],
+     amount: [null, Validators.required],
+    date :[  , Validators.required],
+    invoiceNo :[  , Validators.required],
+    userId : [  , Validators.required],
+    paymentMode  : [  , Validators.required],
+    remarks :[  ],
+    routeId :  [  , Validators.required],
+    creditBalance:[  , Validators.required], 
+
   });
 
 
   onSubmit(){
+    this.isEdit=true;
     if(!this.dailyCollectionForm.valid){
       return alert("Please fill the form correctly")
     }
@@ -85,7 +96,7 @@ this.cusId = this.dailyCollectionForm.get('customerId')
 
     this.salesService.addDailyCollection(this.dailyCollectionForm.getRawValue()).subscribe((result) => {
       console.log('POST API' ,result);
-      this._snackBar.open( "Daily collection updated successfully...","" ,{duration:3000})
+      this._snackBar.open( "Daily collection added successfully...","" ,{duration:3000})
      this.clearControls();
 
   })
@@ -95,10 +106,10 @@ this.cusId = this.dailyCollectionForm.get('customerId')
 clearControls() {
   this.dailyCollectionForm.reset();
   this.router.navigateByUrl("/login/sales/routesale/viewDailyCollection");
-  
+
 }
 
-  
+
   customerSub!: Subscription;
   customers: Customer[] = [];
   getCustomer(value?: string){
@@ -144,7 +155,7 @@ clearControls() {
   }
 
 
-  
+
   userSub!: Subscription;
   users : User[] = [];
   getUsers(value?: string){
@@ -201,7 +212,7 @@ clearControls() {
     {value : "Cash"},
     {value : "Cheque"}
   ]
-  addRoute(){
+  addRoute(value?: string){
     const dialogRef = this.dialog.open(RouteComponent, {
       data: { status: "true"},
     });
@@ -210,23 +221,28 @@ clearControls() {
       this.getRoutes(result?.route);
     });
   }
-  
+
   routes: Route[] = [];
   routeSub!: Subscription
- 
+
   getRoutes(value?: string) {
     this.routeSub = this.salesService.getRoute().subscribe(data => {
       this.routes = data;
-      // if (value) {
-      //   this.filterRoutesByCustomer(+value); // Convert value to number if needed
-      // }
+      // this.filteredRoutes = data;
+      console.log(this.filteredRoutes);
+
+      if (value) {
+        this.filterRoutesByCustomer(+value); // Convert value to number if needed
+      }
     });
   }
 
-rts:Route[]=[]
-  getRoute(){
-    this.routeSub = this.salesService.getRoute().subscribe(data => {
-      this.rts= data
+routeDetails:RouteDetails[]=[]
+  getRouteDetails(){
+    this.routeSub = this.salesService.getRouteDetails().subscribe(res => {
+      this.routeDetails= res
+
+      console.log("ROUTE DETAILS",this.routeDetails)
       
       // if (value) {
       //   this.filterRoutesByCustomer(+value); // Convert value to number if needed
@@ -235,31 +251,111 @@ rts:Route[]=[]
     
 
   }
+
   filteredRoutes:RouteDetails[]=[]
   filterRoutesByCustomer(customerId: any) {
-    // this.filteredRoutes = this.routes.filter(route => route.customerId === customerId);
+    this.filteredRoutes = this.routeDetails.filter(route => route.customerId === customerId);
+
+    console.log("FILITERED ROUTE",this.filteredRoutes)
   }
 
-  // cusLedger :CustomerLedger[]=[]
-  // getCustomerLedgerByCustomerId( cId : any){
-  //   this.salesService.getLedgerByCustomer(this.cId).subscribe((res)=>{
-  //     this.cusLedger = res;
-  //     console.log("Jiiiiii",this.cusLedger)
-  //   })
-    
-  // }
+
 
   cusLedger :CustomerLedger[]=[]
-  getCustomerLedgerByCustomerId(){
+  getCustomerLedgerByCustomer(){
     this.salesService.getLedger().subscribe((res)=>{
       this.cusLedger = res;
-      console.log("Jiiiiii",this.cusLedger)
+      console.log("ALL CUST LED",this.cusLedger)
     })
+
+  }
+
+  filiterledger: CustomerLedger[] = [];
+  filiterLedgerByCustomer(customerId: any) {
+    this.filiterledger = this.cusLedger.filter(x => x.customerId === customerId);
+  
+    console.log("FILITERED LEDGER", this.filiterledger);
+  
+  // Assign debit value to const debit
+  const debit = this.filiterledger.find(x => x.debit !== undefined)?.debit;
+  console.log("DEBIT", debit);
+
+  // Assign amount value to const amount
+  const amount = this.dailyCollectionForm.get('amount')?.value;
+
+  // Type check to ensure amount is defined
+  if (amount !== null && amount !== undefined) {
+    // Calculate the difference between debit and amount
+    const difference: any = amount - (debit || 0);
+
+    console.log("DIFFERENCE", difference);
+
+    // Patch the credit balance form control
+    const creditBalanceControl = this.dailyCollectionForm.get('creditBalance');
+    if (creditBalanceControl !== null) {
+      creditBalanceControl.patchValue(difference);
+    }
+  }
+
+  }
+  onAmountChange() {
+    const customerId = this.dailyCollectionForm.get('customerId')?.value;
+    const amount = this.dailyCollectionForm.get('amount')?.value;
+  
+    if (customerId !== null && customerId !== undefined && amount !== null && amount !== undefined) {
+      const debit = this.filiterledger.find(x => x.debit !== undefined)?.debit || 0;
+  
+      // Reverse the calculation: debit - amount
+      const creditBalanceValue = debit - amount;
+  
+      // Patch the credit balance form control with type assertion
+      const creditBalanceControl = this.dailyCollectionForm.get('creditBalance');
+      if (creditBalanceControl !== null) {
+        creditBalanceControl.patchValue(creditBalanceValue as any);
+      }
+    }
+  }
+  
+  
+  // private updateCreditBalance() {
+  //   const customerId = this.dailyCollectionForm.get('customerId')?.value;
+  //   const amount = this.dailyCollectionForm.get('amount')?.value;
+  
+  //   console.log('customerId:', customerId);
+  //   console.log('amount:', amount);
+  
+  //   // Check if customerId and amount are not null or undefined
+  //   if (customerId !== null && customerId !== undefined && amount !== null && amount !== undefined) {
+  //     const debit = this.filiterledger.find(x => x.customerId === customerId)?.debit || 0;
+  //     const difference = amount - debit;
+  
+  //     console.log('debit:', debit);
+  //     console.log('difference:', difference);
+  
+  //     // Patch the credit balance form control
+  //     const creditBalanceControl = this.dailyCollectionForm.get('creditBalance');
+  //     if (creditBalanceControl !== null) {
+  //       console.log('Patching credit balance:', difference);
+  //       creditBalanceControl.patchValue(difference !== null ? difference : (null as any));
+  //     }
+  //   }
+  // }
+  
+  
+  
+
+  filiteredCusLedger :CustomerLedger[]=[]
+  getCustomerLedger( customerId : any){
+    // this.salesService.getLedgerByCustomer(this.cId).subscribe((res)=>{
+      this.filiteredCusLedger = this.cusLedger.filter(x=>x.customerId==customerId)
+      console.log("FILITERED CUST LED",this.cusLedger)
+ 
     
   }
 
-  filiterCusLedger!: CustomerLedger;
 
+
+   
   filiterCustomerBalance(customerId: any): void {
     // this.salesService.getCustomerLedgerByCustomerId(customerId)
     //   .subscribe(
@@ -272,15 +368,118 @@ rts:Route[]=[]
     //     }
     //   );
   }
-  
+
   // Add this method to your component
   cId: any;
-  
+
   onCustomerChange(): void {
     const selectedCustomerId = this.dailyCollectionForm.get('customerId')?.value;
-    this.cId = selectedCustomerId;
-    this.filiterCustomerBalance(selectedCustomerId);
-    // this.getCustomerLedgerByCustomerId(); // You need to implement this method
-    this.filterRoutesByCustomer(selectedCustomerId); // You need to implement this method
+    this.filterRoutesByCustomer(selectedCustomerId); 
+    // this.updateCreditBalance();
+    // this.updateCreditBalance
+    this.filiterLedgerByCustomer(selectedCustomerId)
+    this.getCustomerLedger(selectedCustomerId); /// You need to implement this method
+ // You need to implement this method
+    
+  }
+
+isEdit : boolean = false
+
+  // patchData(){
+  //   this.isEdit = true;
+  //   this.salesService.getDailyCollectionById(this.dailyCollectionId).subscribe((res)=>{
+  //     let dc = res;
+
+  //     console.log("GET BY ID API RES" ,dc)
+
+  //      let customerId : any = dc.customerId;
+  //      let amount : any = dc.amount;
+  //      let date  : any = dc.date;
+  //      let invoiceNo : any  = dc.invoiceNo;
+  //      let userId  : any  = dc.userId;
+  //      let paymentMode  : any  = dc.paymentMode;
+  //      let remarks  : any  = dc.remarks;
+  //      let routeId  : any = dc.routeId;
+  //      console.log(dc.routeId)
+  //      let creditBalance : any  = dc.creditBalance;
+
+  //      this.dailyCollectionForm.patchValue({
+           
+  //        customerId : customerId,
+  //        amount :amount,
+  //        date :date,
+  //        invoiceNo :invoiceNo,
+  //        userId : userId ,
+  //        paymentMode :paymentMode,
+  //        remarks :remarks,
+  //        routeId :routeId,
+  //        creditBalance : creditBalance
+
+
+
+  //      })
+
+  //   })
+
+
+
+
+
+  // }
+  patchData() {
+  this.isEdit = true;
+  this.salesService.getDailyCollectionById(this.dailyCollectionId).subscribe((res) => {
+    let dc = res;
+
+    console.log("GET BY ID API RES", dc);
+
+    let customerId: any = dc.customerId;
+    let amount: any = dc.amount;
+    let date: any = dc.date;
+    let invoiceNo: any = dc.invoiceNo;
+    let userId: any = dc.userId;
+    let paymentMode: any = dc.paymentMode;
+    let remarks: any = dc.remarks;
+    let routeId: any = dc.routeId;
+    let creditBalance: any = dc.creditBalance;
+
+    this.filterRoutesByCustomer(customerId); 
+
+    // Ensure routeId is defined before patching
+    if (routeId !== undefined && routeId !== null) {
+      this.dailyCollectionForm.patchValue({
+        customerId: customerId,
+        amount: amount,
+        date: date,
+        invoiceNo: invoiceNo,
+        userId: userId,
+        paymentMode: paymentMode,
+        remarks: remarks,
+        routeId: routeId,
+        creditBalance: creditBalance,
+      });
+    } else {
+      // Handle the case where routeId is not defined
+      console.error("RouteId is not defined in the response.");
+    }
+  });
+}
+
+
+  edit! : Subscription
+  editFunction(){
+
+    this.isEdit = true;
+    let data = {
+      ...this.dailyCollectionForm.value
+    }
+        this.edit = this.salesService.updateDailyCollection(this.dailyCollectionId , data).subscribe((res)=>{
+          console.log("Edited responses ",res)
+          history.back();
+          this._snackBar.open("Daily collection updated successfully","",{duration:3000})
+        })
+
+
+
   }
 }  

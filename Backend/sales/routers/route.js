@@ -6,6 +6,7 @@ const Vehicle = require('../models/vehicle');
 const User = require('../../users/models/user');
 const RouteDay = require('../models/routeDays');
 const Route = require('../models/route');
+const RouteDetails = require('../models/routeDetails');
 // const DeliveryDays = require('../models/deliveryDays');
 
 router.post('/', authenticateToken, async (req, res) => {
@@ -60,7 +61,7 @@ router.get("/", authenticateToken, async (req, res) => {
       order: ["id"],
       limit,
       offset,
-      include: ['driver', 'salesMan', 'salesExecutive' , Vehicle ]
+      include: ['driver', 'salesMan', 'salesExecutive' , Vehicle, RouteDetails ]
     });
 
     let totalCount;
