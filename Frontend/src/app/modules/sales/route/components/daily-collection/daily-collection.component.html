@@ -4,7 +4,7 @@
           <div class="row">
             <div class="col">
               <mat-card-header>
-                <mat-card-title>DAILY COLLECTIONS</mat-card-title>
+                <mat-card-title>DAILY COLLECTION</mat-card-title>
               </mat-card-header>
             </div>
 
@@ -28,13 +28,20 @@
                           <input matInput (input)="filterCustomer($event)" placeholder="Search">
                         </div>
                       </mat-form-field>
-                      &nbsp;&nbsp; &nbsp;&nbsp;<span *ngIf="filteredCustomer.length === 0" class="material-icons" style="font-size: 30px; color: rgb(0, 128, 55);" (click)="addCustomer()">playlist_add</span>
 
+                      <mat-option  [value]="'add'" (click)="addCustomer()">
+                        <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);">playlist_add</span>
+                      </mat-option>
                       <mat-option *ngFor="let item of filteredCustomer" [value]="item.id">
                           {{item.name}}
                       </mat-option>
+                
 
 
+                      <!-- &nbsp;&nbsp; &nbsp;&nbsp;<span *ngIf="filteredCustomer.length === 0" class="material-icons" style="font-size: 30px; color: rgb(0, 128, 55);" (click)="addCustomer()">playlist_add</span>
+                    -->
+                 
+                    
                   </mat-select>
                     <mat-error *ngIf="dailyCollectionForm.controls['customerId'].hasError('required')">
                       field is <strong>required</strong>
@@ -46,7 +53,7 @@
             <div class="col">
               <mat-form-field class="full-width">
                 <mat-label>Amount</mat-label>
-                <input matInput placeholder="" formControlName="amount">
+                <input matInput placeholder="" formControlName="amount" (input)="onAmountChange()">
                   <mat-error *ngIf="dailyCollectionForm.controls['amount'].hasError('required')">
                     field <strong>required</strong>
                   </mat-error>
@@ -85,14 +92,14 @@
             <input matInput (input)="filterUser($event)" placeholder="Search">
           </div>
         </mat-form-field>
-        <!-- <span *ngIf="filteredUser.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55); margin-left: 20px;"
-          (click)="addUser()">playlist_add</span> -->
+      <!-- <span *ngIf="filteredUser.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55); margin-left: 20px;"
+          (click)="addUser()">playlist_add</span>  -->
         <mat-option *ngFor="let item of filteredUser" [value]="item.id">
           {{item.name}}
         </mat-option>
-        <mat-option  *ngIf="filteredUser.length === 0">
+  
           <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addUser()">playlist_add</span>
-        </mat-option>
+     
       </mat-select>
       <mat-error *ngIf="dailyCollectionForm.controls['userId'].hasError('required')">
         User <strong>required</strong>
@@ -141,12 +148,19 @@
                 <input matInput (input)="filterRoute($event)" placeholder="Search">
               </div>
             </mat-form-field> -->
+            <mat-option  [value]="'add'" (click)="addRoute()">
+              <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);">playlist_add</span>
+            </mat-option>
+            <!-- filteredRoutes -->
+
             <mat-option *ngFor="let item of filteredRoutes" [value]="item.id">
               {{item.routeName}}
             </mat-option>
-            <mat-option *ngIf="filteredRoutes.length === 0" [value]="'add'" (click)="addRoute()">
-              <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);">playlist_add</span>
-            </mat-option>
+
+            <!-- <mat-option *ngFor="let item of routes" [value]="item.id">
+              {{item.routeName}}
+            </mat-option> -->
+      
           </mat-select>
         </mat-form-field>
       </div>
@@ -156,7 +170,7 @@
       <div class="col">
         <mat-form-field class="full-width">
           <mat-label>Credit balance</mat-label>
-          <input matInput placeholder="" formControlName="creditBalance">
+          <input matInput  readonly placeholder="" formControlName="creditBalance" >
             <mat-error *ngIf="dailyCollectionForm.controls['creditBalance'].hasError('required')">
               field <strong>required</strong>
             </mat-error>
@@ -175,12 +189,13 @@
         </mat-card-content>
 
         <mat-card-actions>
-          <button  mat-raised-button type="button" class="btn btn-success" [disabled]="!dailyCollectionForm.valid" (click)="onSubmit()">
+          <button *ngIf="!isEdit" mat-raised-button type="button" class="btn btn-success" [disabled]="!dailyCollectionForm.valid" (click)="onSubmit()">
             <span class="material-icons" style="font-size: 25px;">save</span>
           </button>
 
-          <button mat-raised-button  type="button" >
-            <span class="material-icons" style="font-size: 30px;">edit_note</span>
+      
+          <button  *ngIf="isEdit"  mat-raised-button  type="button" >
+            <span class="material-icons" style="font-size: 30px;" (click)="editFunction()">edit_note</span>
           </button>&nbsp;&nbsp;
         </mat-card-actions>
 

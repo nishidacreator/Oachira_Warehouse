@@ -9,7 +9,7 @@ router.get("/", authenticateToken, async (req, res) => {
     try {
 
 
-      const customerLedger = await Customer.findAll({order: ['id']})
+      const customerLedger = await CustomerLedger.findAll({order: ['id']})
       res.send(customerLedger);
 
     //   let whereClause = {};

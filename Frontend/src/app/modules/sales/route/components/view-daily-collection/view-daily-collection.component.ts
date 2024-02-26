@@ -20,11 +20,14 @@ export class ViewDailyCollectionComponent implements OnInit {
     private _snackBar: MatSnackBar) { }
 
   ngOnDestroy(): void {
+    this.dailyCollectionSub.unsubscribe();
+    this.dailyCollectionSub.unsubscribe();
 
   }
 
   ngOnInit(): void {
-    this.getRouteEntry()
+    this.getRouteEntry();
+    this.getDailyCollection();
   }
 
   isHovered = false;
@@ -79,33 +82,65 @@ export class ViewDailyCollectionComponent implements OnInit {
     const dateObject = new Date(date);
     return dateObject.toLocaleDateString();
   }
+collections : DailyCollection[]=[]
+  dailyCollectionSub!: Subscription;
+getDailyCollection(){
+  this.dailyCollectionSub = this.salesService.getDailyCollection().subscribe((res)=>{
+    this.dailyCollection = res;
+
+  })
+
+}
+  viewDailyCollection(id:number){
+    this.router.navigateByUrl('login/sales/routesale/detailViewDailyCollection/'+id)
+
+  }
+   editDailyCollection(id:number){
+    this.router.navigateByUrl('/login/sales/routesale/editDailyCollection/'+id)
+
+}
+
+
+delete!: Subscription;
+
+deleteDailyCollection(id: number) {
+  const dialogRef = this.dialog.open(DeleteDialogueComponent, {
+    data: {}
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result === true) {
+      console.log(id)
+      this.delete = this.salesService.deleteDailyCollection(id).subscribe(
+    
+        (res) => {
+          this.getDailyCollection();
+
+          this._snackBar.open("Daily collection deleted successfully...", "", { duration: 3000 });
+          this.getDailyCollection();
+        },
+        (error) => {
+          console.error('Error:', error); // Log the entire error object
+          const errorMessage = "An error occurred";
+          this._snackBar.open(errorMessage, "", { duration: 3000 });
+        }
+      );
+    }
+  });
+}
+
+
 
   viewRouteEntryDetails(id: number){
-    this.router.navigateByUrl('login/sales/routesale/viewrouteentry/details/'+id)
+    this.router.navigateByUrl('login/sales/routesale/detailViewDailyCollection/'+id)
   }
 
   editRouteEntry(id: number){
-    this.router.navigateByUrl('/login/sales/routesale/editrouteentry/'+id)
+    this.router.navigateByUrl('/login/sales/routesale/editDailyCollection/'+id)
   }
 
-  delete!: Subscription;
-  deleteRouteEntry(id: number){
-    const dialogRef = this.dialog.open(DeleteDialogueComponent, {
-      data: {}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === true) {
-        this.delete = this.salesService.deleteRouteEntry(id).subscribe((res)=>{
-          this.getRouteEntry()
-          this._snackBar.open("RouteEntry deleted successfully...","" ,{duration:3000})
-        },(error=>{
-          this._snackBar.open(error.error.message,"" ,{duration:3000})
-        }))
-      }
-    })
-
-  }
+ 
+  
 
 }
 
