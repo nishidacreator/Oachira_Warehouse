@@ -1,0 +1,24 @@
+[
+    {
+        "name" :"Yousuf",
+        "subledgerCode":"youLulu",
+        "phoneNumber" : "1234567890",
+        "address1" : "Ekm",
+        "address2" : "ekm",
+        "state" : "kerala",
+        "loyaltyPoint" : 0,
+        "customerCategoryId": 1,
+        "customerGradeId":1
+      },
+      {
+        "name" :"AlSheique",
+        "subledgerCode":"AshHot",
+        "phoneNumber" : "9988998899",
+        "address1" : "PLODE",
+        "address2" : "tVM",
+        "state" : "kerala",
+        "loyaltyPoint" : 0,
+        "customerCategoryId": 1,
+        "customerGradeId":1
+      }
+]

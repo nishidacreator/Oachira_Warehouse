@@ -55,6 +55,7 @@ export class DailyCollectionComponent implements OnInit {
     // this.filterRoutesByCustomer(customerId: any)
 
 
+
     this.dailyCollectionForm.get('userId')?.setValue(this.currentUser)
     this.cusId = this.dailyCollectionForm.get('customerId')?.value
 if(this.dailyCollectionId){
@@ -81,7 +82,7 @@ if(this.dailyCollectionId){
     remarks :[  ],
     routeId :  ['' , Validators.required],
     creditBalance:[  , Validators.required], 
- 
+
   });
 
 
@@ -104,10 +105,10 @@ if(this.dailyCollectionId){
 clearControls() {
   this.dailyCollectionForm.reset();
   this.router.navigateByUrl("/login/sales/routesale/viewDailyCollection");
-  
+
 }
 
-  
+
   customerSub!: Subscription;
   customers: Customer[] = [];
   getCustomer(value?: string){
@@ -153,7 +154,7 @@ clearControls() {
   }
 
 
-  
+
   userSub!: Subscription;
   users : User[] = [];
   getUsers(value?: string){
@@ -219,19 +220,21 @@ clearControls() {
       this.getRoutes(result?.route);
     });
   }
-  
+
   routes: Route[] = [];
   routeSub!: Subscription
- 
+
   getRoutes(value?: string) {
     this.routeSub = this.salesService.getRoute().subscribe(data => {
       this.routes = data;
+      this.filteredRoutes = data;
+      console.log(this.filteredRoutes);
+
       if (value) {
         this.filterRoutesByCustomer(+value); // Convert value to number if needed
       }
     });
   }
-
 
 routeDetails:RouteDetails[]=[]
   getRouteDetails(){
@@ -257,14 +260,13 @@ routeDetails:RouteDetails[]=[]
 
 
 
-
   cusLedger :CustomerLedger[]=[]
   getCustomerLedgerByCustomer(){
     this.salesService.getLedger().subscribe((res)=>{
       this.cusLedger = res;
       console.log("ALL CUST LED",this.cusLedger)
     })
-    
+
   }
 
   filiterledger: CustomerLedger[] = [];
@@ -365,10 +367,10 @@ routeDetails:RouteDetails[]=[]
     //     }
     //   );
   }
-  
+
   // Add this method to your component
   cId: any;
-  
+
   onCustomerChange(): void {
     const selectedCustomerId = this.dailyCollectionForm.get('customerId')?.value;
     this.filterRoutesByCustomer(selectedCustomerId); 
@@ -379,6 +381,7 @@ routeDetails:RouteDetails[]=[]
  // You need to implement this method
     
   }
+
 isEdit : boolean = false
   patchData(){
     this.isEdit = true;
@@ -438,4 +441,3 @@ isEdit : boolean = false
 
   }
 }  
-
