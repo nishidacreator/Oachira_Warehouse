@@ -1,0 +1,41 @@
+[
+    {
+        "companyName": "OACHIRA TRADERS",
+        "companyCode": 101,
+        "locationName": "Palode",
+        "address1":
+          "P2CH+JJJ, Near Juma Masjid",
+        "address2": "Palode, Kerala 695563.",
+        "isStore":true,
+        "isWarehouse": false,
+        "apiKey": 123459000000,
+        "companyInChargeId":1,
+        "gstId":"32087G578990"
+      },
+      {
+        "companyName": "OACHIRA TRADERS",
+        "companyCode": 102,
+        "locationName": "Plavara",
+        "address1":
+          "P2CH+JJJ, Near Juma Masjid",
+        "address2": "Palode, Kerala 695563.",
+        "isStore":true,
+        "isWarehouse": true,
+        "apiKey": 123459000000,
+        "companyInChargeId":1,
+        "gstId":"32087G578990"
+      },
+      {
+        "companyName": "OACHIRA TRADERS",
+        "companyCode": 103,
+        "locationName": "Nedumanagad",
+        "address1":
+          "P2CH+JJJ, Near Juma Masjid",
+        "address2": "Palode, Kerala 695563.",
+        "isStore":true,
+        "isWarehouse": true,
+        "apiKey": 123459000000,
+        "companyInChargeId":1,
+        "gstId":"32087G578990"
+      }
+]

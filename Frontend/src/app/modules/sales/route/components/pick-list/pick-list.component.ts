@@ -152,5 +152,4 @@ export class PickListComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('/login/sales/routesale/viewtrip/details/picklistdetails/'+ this.routeId)
   }
 
-
 }

@@ -23,9 +23,11 @@ import { ViewPickListDetailsComponent } from './components/view-pick-list-detail
 import { DailyCollectionComponent } from './components/daily-collection/daily-collection.component';
 import { ViewDailyCollectionComponent } from './components/view-daily-collection/view-daily-collection.component';
 import { DetailsViewDailycollectionComponent } from './components/details-view-dailycollection/details-view-dailycollection.component';
+import { ViewPickListComponent } from './components/view-pick-list/view-pick-list.component';
 
 const routes: Routes = [
   {path: '', component: ManageRouteComponent},
+  {path: 'test', component: ViewPickListComponent},
   {path: 'route', component: RouteComponent},
   {path: 'routedays', component: RouteDaysComponent},
   {path: 'routedetails', component: RouteDetailsComponent},

@@ -45,6 +45,16 @@ const Trip = require('../sales/models/trip');
 const TripDay = require('../sales/models/tripDays');
 const TripDetails = require('../sales/models/tripDetails');
 const Slip = require('../purchases/models/slip');
+const Bank = require('../company/bank');
+const Company = require('../company/company');
+const Team=require('../company/team');
+const TeamMember = require("../company/teamMember");
+const PurchaseTransporter = require('../purchases/models/purchaseTransporter');
+const Transporter = require('../purchases/models/transporter');
+const Brocker = require('../purchases/models/brocker');
+const BrockerAccount = require('../purchases/models/brockerAccount');
+const DailyCollection = require('../sales/models/dailyCollection');
+const CustomerLedger = require('../sales/models/customerLedger');
 
 // // BULK CREATE
 const userData = require('./dataSource/user.json');
@@ -59,21 +69,13 @@ const customerCategoryData = require('./dataSource/routeSale/customerCategory.js
 const customerGradeData = require('./dataSource/routeSale/customerGrade.json');
 const vehicleTypeData = require('./dataSource/vehicleType.json');
 const vehilceData = require('./dataSource/vehicle.json');
-const custData = require('./dataSource/routeSale/customer.json');
-
-const Bank = require('../company/bank');
-const Company = require('../company/company');
-const Team=require('../company/team');
-const TeamMember = require("../company/teamMember");
-const PurchaseTransporter = require('../purchases/models/purchaseTransporter');
-const Transporter = require('../purchases/models/transporter');
-const Brocker = require('../purchases/models/brocker');
-const BrockerAccount = require('../purchases/models/brockerAccount');
-const DailyCollection = require('../sales/models/dailyCollection');
-const CustomerLedger = require('../sales/models/customerLedger');
-
-
-
+const routeData = require('./dataSource/routeSale/route.json');
+const sUnitData = require('./dataSource/products/secondaryUnit.json');
+const companyData = require('./dataSource/company.json');
+const customerData = require('./dataSource/routeSale/customer.json');
+const customerPhoneData = require('./dataSource/routeSale/customerPhone.json');
+const routeDaysData = require('./dataSource/routeSale/routeDays.json');
+const tripDaysData = require('./dataSource/routeSale/tripDays.json');
 
 async function syncModel(){
 
@@ -332,6 +334,7 @@ async function syncModel(){
   
 
   await sequelize.sync({alter: true})
+
     const role = await Role.findAll({})
     if(role.length === 0){
         Role.bulkCreate([
@@ -454,6 +457,27 @@ async function syncModel(){
         }
     }
 
+    const route = await Route.findAll({})
+    if(route.length == 0) {
+        for(let i = 0; i < routeData.length; i++){
+            Route.bulkCreate([routeData[i]])
+        }
+    }
+
+    const routeDays = await RouteDay.findAll({})
+    if(routeDays.length == 0) {
+        for(let i = 0; i < routeDaysData.length; i++){
+            RouteDay.bulkCreate([routeDaysData[i]])
+        }
+    }
+
+    const tripDay = await TripDay.findAll({})
+    if(tripDay.length == 0) {
+        for(let i = 0; i < tripDaysData.length; i++){
+            TripDay.bulkCreate([tripDaysData[i]])
+        }
+    }
+
      
     const team = await Team.findAll({});
   
@@ -475,8 +499,6 @@ async function syncModel(){
         }
       });
     }
-  
- 
 
     const distributor = await Distributor.findAll({});
     if (distributor.length === 0) {
@@ -499,111 +521,66 @@ async function syncModel(){
             distributorName: "Dishgold",
             state:"Kerala",
             status: true,
-          locationName: "Plavara",
-          address1:
-            "Aluva, Ernakulam",
-          address2: "Aluva, Kerala 695563.",
-          phoneNumber:"9846335504",
-          panNo:"AKZPH6789",
-          gstNo:'32087G578990' ,
-          fssaiNo: "1235667799",
-          contactPerson: "Ashir",
-          companyInChargeId:1,
-          gstId:'32087G578990' 
+            locationName: "Plavara",
+            address1:
+              "Aluva, Ernakulam",
+            address2: "Aluva, Kerala 695563.",
+            phoneNumber:"9846335504",
+            panNo:"AKZPH6789",
+            gstNo:'32087G578990' ,
+            fssaiNo: "1235667799",
+            contactPerson: "Ashir",
+            companyInChargeId:1,
+            gstId:'32087G578990' 
         },
         {
             distributorName: "ABU TRADERS",
             state:"Kerala",
             status: true,
-          phoneNumber:"9846335504",
-          contactPerson: "Ashir",
+            phoneNumber:"9846335504",
+            contactPerson: "Ashir",
 
-          locationName: "Nedumanagad",
-          address1:
-            "ZP34, Near Juma Masjid",
-          address2: "Palode, Kerala 695563.",
-          gstId:'32087G578990' ,
-          panNo:"AKZPH6789",
-          gstNo:'32087G578990' ,
-          fssaiNo: "1235667799"
+            locationName: "Nedumanagad",
+            address1:
+              "ZP34, Near Juma Masjid",
+            address2: "Palode, Kerala 695563.",
+            gstId:'32087G578990' ,
+            panNo:"AKZPH6789",
+            gstNo:'32087G578990' ,
+            fssaiNo: "1235667799"
         }
        
       ]);
     }
 
 
-
     const secUnit = await SecondaryUnit.findAll({});
     if (secUnit.length === 0) {
-        SecondaryUnit.bulkCreate([
-        {
-            secondaryUnitName:"50KG BAG",
-            primaryUnitId: 2,
-            primaryFactor: 50,
-            secondaryFactor:1,
-            loadingCharge: 2,
-            status:true,
-        
-        },
-        {
-            secondaryUnitName:"48 NOS BOX",
-            primaryUnitId: 1,
-            primaryFactor: 48,
-            secondaryFactor:1,
-            loadingCharge: 3,
-            status:true,
-        
-        }
-        
-       
-      ]);
+      for(let i = 0; i < sUnitData.length; i++){
+        SecondaryUnit.bulkCreate([sUnitData[i]])
+      }
     } 
 
 
     const company = await Company.findAll({});
     if (company.length === 0) {
-      Company.bulkCreate([
-        {
-          companyName: "OACHIRA TRADERS",
-          companyCode: 101,
-          locationName: "Palode",
-          address1:
-            "P2CH+JJJ, Near Juma Masjid",
-          address2: "Palode, Kerala 695563.",
-          isStore:true,
-          isWarehouse: false,
-          apiKey: 123459000000,
-          companyInChargeId:1,
-          gstId:'32087G578990' 
-        },
-        {
-          companyName: "OACHIRA TRADERS",
-          companyCode: 102,
-          locationName: "Plavara",
-          address1:
-            "P2CH+JJJ, Near Juma Masjid",
-          address2: "Palode, Kerala 695563.",
-          isStore:true,
-          isWarehouse: true,
-          apiKey: 123459000000,
-          companyInChargeId:1,
-          gstId:'32087G578990' 
-        },
-        {
-          companyName: "OACHIRA TRADERS",
-          companyCode: 103,
-          locationName: "Nedumanagad",
-          address1:
-            "P2CH+JJJ, Near Juma Masjid",
-          address2: "Palode, Kerala 695563.",
-          isStore:true,
-          isWarehouse: true,
-          apiKey: 123459000000,
-          companyInChargeId:1,
-          gstId:'32087G578990' 
-        }
-       
-      ]);
+      for(let i = 0; i < companyData.length; i++){
+        Company.bulkCreate([companyData[i]])
+      }
+    } 
+
+    const customer = await Customer.findAll({});
+    if (customer.length === 0) {
+      for(let i = 0; i < customerData.length; i++){
+        Customer.bulkCreate([customerData[i]])
+      }
+    } 
+
+    const customerPhone = await CustomerPhone.findAll({});
+    if (customerPhone.length === 0) {
+      for(let i = 0; i < customerPhoneData.length; i++){
+        CustomerPhone.bulkCreate([customerPhoneData[i]])
+      }
     } 
 }
 

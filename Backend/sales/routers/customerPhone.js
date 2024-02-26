@@ -4,9 +4,9 @@ const router = express.Router();
 const authenticateToken = require('../../middleware/authorization');
 const bcrypt = require('bcrypt');
 
-const Customer = require('../../models/Customer/customer');
+const Customer = require('../models/customer');
 
-const CustomerPhone = require('../../models/Customer/customerPhone');
+const CustomerPhone = require('../models/customerPhone');
 
 router.get('/customerid/:id', authenticateToken, async(req,res)=>{
     try {
