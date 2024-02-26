@@ -1,0 +1,20 @@
+[
+    {
+        "secondaryUnitName":"50KG BAG",
+        "primaryUnitId": 2,
+        "primaryFactor": 50,
+        "secondaryFactor":1,
+        "loadingCharge": 2,
+        "status":true
+    
+    },
+    {
+        "secondaryUnitName":"48 NOS BOX",
+        "primaryUnitId": 1,
+        "primaryFactor": 48,
+        "secondaryFactor":1,
+        "loadingCharge": 3,
+        "status":true
+    
+    }
+]

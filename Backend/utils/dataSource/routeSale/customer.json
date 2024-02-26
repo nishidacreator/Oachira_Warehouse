@@ -1,0 +1,548 @@
+[
+    {
+      
+      "name": "AAA CASH SALES",
+      "subledgerCode": "C1",
+      "address1": "",
+      "address2": "",
+      "state": null,
+      "gstNo": "",
+      "remarks": "",
+      "email": "",
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+
+      "name": "Babu Chappilode",
+      "subledgerCode": "C17",
+      "address1": "Cheppilode",
+      "address2": "Parayam",
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 1,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Prasannan",
+      "subledgerCode": "C24",
+      "address1": "Parayam",
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 1,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Suresh",
+      "subledgerCode": "C32",
+      "address1": "Chayam",
+      "address2": null,
+      "state": null,
+      "gstNo": "9999999999",
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 1,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Bismi Store (Nisamudeen)",
+      "subledgerCode": "C34",
+      "address1": "Koppam",
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Rajan",
+      "subledgerCode": "C41",
+      "address1": null,
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 1,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Hashim GRDN",
+      "subledgerCode": "C124",
+      "address1": null,
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 1,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "SM STORE GUARDERSTATION",
+      "subledgerCode": "C212",
+      "address1": "GUARDERSTATION",
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 1,
+      "customerGradeId": 1
+    },
+    {
+     
+      "name": "Mohanan Mailammoodu",
+      "subledgerCode": "C223",
+      "address1": "Mailammoodu",
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 1,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Madhavan Pilla Muthikavu",
+      "subledgerCode": "C236",
+      "address1": null,
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 1,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Sudhakaran Thriveni",
+      "subledgerCode": "C327",
+      "address1": null,
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 1,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Oachira Trading Company",
+      "subledgerCode": "C329",
+      "address1": "CHULLIMANOOR",
+      "address2": "CHULLIMANOOR",
+      "state": null,
+      "gstNo": "32AACFO3894Q1ZO",
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+     
+      "name": "Madheena Boundermukku",
+      "subledgerCode": "C337",
+      "address1": null,
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "MALLI IDINJAR",
+      "subledgerCode": "C339",
+      "address1": null,
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+     
+      "name": "Thalassery Bakers",
+      "subledgerCode": "C405",
+      "address1": null,
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Fajar Tholikode",
+      "subledgerCode": "C412",
+      "address1": "Tholicode",
+      "address2": null,
+      "state": null,
+      "gstNo": "32ARCPN5230A1ZK",
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Lakshmi Store NYD",
+      "subledgerCode": "C414",
+      "address1": null,
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Shajahan Kanyakulangara",
+      "subledgerCode": "C532",
+      "address1": null,
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 1,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Idinjar Mill",
+      "subledgerCode": "C546",
+      "address1": null,
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "JAS Elavattom",
+      "subledgerCode": "C599",
+      "address1": null,
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Salim Chayakkada",
+      "subledgerCode": "C601",
+      "address1": "",
+      "address2": "",
+      "state": null,
+      "gstNo": "",
+      "remarks": "",
+      "email": "",
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Amma Store Manikkapuram",
+      "subledgerCode": "C710",
+      "address1": "Manikkapuram",
+      "address2": "karipur",
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Parakattil Store ",
+      "subledgerCode": "C726",
+      "address1": "Azhikode",
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "VS Store ",
+      "subledgerCode": "C780",
+      "address1": "Mannoorkonam",
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Sumaya Store Kuryathy",
+      "subledgerCode": "C787",
+      "address1": null,
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Mammootil Sore Kuttimoodu",
+      "subledgerCode": "C789",
+      "address1": null,
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Monday To Sunday ",
+      "subledgerCode": "C796",
+      "address1": "Vamanapuram",
+      "address2": null,
+      "state": null,
+      "gstNo": "32ADXPN8387R1Z5",
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Krishna Store ",
+      "subledgerCode": "C802",
+      "address1": "Anappara",
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Thiruvonam Store Muthuvila",
+      "subledgerCode": "C857",
+      "address1": "Muthuvila",
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Abhi [MINI] STORE MUNDELA",
+      "subledgerCode": "C922",
+      "address1": null,
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Ranjith Store ",
+      "subledgerCode": "C976",
+      "address1": "Cheeranikkara",
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Sabith store chirathalaykkal",
+      "subledgerCode": "C978",
+      "address1": "chirathalaykkal",
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 1,
+      "customerGradeId": 1
+    },
+    {
+     
+      "name": "Thumbode Abdul Khadhar",
+      "subledgerCode": "C1044",
+      "address1": null,
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Nira Bakery ",
+      "subledgerCode": "C1046",
+      "address1": "Azhikode",
+      "address2": "",
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Sasi Kalamachal",
+      "subledgerCode": "C1092",
+      "address1": null,
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 1,
+      "customerGradeId": 1
+    },
+    {
+     
+      "name": "Lijina Store Plavinmoodu",
+      "subledgerCode": "C1099",
+      "address1": "Plavinmoodu",
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Poovathoor Neethu Store",
+      "subledgerCode": "C1139",
+      "address1": null,
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Kichu Store Poovathhoor",
+      "subledgerCode": "C1191",
+      "address1": null,
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 3,
+      "customerGradeId": 1
+    },
+    {
+      
+      "name": "Shafeek Pangode",
+      "subledgerCode": "C1193",
+      "address1": null,
+      "address2": null,
+      "state": null,
+      "gstNo": null,
+      "remarks": null,
+      "email": null,
+      "loyaltyPoint": "0",
+      "customerCategoryId": 1,
+      "customerGradeId": 1
+    }
+  ]

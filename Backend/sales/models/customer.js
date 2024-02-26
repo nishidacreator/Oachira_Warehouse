@@ -10,7 +10,7 @@ const Customer = sequelize.define('customer',{
     gstNo : {type : DataTypes.STRING},
     remarks : {type : DataTypes.STRING},
     email: {type : DataTypes.STRING},
-    loyaltyPoint : {type : DataTypes.STRING, allowNull : false},
+    loyaltyPoint : {type : DataTypes.FLOAT},
     customerCategoryId : {type: DataTypes.INTEGER, allowNull : false},
     customerGradeId : {type: DataTypes.INTEGER, allowNull : false},
 },
