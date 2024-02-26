@@ -228,7 +228,7 @@ clearControls() {
   getRoutes(value?: string) {
     this.routeSub = this.salesService.getRoute().subscribe(data => {
       this.routes = data;
-      this.filteredRoutes = data;
+      // this.filteredRoutes = data;
       console.log(this.filteredRoutes);
 
       if (value) {
