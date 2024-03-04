@@ -9,6 +9,7 @@ const User = require('../../users/models/user');
 const Distributor = require('../../products/models/distributor');
 const Order = require('../../purchases/models/order');
 const Slip = require('../models/slip');
+const DistributorLedger = require('../models/distributorLedger')
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
@@ -33,6 +34,16 @@ router.post('/', authenticateToken, async (req, res) => {
         console.log(entry);
        
         await entry.save();
+        let distributorLedger = new DistributorLedger({
+            distributorId:distributorId,
+            date:purachseDate,
+            description:`Invoice  No : ${purchaseInvoice}`,
+            amount:purchaseAmount,
+            transactionType: "Debit",
+        })
+
+        await distributorLedger.save()
+
 
     //    const entryId = entry.id
 

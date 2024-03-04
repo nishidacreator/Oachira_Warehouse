@@ -5,6 +5,7 @@ const { JSON } = require('sequelize');
 
 const Role = require('../users/models/role');
 const User = require('../users/models/user');
+const DistributorLedger = require('../purchases/models/distributorLedger')
 
 const Category = require('../products/models/category');
 const Product = require('../products/models/product');
@@ -64,6 +65,7 @@ const Bank = require('../company/bank');
 const Company = require('../company/company');
 const Team=require('../company/team');
 const TeamMember = require("../company/teamMember");
+
 
 
 
@@ -158,6 +160,9 @@ async function syncModel(){
 
     Distributor.hasMany(Slip, {foreignKey : 'distributorId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Slip.belongsTo(Distributor, {foreignKey : 'distributorId'})
+
+    Distributor.hasMany(DistributorLedger,{foreignKey:'distributorId', onDelete: 'CASCADE'})
+    DistributorLedger.belongsTo(Distributor,{foreignKey:'distributorId'})
 
     Entry.hasMany(Slip, {foreignKey : 'entryId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Slip.belongsTo(Entry, {foreignKey : 'entryId'})
