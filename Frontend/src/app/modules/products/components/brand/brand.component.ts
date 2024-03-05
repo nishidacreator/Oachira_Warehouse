@@ -116,6 +116,7 @@ export class BrandComponent implements OnInit {
         let data = {
           brand: this.brandForm.get('brandName')?.value
         }
+        console.log('resp',response)
         this.dialogRef?.close(data);
         this._snackBar.open("Brand added successfully...","" ,{duration:3000})
         this.clearControls()
@@ -126,7 +127,7 @@ export class BrandComponent implements OnInit {
   }
 
   clearControls(){
-    this.getBrand()
+    this.getComplete()
     this.brandForm.reset()
   }
 
@@ -152,6 +153,7 @@ export class BrandComponent implements OnInit {
     if((event.target as HTMLInputElement).value.trim() === '') {
       this.getBrand();
     }else{
+      
       const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
       this.filtered = this.brands.filter(element =>
         element.brandName.toLowerCase().includes(filterValue)
