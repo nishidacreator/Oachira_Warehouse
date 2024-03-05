@@ -1,24 +1,25 @@
 const express = require('express');
 
 const router = express.Router();
-const PurchaseAccount = require('../models/purchaseAccount')
+const PurchaseLoading = require('../models/purchaseLoading')
 const Distributor = require('../../products/models/distributor');
 const Entry = require('../models/entry');
 const Brocker = require('../models/brocker');
 const Product = require('../../products/models/product');
+const Loading = require('../models/loading');
 
 const authenticateToken = require('../../middleware/authorization');
 
 router.post('/', async (req, res) => {
     try {
     
-    const { brockerId, loadingId, noOfBags, noOfBox, amount, date, status, closedDate  } = req.body;
+    const { invoiceNo, entryId, brockerId, loadingId, noOfBags, noOfBox, amount, date, status, closedDate  } = req.body;
 
-            const purchaseaccount = new PurchaseAccount({  brockerId, entryId, date, bagNo, amount, status, invoiceNo  });
+            const purchaseloading = new PurchaseLoading({  invoiceNo, entryId, brockerId, loadingId, noOfBags, noOfBox, amount, date, status, closedDate });
 
-            await purchaseaccount.save();
+            await purchaseloading.save();
 
-            res.send(purchaseaccount);
+            res.send(purchaseloading);
 
     } catch (error) {
         res.send(error.message);
@@ -27,12 +28,12 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (req, res) => {
     try {
-        const purchaseaccount = await PurchaseAccount.findAll({
+        const purchaseloading = await PurchaseLoading.findAll({
             order:['id'],
-            include: [{model: Brocker, include: [Product]}, Entry]
+            include: [Loading, Entry]
         })
 
-        res.send(purchaseaccount);
+        res.send(purchaseloading);
     } catch (error) {
         res.send(error.message);
     }
@@ -40,13 +41,13 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        const purchaseaccount = await PurchaseAccount.findOne({
+        const purchaseloading = await PurchaseLoading.findOne({
             where: {id: req.params.id}, 
             order:['id'],
-            include: [{model: Brocker, include: [Product]}, Entry]
+            include: [Loading, Entry]
         })
         
-        res.send(purchaseaccount);
+        res.send(purchaseloading);
     } catch (error) {
         res.send(error.message)
     }
@@ -55,20 +56,20 @@ router.get('/:id', async (req, res) => {
 
 router.delete('/:id', authenticateToken, async(req,res)=>{
     try {
-      const purchaseaccount = await PurchaseAccount.findOne({
+      const purchaseloading = await PurchaseLoading.findOne({
         where: {id: req.params.id},
         order: ["id"]
       });
 
   
-    const result = await purchaseaccount.destroy({
+    const result = await purchaseloading.destroy({
         force: true
     });
 
     if (result === 0) {
         return res.status(404).json({
             status: "fail",
-            message: "PurchaseAccount with that ID not found",
+            message: "PurchaseLoading with that ID not found",
         });
         }
     
@@ -81,13 +82,13 @@ router.delete('/:id', authenticateToken, async(req,res)=>{
   
 router.patch('/:id', authenticateToken, async(req,res)=>{   
     try {
-      const purchaseaccount = await PurchaseAccount.findOne({where: {id: req.params.id}})
+      const purchaseloading = await PurchaseLoading.findOne({where: {id: req.params.id}})
       console.log(req.body);
-      purchaseaccount.description = req.body.description;
-      purchaseaccount.contactPerson = req.body.contactPerson;
+      purchaseloading.description = req.body.description;
+      purchaseloading.contactPerson = req.body.contactPerson;
     
-      await purchaseaccount.save();
-      res.send(purchaseaccount);
+      await purchaseloading.save();
+      res.send(purchaseloading);
       } catch (error) {
         res.send(error.message);
       }
@@ -97,11 +98,11 @@ router.patch('/statusupdate/:id', authenticateToken, async(req,res)=>{
     try {
   
       let status = req.body.status;
-      let purchaseaccount = await PurchaseAccount.findByPk(req.params.id);
-      purchaseaccount.status = status
+      let purchaseloading = await PurchaseLoading.findByPk(req.params.id);
+      purchaseloading.status = status
   
-      await purchaseaccount.save();
-      res.send(purchaseaccount);
+      await purchaseloading.save();
+      res.send(purchaseloading);
       } catch (error) {
         res.send(error.message);
       }

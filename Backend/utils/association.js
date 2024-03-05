@@ -25,6 +25,7 @@ const OrderDetails = require('../purchases/models/orderDetails');
 const Coolie = require('../purchases/models/coolie');
 const Entry = require('../purchases/models/entry');
 const EntryDetails = require('../purchases/models/entryDetails');
+const PurchaseLoading = require('../purchases/models/purchaseLoading');
 
 const Customer = require('../sales/models/customer');
 const CustomerCategory = require('../sales/models/customerCategory');
@@ -76,6 +77,7 @@ const customerData = require('./dataSource/routeSale/customer.json');
 const customerPhoneData = require('./dataSource/routeSale/customerPhone.json');
 const routeDaysData = require('./dataSource/routeSale/routeDays.json');
 const tripDaysData = require('./dataSource/routeSale/tripDays.json');
+const Loading = require('../purchases/models/loading');
 
 async function syncModel(){
 
@@ -197,6 +199,12 @@ async function syncModel(){
 
     Entry.hasMany(BrockerAccount, {foreignKey : 'entryId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     BrockerAccount.belongsTo(Entry, {foreignKey : 'entryId'})
+
+    Entry.hasMany(PurchaseLoading, {foreignKey : 'entryId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    PurchaseLoading.belongsTo(Entry, {foreignKey : 'entryId'})
+
+    Loading.hasMany(PurchaseLoading, {foreignKey : 'loadingId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    PurchaseLoading.belongsTo(Loading, {foreignKey : 'loadingId'})
 
     // Distributor.hasMany(Order, {foreignKey : 'distributorId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     // Order.belongsTo(Store)

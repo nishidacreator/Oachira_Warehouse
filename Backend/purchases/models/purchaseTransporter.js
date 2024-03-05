@@ -1,9 +1,9 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../utils/db');
 
-const PurchaseTransporter = sequelize.define('purchasetransporter',{
+const PurchaseTransporter = sequelize.define('purchaseTransporter',{
     invoiceNo: {type : DataTypes.STRING, allowNull : false},
-    transporterId : {type : DataTypes.INTEGER, allowNull : false},
+    transporterId : {type : DataTypes.INTEGER},
     amount : {type : DataTypes.FLOAT, defaultValue : 0},
     date: {type : DataTypes.DATEONLY, defaultValue :new Date()},
     vehicleNo: {type : DataTypes.STRING},

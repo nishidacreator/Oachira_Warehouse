@@ -22,6 +22,9 @@ import { PurchaseManagementComponent } from './components/purchase-management/pu
 import { BrokerComponent } from './components/broker/broker.component';
 import { BrokerageComponent } from './components/brokerage/brokerage.component';
 import { PrintBrokerSlipComponent } from './components/print-broker-slip/print-broker-slip.component';
+import { LoadingTeamComponent } from './components/loading-team/loading-team.component';
+import { UnloadingSlipComponent } from './components/unloading-slip/unloading-slip.component';
+import { PrintUnloadingSlipComponent } from './components/print-unloading-slip/print-unloading-slip.component';
 
 
 @NgModule({
@@ -44,7 +47,10 @@ import { PrintBrokerSlipComponent } from './components/print-broker-slip/print-b
     PurchaseManagementComponent,
     BrokerComponent,
     BrokerageComponent,
-    PrintBrokerSlipComponent
+    PrintBrokerSlipComponent,
+    LoadingTeamComponent,
+    UnloadingSlipComponent,
+    PrintUnloadingSlipComponent
   ],
   imports: [
     CommonModule,

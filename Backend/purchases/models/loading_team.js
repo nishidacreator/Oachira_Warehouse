@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../utils/db');
 
-const Loading = sequelize.define('loading',{
+const LoadingTeam = sequelize.define('loadingteam',{
     teamname : {type : DataTypes.STRING, allowNull : false}
 },
 {
@@ -10,6 +10,6 @@ const Loading = sequelize.define('loading',{
 })
 
 
-module.exports = Loading;
+module.exports = LoadingTeam;
 
 
