@@ -211,7 +211,8 @@
   "productName": "Quality Turmeric Powder 100gm",
   "brandId": 10,
   "categoryId": 1,
-  "barCode": 8906017760048
+  "barCode": 8906017760048,
+  "isRouteItem": true
  },
  {
   "productName": "Quality Chilli Powder 100gm Rs28",
@@ -223,44 +224,51 @@
   "productName": "Quality Coriander Powder 100g Rs23",
   "brandId": 10,
   "categoryId": 1,
-  "barCode": 8906017760604
+  "barCode": 8906017760604,
+  "isRouteItem": true
  },
  {
   "productName": "Everyday Dw 20GM PKT Rs10",
   "code": "ey",
   "brandId": 354,
   "categoryId": 1,
-  "barCode": 8901058901030
+  "barCode": 8901058901030,
+  "isRouteItem": true
  },
  {
   "productName": "Cerelac S2 W.\/App\/Cher Rs205",
   "brandId": 1,
   "categoryId": 1,
-  "barCode": 8901058867435
+  "barCode": 8901058867435,
+  "isRouteItem": true
  },
  {
   "productName": "Cerelac 6-24 Wheat Rs229",
   "brandId": 1,
   "categoryId": 1,
-  "barCode": 8901058905649
+  "barCode": 8901058905649,
+  "isRouteItem": true
  },
  {
   "productName": "Kit Kat 4 Finger Rs20",
   "brandId": 354,
   "categoryId": 1,
-  "barCode": 8901058904727
+  "barCode": 8901058904727,
+  "isRouteItem": true
  },
  {
   "productName": "POLO MINT ROLL Rs5",
   "brandId": 354,
   "categoryId": 1,
-  "barCode": 8901058850741
+  "barCode": 8901058850741,
+  "isRouteItem": true
  },
  {
   "productName": "Nan Pro 1 400Gm",
   "brandId": 1,
   "categoryId": 1,
-  "barCode": 8901058891799
+  "barCode": 8901058891799,
+  "isRouteItem": true
  },
  {
   "productName": "Nestum 10-24 RF",

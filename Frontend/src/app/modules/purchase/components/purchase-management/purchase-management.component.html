@@ -1,0 +1,35 @@
+<section class="home_layout">
+  <div id="section_bg" class="background">
+    <mat-grid-list gutterSize="10px" cols="5" rowHeight="1:1">
+
+      <mat-grid-tile class="container">
+        <button class="btn btn" mat-fab aria-label="Example icon button with a bookmark icon" type="button" (click)="home()">
+          <span class="material-icons" style="color: white; font-size: 45px;">home</span>
+        </button>
+        <div class="button_align">Home</div>
+      </mat-grid-tile>
+
+      <mat-grid-tile class="container">
+        <button  class="btn btn" mat-fab aria-label="Example icon button with a bookmark icon" routerLink="transporter">
+          <span class="material-icons" style="color: rgb(255, 255, 255); font-size: 45px;">departure_board</span>
+        </button>
+        <div class="button_align">Transporter</div>
+      </mat-grid-tile>
+
+      <mat-grid-tile class="container">
+        <button  class="btn btn" mat-fab aria-label="Example icon button with a bookmark icon" routerLink="broker">
+          <span class="material-icons" style="color: rgb(255, 255, 255); font-size: 45px;">people</span>
+        </button>
+        <div class="button_align">Broker</div>
+      </mat-grid-tile>
+
+      <mat-grid-tile class="container">
+        <button  class="btn btn" mat-fab aria-label="Example icon button with a bookmark icon" routerLink="broker">
+          <i class='fa-solid fa-cart-flatbed-suitcase' style='color: rgb(255, 255, 255); font-size: 45px; text-align: center;'></i>
+        </button>
+        <div class="button_align">Loading</div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</section>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"  crossorigin="anonymous" referrerpolicy="no-referrer" />

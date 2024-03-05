@@ -1,0 +1,202 @@
+<mat-card>
+  <form [formGroup]="dailyCollectionForm" (ngSubmit)="onSubmit()">
+      <mat-card class="background">
+        <div class="row">
+          <div class="col">
+            <mat-card-header>
+              <mat-card-title>DAILY COLLECTION</mat-card-title>
+            </mat-card-header>
+          </div>
+
+          <div class="col">
+            <mat-card-header>
+              <button mat-mini-fab color="primary" type="button" style="margin-left: auto;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onclick="history.back()">
+                <mat-icon>exit_to_app</mat-icon>
+              </button>
+            </mat-card-header>
+          </div>
+        </div><br>
+        <mat-card-content >
+
+
+        <div class="row box">
+          <div class="col">
+              <mat-form-field class="full-width" >
+                  <mat-select placeholder="Customer Name" formControlName="customerId"  (selectionChange)="onCustomerChange()">
+                    <mat-form-field class="full-width">
+                      <div class="row">
+                        <input matInput (input)="filterCustomer($event)" placeholder="Search">
+                      </div>
+                    </mat-form-field>
+
+                    <mat-option  [value]="'add'" (click)="addCustomer()">
+                      <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);">playlist_add</span>
+                    </mat-option>
+                    <mat-option *ngFor="let item of filteredCustomer" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+              
+
+
+                    <!-- &nbsp;&nbsp; &nbsp;&nbsp;<span *ngIf="filteredCustomer.length === 0" class="material-icons" style="font-size: 30px; color: rgb(0, 128, 55);" (click)="addCustomer()">playlist_add</span>
+                  -->
+               
+                  
+                </mat-select>
+                  <mat-error *ngIf="dailyCollectionForm.controls['customerId'].hasError('required')">
+                    field is <strong>required</strong>
+                  </mat-error>
+              </mat-form-field>
+             </div>
+
+
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Amount</mat-label>
+              <input matInput placeholder="" formControlName="amount" (input)="onAmountChange()">
+                <mat-error *ngIf="dailyCollectionForm.controls['amount'].hasError('required')">
+                  field <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+          </div>
+
+          <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>Date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="date">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+
+          </div>
+        </div>
+
+<div class="row box">
+<div class="col">
+  <mat-form-field class="full-width">
+    <input matInput placeholder="InvoiceNo" formControlName="invoiceNo">
+      <mat-error *ngIf="dailyCollectionForm.controls['invoiceNo'].hasError('required')">
+        Invoice <strong>required</strong>
+      </mat-error>
+  </mat-form-field>
+</div>
+
+<div class="col">
+  <mat-form-field class="full-width">
+    <mat-select placeholder="User" formControlName="userId">
+      <mat-form-field class="search-field">
+        <div class="row">
+          <mat-icon>search</mat-icon>
+          <input matInput (input)="filterUser($event)" placeholder="Search">
+        </div>
+      </mat-form-field>
+    <!-- <span *ngIf="filteredUser.length != 0" class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55); margin-left: 20px;"
+        (click)="addUser()">playlist_add</span>  -->
+      <mat-option *ngFor="let item of filteredUser" [value]="item.id">
+        {{item.name}}
+      </mat-option>
+
+        <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addUser()">playlist_add</span>
+   
+    </mat-select>
+    <mat-error *ngIf="dailyCollectionForm.controls['userId'].hasError('required')">
+      User <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+</div>
+
+  <div class="col">
+    <mat-form-field class="full-width">
+      <mat-label>Payment Mode</mat-label>
+      <mat-select placeholder="" formControlName="paymentMode">
+        <mat-option *ngFor="let item of paymentMode" [value]="item.value">
+          {{item.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  </div>
+
+
+  <div class="row box">
+
+  <!-- <div class="col">
+    <mat-form-field class="full-width" >
+        <mat-select placeholder="Route Name" formControlName="routeId">
+          <mat-form-field class="full-width">
+            <div class="row">
+              <input matInput (input)="filterRoute($event)" placeholder="Search">
+            </div>
+          </mat-form-field>
+          <mat-option *ngFor="let item of filteredRoute" [value]="item.id">
+              {{item.routeName}}
+          </mat-option>
+          <mat-option *ngIf="filteredRoute.length === 0" [value]="'add'">
+            <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addRoute()">playlist_add</span>
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    </div> -->
+
+    <div class="col">
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Route Name" formControlName="routeId" (selectionChange)="onCustomerChange()">
+          <!-- <mat-form-field class="full-width">
+            <div class="row">
+              <input matInput (input)="filterRoute($event)" placeholder="Search">
+            </div>
+          </mat-form-field> -->
+          <mat-option  [value]="'add'" (click)="addRoute()">
+            <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);">playlist_add</span>
+          </mat-option>
+     
+
+          <mat-option *ngFor="let item of filteredRoutes" [value]="item.id">
+            {{item.route?.routeName}}
+          </mat-option>
+
+          <!-- <mat-option *ngFor="let item of routes" [value]="item.id">
+            {{item.routeName}}
+          </mat-option> -->
+    
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+
+    <div class="col">
+      <mat-form-field class="full-width">
+        <mat-label>Credit balance</mat-label>
+        <input matInput  readonly placeholder="" formControlName="creditBalance" >
+          <mat-error *ngIf="dailyCollectionForm.controls['creditBalance'].hasError('required')">
+            field <strong>required</strong>
+          </mat-error>
+      </mat-form-field>
+
+    </div>
+
+
+    <div class="col">
+      <mat-form-field class="full-width">
+        <textarea matInput placeholder="Remarks" formControlName="remarks"></textarea>
+      </mat-form-field>
+    </div>
+
+</div>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button *ngIf="!isEdit" mat-raised-button type="button" class="btn btn-success" [disabled]="!dailyCollectionForm.valid" (click)="onSubmit()">
+          <span class="material-icons" style="font-size: 25px;">save</span>
+        </button>
+
+    
+        <button  *ngIf="isEdit"  mat-raised-button  type="button" >
+          <span class="material-icons" style="font-size: 30px;" (click)="editFunction()">edit_note</span>
+        </button>&nbsp;&nbsp;
+      </mat-card-actions>
+
+  </mat-card>

@@ -1,13 +1,21 @@
 
 [
-    {"name": "Amina",
-    "phoneNumber": "8714111041",
+    {"name": "Adhil",
+    "phoneNumber": "1234567890",
     "password": "123456",
     "roleId": 1,
     "status": true
     },
-    {"name": "qwerty",
-    "phoneNumber": "2222222222",
+    
+    {"name": "Ashiq",
+    "phoneNumber": "0987654321",
+    "password": "123456",
+    "roleId": 1,
+    "status": true
+    },
+
+    {"name": "Abdulla",
+    "phoneNumber": "1122334455",
     "password": "123456",
     "roleId": 6,
     "status": true

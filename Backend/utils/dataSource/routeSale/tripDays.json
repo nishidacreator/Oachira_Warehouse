@@ -1,0 +1,188 @@
+[
+    {
+      "id": 1,
+      "routeId": 4,
+      "weekDay": "MON",
+      "status": true
+    },
+    {
+      "id": 2,
+      "routeId": 4,
+      "weekDay": "MON",
+      "status": true
+    },
+    {
+      "id": 3,
+      "routeId": 11,
+      "weekDay": "MON",
+      "status": true
+    },
+    {
+      "id": 4,
+      "routeId": 12,
+      "weekDay": "MON",
+      "status": true
+    },
+    {
+      "id": 5,
+      "routeId": 13,
+      "weekDay": "MON",
+      "status": true
+    },
+    {
+      "id": 6,
+      "routeId": 14,
+      "weekDay": "MON",
+      "status": true
+    },
+    {
+      "id": 7,
+      "routeId": 15,
+      "weekDay": "MON",
+      "status": true
+    },
+    {
+      "id": 8,
+      "routeId": 4,
+      "weekDay": "MON",
+      "status": true
+    },
+    {
+      "id": 9,
+      "routeId": 16,
+      "weekDay": "TUE",
+      "status": true
+    },
+    {
+      "id": 10,
+      "routeId": 17,
+      "weekDay": "TUE",
+      "status": true
+    },
+    {
+      "id": 11,
+      "routeId": 17,
+      "weekDay": "TUE",
+      "status": true
+    },
+    {
+      "id": 12,
+      "routeId": 18,
+      "weekDay": "TUE",
+      "status": true
+    },
+    {
+      "id": 14,
+      "routeId": 1,
+      "weekDay": "WED",
+      "status": true
+    },
+    {
+      "id": 15,
+      "routeId": 7,
+      "weekDay": "WED",
+      "status": true
+    },
+    {
+      "id": 16,
+      "routeId": 13,
+      "weekDay": "WED",
+      "status": true
+    },
+    {
+      "id": 17,
+      "routeId": 9,
+      "weekDay": "WED",
+      "status": true
+    },
+    {
+      "id": 18,
+      "routeId": 23,
+      "weekDay": "WED",
+      "status": true
+    },
+    {
+      "id": 19,
+      "routeId": 3,
+      "weekDay": "THU",
+      "status": true
+    },
+    {
+      "id": 20,
+      "routeId": 27,
+      "weekDay": "THU",
+      "status": true
+    },
+    {
+      "id": 21,
+      "routeId": 28,
+      "weekDay": "THU",
+      "status": true
+    },
+    {
+      "id": 22,
+      "routeId": 29,
+      "weekDay": "THU",
+      "status": true
+    },
+    {
+      "id": 23,
+      "routeId": 30,
+      "weekDay": "THU",
+      "status": true
+    },
+    {
+      "id": 24,
+      "routeId": 5,
+      "weekDay": "THU",
+      "status": true
+    },
+    {
+      "id": 25,
+      "routeId": 31,
+      "weekDay": "THU",
+      "status": true
+    },
+    {
+      "id": 26,
+      "routeId": 19,
+      "weekDay": "THU",
+      "status": true
+    },
+    {
+      "id": 27,
+      "routeId": 13,
+      "weekDay": "THU",
+      "status": true
+    },
+    {
+      "id": 28,
+      "routeId": 21,
+      "weekDay": "THU",
+      "status": true
+    },
+    {
+      "id": 29,
+      "routeId": 6,
+      "weekDay": "SAT",
+      "status": true
+    },
+    {
+      "id": 30,
+      "routeId": 24,
+      "weekDay": "SAT",
+      "status": true
+    },
+    {
+      "id": 31,
+      "routeId": 25,
+      "weekDay": "SAT",
+      "status": true
+    },
+    {
+      "id": 32,
+      "routeId": 26,
+      "weekDay": "SAT",
+      "status": true
+    }
+  ]

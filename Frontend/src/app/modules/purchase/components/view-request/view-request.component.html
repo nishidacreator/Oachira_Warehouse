@@ -8,13 +8,13 @@
 
     <div class="col">
       <mat-card-header>
-        <button (mouseover)="showName('PO')" (mouseout)="hideName()" mat-mini-fab type="button" style="margin-left: auto;"
+        <!-- <button (mouseover)="showName('PO')" (mouseout)="hideName()" mat-mini-fab type="button" style="margin-left: auto;"
         aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" (click)="addPO()">
           <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'PO')">add_shopping_cart</mat-icon>
           <div class="icon_name" *ngIf="isHovered && hoveredButton === 'PO'">PO</div>
-        </button>
+        </button> -->
 
-        <button (mouseover)="showName('PR')" (mouseout)="hideName()" mat-mini-fab type="button" style="margin-left: 10px;"
+        <button (mouseover)="showName('PR')" (mouseout)="hideName()" mat-mini-fab type="button" style="margin-left: auto;"
          aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" (click)="addPR()">
           <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'PR')">request_quote</mat-icon>
           <div class="icon_name" *ngIf="isHovered && hoveredButton === 'PR'">PR</div>
@@ -34,8 +34,9 @@
         <tr>
             <th>ID</th>
             <th>RequestNo</th>
-            <th>Store</th>
+            <th>Company</th>
             <th>Date</th>
+            <th>View</th>
             <th>Manage</th>
         </tr>
     </thead>
@@ -43,16 +44,16 @@
         <tr *ngFor="let element of pr">
             <td>{{element.id}}</td>
             <td>{{element.requestNo}}</td>
-            <!-- <td>{{element.store.storeName}}</td> -->
+            <td>{{element.company.companyName}}</td>
             <td>{{element.date}}</td>
-            <!-- <td (mouseover)="showName('Back')" (mouseout)="hideName()">
+            <td (mouseover)="showName('Back')" (mouseout)="hideName()">
               <mat-icon (click)="viewPurchaseRequest(element.id)">open_in_new</mat-icon>
-            </td> -->
+            </td>
             <td>
               <mat-icon (click)="editRequest(element.id)" >edit</mat-icon>
               <!-- &nbsp;&nbsp; -->
               <mat-icon (click)="deleteRequest(element.id)">delete</mat-icon>
-              <mat-icon (click)="addPurchaseOrder(element.id)">post_add</mat-icon>
+              <!-- <mat-icon (click)="addPurchaseOrder(element.id)">post_add</mat-icon> -->
             </td>
         </tr>
     </tbody>

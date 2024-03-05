@@ -1,0 +1,82 @@
+<mat-card class="container">
+    <div class="row">
+      <div class="col">
+        <mat-card-header>
+          <mat-card-title> DAILY COLLECTIONS </mat-card-title>
+        </mat-card-header>
+      </div>
+  
+      <div class="col">
+        <mat-card-header>
+          <button (mouseover)="showName('RouteEntry')" (mouseout)="hideName()" mat-mini-fab type="button" style="margin-left: auto;"
+           aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" (click)="addDailyCollection()">
+            <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'RouteEntry')">playlist_add</mat-icon>
+            <div class="icon_name" *ngIf="isHovered && hoveredButton === 'RouteEntry'">Add</div>
+          </button>
+  
+          <!-- <button (mouseover)="showName('PR')" (mouseout)="hideName()" mat-mini-fab type="button" style="margin-left: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto">
+            <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'PR')">request_quote</mat-icon>
+            <div class="icon_name" *ngIf="isHovered && hoveredButton === 'PR'">PR</div>
+          </button> -->
+          <!-- <div *ngIf="isHovered">Add Purchase Request</div> -->
+  
+          <button (mouseover)="showName('Back')" (mouseout)="hideName()" mat-mini-fab color="primary" type="button" style="margin-left: 10px;"
+          aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onclick="history.back()">
+            <mat-icon *ngIf="!isHovered || (isHovered && hoveredButton != 'Back')">exit_to_app</mat-icon>
+            <div class="icon_name" *ngIf="isHovered && hoveredButton === 'Back'">Back</div>
+          </button>
+        </mat-card-header>
+      </div>
+    </div>
+  
+    <!-- <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+      <mat-tab label="Orders"> -->
+
+
+        <!-- <mat-form-field>
+          <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input> 
+        </mat-form-field> -->
+  
+        <table class="styled-table">
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>Date</th>
+                  <th>Customer</th>
+                  <th>InvoiceNo</th>
+                  <th>Route</th>
+                  <th>Amount</th>
+                  <th>Manage</th>
+                 
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let element of filtered">
+                  <td >{{element.id}}</td>
+                  <td>{{element.date}}</td>
+                  <td >{{element.customer?.name}}</td>
+                  <td >{{element.invoiceNo}}</td>
+                  <td >{{element.route.routeName}}</td>
+                  <td >{{element.amount}}</td>
+            
+                  <td >
+                    <mat-icon (click)="viewDailyCollection(element.id)" >open_in_new</mat-icon>
+                    <mat-icon (click)="editDailyCollection(element.id)">edit</mat-icon>
+                    <mat-icon  (click)="deleteDailyCollection(element.id)">delete</mat-icon>
+                  </td>
+                  <!-- <td >
+                    <mat-icon *ngIf="element.status.toLowerCase() != 'invoiceissued'" (click)="generateRSE(element.id)">receipt_long</mat-icon>
+                  </td> -->
+              </tr>
+          </tbody>
+        </table>
+      <!-- </mat-tab> -->
+  
+      <!-- <mat-tab label="Invoice Issued">
+  
+      </mat-tab>
+    </mat-tab-group> -->
+  </mat-card>
+  
+  

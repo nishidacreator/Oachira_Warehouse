@@ -107,8 +107,8 @@
       <!-- <div class="bg-green-700 button-container" style="background: #2D6A4F"> -->
         <div class="navigation">
           <ul>
-            <li class="list active">
-              <a routerLink="/login">
+            <li class="list activele">
+              <a routerLink="sales/routesale/test">
                 <span class="icon">
                   <mat-icon>home</mat-icon>
                 </span>
@@ -148,11 +148,23 @@
                     </span>
                     <span class="text">Slip</span>
                   </a></li>
+                  <li><a routerLink="purachases/viewtransportslip">
+                    <span class="icon">
+                      <mat-icon>local_shipping</mat-icon>
+                    </span>
+                    <span class="text">Transporter</span>
+                  </a></li>
+                  <li><a routerLink="purachases/viewbrokerslip">
+                    <span class="icon">
+                      <mat-icon>price_change</mat-icon>
+                    </span>
+                    <span class="text">Brokerage</span>
+                  </a></li>
                 </ul>
               </div>
             </li>
             <li class="list">
-              <a href="#">
+              <a routerLink="sales/routesale/viewrouteorder">
                 <span class="icon">
                   <mat-icon>inventory_2</mat-icon>
                 </span>
@@ -188,6 +200,17 @@
                     </span>
                     <span class="text">Trip</span>
                   </a></li>
+                  <li>
+                    <!-- <a routerLink="sales/routesale/dailyCollection"> -->
+                      <a routerLink="sales/routesale/viewDailyCollection">
+                      <span class="icon">
+                        <mat-icon>receipt</mat-icon>
+                      </span>
+                      <span class="text">Daily Collection</span>
+                    </a>
+                  </li>
+
+
                 </ul>
               </div>
             </li>

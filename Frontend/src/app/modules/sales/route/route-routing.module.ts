@@ -20,9 +20,14 @@ import { RouteEntryComponent } from './components/route-entry/route-entry.compon
 import { ViewRouteEntryDetailsComponent } from './components/view-route-entry-details/view-route-entry-details.component';
 import { PickListComponent } from './components/pick-list/pick-list.component';
 import { ViewPickListDetailsComponent } from './components/view-pick-list-details/view-pick-list-details.component';
+import { DailyCollectionComponent } from './components/daily-collection/daily-collection.component';
+import { ViewDailyCollectionComponent } from './components/view-daily-collection/view-daily-collection.component';
+import { DetailsViewDailycollectionComponent } from './components/details-view-dailycollection/details-view-dailycollection.component';
+import { ViewPickListComponent } from './components/view-pick-list/view-pick-list.component';
 
 const routes: Routes = [
   {path: '', component: ManageRouteComponent},
+  {path: 'test', component: ViewPickListComponent},
   {path: 'route', component: RouteComponent},
   {path: 'routedays', component: RouteDaysComponent},
   {path: 'routedetails', component: RouteDetailsComponent},
@@ -46,6 +51,11 @@ const routes: Routes = [
   {path: 'editrouteentry/:editid', component: RouteEntryComponent},
   {path: 'viewrouteentry', component: ViewRouteEntryComponent},
   {path: 'viewrouteentry/details/:id', component: ViewRouteEntryDetailsComponent},
+
+  {path:'dailyCollection',component:DailyCollectionComponent},
+  {path:'viewDailyCollection',component:ViewDailyCollectionComponent},
+  {path:'editDailyCollection/:id',component:DailyCollectionComponent},
+  {path:'detailViewDailyCollection/:id',component:DetailsViewDailycollectionComponent}
 ];
 
 @NgModule({

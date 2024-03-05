@@ -5,7 +5,7 @@ const OrderDetails = sequelize.define('orderDetails',{
     orderId : {type : DataTypes.INTEGER, allowNull : false},
     productId : {type : DataTypes.INTEGER, allowNull : false},
     quantity : {type : DataTypes.FLOAT, allowNull : false},
-    primaryUnitId : {type : DataTypes.INTEGER}
+    secondaryUnitId : {type : DataTypes.INTEGER}
 },
 {
     freezeTableName: true,

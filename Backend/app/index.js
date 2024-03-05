@@ -64,15 +64,23 @@ const entryDetails = require('../purchases/rouers/entryDetails')
 const orderDetails = require('../purchases/rouers/orderDetails');
 const coolie = require('../purchases/rouers/coolie');
 const slip = require('../purchases/rouers/slip')
+const transporter = require('../purchases/rouers/transporter');
+const purchaseTransporter = require('../purchases/rouers/purchaseTransporter');
+const broker = require('../purchases/rouers/brocker');
+const brokerAccount = require('../purchases/rouers/brockerAccount');
 
 app.use('/purchases/request',request);
 app.use('/purchases/order',order);
-// app.use('/purchases/entry',entry);
+app.use('/purchases/entry', entry)
 // app.use('/purchases/requestdetails',requestDetails);
 app.use('/purchases/orderdetails',orderDetails);
 app.use('/purchases/pentrydetails',entryDetails);
 app.use('/purchases/coolie',coolie);
 app.use('/purchases/slip',slip)
+app.use('/purchases/transporter',transporter)
+app.use('/purchases/purchasetransporter',purchaseTransporter)
+app.use('/purchases/broker',broker)
+app.use('/purchases/brokeraccount',brokerAccount)
 
 
 
@@ -92,6 +100,8 @@ const routeSO = require('../sales/routers/routeSO');
 const routeSODetails = require('../sales/routers/routeSODetails');
 const routeSE = require('../sales/routers/routeSE');
 const cl = require('../sales/routers/customerLedger');
+
+const dailyCollection = require('../sales/routers/dailyCollection')
 app.use('/sales/customer',customer);
 app.use('/sales/loyaltypoint',loyaltyPoint);
 app.use('/sales/customercategory',customerCategory);
@@ -106,15 +116,12 @@ app.use('/sales/routedetails',routeDetails);
 app.use('/sales/trip',trip);
 app.use('/sales/tripdays', tripDays);
 app.use('/sales/tripdetails',tripDetails);
-
-// app.use('/sales/picklist', pickList);
-// app.use('/sales/picklistdetails', pickListDetails);
-app.use('/purchases/entry', entry)
-
-
 app.use('/sales/routeorder', routeSO);
 app.use('/sales/routeorderdetails', routeSODetails);
 app.use('/sales/routeentry', routeSE);
+app.use('/sales/dailyCollection',dailyCollection)
+
+
 const bank = require('../company/bankRouter');
 app.use('/company/bank', bank)
 

@@ -47,6 +47,16 @@ const Trip = require('../sales/models/trip');
 const TripDay = require('../sales/models/tripDays');
 const TripDetails = require('../sales/models/tripDetails');
 const Slip = require('../purchases/models/slip');
+const Bank = require('../company/bank');
+const Company = require('../company/company');
+const Team=require('../company/team');
+const TeamMember = require("../company/teamMember");
+const PurchaseTransporter = require('../purchases/models/purchaseTransporter');
+const Transporter = require('../purchases/models/transporter');
+const Brocker = require('../purchases/models/brocker');
+const BrockerAccount = require('../purchases/models/brockerAccount');
+const DailyCollection = require('../sales/models/dailyCollection');
+const CustomerLedger = require('../sales/models/customerLedger');
 
 // // BULK CREATE
 const userData = require('./dataSource/user.json');
@@ -61,13 +71,13 @@ const customerCategoryData = require('./dataSource/routeSale/customerCategory.js
 const customerGradeData = require('./dataSource/routeSale/customerGrade.json');
 const vehicleTypeData = require('./dataSource/vehicleType.json');
 const vehilceData = require('./dataSource/vehicle.json');
-const Bank = require('../company/bank');
-const Company = require('../company/company');
-const Team=require('../company/team');
-const TeamMember = require("../company/teamMember");
-
-
-
+const routeData = require('./dataSource/routeSale/route.json');
+const sUnitData = require('./dataSource/products/secondaryUnit.json');
+const companyData = require('./dataSource/company.json');
+const customerData = require('./dataSource/routeSale/customer.json');
+const customerPhoneData = require('./dataSource/routeSale/customerPhone.json');
+const routeDaysData = require('./dataSource/routeSale/routeDays.json');
+const tripDaysData = require('./dataSource/routeSale/tripDays.json');
 
 
 async function syncModel(){
@@ -115,15 +125,15 @@ async function syncModel(){
     User.hasMany(Company,{foreignKey : 'companyInChargeId', as: 'companyInCharge',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Company.belongsTo(User, {foreignKey : 'companyInChargeId', as: 'companyInCharge'})
 
-    Store.hasMany(Warehouse,{foreignKey : 'warehouseId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    Warehouse.belongsTo(Store, {foreignKey : 'warehouseId'})
+    // Store.hasMany(Warehouse,{foreignKey : 'warehouseId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    // Warehouse.belongsTo(Store, {foreignKey : 'warehouseId'})
 
     Warehouse.hasMany(User,{foreignKey : 'warehouseInChargeId', as: 'warehouseInCharge',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     User.belongsTo(Warehouse, {foreignKey : 'warehouseInChargeId', as: 'warehouseInCharge'})
    
     // PURCHASES
-    Store.hasMany(Request, {foreignKey : 'storeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    Request.belongsTo(Store)
+    Company.hasMany(Request, {foreignKey : 'companyId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Request.belongsTo(Company)
 
     User.hasMany(Request, {foreignKey : 'userId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Request.belongsTo(User)
@@ -139,6 +149,12 @@ async function syncModel(){
 
     Distributor.hasMany(Order, {foreignKey : 'distributorId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Order.belongsTo(Distributor)
+
+    Company.hasMany(Order, {foreignKey : 'companyId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Order.belongsTo(Company)
+
+    SecondaryUnit.hasMany(Order, {foreignKey : 'secondaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Order.belongsTo(SecondaryUnit)
 
     User.hasMany(Order, {foreignKey : 'userId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Order.belongsTo(User)
@@ -167,11 +183,26 @@ async function syncModel(){
     Entry.hasMany(Slip, {foreignKey : 'entryId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Slip.belongsTo(Entry, {foreignKey : 'entryId'})
 
+    Entry.hasMany(PurchaseTransporter, {foreignKey : 'entryId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    PurchaseTransporter.belongsTo(Entry, {foreignKey : 'entryId'})
+
+    Transporter.hasMany(PurchaseTransporter, {foreignKey : 'transporterId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    PurchaseTransporter.belongsTo(Transporter, {foreignKey : 'transporterId'})
+
     Distributor.hasMany(Entry, {foreignKey : 'distributorId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Entry.belongsTo(Distributor, {foreignKey : 'distributorId'})
 
     Order.hasMany(Entry, {foreignKey : 'orderId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Entry.belongsTo(Order, {foreignKey : 'orderId'})
+
+    Product.hasMany(Brocker, {foreignKey : 'productId', onDelete : 'CASCADE'})
+    Brocker.belongsTo(Product, {foreignKey : 'productId'})
+
+    Brocker.hasMany(BrockerAccount, {foreignKey : 'brockerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    BrockerAccount.belongsTo(Brocker, {foreignKey : 'brockerId'})
+
+    Entry.hasMany(BrockerAccount, {foreignKey : 'entryId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    BrockerAccount.belongsTo(Entry, {foreignKey : 'entryId'})
 
     // Distributor.hasMany(Order, {foreignKey : 'distributorId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     // Order.belongsTo(Store)
@@ -191,7 +222,6 @@ async function syncModel(){
     //ROUTE SALE 
     Bank.hasMany(Company, {foreignKey : 'companyId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Company.belongsTo(Bank)
-
 
     Customer.hasMany(LoyaltyPoint, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     LoyaltyPoint.belongsTo(Customer)
@@ -274,6 +304,8 @@ async function syncModel(){
     SecondaryUnit.hasMany(RouteSEDetails, {foreignKey : 'secondaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     RouteSEDetails.belongsTo(SecondaryUnit, {foreignKey : 'secondaryUnitId'})
 
+    SecondaryUnit.hasMany(OrderDetails, {foreignKey : 'secondaryUnitId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    OrderDetails.belongsTo(SecondaryUnit, {foreignKey : 'secondaryUnitId'})
 
     // Hsn.hasMany(RouteSEDetails, {foreignKey : 'hsnId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     // RouteSEDetails.belongsTo(Hsn, {foreignKey : 'hsnId'})
@@ -296,7 +328,18 @@ async function syncModel(){
   User.hasMany(TeamMember, { foreignKey: "userId", as: "register"});
   TeamMember.belongsTo(User, { foreignKey: "userId", as: "register"});
 
-    await sequelize.sync({alter: true})
+  Customer.hasMany(DailyCollection, {foreignKey : 'customerId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+  DailyCollection.belongsTo(Customer)
+
+  Route.hasMany(DailyCollection, {foreignKey : 'routeId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+  DailyCollection.belongsTo(Route)
+
+  User.hasMany(DailyCollection, {foreignKey : 'userId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+  DailyCollection.belongsTo(User)
+
+  
+
+  await sequelize.sync({alter: true})
 
     const role = await Role.findAll({})
     if(role.length === 0){
@@ -397,7 +440,6 @@ async function syncModel(){
             CustomerGrade.bulkCreate([customerGradeData[i]])
         }
     }
-    
 
     const vehicleType = await VehicleType.findAll({})
     if(vehicleType.length === 0){
@@ -413,13 +455,140 @@ async function syncModel(){
         }
     }
 
+    const route = await Route.findAll({})
+    if(route.length == 0) {
+        for(let i = 0; i < routeData.length; i++){
+            Route.bulkCreate([routeData[i]])
+        }
+    }
+
+    const routeDays = await RouteDay.findAll({})
+    if(routeDays.length == 0) {
+        for(let i = 0; i < routeDaysData.length; i++){
+            RouteDay.bulkCreate([routeDaysData[i]])
+        }
+    }
+
+    const tripDay = await TripDay.findAll({})
+    if(tripDay.length == 0) {
+        for(let i = 0; i < tripDaysData.length; i++){
+            TripDay.bulkCreate([tripDaysData[i]])
+        }
+    }
+
+     
+    const team = await Team.findAll({});
+  
+    if (team.length === 0) {
+      Team.bulkCreate([
+        { teamName: "Team A", userId: 1 }
+        // { teamName: "Team B", userId: 2 }
+      ]).then(async () => {
+        const teams = await Team.findAll(); // Fetch all teams created just now
+        for (const team of teams) {
+          // const teamId = team.id;
+          const teamMembers = [
+            { teamId:1, userId: 3 }, // Add team members here
+            { teamId:1, userId: 4 },  // Add more members if needed
+  
+          
+          ];
+          await TeamMember.bulkCreate(teamMembers);
+        }
+      });
+    }
+
+    const distributor = await Distributor.findAll({});
+    if (distributor.length === 0) {
+        Distributor.bulkCreate([
+        {
+            distributorName: "Ashirvad",
+            state:"Kerala",
+          locationName: "Palode",
+          address1:
+            "333+JJJ, Near Juma Masjid",
+          address2: "Palode, Kerala 695563.",
+          phoneNumber:"9846335504",
+          contactPerson: "Ashir",
+          status: true,
+          panNo:"AKZPH6789",
+          gstNo:'32087G578990' ,
+          fssaiNo: "1235667799"
+        },
+        {
+            distributorName: "Dishgold",
+            state:"Kerala",
+            status: true,
+            locationName: "Plavara",
+            address1:
+              "Aluva, Ernakulam",
+            address2: "Aluva, Kerala 695563.",
+            phoneNumber:"9846335504",
+            panNo:"AKZPH6789",
+            gstNo:'32087G578990' ,
+            fssaiNo: "1235667799",
+            contactPerson: "Ashir",
+            companyInChargeId:1,
+            gstId:'32087G578990' 
+        },
+        {
+            distributorName: "ABU TRADERS",
+            state:"Kerala",
+            status: true,
+            phoneNumber:"9846335504",
+            contactPerson: "Ashir",
+
+            locationName: "Nedumanagad",
+            address1:
+              "ZP34, Near Juma Masjid",
+            address2: "Palode, Kerala 695563.",
+            gstId:'32087G578990' ,
+            panNo:"AKZPH6789",
+            gstNo:'32087G578990' ,
+            fssaiNo: "1235667799"
+        }
+       
+      ]);
+    }
+
+
+    const secUnit = await SecondaryUnit.findAll({});
+    if (secUnit.length === 0) {
+      for(let i = 0; i < sUnitData.length; i++){
+        SecondaryUnit.bulkCreate([sUnitData[i]])
+      }
+    } 
+
+
+    const company = await Company.findAll({});
+    if (company.length === 0) {
+      for(let i = 0; i < companyData.length; i++){
+        Company.bulkCreate([companyData[i]])
+      }
+    } 
+
+    const customer = await Customer.findAll({});
+    if (customer.length === 0) {
+      for(let i = 0; i < customerData.length; i++){
+        Customer.bulkCreate([customerData[i]])
+      }
+    } 
+
+    const customerPhone = await CustomerPhone.findAll({});
+    if (customerPhone.length === 0) {
+      for(let i = 0; i < customerPhoneData.length; i++){
+        CustomerPhone.bulkCreate([customerPhoneData[i]])
+      }
+    } 
+}
+
     // const bankAccount = await BankAccount.findAll({})
     // if(bankAccount.length === 0){
     //     for(let i = 0; i < bankAccountData.length; i++){
     //         BankAccount.bulkCreate([bankAccountData[i]])
     //     }
     // }
-}
+
 
 
 

@@ -35,10 +35,12 @@ export class ViewEntryComponent implements OnInit {
   pendingPeSlip: Entry[] = [];
   pendingPeCheque: Entry[] = [];
   compPe: Entry[] = [];
+  advancedPe: Entry[] = [];
   getEntry(){
     this.entrySub = this.purchaseService.getPe().subscribe(x=>{
       this.pendingPeSlip = x.filter(x=>x.status === 'SlipIssued' && x.entryStatus === "pending");
       this.pendingPeCheque = x.filter(x=>x.status === 'ChequeIssued' && x.entryStatus === "pending");
+      this.advancedPe = x.filter(x=>x.status === 'AdvanceIssued');
       this.compPe = x.filter(x=>x.entryStatus === 'completed');
       console.log(x);
     })

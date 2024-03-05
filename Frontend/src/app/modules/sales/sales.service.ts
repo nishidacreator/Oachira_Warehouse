@@ -17,6 +17,7 @@ import { RouteOrder } from './route/models/route-order';
 import { RouteOrderDetails } from './route/models/route-order-details';
 import { RouteEntry } from './route/models/route-entry';
 import { CustomerLedger } from './route/models/customer-ledger';
+import { DailyCollection } from './route/models/daily-collection';
 
 @Injectable({
   providedIn: 'root'
@@ -105,6 +106,10 @@ export class SalesService {
   getLedgerByCustomer(id: number): Observable<CustomerLedger[]>{
     return this._http.get<CustomerLedger[]>(this.url+'ledger/cutomer/' + id);
   }
+
+getLedger():Observable<CustomerLedger[]>{
+  return this._http.get<CustomerLedger[]>(this.url+'ledger');
+}
 
   addVehicleType(data: any){
     return this._http.post(this.url + 'vehicletype', data);
@@ -364,4 +369,42 @@ export class SalesService {
   updateRouteEntry(id:Number, data:any): Observable<RouteEntry>{
     return this._http.patch<RouteEntry>(this.url+'routeentry/'+id, data);
   }
+
+  //-----------------Daily collection----------------------------------------------
+  // addRouteEntry(data: any){
+  //   return this._http.post(this.url +'routeentry', data);
+  // }
+
+  // getRouteEntry(){
+  //   return this._http.get<RouteEntry[]>(this.url+'routeentry');
+  // }
+
+  addDailyCollection(data : any){
+    return this._http.post(this.url +'dailyCollection',data)
+  }
+
+  getDailyCollection(){
+    return this._http.get<DailyCollection[]>(this.url+'dailyCollection')
+  }
+
+  getDailyCollectionById(id:number):Observable<DailyCollection>{
+    return this._http.get<DailyCollection>(this.url+ 'dailyCollection/' + id)
+  }
+
+  updateDailyCollection(id : number , data : any):Observable<DailyCollection>{
+    return this._http.patch<DailyCollection>(this.url + 'dailyCollection/' + id , data)
+  }
+
+  deleteDailyCollection(id : number){
+    return this._http.delete(this.url + 'dailyCollection/' + id)
+  }
+
+  //-------------Customer ledger
+  getCustomerLedgerByCustomerId(id:number):Observable<CustomerLedger>{
+   
+      return this._http.get<CustomerLedger>(this.url+'ledger/cutomer/'+id);
+    }
+
+
+  
 }
