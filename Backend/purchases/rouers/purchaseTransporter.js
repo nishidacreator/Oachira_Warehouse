@@ -24,14 +24,17 @@ router.post('/', authenticateToken, async (req, res) => {
     }
 })
 
-router.get('/', authenticateToken, async (req, res) => {
+router.get('/', async (req, res) => {
+  try {
+      const pt = await PurchaseTransporter.findAll({
+          order:['id'],
+          include: [Transporter, {model: Entry, include: [Distributor]}]
+      })
 
-    const purchasetransporter = await PurchaseTransporter.findAll({
-      order:['id'],
-      include: [Transporter, {model: Entry, include: [Distributor]}]
-    })
-
-    res.send(purchasetransporter);
+      res.send(pt);
+  } catch (error) {
+      res.send(error.message);
+  }
 })
 
 router.get('/:id', authenticateToken, async (req, res) => {

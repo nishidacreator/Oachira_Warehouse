@@ -68,6 +68,8 @@ const transporter = require('../purchases/rouers/transporter');
 const purchaseTransporter = require('../purchases/rouers/purchaseTransporter');
 const broker = require('../purchases/rouers/brocker');
 const brokerAccount = require('../purchases/rouers/brockerAccount');
+const loading = require('../purchases/rouers/loading');
+const purchaseLoading = require('../purchases/rouers/purchaseLoading');
 
 app.use('/purchases/request',request);
 app.use('/purchases/order',order);
@@ -81,7 +83,8 @@ app.use('/purchases/transporter',transporter)
 app.use('/purchases/purchasetransporter',purchaseTransporter)
 app.use('/purchases/broker',broker)
 app.use('/purchases/brokeraccount',brokerAccount)
-
+app.use('/purchases/loadingteam',loading)
+app.use('/purchases/purchaseloading',purchaseLoading)
 
 
 const customer = require('../sales/routers/customer');

@@ -1,0 +1,93 @@
+
+<form [formGroup]="loadingForm" (ngSubmit)="onSubmit()">
+  <mat-card class="background">
+    <div class="row" >
+      <div class="col">
+        <mat-card-header>
+          <mat-card-title> LOADING AND UNLOADING</mat-card-title>
+        </mat-card-header>
+      </div>
+      <div class="col" *ngIf="addStatus != 'true'">
+        <mat-card-header>
+          <button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon"
+          class="d-block mr-0 ml-auto" onClick="history.back()" style="margin-left: auto;">
+            <mat-icon>exit_to_app</mat-icon>
+          </button>
+        </mat-card-header>
+      </div>
+    </div>
+    <mat-card-content >
+
+      <div class="row box">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Name" formControlName="teamname">
+            <mat-error *ngIf="loadingForm.controls['teamname'].hasError('required')">
+             Name <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- <br><div>
+        <mat-slide-toggle formControlName="status">Status</mat-slide-toggle>
+      </div> -->
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button *ngIf="!editstatus" mat-raised-button  type="submit" [disabled]="loadingForm.pristine || !loadingForm.valid ">
+        <mat-icon style="font-size: 25px;">save</mat-icon>
+      </button>&nbsp;&nbsp;
+      <button *ngIf="editstatus" mat-raised-button  type="button" [disabled]="!loadingForm.valid" (click)="editFunction()">
+        <mat-icon style="font-size: 25px;">edit_note</mat-icon>
+      </button>&nbsp;&nbsp;
+
+      <button mat-raised-button *ngIf="addStatus === 'true'" type="button" class="cancel-button" (click)="onCancelClick()">
+        <mat-icon style="font-size: 25px;">cancel_presentation</mat-icon>
+      </button>
+    </mat-card-actions>
+
+  </mat-card>
+
+</form>
+
+
+<!-- --------------------------------------------------------------------------------------------------------------------------- -->
+
+<br><mat-card *ngIf="addStatus != 'true'">
+  <mat-card-header>
+    <mat-card-title style="color: green;"> BROKERS </mat-card-title>
+  </mat-card-header>
+
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+  <div style="overflow-x: auto;">
+    <table class="styled-table">
+      <thead>
+          <tr>
+              <th>Id</th>
+              <th>Team Name</th>
+
+              <th>Manage</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let element of filtered let i=index">
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.id}}</td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">{{element.teamname}}</td>
+
+              <td [style.background-color]="element.status == false ? 'pink' : null">
+                <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+                <i  (click)="editLoadingTeam(element.id)"  class="fa fa-edit" style="font-size: 20px; color:green"></i>
+                &nbsp;&nbsp;
+                <i  (click)="deleteLoadingTeam(element.id)" class="fa fa-trash" style="font-size: 20px; color:red"></i>
+              </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageIndex]="currentPage - 1"
+  (page)="onPageChange($event)" [pageSizeOptions]="[10, 20,30,40,50,100]">
+</mat-paginator> -->
+</mat-card>

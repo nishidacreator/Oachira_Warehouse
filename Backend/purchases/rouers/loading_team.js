@@ -1,10 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
-const Loading = require('../models/loading')
-const Distributor = require('../../products/models/distributor');
-const Entry = require('../models/entry');
-const Product = require('../../products/models/product');
+const LoadingTeam = require('../models/loading_team')
 
 const authenticateToken = require('../../middleware/authorization');
 
@@ -13,11 +10,11 @@ router.post('/', async (req, res) => {
     
     const { teamname } = req.body;
 
-            const loading = new Loading({  teamname  });
+            const loadingteam = new LoadingTeam({ teamname });
 
-            await loading.save();
+            await loadingteam.save();
 
-            res.send(loading);
+            res.send(loadingteam);
 
     } catch (error) {
         res.send(error.message);
@@ -26,11 +23,11 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (req, res) => {
     try {
-        const loading = await Loading.findAll({
+        const loadingteam = await LoadingTeam.findAll({
             order:['id']
         })
 
-        res.send(loading);
+        res.send(loadingteam);
     } catch (error) {
         res.send(error.message);
     }
@@ -38,12 +35,12 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        const loading = await Loading.findOne({
+        const loadingteam = await LoadingTeam.findOne({
             where: {id: req.params.id}, 
             order:['id']
         })
         
-        res.send(loading);
+        res.send(loadingteam);
     } catch (error) {
         res.send(error.message)
     }
@@ -52,20 +49,20 @@ router.get('/:id', async (req, res) => {
 
 router.delete('/:id', authenticateToken, async(req,res)=>{
     try {
-      const loading = await Loading.findOne({
+      const loadingteam = await LoadingTeam.findOne({
         where: {id: req.params.id},
         order: ["id"]
       });
 
   
-    const result = await loading.destroy({
+    const result = await loadingteam.destroy({
         force: true
     });
 
     if (result === 0) {
         return res.status(404).json({
             status: "fail",
-            message: "Loading with that ID not found",
+            message: "LoadingTeam with that ID not found",
         });
         }
     
@@ -78,14 +75,12 @@ router.delete('/:id', authenticateToken, async(req,res)=>{
   
 router.patch('/:id', authenticateToken, async(req,res)=>{   
     try {
-      const loading = await Loading.findOne({where: {id: req.params.id}})
+      const loadingteam = await LoadingTeam.findOne({where: {id: req.params.id}})
 
-      loading.brokerName = req.body.brokerName;
-      loading.productId = req.body.productId;
-      loading.rate = req.body.rate;
+      loadingteam.teamname = req.body.teamname;
     
-      await loading.save();
-      res.send(loading);
+      await loadingteam.save();
+      res.send(loadingteam);
       } catch (error) {
         res.send(error.message);
       }

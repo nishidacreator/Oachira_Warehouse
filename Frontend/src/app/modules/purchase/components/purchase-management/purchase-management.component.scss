@@ -1,3 +1,9 @@
+button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 button:enabled {
   background-color :rgb(56, 151, 86);
   color : white

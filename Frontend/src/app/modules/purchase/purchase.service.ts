@@ -10,6 +10,8 @@ import { Transporter } from './models/transporter';
 import { PurchaseTransporter } from './models/purchase-transporter';
 import { Broker } from './models/broker';
 import { BrokerAccount } from './models/broker-account';
+import { LoadingTeam } from './models/loading-team';
+import { PurchaseLoading } from './models/purchase-loading';
 
 @Injectable({
   providedIn: 'root'
@@ -104,6 +106,51 @@ export class PurchaseService {
 
   updateBrokerAccountStatus(id:number, data:any){
     return this._http.patch<BrokerAccount>(this.url+'brokeraccount/statusupdate/' + id, data);
+  }
+
+  // UNLOADING TEAM
+  updateUnloadingTeam(id:Number, data:any){
+    return this._http.patch<LoadingTeam>(this.url+'loadingteam/' + id, data);
+  }
+
+  deleteUnloadingTeam(id:Number){
+    return this._http.delete(this.url+'loadingteam/' +id);
+  }
+
+  getUnloadingTeam(): Observable<LoadingTeam[]>{
+    return this._http.get<LoadingTeam[]>(this.url+'loadingteam');
+  }
+
+  addUnloadingTeam(data : any){
+    return this._http.post(this.url+ "loadingteam", data)
+  }
+
+  getUnloadingTeamById(id: number): Observable<LoadingTeam>{
+    return this._http.get<LoadingTeam>(this.url+'loadingteam/'+id);
+  }
+
+  updatePurchaseUnloading(id:Number, data:any){
+    return this._http.patch<BrokerAccount>(this.url+'purchaseloading/' + id, data);
+  }
+
+  deletePurchaseUnloading(id:Number){
+    return this._http.delete(this.url+'purchaseloading/' +id);
+  }
+
+  getPurchaseUnloading(): Observable<PurchaseLoading[]>{
+    return this._http.get<PurchaseLoading[]>(this.url+'purchaseloading');
+  }
+
+  getPurchaseUnloadingById(id: number): Observable<PurchaseLoading>{
+    return this._http.get<PurchaseLoading>(this.url+'purchaseloading/'+id);
+  }
+
+  addPurchaseUnloading(data : any){
+    return this._http.post(this.url+ "purchaseloading", data)
+  }
+
+  updatePurchaseUnloadingStatus(id:number, data:any){
+    return this._http.patch<PurchaseLoading>(this.url+'purchaseloading/statusupdate/' + id, data);
   }
 
   //PR

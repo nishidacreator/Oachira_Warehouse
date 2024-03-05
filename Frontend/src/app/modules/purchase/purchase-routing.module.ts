@@ -18,6 +18,9 @@ import { PurchaseManagementComponent } from './components/purchase-management/pu
 import { BrokerComponent } from './components/broker/broker.component';
 import { PrintBrokerSlipComponent } from './components/print-broker-slip/print-broker-slip.component';
 import { BrokerageComponent } from './components/brokerage/brokerage.component';
+import { LoadingTeamComponent } from './components/loading-team/loading-team.component';
+import { UnloadingSlipComponent } from './components/unloading-slip/unloading-slip.component';
+import { PrintUnloadingSlipComponent } from './components/print-unloading-slip/print-unloading-slip.component';
 
 const routes: Routes = [
   {path: '', component: PurchaseManagementComponent},
@@ -39,6 +42,9 @@ const routes: Routes = [
   {path: 'transporter', component: TransporterComponent},
   {path: 'purchaseOrder/view/:id', component: PoInvoiceComponent},
   {path: 'broker', component: BrokerComponent},
+  {path: 'loadingteam', component: LoadingTeamComponent},
+  {path: 'viewunloadingslip', component: UnloadingSlipComponent},
+  {path: 'printunloadingslip/:id', component: PrintUnloadingSlipComponent},
 ];
 
 @NgModule({
