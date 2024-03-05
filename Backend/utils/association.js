@@ -5,6 +5,7 @@ const { JSON } = require('sequelize');
 
 const Role = require('../users/models/role');
 const User = require('../users/models/user');
+const DistributorLedger = require('../purchases/models/distributorLedger')
 
 const Category = require('../products/models/category');
 const Product = require('../products/models/product');
@@ -34,6 +35,7 @@ const RouteSO = require('../sales/models/routeSO');
 const RouteSODetails = require('../sales/models/routeSODetails');
 const RouteSE = require('../sales/models/routeSE');
 const RouteSEDetails = require('../sales/models/routeSEDetails');
+
 const Warehouse = require('../store/models/warehouse');
 const CustomerPhone = require('../sales/models/customerPhone');
 const VehicleType = require('../sales/models/vehicleType');
@@ -76,6 +78,7 @@ const customerData = require('./dataSource/routeSale/customer.json');
 const customerPhoneData = require('./dataSource/routeSale/customerPhone.json');
 const routeDaysData = require('./dataSource/routeSale/routeDays.json');
 const tripDaysData = require('./dataSource/routeSale/tripDays.json');
+
 
 async function syncModel(){
 
@@ -173,6 +176,9 @@ async function syncModel(){
 
     Distributor.hasMany(Slip, {foreignKey : 'distributorId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Slip.belongsTo(Distributor, {foreignKey : 'distributorId'})
+
+    Distributor.hasMany(DistributorLedger,{foreignKey:'distributorId', onDelete: 'CASCADE'})
+    DistributorLedger.belongsTo(Distributor,{foreignKey:'distributorId'})
 
     Entry.hasMany(Slip, {foreignKey : 'entryId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Slip.belongsTo(Entry, {foreignKey : 'entryId'})

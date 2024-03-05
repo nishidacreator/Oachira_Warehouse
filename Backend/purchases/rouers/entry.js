@@ -9,8 +9,8 @@ const User = require('../../users/models/user');
 const Distributor = require('../../products/models/distributor');
 const Order = require('../../purchases/models/order');
 const Slip = require('../models/slip');
+const DistributorLedger = require('../models/distributorLedger')
 const EntryCheque = require('../models/entryCheque');
-
 router.post('/', authenticateToken, async (req, res) => {
     try {
         const { distributorId, purchaseAmount, status, userId, entryStatus, chequeNo, date, advanceAmount } = req.body;
@@ -31,7 +31,17 @@ router.post('/', authenticateToken, async (req, res) => {
 
         const entry = new Entry({distributorId, purchaseAmount, status, userId, entryStatus });
         await entry.save();
+        let distributorLedger = new DistributorLedger({
+            distributorId:distributorId,
+            date:purachseDate,
+            description:`Invoice  No : ${purchaseInvoice}`,
+            amount:purchaseAmount,
+            transactionType: "Debit",
+        })
+
+        await distributorLedger.save()
         let entryId = entry.id;
+
 
         const cheque = new EntryCheque({ entryId, chequeNo, amount: advanceAmount, date });
         await cheque.save();

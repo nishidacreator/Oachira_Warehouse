@@ -7,7 +7,7 @@ const RouteSO = sequelize.define('routeSO',{
     date : {type : DataTypes.DATEONLY, allowNull : false, defaultValue : new Date()},
     status : {type : DataTypes.STRING, allowNull : false, defaultValue : 'Created'},
     salesExecutiveId : {type : DataTypes.INTEGER, allowNull : false},
-    deliveryDate : {type : DataTypes.DATE, allowNull : false}
+    deliveryDate : {type : DataTypes.DATEONLY, allowNull : false}
 },
 {
     freezeTableName: true,

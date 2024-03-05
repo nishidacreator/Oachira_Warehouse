@@ -13,6 +13,10 @@ const Gst = require('../../products/models/gst');
 const Hsn = require('../../products/models/hsn');
 const Category = require('../../products/models/category');
 const SubCategory = require('../../products/models/subCategory');
+const { route } = require('./routeSODetails');
+const sequelize = require('../../utils/db');
+const { Sequelize } = require('sequelize');
+const { models } = require('mongoose');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
@@ -150,5 +154,51 @@ router.patch('/:id', authenticateToken, async(req,res)=>{
     res.send(error.message);
   }
 })
+
+
+router.post('/report/picklist', async(req,res)=>{
+
+  const deliveryDate = new Date(req.body.deliveryDate)
+  if (!deliveryDate || deliveryDate === "" || deliveryDate == "Invalid Date"){
+    return res.send("Delivery date field cannot be empty.")
+  }
+
+   
+    const routeId = req.body.routeId
+    
+   
+   
+    if(!routeId){
+      return res.send( 'Route field cannot be empty.' )
+    }
+
+    try {
+   
+    
+     const pickList = await RouteSO.findAll({ where:{deliveryDate:deliveryDate, routeId:routeId},include:[{model:Route,attributes:['routeName']},{model:RouteSODetails},{model:Customer,attributes:["name"]}],attributes:['routeId','date']});
+  
+
+  //  const pickList = await sequelize.query(`
+  //       SELECT 
+  //       r."routeName", so.date, c.name
+  //       FROM  
+  //       "routeSO" so 
+  //       JOIN 
+  //       route r on so."routeId" = r.id 
+  //       JOIN
+  //       customer c on so."customerId" = c.id
+
+  //  `)
+
+   const records = pickList
+   console.log(records)
+    res.json(records)
+  
+    
+  } catch (error) {
+    console.log(error.message)
+  }
+})
+
 
 module.exports = router;
