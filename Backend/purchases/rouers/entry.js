@@ -13,7 +13,7 @@ const DistributorLedger = require('../models/distributorLedger')
 const EntryCheque = require('../models/entryCheque');
 router.post('/', authenticateToken, async (req, res) => {
     try {
-        const { distributorId, purchaseAmount, status, userId, entryStatus, chequeNo, date, advanceAmount } = req.body;
+        const { distributorId, purchaseAmount, status, userId, entryStatus, chequeNo, date, advanceAmount,purchaseInvoice } = req.body;
 
 
 
@@ -33,7 +33,7 @@ router.post('/', authenticateToken, async (req, res) => {
         await entry.save();
         let distributorLedger = new DistributorLedger({
             distributorId:distributorId,
-            date:purachseDate,
+            date:date,
             description:`Invoice  No : ${purchaseInvoice}`,
             amount:purchaseAmount,
             transactionType: "Debit",
