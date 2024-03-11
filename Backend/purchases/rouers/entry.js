@@ -14,7 +14,9 @@ const EntryCheque = require('../models/entryCheque');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
+
         const { distributorId, purchaseAmount, status, userId, entryStatus, chequeNo, advanceAmount, purchaseInvoiceNo, chequeClearenceDate, invoiceDate, purchaseDate } = req.body;
+
 
         // Check if the chequeNo already exists
         // const entryExist = await Entry.findOne({ chequeNo });
@@ -32,6 +34,7 @@ router.post('/', authenticateToken, async (req, res) => {
 
         let distributorLedger = new DistributorLedger({
             distributorId:distributorId,
+
             date:new Date(),
             description:`Invoice  No : ${purchaseInvoiceNo}`,
             amount:purchaseAmount,
