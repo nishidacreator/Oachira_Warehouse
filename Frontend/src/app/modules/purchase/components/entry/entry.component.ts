@@ -8,7 +8,7 @@ import { Distributor } from 'src/app/modules/products/models/distributor';
 import { DistributorComponent } from 'src/app/modules/products/components/distributor/distributor.component';
 import { MatStepper } from '@angular/material/stepper';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Slip } from '../../models/slip';
 import { ProductComponent } from 'src/app/modules/products/components/product/product.component';
 import { Product } from 'src/app/modules/products/models/product';
@@ -36,7 +36,7 @@ export class EntryComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder, public purchaseService: PurchaseService, public dialog: MatDialog,
     private productService: ProductService, private _snackBar: MatSnackBar, private router: Router,
     @Optional() public dialogRef: MatDialogRef<EntryComponent>, private productservice: ProductService,
-    @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any) {
+    @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any, private route: ActivatedRoute) {
     //User
     const token: any = localStorage.getItem("token");
     let user = JSON.parse(token);
@@ -72,13 +72,15 @@ export class EntryComponent implements OnInit, OnDestroy {
   entryStatus: boolean = true;
   isInvoiceNoDisabled: boolean = true;
   addStatus: boolean = false;
+  editStatus: boolean = false;
   ngOnInit(): void {
     this.getDistributor()
-    this.getProduct();
-    this.getUnit();
-    this.getGST();
-    this.getTransporter();
-    this.getLoadingTeam();
+    // this.generateTransInvoiceNumber()
+    let entryId = this.route.snapshot.params['id'];
+    if(entryId){
+      this.patchData(entryId);
+      this.editStatus = true;
+    }
 
     if (this.dialogRef) {
       this.addStatus = true;
@@ -89,14 +91,18 @@ export class EntryComponent implements OnInit, OnDestroy {
           this.selectedIndex = 1;
           this.getSlipAndPatch(this.dialogData.id)
         }
-        if(this.dialogData.type === "transslipedit"){
+        else if(this.dialogData.type === "transslipedit"){
           this.selectedIndex = 2;
           this.getTransAndPatch(this.dialogData.id)
         }
 
-        if(this.dialogData.type === "beokerslipedit"){
+        else if(this.dialogData.type === "brokerslipedit"){
           this.selectedIndex = 3;
           this.getBrokerAndPatch(this.dialogData.id)
+        }
+        else if(this.dialogData.type === "unloadslipedit"){
+          this.selectedIndex = 4;
+          this.getUnloadingAndPatch(this.dialogData.id)
         }
       }
     }
@@ -106,20 +112,40 @@ export class EntryComponent implements OnInit, OnDestroy {
     this.purchaseService.getPeById(id).subscribe(data =>{
       console.log(data);
       let distributorId = data.distributorId;
-      let amount = data.purchaseAmount;
-
+      let amount: number = data.purchaseAmount;
+      let status = 'ChequeIssued';
+      let date: any = data.updatedDate;
+      let advanceAmount: number = data.advanceAmount;
+      let balAmount = amount - advanceAmount;
       this.purchaseEntryForm.patchValue({
         distributorId: distributorId,
         purchaseAmount: amount,
-        status: "ChequeIssued"
+        status: status,
+        // date: date,
+        amount: balAmount
       })
     });
+  }
+
+  updateEntry(type: string){
+    if(type === "close"){
+      history.back();
+    }else if(type === "next"){
+      this.stepper.selectedIndex = 2;
+      this.generateTransInvoiceNumber();
+      this.getTransporter();
+      // this.patchTrans(data);
+    }
   }
 
   updateStatus(){
     let data = {
       chequeNo: this.purchaseEntryForm.get('chequeNo')?.value,
-      status: this.purchaseEntryForm.get('status')?.value
+      status: this.purchaseEntryForm.get('status')?.value,
+      purchaseInvoiceNo: this.purchaseEntryForm.get('purchaseInvoiceNo')?.value,
+      chequeClearenceDate: this.purchaseEntryForm.get('chequeClearenceDate')?.value,
+      amount: this.purchaseEntryForm.get('amount')?.value,
+      invoiceDate: this.purchaseEntryForm.get('invoiceDate')?.value
     }
     this.purchaseService.updatePEStatus(this.dialogData.id, data).subscribe(data =>{
       this._snackBar.open("Entry status update successfully...","" ,{duration:3000})
@@ -127,15 +153,19 @@ export class EntryComponent implements OnInit, OnDestroy {
     });
   }
 
+
   purchaseEntryForm = this.fb.group({
     distributorId: [0, Validators.required],
     purchaseAmount: [0, Validators.required],
-    status: [''],
+    status: ['', Validators.required],
     chequeNo: [''],
     userId: [0],
     advanceAmount: [0],
-    date: [''],
-    purchaseInvoice:['']
+    purchaseInvoiceNo:[''],
+    chequeClearenceDate: [''],
+    amount: [0],
+    invoiceDate: [],
+    purchaseDate: []
   });
 
   distributorSub!: Subscription;
@@ -190,8 +220,8 @@ export class EntryComponent implements OnInit, OnDestroy {
         ...this.purchaseEntryForm.value
       }
       data.userId = this.id
-
       console.log(data);
+
 
       this.submitSub = this.purchaseService.addPE(data).subscribe(data=>{
         console.log(data);
@@ -206,6 +236,8 @@ export class EntryComponent implements OnInit, OnDestroy {
         }else if(type === "next"){
           this.stepper.selectedIndex = 2;
           this.generateTransInvoiceNumber();
+          this.getTransporter();
+          this.patchTrans(data);
         }
       });
     }
@@ -229,6 +261,10 @@ export class EntryComponent implements OnInit, OnDestroy {
     advance: [''],
     entryId: [0],
   });
+
+  patchTrans(data: any){
+    this.purchaseTransportForm.get('date')?.setValue(data.updatedDate);
+  }
 
   ivNum: string = "";
   nextId!: any;
@@ -341,6 +377,7 @@ export class EntryComponent implements OnInit, OnDestroy {
         this.selectedIndex = 3;
         this.generateBrokerInvoiceNumber()
         this.getBroker()
+        this.patchBroker(res)
       }else if(type === "close"){
         history.back();
       }
@@ -350,7 +387,7 @@ export class EntryComponent implements OnInit, OnDestroy {
   transId!: number;
   getTransAndPatch(id: number){
     this.purchaseService.getPurchaseTransporterById(id).subscribe(data =>{
-      console.log(data);
+      this.getTransporter();
 
       this.transId = data.id;
       let chequeNo = data.chequeNo;
@@ -400,6 +437,10 @@ export class EntryComponent implements OnInit, OnDestroy {
     amount : [0, Validators.required],
     invoiceNo :['', Validators.required]
   });
+
+  patchBroker(data: any){
+    this.brokerageForm.get('date')?.setValue(data.date);
+  }
 
   brokerInvSub!: Subscription;
   brokerPrefix!: string;
@@ -487,6 +528,21 @@ export class EntryComponent implements OnInit, OnDestroy {
     });
   }
 
+  brokerRate!: number;
+  getAmount(id: number){
+    this.purchaseService.getBrokerById(id).subscribe(res=>{
+      console.log(res);
+      this.brokerRate = res.rate;
+    })
+  }
+
+  onInputChange(event: any){
+    const inputValue: number = event.target.value;
+    let amount = this.brokerRate * inputValue
+
+    this.brokerageForm.get('amount')?.setValue(amount);
+  }
+
   brokAccSub!: Subscription;
   brokerStatus: boolean = false
   generateBrokerSlip(type: string){
@@ -509,6 +565,8 @@ export class EntryComponent implements OnInit, OnDestroy {
       }else if(type === "next"){
         this.selectedIndex = 4
         this.generateLTeamInvoiceNumber()
+        this.getLoadingTeam();
+        this.patchLoad(res)
       }else if(type === "close"){
         history.back();
       }
@@ -519,6 +577,7 @@ export class EntryComponent implements OnInit, OnDestroy {
   getBrokerAndPatch(id: number){
     this.purchaseService.getBrokerAccountById(id).subscribe(data =>{
       console.log(data);
+      this.getBroker()
 
       this.brokerId = data.id;
       let brId:any = data.brockerId.toString();
@@ -561,6 +620,10 @@ export class EntryComponent implements OnInit, OnDestroy {
     amount : [0, Validators.required],
     date: ['']
   });
+
+  patchLoad(data: any){
+    this.unloadingForm.get('date')?.setValue(data.date);
+  }
 
   loading: LoadingTeam[] = [];
   loadSub!: Subscription;
@@ -666,9 +729,49 @@ export class EntryComponent implements OnInit, OnDestroy {
         this.router.navigateByUrl('/login/purachases/printtransportslip/'+op.id)
       }else if(type === "next"){
         this.selectedIndex = 5
+        this.getPurchaseTransporter(res);
+        this.getPurchaseLoading(res);
+        this.getBrockerage(res);
       }else if(type === "close"){
         history.back();
       }
+    })
+  }
+
+  unLoadId!: number;
+  getUnloadingAndPatch(id: number){
+    this.purchaseService.getPurchaseUnloadingById(id).subscribe(data =>{
+      console.log(data);
+      this.getLoadingTeam()
+      this.unLoadId = data.id;
+      let loadingId:any = data.loadingId;
+      let invoiceNo = data.invoiceNo;
+      let amount:any = data.amount;
+      let date: any = data.date;
+      let noOfBags = data.noOfBags;
+      let noOfBox = data.noOfBox;
+      // this.generateBrokerInvoiceNumber()
+
+      this.unloadingForm.patchValue({
+        loadingId : loadingId,
+        invoiceNo: invoiceNo,
+        amount : amount,
+        date: date,
+        noOfBags: noOfBags,
+        noOfBox: noOfBox
+      })
+    })
+  }
+
+  updateUnloading(){
+    if(!this.unloadingForm.valid){
+      return alert("Please fill form completely");
+    }
+
+    this.slipSub = this.purchaseService.updatePurchaseUnloading(this.unLoadId, this.unloadingForm.getRawValue()).subscribe(res=>{
+      console.log(res);
+      this.dialogRef?.close();
+      this._snackBar.open("Purchase Unloading updated successfully...","" ,{duration:3000})
     })
   }
 
@@ -679,7 +782,6 @@ export class EntryComponent implements OnInit, OnDestroy {
     amount: [''],
     entryId: [0],
     description: [''],
-    date: [''],
     contactPerson: ['']
   });
 
@@ -687,13 +789,11 @@ export class EntryComponent implements OnInit, OnDestroy {
   patchSlip(data:any){
     this.peId = data.id;
     let distributorId = data.distributorId;
-    let date = data.purachseDate;
-    let purchaseInvoice = data.purchaseInvoice;
+    let purchaseInvoice = data.purchaseInvoiceNo;
     let amount = data.purchaseAmount;
     this.generateInvoiceNumber()
     this.slipForm.patchValue({
       distributorId: distributorId,
-      date: date,
       purchaseInvoice: purchaseInvoice,
       amount: amount
     })
@@ -706,7 +806,6 @@ export class EntryComponent implements OnInit, OnDestroy {
 
       this.slipId = data.id;
       let distributorId = data.distributorId;
-      let date:any = data.date;
       let purchaseInvoice = data.purchaseInvoice;
       let amount:any = data.amount;
       let contactPerson = data.contactPerson;
@@ -714,7 +813,6 @@ export class EntryComponent implements OnInit, OnDestroy {
       this.generateInvoiceNumber()
       this.slipForm.patchValue({
         distributorId: distributorId,
-        date: date,
         purchaseInvoice: purchaseInvoice,
         amount: amount,
         contactPerson: contactPerson,
@@ -810,16 +908,78 @@ export class EntryComponent implements OnInit, OnDestroy {
 
   finalForm = this.fb.group({
     eWayBillNo: [''],
-    trans:[''],
-    transportation: [''],
-    unload: [''],
-    unloading:[''],
-    com: [''],
-    commission:[''],
+    trans:[false],
+    transportation: [0],
+    unload: [false],
+    unloading:[0],
+    com: [false],
+    commission:[0],
     paymentMode:[''],
     invoiceDate:[''],
     remarks:['']
   });
+
+  getPurchaseTransporter(data: any){
+    console.log(data);
+    this.purchaseService.getPurchaseTransporterByEntryId(data.id).subscribe(res=>{
+      if(res){
+        let transportFee= res.amount;
+        this.finalForm.get('trans')?.setValue(true);
+        this.finalForm.get('transportation')?.setValue(transportFee);
+      }
+    });
+  }
+
+  getPurchaseLoading(data: any){
+    console.log(data);
+    this.purchaseService.getPurchaseUnloadingByEntryId(data.entryId).subscribe(res=>{
+      console.log(res);
+
+      if(res){
+        let unLoadFee = res.amount;
+        console.log(unLoadFee);
+
+        this.finalForm.get('unload')?.setValue(true);
+        this.finalForm.get('unloading')?.setValue(unLoadFee);
+      }
+    });
+  }
+
+  getBrockerage(data: any){
+    console.log(data);
+    this.purchaseService.getPurchaseTransporterByEntryId(data.entryId).subscribe(res=>{
+      if(res){
+        let brokerFee= res.amount;
+        this.finalForm.get('com')?.setValue(true);
+        this.finalForm.get('commission')?.setValue(brokerFee);
+      }
+    });
+  }
+
+  finalStatus: boolean = false;
+  updatePE(){
+    if(!this.finalForm.valid){
+      return alert("Please enter details completely!");
+    }
+    this.finalStatus = true;
+    let data = {
+      invoiceDate: this.finalForm.get('invoiceDate')?.value,
+      transportation: this.finalForm.get('transportation')?.value,
+      unloading: this.finalForm.get('unloading')?.value,
+      commission: this.finalForm.get('commission')?.value,
+      paymentMode: this.finalForm.get('paymentMode')?.value,
+      eWayBillNo: this.finalForm.get('eWayBillNo')?.value,
+      remarks : this.finalForm.get('remarks')?.value,
+    }
+    this.purchaseService.updatePE(this.peId, data).subscribe(data => {
+      this._snackBar.open("Entry updated successfully...","" ,{duration:3000})
+      this.selectedIndex = 6
+      this.getPe(data)
+      this.getProduct();
+      this.getUnit();
+      this.getGST();
+    })
+  }
 
   getPe(data: any){
     console.log(data);
@@ -858,8 +1018,8 @@ export class EntryComponent implements OnInit, OnDestroy {
     })
   }
 
-  addProduct() {
-    this.products().push(this.newProduct(this.peId));
+  addProduct(id?: number) {
+    this.products().push(this.newProduct(id));
   }
 
   removeProduct(i:number) {
@@ -1001,29 +1161,6 @@ export class EntryComponent implements OnInit, OnDestroy {
 
       this.products().at(i).get('gstId')?.setValue(result.gst.id);
     });
-  }
-
-  finalStatus: boolean = false;
-  updatePE(){
-    if(!this.finalForm.valid){
-      return alert("Please enter details completely!");
-    }
-    this.finalStatus = true;
-    let data = {
-      invoiceDate: this.finalForm.get('invoiceDate')?.value,
-      transportation: this.finalForm.get('transportation')?.value,
-      unloading: this.finalForm.get('unloading')?.value,
-      commission: this.finalForm.get('commission')?.value,
-      paymentMode: this.finalForm.get('paymentMode')?.value,
-      eWayBillNo: this.finalForm.get('eWayBillNo')?.value,
-      remarks : this.finalForm.get('remarks')?.value,
-    }
-    console.log(data, this.peId);
-    this.purchaseService.updatePE(this.peId, data).subscribe(data => {
-      this._snackBar.open("Entry updated successfully...","" ,{duration:3000})
-      this.selectedIndex = 3
-      this.getPe(data)
-    })
   }
 
   clearControls() {

@@ -2,6 +2,19 @@
     width: 100%;
   }
 
+  .custom-date-input {
+    position: relative;
+  }
+
+  .placeholder-text {
+    position: absolute;
+    top: 26px; /* Adjust this value as needed */
+    left: 8px; /* Adjust this value as needed */
+    opacity: 0.5; /* Adjust opacity as needed */
+    pointer-events: none; /* Prevent text selection */
+  }
+
+
   .background{
     overflow-y: auto;
   }

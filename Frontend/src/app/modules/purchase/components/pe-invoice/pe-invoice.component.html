@@ -1,0 +1,105 @@
+<style>
+  /* Hide everything except the invoice-box when printing */
+  @media print {
+    body * {
+      visibility: hidden;
+    }
+    .invoice-box, .invoice-box * {
+      visibility: visible;
+    }
+  }
+</style>
+
+<div style="max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+            font-size: 14px;
+            line-height: 24px;" id="invoice-box">
+  <div class="invoice-details" *ngIf="entry">
+    <table cellpadding="0" cellspacing="0">
+      <tr class="top">
+        <td colspan="2">
+          <table>
+            <tr>
+              <td class="title">
+                <!-- Your company logo or name -->
+                <img src="../../../../../assets/img/oachira.png" style="max-width: 150px;">
+              </td>
+              <td class="right-column" style="text-align: right;">
+                <!-- Invoice details -->
+                Invoice #: {{entry.purchaseInvoiceNo}}<br>
+                Created: {{ entry.purchaseDate| date:'dd/MM/yyyy' }}<br>
+
+                Created By: {{entry.user?.name}}<br>
+                <!-- Additional invoice details like due date, etc. -->
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="address-sections" style="display: flex;
+                                        justify-content: space-between;">
+    <div class="from-address" style="width: 45%;">
+      <!-- From Address -->
+      <b>From,</b> <br>
+      <!-- {{entry.company.companyName}}<br>
+      {{entry.company.companyCode}}<br>
+      {{entry.company.locationName}}<br>
+      GST: {{entry.company.gstId}}<br> -->
+      <!-- {{entry.company.fssaiNo}}<br> -->
+      <!-- Additional contact details if needed -->
+    </div>
+    <div class="to-address" style="width: 45%;">
+      <!-- To Address -->
+
+      {{entry.distributor.distributorName}}<br>
+      {{entry.distributor.address1}}<br>
+      {{entry.distributor.address2}}<br>
+      {{entry.distributor.state}}<br>
+      {{entry.distributor.phoneNumber}}<br>
+      <!-- Additional contact details if needed -->
+    </div>
+  </div>
+  <br>
+  <div class="invoice-details" style="margin-top: 20px;">
+    <table cellpadding="0" cellspacing="0" style="width: 100%;
+                                                  border-collapse: collapse;">
+      <tr class="heading" style="background-color: #f2f2f2;">
+        <td>Item</td>
+        <td>Quantity</td>
+        <td>Unit</td>
+        <!-- Add more headers if needed -->
+        <br>
+      </tr>
+      <tr *ngFor="let item of entryDetails" class="item-row" style="border-bottom: 1px solid #ddd;">
+        <td style="padding: 8px;
+                   text-align: left;
+                   width: 33%;">{{ item.product.productName }}</td>
+        <td style="padding: 8px;
+                   text-align: left;
+                   width: 33%;">{{ item.quantity }}</td>
+        <td style="padding: 8px;
+                   text-align: left;
+                   width: 33%;">{{ item.secondaryUnit.secondaryUnitName }}</td>
+        <!-- Additional columns for the item details -->
+      </tr>
+      <!-- Total row and other sections if needed -->
+    </table>
+  </div>
+</div>
+
+<div style="display: flex; justify-content: flex-end;">
+  <button style="padding: 10px 20px;
+                 font-size: 16px;
+                 background-color: #2d7e84;
+                 color: #fff;
+                 border: none;
+                 border-radius: 4px;
+                 cursor: pointer;"
+          (click)="printDiv()">Print</button>
+</div>

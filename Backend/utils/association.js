@@ -80,6 +80,7 @@ const customerPhoneData = require('./dataSource/routeSale/customerPhone.json');
 const routeDaysData = require('./dataSource/routeSale/routeDays.json');
 const tripDaysData = require('./dataSource/routeSale/tripDays.json');
 const Loading = require('../purchases/models/loading');
+const EntryCheque = require('../purchases/models/entryCheque');
 
 
 async function syncModel(){
@@ -211,6 +212,9 @@ async function syncModel(){
 
     Loading.hasMany(PurchaseLoading, {foreignKey : 'loadingId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     PurchaseLoading.belongsTo(Loading, {foreignKey : 'loadingId'})
+
+    Entry.hasMany(EntryCheque, {foreignKey : 'entryId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    EntryCheque.belongsTo(Entry, {foreignKey : 'entryId'})
 
     // Distributor.hasMany(Order, {foreignKey : 'distributorId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     // Order.belongsTo(Store)

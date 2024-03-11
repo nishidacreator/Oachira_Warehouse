@@ -12,6 +12,11 @@ router.post('/', authenticateToken, async (req, res) => {
     try {
             const { transporterId, amount, date, vehicleNo, from, noOfBags, advance, entryId, status, chequeNo, invoiceNo } = req.body;
 
+            const exist = await PurchaseTransporter.findOne({where: {entryId: entryId}})
+            if(exist){
+              res.send("Transporter Slip already exists for this purchase entry");
+            }
+
             const purchasetransporter = new PurchaseTransporter({transporterId, amount, date, vehicleNo, from, 
                 noOfBags, advance, entryId, status, chequeNo, invoiceNo});
 
@@ -27,7 +32,7 @@ router.post('/', authenticateToken, async (req, res) => {
 router.get('/', async (req, res) => {
   try {
       const pt = await PurchaseTransporter.findAll({
-          order:['id'],
+        order:[['date', 'DESC']],
           include: [Transporter, {model: Entry, include: [Distributor]}]
       })
 
@@ -41,6 +46,16 @@ router.get('/:id', authenticateToken, async (req, res) => {
 
   const purchasetransporter = await PurchaseTransporter.findOne({
     where: {id: req.params.id},
+    include: [Transporter, {model: Entry, include: [Distributor]}]
+  })
+
+  res.send(purchasetransporter);
+})
+
+router.get('/byentryid/:id', authenticateToken, async (req, res) => {
+
+  const purchasetransporter = await PurchaseTransporter.findOne({
+    where: {entryId: req.params.id},
     include: [Transporter, {model: Entry, include: [Distributor]}]
   })
 

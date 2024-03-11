@@ -21,6 +21,8 @@ import { BrokerageComponent } from './components/brokerage/brokerage.component';
 import { LoadingTeamComponent } from './components/loading-team/loading-team.component';
 import { UnloadingSlipComponent } from './components/unloading-slip/unloading-slip.component';
 import { PrintUnloadingSlipComponent } from './components/print-unloading-slip/print-unloading-slip.component';
+import { EntryChequeComponent } from './components/entry-cheque/entry-cheque.component';
+import { EditPeComponent } from './components/edit-pe/edit-pe.component';
 
 const routes: Routes = [
   {path: '', component: PurchaseManagementComponent},
@@ -45,6 +47,8 @@ const routes: Routes = [
   {path: 'loadingteam', component: LoadingTeamComponent},
   {path: 'viewunloadingslip', component: UnloadingSlipComponent},
   {path: 'printunloadingslip/:id', component: PrintUnloadingSlipComponent},
+  {path: 'editpurchaseentry/:id', component: EditPeComponent},
+  {path: 'entrycheque', component: EntryChequeComponent},
 ];
 
 @NgModule({

@@ -64,7 +64,7 @@ export class BrokerageComponent implements OnInit, OnDestroy {
 
   editBrokerSlip(id: number){
     const dialogRef = this.dialog.open(EntryComponent, {
-      data: { status: "true" , type : "beokerslipedit", id: id},
+      data: { status: "true" , type : "brokerslipedit", id: id},
     });
 
     dialogRef.afterClosed().subscribe((result) => {

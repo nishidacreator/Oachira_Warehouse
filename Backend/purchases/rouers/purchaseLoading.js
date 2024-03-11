@@ -12,6 +12,10 @@ const authenticateToken = require('../../middleware/authorization');
 
 router.post('/', async (req, res) => {
     try {
+        const exist = await PurchaseLoading.findOne({where: {entryId: entryId}})
+            if(exist){
+              res.send("Loading Slip already exists for this purchase entry");
+            }
     
     const { invoiceNo, entryId, brockerId, loadingId, noOfBags, noOfBox, amount, date, status, closedDate  } = req.body;
 
@@ -29,7 +33,7 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const purchaseloading = await PurchaseLoading.findAll({
-            order:['id'],
+            order:[['date', 'DESC']],
             include: [Loading, Entry]
         })
 
@@ -52,6 +56,19 @@ router.get('/:id', async (req, res) => {
         res.send(error.message)
     }
   
+})
+
+router.get('/byentryid/:id', async (req, res) => {
+    try {
+        const purchaseloading = await PurchaseLoading.findOne({
+            where: {entryId: req.params.id}, 
+            include: [Loading, Entry]
+        })
+        
+        res.send(purchaseloading);
+    } catch (error) {
+        res.send(error.message)
+    } 
 })
 
 router.delete('/:id', authenticateToken, async(req,res)=>{
@@ -83,9 +100,12 @@ router.delete('/:id', authenticateToken, async(req,res)=>{
 router.patch('/:id', authenticateToken, async(req,res)=>{   
     try {
       const purchaseloading = await PurchaseLoading.findOne({where: {id: req.params.id}})
-      console.log(req.body);
-      purchaseloading.description = req.body.description;
-      purchaseloading.contactPerson = req.body.contactPerson;
+
+      purchaseloading.loadingId = req.body.loadingId;
+      purchaseloading.noOfBags = req.body.noOfBags;
+      purchaseloading.noOfBox = req.body.noOfBox;
+      purchaseloading.amount = req.body.amount;
+      purchaseloading.date = req.body.date;
     
       await purchaseloading.save();
       res.send(purchaseloading);
@@ -106,6 +126,6 @@ router.patch('/statusupdate/:id', authenticateToken, async(req,res)=>{
       } catch (error) {
         res.send(error.message);
       }
-  })
+})
 
 module.exports = router;

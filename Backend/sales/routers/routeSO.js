@@ -16,7 +16,6 @@ const SubCategory = require('../../products/models/subCategory');
 const { route } = require('./routeSODetails');
 const sequelize = require('../../utils/db');
 const { Sequelize } = require('sequelize');
-const { models } = require('mongoose');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
@@ -45,7 +44,8 @@ router.post('/', authenticateToken, async (req, res) => {
 router.get('/', authenticateToken,async(req,res)=>{
 
     try {
-        const result = await RouteSO.findAll({include: [Route, Customer, 'pickSalesExecutive'], order:['id']});
+        const result = await RouteSO.findAll({
+          include: [Route, Customer, 'pickSalesExecutive'], order:['id']});
         res.send(result);
         
     } catch (error) {
@@ -173,9 +173,15 @@ router.post('/report/picklist', async(req,res)=>{
     }
 
     try {
-   
-    
-     const pickList = await RouteSO.findAll({ where:{deliveryDate:deliveryDate, routeId:routeId},include:[{model:Route,attributes:['routeName']},{model:RouteSODetails},{model:Customer,attributes:["name"]}],attributes:['routeId','date']});
+     const pickList = await RouteSO.findAll({ 
+      where:{deliveryDate:deliveryDate, routeId:routeId},
+      include:[
+        {model:Route,attributes:['routeName']},
+        {model:RouteSODetails},
+        {model:Customer,attributes:["name"]}
+      ],
+      attributes:['routeId','date']
+    });
   
 
   //  const pickList = await sequelize.query(`
