@@ -38,14 +38,15 @@ export class ViewEntryComponent implements OnInit {
   advancedPe: Entry[] = [];
   getEntry(){
     this.entrySub = this.purchaseService.getPe().subscribe(x=>{
+      console.log(x);
+
       this.pendingPeSlip = x.filter(x=>x.status === 'SlipIssued' && x.entryStatus === "pending");
       this.pendingPeCheque = x.filter(x=>x.status === 'ChequeIssued' && x.entryStatus === "pending");
-      this.advancedPe = x.filter(x=>x.status === 'AdvanceIssued');
+      this.advancedPe = x.filter(x=>x.status === 'AdvanceIssued'&& x.entryStatus === "pending");
       this.compPe = x.filter(x=>x.entryStatus === 'completed');
-      console.log(x);
     })
   }
-
+  
   addPE(){
     this.router.navigateByUrl('/login/purachases/purchaseentry')
   }
@@ -62,6 +63,14 @@ export class ViewEntryComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.getEntry()
     })
+
+  }
+
+  editPurchaseEntry(id: number){
+    this.router.navigateByUrl('/login/purachases/editpurchaseentry/'+id)
+  }
+
+  deletePurchaseEntry(id: number){
 
   }
 

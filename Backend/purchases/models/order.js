@@ -6,7 +6,6 @@ const Order = sequelize.define('order',{
     distributorId : {type : DataTypes.INTEGER, allowNull : false},
     userId : {type : DataTypes.INTEGER},
     companyId : { type : DataTypes.INTEGER, allowNull : false},
-    // warehouseId: {type : DataTypes.INTEGER},
     date: {type : DataTypes.DATEONLY, defaultValue: Date.now(), allowNull : false},
     status: {type : DataTypes.STRING},
 

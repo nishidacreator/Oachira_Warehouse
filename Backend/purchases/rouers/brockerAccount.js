@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const brockeraccount = await BrockerAccount.findAll({
-            order:['id'],
+            order:[['date', 'DESC']],
             include: [{model: Brocker, include: [Product]}, Entry]
         })
 
@@ -42,7 +42,6 @@ router.get('/:id', async (req, res) => {
     try {
         const brockeraccount = await BrockerAccount.findOne({
             where: {id: req.params.id}, 
-            order:['id'],
             include: [{model: Brocker, include: [Product]}, Entry]
         })
         
@@ -52,6 +51,21 @@ router.get('/:id', async (req, res) => {
     }
   
 })
+
+router.get('/byentryid/:id', async (req, res) => {
+    try {
+        const brockeraccount = await BrockerAccount.findOne({
+            where: {entryId: req.params.id}, 
+            include: [{model: Brocker, include: [Product]}, Entry]
+        })
+        
+        res.send(brockeraccount);
+    } catch (error) {
+        res.send(error.message)
+    }
+  
+})
+
 
 router.delete('/:id', authenticateToken, async(req,res)=>{
     try {

@@ -19,7 +19,7 @@
 
       <div class="row">
           <div class="col">
-          <mat-form-field class="full-width" appearance="fill">
+          <mat-form-field class="full-width">
               <mat-select placeholder="Route Name" formControlName="routeId">
                 <mat-form-field class="full-width">
                   <div class="row">
@@ -37,7 +37,7 @@
           </div>
 
           <div class="col" *ngIf="isEdit == false">
-            <mat-form-field class="full-width" appearance="fill">
+            <mat-form-field class="full-width">
               <mat-label>Days</mat-label>
               <mat-select formControlName="weekDays" multiple>
                 <mat-option *ngFor="let day of weekDays" [value]="day.abbreviation">{{day.name}}</mat-option>
@@ -49,7 +49,7 @@
           </div>
 
           <div class="col" *ngIf="isEdit == true">
-            <mat-form-field class="full-width" appearance="fill">
+            <mat-form-field class="full-width">
               <mat-label>Days</mat-label>
               <mat-select formControlName="weekDays">
                 <mat-option *ngFor="let day of weekDays" [value]="day.abbreviation">{{ day.name }}</mat-option>

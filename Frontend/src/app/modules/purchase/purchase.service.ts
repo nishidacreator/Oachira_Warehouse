@@ -12,6 +12,8 @@ import { Broker } from './models/broker';
 import { BrokerAccount } from './models/broker-account';
 import { LoadingTeam } from './models/loading-team';
 import { PurchaseLoading } from './models/purchase-loading';
+import { EntryCheque } from './models/entry-cheque';
+
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +53,10 @@ export class PurchaseService {
     return this._http.get<PurchaseTransporter>(this.url+'purchasetransporter/'+id);
   }
 
+  getPurchaseTransporterByEntryId(id: number): Observable<PurchaseTransporter>{
+    return this._http.get<PurchaseTransporter>(this.url+'purchasetransporter/byentryid/'+id);
+  }
+
   updatePurchaseTransporter(id:Number, data:any){
     return this._http.patch<PurchaseTransporter>(this.url+'purchasetransporter/' + id, data);
   }
@@ -82,6 +88,10 @@ export class PurchaseService {
 
   addBroker(data : any){
     return this._http.post(this.url+ "broker", data)
+  }
+
+  getBrockerAccountByEntryId(id: number): Observable<BrokerAccount>{
+    return this._http.get<BrokerAccount>(this.url+'brokeraccount/byentryid/'+id);
   }
 
   updateBrokerAccount(id:Number, data:any){
@@ -139,6 +149,10 @@ export class PurchaseService {
 
   getPurchaseUnloading(): Observable<PurchaseLoading[]>{
     return this._http.get<PurchaseLoading[]>(this.url+'purchaseloading');
+  }
+  
+  getPurchaseUnloadingByEntryId(id: number): Observable<PurchaseLoading>{
+    return this._http.get<PurchaseLoading>(this.url+'purchaseloading/byentryid/'+id);
   }
 
   getPurchaseUnloadingById(id: number): Observable<PurchaseLoading>{
@@ -242,6 +256,13 @@ export class PurchaseService {
     return this._http.patch<Slip>(this.url+'slip/'+id, data);
   }
 
+  //ENTRY CHEQUE
+  getEntryChequeByEntryId(id: number): Observable<EntryCheque[]>{
+    return this._http.get<EntryCheque[]>(this.url+'entrycheque/byentryid/'+id);
+  }
 
+  getEntryCheque(): Observable<EntryCheque[]> {
+    return this._http.get<EntryCheque[]>(this.url+'entrycheque');
+  }
 
 }

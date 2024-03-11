@@ -19,7 +19,7 @@
 
       <div class="row">
           <div class="col">
-          <mat-form-field class="full-width" appearance="fill">
+          <mat-form-field class="full-width">
               <mat-select placeholder="Customer Name" formControlName="customerId">
                 <mat-form-field class="full-width">
                   <div class="row">
@@ -38,7 +38,7 @@
           </div>
 
           <div class="col">
-          <mat-form-field class="full-width" appearance="fill">
+          <mat-form-field class="full-width">
               <mat-select placeholder="Route Name" formControlName="routeId">
                 <mat-form-field class="full-width">
                   <div class="row">
@@ -57,7 +57,7 @@
           </div>
 
           <div class="col">
-            <mat-form-field class="full-width" appearance="fill">
+            <mat-form-field class="full-width">
               <input matInput type="number" placeholder="Route Index" formControlName="routeIndex">
               <mat-error *ngIf="routeDetailsForm.controls['routeIndex'].hasError('required')">
                 field is <strong>required</strong>

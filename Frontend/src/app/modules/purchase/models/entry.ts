@@ -1,13 +1,13 @@
 import { Distributor } from "../../products/models/distributor";
 import { User } from "../../users/models/user";
+import { EntryCheque } from "./entry-cheque";
 import { EntryDetails } from "./entryDetails";
 import { Order } from "./order";
 // j
 
 export interface Entry{
     id:number,
-    purchaseInvoice : string
-    purachseDate: Date
+    purchaseInvoiceNo : string
     distributorId: number
     distributor: Distributor
     purchaseAmount: number
@@ -15,8 +15,11 @@ export interface Entry{
     chequeNo: string
     chequeIssuedDate: Date
     entryStatus: string
+    updatedDate: Date
+    advanceAmount: number
 
     invoiceDate: Date
+    purchaseDate: Date
     transportation: number
     unloading: number
     commission: number
@@ -28,4 +31,7 @@ export interface Entry{
     Order: Order
     userId : number
     user: User
+
+    entryDetails: EntryDetails[]
+    entryCheques: EntryCheque[]
 }
