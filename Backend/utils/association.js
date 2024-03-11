@@ -83,6 +83,7 @@ const Loading = require('../purchases/models/loading');
 const EntryCheque = require('../purchases/models/entryCheque');
 
 
+
 async function syncModel(){
 
     //USER

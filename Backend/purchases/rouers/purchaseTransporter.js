@@ -33,6 +33,7 @@ router.get('/', async (req, res) => {
   try {
       const pt = await PurchaseTransporter.findAll({
         order:[['date', 'DESC']],
+
           include: [Transporter, {model: Entry, include: [Distributor]}]
       })
 

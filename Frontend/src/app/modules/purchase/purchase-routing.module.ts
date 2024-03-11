@@ -24,6 +24,7 @@ import { PrintUnloadingSlipComponent } from './components/print-unloading-slip/p
 import { EntryChequeComponent } from './components/entry-cheque/entry-cheque.component';
 import { EditPeComponent } from './components/edit-pe/edit-pe.component';
 
+
 const routes: Routes = [
   {path: '', component: PurchaseManagementComponent},
   {path: 'purchaserequest', component: RequestComponent},
@@ -49,6 +50,7 @@ const routes: Routes = [
   {path: 'printunloadingslip/:id', component: PrintUnloadingSlipComponent},
   {path: 'editpurchaseentry/:id', component: EditPeComponent},
   {path: 'entrycheque', component: EntryChequeComponent},
+
 ];
 
 @NgModule({
