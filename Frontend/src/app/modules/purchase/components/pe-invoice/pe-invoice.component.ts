@@ -1,23 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GridComponent, PdfExportProperties } from '@syncfusion/ej2-angular-grids';
-import { Subscription } from 'rxjs';
-import { PurchaseRequest } from '../../models/purchase-request';
-import { PurchaseRequestDetail } from '../../models/purchase-request-detail';
 import { PurchaseService } from '../../purchase.service';
-import { ViewPrComponent } from '../view-pr/view-pr.component';
-import { Order } from '../../models/order';
-import { PurchaseOrderDetails } from '../../models/purchase-order-details';
-// import { ClickEventArgs } from 'path-to-click-event-args';
+import { Entry } from '../../models/entry';
+import { EntryDetails } from '../../models/entryDetails';
+import { Subscription } from 'rxjs';
+import { GridComponent, PdfExportProperties } from '@syncfusion/ej2-angular-grids';
 
 @Component({
-  selector: 'app-po-invoice',
-  templateUrl: './po-invoice.component.html',
-  styleUrls: ['./po-invoice.component.scss']
+  selector: 'app-pe-invoice',
+  templateUrl: './pe-invoice.component.html',
+  styleUrls: ['./pe-invoice.component.scss']
 })
-export class PoInvoiceComponent implements OnInit {
-
-  dirToPrint!: ViewPrComponent;
+export class PeInvoiceComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private purchaseService: PurchaseService) { }
 
@@ -29,17 +23,17 @@ export class PoInvoiceComponent implements OnInit {
   ngOnInit(): void {
     this.poId = this.route.snapshot.params['id'];
 
-    this.getPOById();
+    this.getPEById();
   }
 
-  orders!: Order;
-  orderDetails: PurchaseOrderDetails[] = [];
+  entry!: Entry;
+  entryDetails: EntryDetails[] = [];
   requestSub!: Subscription;
-  getPOById(){
-    this.requestSub = this.purchaseService.getPOById(this.poId).subscribe(data => {
-      this.orders = data
+  getPEById(){
+    this.requestSub = this.purchaseService.getPeById(this.poId).subscribe(data => {
+      this.entry = data
       console.log('data:',data)
-      this.orderDetails = data.orderDetails;
+      this.entryDetails = data.entryDetails;
 
     })
   }

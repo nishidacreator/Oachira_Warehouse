@@ -1,4 +1,4 @@
-<mat-card class="container">
+<mat-card>
   <div class="row">
     <div class="col">
       <mat-card-header>
@@ -31,10 +31,10 @@
                 <th>ID</th>
                 <th>Distributor</th>
                 <th>Amount</th>
-                <th>Date</th>
+                <th>updated Date</th>
                 <th>ChequeNo</th>
                 <th>Cheque Issued</th>
-                <th>purchase Entry</th>
+                <th>Manage</th>
             </tr>
         </thead>
         <tbody>
@@ -42,18 +42,19 @@
                 <td>{{element.id}}</td>
                 <td>{{element.distributor.distributorName}}</td>
                 <td>{{element.purchaseAmount}}</td>
-                <td>{{element.purachseDate| date: 'dd/MM/yyyy'}}</td>
-                <td>{{element.chequeNo}}</td>
+                <td>{{element.updatedDate| date: 'dd/MM/yyyy'}}</td>
+                <td>
+                  <a let *ngFor="let cheque of element.entryCheques">
+                    <p *ngIf="!cheque.status">{{cheque.chequeNo}}</p>
+                  </a>
+                </td>
                 <td>
                   <mat-slide-toggle (change)="onToggleChange(element.id)"></mat-slide-toggle>
                 </td>
                 <td>
-                  <span class="material-icons" style=" margin-left: 8px;" (click)="viewPE(element.id)">open_in_new</span>
+                  <span class="material-icons" style=" margin-left: 8px;" (click)="editPurchaseEntry(element.id)">edit</span>
+                  <span class="material-icons" style="margin-left: 8px;" (click)="deletePurchaseEntry(element.id)">delete</span>
                 </td>
-                <!-- <td>
-                  <span *ngIf="element.purchaseEntry" class="material-icons" style=" margin-left: 8px;" (click)="viewPurchaseEntry(element.id)">open_in_new</span>
-                  <span *ngIf="!element.purchaseEntry" class="material-icons" style="margin-left: 8px;" (click)="addPurchaseEntry(element.id)">post_add</span>
-                </td> -->
             </tr>
         </tbody>
       </table>
@@ -67,27 +68,27 @@
                 <th>Purchase Invoice</th>
                 <th>Distributor</th>
                 <th>Amount</th>
-                <th>Purchase Date</th>
+                <th>Updated Date</th>
                 <th>Cheque Issued</th>
-                <th>purchase Entry</th>
+                <!-- <th>purchase Entry</th> -->
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let element of pendingPeSlip">
                 <td>{{element.id}}</td>
-                <td>{{element.purchaseInvoice}}</td>
+                <td>{{element.purchaseInvoiceNo}}</td>
                 <td>{{element.distributor.distributorName}}</td>
                 <td>{{element.purchaseAmount}}</td>
-                <td>{{element.purachseDate | date: 'dd/MM/yyyy'}}</td>
+                <td>{{element.updatedDate| date: 'dd/MM/yyyy'}}</td>
                 <td>
                   <mat-slide-toggle (change)="onToggleChange(element.id)"></mat-slide-toggle>
                 </td>
-                <td>
+                <!-- <td>
                   <span class="material-icons" style=" margin-left: 8px;" (click)="viewPE(element.id)">open_in_new</span>
                 </td>
-                <!-- <td>
-                  <span *ngIf="element.purchaseEntry" class="material-icons" style=" margin-left: 8px;" (click)="viewPurchaseEntry(element.id)">open_in_new</span>
-                  <span *ngIf="!element.purchaseEntry" class="material-icons" style="margin-left: 8px;" (click)="addPurchaseEntry(element.id)">post_add</span>
+                <td>
+                  <span class="material-icons" style=" margin-left: 8px;" (click)="editPurchaseEntry(element.id)">open_in_new</span>
+                  <span class="material-icons" style="margin-left: 8px;" (click)="deletePurchaseEntry(element.id)">post_add</span>
                 </td> -->
             </tr>
         </tbody>
@@ -102,7 +103,7 @@
                 <th>Purchase Invoice</th>
                 <th>Distributor</th>
                 <th>Amount</th>
-                <th>Purchase Date</th>
+                <th>Updated Date</th>
                 <th>Cheque No</th>
                 <th>Cheque Issued Date</th>
                 <!-- <th>purchase Entry</th> -->
@@ -111,16 +112,20 @@
         <tbody>
             <tr *ngFor="let element of pendingPeCheque">
                 <td>{{element.id}}</td>
-                <td>{{element.purchaseInvoice}}</td>
+                <td>{{element.purchaseInvoiceNo}}</td>
                 <td>{{element.distributor.distributorName}}</td>
                 <td>{{element.purchaseAmount}}</td>
-                <td>{{element.purachseDate | date: 'dd/MM/yyyy'}}</td>
-                <td>{{element.chequeNo}}</td>
+                <td>{{element.updatedDate| date: 'dd/MM/yyyy'}}</td>
+                <td>
+                  <a let *ngFor="let cheque of element.entryCheques">
+                    <p *ngIf="cheque.status">{{cheque.chequeNo}}</p>
+                  </a>
+                </td>
                 <td>{{element.chequeIssuedDate | date: 'dd/MM/yyyy'}}</td>
                 <!-- <td>
-                  <span class="material-icons" style=" margin-left: 8px;" (click)="viewPurchaseOrderDetails(element.id)">open_in_new</span>
-                </td>
-                <td>
+                  <span class="material-icons" style=" margin-left: 8px;">open_in_new</span>
+                </td> -->
+                <!-- <td>
                   <span *ngIf="element.purchaseEntry" class="material-icons" style=" margin-left: 8px;" (click)="viewPurchaseEntry(element.id)">open_in_new</span>
                   <span *ngIf="!element.purchaseEntry" class="material-icons" style="margin-left: 8px;" (click)="addPurchaseEntry(element.id)">post_add</span>
                 </td> -->
@@ -137,7 +142,7 @@
                 <th>Purchase Invoice</th>
                 <th>Distributor</th>
                 <th>Amount</th>
-                <th>Purchase Date</th>
+                <th>Updated Date</th>
                 <th>ChequeNo</th>
                 <th>Cheque Issued Date</th>
                 <!-- <th>purchase Entry</th> -->
@@ -146,11 +151,13 @@
         <tbody>
             <tr *ngFor="let element of compPe">
                 <td>{{element.id}}</td>
-                <td>{{element.purchaseInvoice}}</td>
+                <td>{{element.purchaseInvoiceNo}}</td>
                 <td>{{element.distributor.distributorName}}</td>
                 <td>{{element.purchaseAmount}}</td>
-                <td>{{element.purachseDate | date: 'dd/MM/yyyy'}}</td>
-                <td>{{element.chequeNo}}</td>
+                <td>{{element.updatedDate | date: 'dd/MM/yyyy'}}</td>
+                <!-- <td let *ngFor="let cheque of element.entryCheques">
+                  <a *ngIf="!cheque.status">{{cheque.chequeNo}}</a>
+                </td> -->
                 <td>{{element.chequeIssuedDate | date: 'dd/MM/yyyy'}}</td>
                 <!-- <td>
                   <span class="material-icons" style=" margin-left: 8px;" (click)="viewPurchaseOrderDetails(element.id)">open_in_new</span>

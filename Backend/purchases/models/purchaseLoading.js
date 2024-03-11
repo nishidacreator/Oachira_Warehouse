@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../utils/db');
 
-const PurchaseTransporter = sequelize.define('purchasetransporter',{
+const PurchaseLoading = sequelize.define('purchaseLoading',{
     entryId: {type: DataTypes.INTEGER, allowNull: false},
     invoiceNo: {type : DataTypes.STRING, allowNull : false},
     loadingId : {type : DataTypes.INTEGER, allowNull : false},
@@ -18,6 +18,6 @@ const PurchaseTransporter = sequelize.define('purchasetransporter',{
 })
 
 
-module.exports = PurchaseTransporter;
+module.exports = PurchaseLoading;
 
 

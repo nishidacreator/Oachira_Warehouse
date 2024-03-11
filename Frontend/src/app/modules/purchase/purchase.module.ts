@@ -25,6 +25,10 @@ import { PrintBrokerSlipComponent } from './components/print-broker-slip/print-b
 import { LoadingTeamComponent } from './components/loading-team/loading-team.component';
 import { UnloadingSlipComponent } from './components/unloading-slip/unloading-slip.component';
 import { PrintUnloadingSlipComponent } from './components/print-unloading-slip/print-unloading-slip.component';
+import { PeInvoiceComponent } from './components/pe-invoice/pe-invoice.component';
+import { EntryChequeComponent } from './components/entry-cheque/entry-cheque.component';
+import { EditPeComponent } from './components/edit-pe/edit-pe.component';
+
 
 
 @NgModule({
@@ -50,7 +54,10 @@ import { PrintUnloadingSlipComponent } from './components/print-unloading-slip/p
     PrintBrokerSlipComponent,
     LoadingTeamComponent,
     UnloadingSlipComponent,
-    PrintUnloadingSlipComponent
+    PrintUnloadingSlipComponent,
+    PeInvoiceComponent,
+    EntryChequeComponent,
+    EditPeComponent
   ],
   imports: [
     CommonModule,
