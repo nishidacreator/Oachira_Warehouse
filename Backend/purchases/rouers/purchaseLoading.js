@@ -34,6 +34,7 @@ router.get('/', async (req, res) => {
     try {
         const purchaseloading = await PurchaseLoading.findAll({
             order:[['date', 'DESC']],
+
             include: [Loading, Entry]
         })
 
@@ -106,6 +107,10 @@ router.patch('/:id', authenticateToken, async(req,res)=>{
       purchaseloading.noOfBox = req.body.noOfBox;
       purchaseloading.amount = req.body.amount;
       purchaseloading.date = req.body.date;
+      console.log(req.body);
+      purchaseloading.description = req.body.description;
+      purchaseloading.contactPerson = req.body.contactPerson;
+
     
       await purchaseloading.save();
       res.send(purchaseloading);

@@ -14,6 +14,7 @@ import { LoadingTeam } from './models/loading-team';
 import { PurchaseLoading } from './models/purchase-loading';
 import { EntryCheque } from './models/entry-cheque';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -149,7 +150,7 @@ export class PurchaseService {
   getPurchaseUnloading(): Observable<PurchaseLoading[]>{
     return this._http.get<PurchaseLoading[]>(this.url+'purchaseloading');
   }
-
+  
   getPurchaseUnloadingByEntryId(id: number): Observable<PurchaseLoading>{
     return this._http.get<PurchaseLoading>(this.url+'purchaseloading/byentryid/'+id);
   }

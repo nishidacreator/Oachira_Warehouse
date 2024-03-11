@@ -72,6 +72,7 @@ const loading = require('../purchases/rouers/loading');
 const purchaseLoading = require('../purchases/rouers/purchaseLoading');
 const entryCheque = require('../purchases/rouers/entryCheque');
 
+
 app.use('/purchases/request',request);
 app.use('/purchases/order',order);
 app.use('/purchases/entry', entry)
@@ -87,7 +88,6 @@ app.use('/purchases/brokeraccount',brokerAccount)
 app.use('/purchases/loadingteam',loading)
 app.use('/purchases/purchaseloading',purchaseLoading)
 app.use('/purchases/entrycheque', entryCheque)
-
 
 
 const customer = require('../sales/routers/customer');
