@@ -33,6 +33,7 @@ router.post('/', authenticateToken, async (req, res) => {
 
         let distributorLedger = new DistributorLedger({
             distributorId:distributorId,
+
             date:new Date(),
             description:`Invoice  No : ${purchaseInvoiceNo}`,
             amount:purchaseAmount,
