@@ -138,7 +138,8 @@ export class RequestComponent implements OnInit {
       this.purchaseRequestForm.get('companyId')?.setValue(result.company.id);
     });
   }
-companies: company[] = [];
+
+  companies: company[] = [];
   filteredCompany: company[] = [];
   filterCompany(event: Event | string) {
     let value: string = "";
@@ -372,7 +373,6 @@ companies: company[] = [];
       ...this.purchaseRequestForm.value
     }
     form.date = moment(this.purchaseRequestForm.value.date).format('YYYY-MM-DD HH:mm:ss');
-    console.log('form submitted', form)
     this.submitSub = this.purchaseService.addPR(form).subscribe(() =>{
       this.clearControls()
     },

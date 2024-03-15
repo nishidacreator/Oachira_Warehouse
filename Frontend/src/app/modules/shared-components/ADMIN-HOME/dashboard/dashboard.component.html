@@ -64,17 +64,63 @@
         </div>
         </div>
         </section>
-  <div class="graph-container">
-    <canvas id="salesChart" width="400" height="200"></canvas>
+
+  <div class="row box">
+    <div class="graph-container">
+      <mat-card>
+        <canvas id="salesChart" width="400" height="200"></canvas>
+      </mat-card>
+    </div>
+    <div class="graph-container">
+      <mat-card>
+        <canvas id="purchaseChart" width="400" height="200"></canvas>
+      </mat-card>
+    </div>
+
+    <div>
+      <mat-card >
+        <mat-card-header>
+          <mat-card-title style="color: green;">CHEQUE IN QUE</mat-card-title>
+        </mat-card-header>
+
+        <mat-form-field>
+          <mat-label>Search</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+        </mat-form-field>
+
+        <table class="styled-table">
+          <thead>
+              <tr>
+                  <th>ChequeNo</th>
+                  <th>ChequeDate</th>
+                  <th>InvoiceNo</th>
+                  <th>Description</th>
+                  <th>Status</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let element of filtered let i=index">
+                  <td>{{element.chequeNo}}</td>
+                  <td>{{element.chequeClearenceDate| date: 'dd/MM/yyyy'}}</td>
+                  <td>{{element.entry.purchaseInvoiceNo}}</td>
+                  <td>{{element.description}}</td>
+
+                  <td>
+                    <mat-slide-toggle [(ngModel)]="element.status" [ngModelOptions]="{standalone: true}" (change)="onToggleChange($event, element.id)"></mat-slide-toggle>
+                  </td>
+              </tr>
+          </tbody>
+        </table>
+        <mat-paginator #paginator [length]="totalItems" [pageSize]="pageSize" [pageIndex]="currentPage - 1"
+        (page)="onPageChange($event)" [pageSizeOptions]="[5, 10, 20,30,40,50,100]">
+        </mat-paginator>
+      </mat-card>
+    </div>
   </div>
-  <div class="graph-container">
-    <canvas id="purchaseChart" width="400" height="200"></canvas>
-  </div>
 
 
 
-
-  <script>
+  <!-- <script>
    let sidebar = document.querySelector(".sidebar");
 let sidebarBtn = document.querySelector(".sidebarBtn");
 sidebarBtn.onclick = function() {
@@ -84,7 +130,7 @@ sidebarBtn.onclick = function() {
 }else
   sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
 }
- </script>
+ </script> -->
 
 
 

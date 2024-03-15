@@ -22,6 +22,7 @@ import { Broker } from '../../models/broker';
 import { BrokerComponent } from '../broker/broker.component';
 import { LoadingTeam } from '../../models/loading-team';
 import { LoadingTeamComponent } from '../loading-team/loading-team.component';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-entry',
@@ -33,10 +34,9 @@ export class EntryComponent implements OnInit, OnDestroy {
 
   id!: number;
   isChecked: boolean = false;
-  constructor(private fb: FormBuilder, public purchaseService: PurchaseService, public dialog: MatDialog,
-    private productService: ProductService, private _snackBar: MatSnackBar, private router: Router,
-    @Optional() public dialogRef: MatDialogRef<EntryComponent>, private productservice: ProductService,
-    @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any, private route: ActivatedRoute) {
+  constructor(private fb: FormBuilder, public purchaseService: PurchaseService, public dialog: MatDialog, private productService: ProductService,
+    private _snackBar: MatSnackBar, private router: Router, @Optional() public dialogRef: MatDialogRef<EntryComponent>,
+    private productservice: ProductService,@Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any, private route: ActivatedRoute) {
     //User
     const token: any = localStorage.getItem("token");
     let user = JSON.parse(token);
@@ -222,7 +222,6 @@ export class EntryComponent implements OnInit, OnDestroy {
       data.userId = this.id
       console.log(data);
 
-
       this.submitSub = this.purchaseService.addPE(data).subscribe(data=>{
         console.log(data);
         let pe: any = data;
@@ -242,24 +241,20 @@ export class EntryComponent implements OnInit, OnDestroy {
       });
     }
   }
-
-  getPeId(){
-
-  }
-
   // -------------------------------------------------------------------------------------------------------
 
   purchaseTransportForm = this.fb.group({
     chequeNo: [''],
     transporterId : [0, Validators.required],
     invoiceNo: ['', Validators.required],
-    amount : [''],
+    amount : [0],
     date: [''],
     vehicleNo: [''],
     from: [''],
-    noOfBags: [''],
-    advance: [''],
+    noOfBags: [0],
+    advance: [0],
     entryId: [0],
+    chequeClearenceDate:['']
   });
 
   patchTrans(data: any){
@@ -280,9 +275,15 @@ export class EntryComponent implements OnInit, OnDestroy {
       if (purchases.length > 0) {
         const maxId = purchases.reduce((prevMax, inv) => {
           // Extract the numeric part of the employee ID and convert it to a number
-          const idNumber = parseInt(inv.invoiceNo.substring(5), 10);
+          const idNumber = parseInt(inv.invoiceNo.replace(/\D/g, ''), 10);
+          console.log(idNumber);
+          console.log(prevMax);
+
+
 
           this.transPrefix = this.extractLetters(inv.invoiceNo);
+          console.log(this.transPrefix);
+
 
           // Check if the extracted numeric part is a valid number
           if (!isNaN(idNumber)) {
@@ -293,6 +294,7 @@ export class EntryComponent implements OnInit, OnDestroy {
           }
         }, 0);
         // Increment the maxId by 1 to get the next ID
+          console.log(maxId);
 
           let nextId = maxId + 1;
           const paddedId = `${this.transPrefix}${nextId.toString().padStart(3, "0")}`;
@@ -303,7 +305,7 @@ export class EntryComponent implements OnInit, OnDestroy {
       } else {
         // If there are no employees in the array, set the employeeId to 'EMP001'
         let nextId = 0o1;
-        let prefix = "INV-TS";
+        let prefix = "INV-TS-";
         const paddedId = `${prefix}${nextId.toString().padStart(3, "0")}`;
 
         this.ivNum = paddedId;
@@ -367,6 +369,12 @@ export class EntryComponent implements OnInit, OnDestroy {
       ...this.purchaseTransportForm.value
     }
     data.entryId = this.peId
+    data.date = moment(this.purchaseTransportForm.getRawValue().date).format('YYYY-MM-DD');
+    if(this.purchaseTransportForm.getRawValue().chequeClearenceDate != ''){
+      data.chequeClearenceDate = moment(this.purchaseTransportForm.getRawValue()?.chequeClearenceDate).format('YYYY-MM-DD');
+    }
+    console.log(data);
+
     this.transSub = this.purchaseService.addPurchaseTransporter(data).subscribe(res=>{
       console.log(res);
       let op: any = res
@@ -439,7 +447,7 @@ export class EntryComponent implements OnInit, OnDestroy {
   });
 
   patchBroker(data: any){
-    this.brokerageForm.get('date')?.setValue(data.date);
+    this.brokerageForm.get('date')?.setValue(data.updatedDate);
   }
 
   brokerInvSub!: Subscription;
@@ -447,14 +455,19 @@ export class EntryComponent implements OnInit, OnDestroy {
   generateBrokerInvoiceNumber() {
     this.transInvSub = this.purchaseService.getBrokerAccount().subscribe((res) => {
       let purchases = res;
+      console.log(purchases);
 
       // Check if there are any employees in the array
       if (purchases.length > 0) {
         const maxId = purchases.reduce((prevMax, inv) => {
           // Extract the numeric part of the employee ID and convert it to a number
-          const idNumber = parseInt(inv.invoiceNo.substring(5), 10);
+          const idNumber = parseInt(inv.invoiceNo.replace(/\D/g, ''), 10);
+          console.log(idNumber);
 
           this.brokerPrefix = this.extractLetters(inv.invoiceNo);
+          console.log(this.brokerPrefix);
+          console.log(prevMax);
+
 
           // Check if the extracted numeric part is a valid number
           if (!isNaN(idNumber)) {
@@ -474,8 +487,8 @@ export class EntryComponent implements OnInit, OnDestroy {
           this.brokerageForm.get('invoiceNo')?.setValue(this.ivNum);
       } else {
         // If there are no employees in the array, set the employeeId to 'EMP001'
-        let nextId = 0o0;
-        let prefix = "INV-BS-001";
+        let nextId = 0o1;
+        let prefix = "INV-BS-";
         const paddedId = `${prefix}${nextId.toString().padStart(3, "0")}`;
 
         this.ivNum = paddedId;
@@ -530,15 +543,20 @@ export class EntryComponent implements OnInit, OnDestroy {
 
   brokerRate!: number;
   getAmount(id: number){
-    this.purchaseService.getBrokerById(id).subscribe(res=>{
-      console.log(res);
-      this.brokerRate = res.rate;
-    })
+    if(id){
+      this.purchaseService.getBrokerById(id).subscribe(res=>{
+        console.log(res);
+        this.brokerRate = res.rate;
+        console.log(this.brokerRate);
+
+      })
+    }
   }
 
   onInputChange(event: any){
     const inputValue: number = event.target.value;
     let amount = this.brokerRate * inputValue
+    console.log(amount);
 
     this.brokerageForm.get('amount')?.setValue(amount);
   }
@@ -622,7 +640,7 @@ export class EntryComponent implements OnInit, OnDestroy {
   });
 
   patchLoad(data: any){
-    this.unloadingForm.get('date')?.setValue(data.date);
+    this.unloadingForm.get('date')?.setValue(data.updatedDate);
   }
 
   loading: LoadingTeam[] = [];
@@ -631,6 +649,9 @@ export class EntryComponent implements OnInit, OnDestroy {
     this.loadSub = this.purchaseService.getUnloadingTeam().subscribe(res=>{
       this.loading = res;
       this.filteredLTeam = res
+      if(id){
+        this.unloadingForm.get('loadingId')?.setValue(id)
+      }
     });
   }
 
@@ -675,7 +696,7 @@ export class EntryComponent implements OnInit, OnDestroy {
       if (purchases.length > 0) {
         const maxId = purchases.reduce((prevMax, inv) => {
           // Extract the numeric part of the employee ID and convert it to a number
-          const idNumber = parseInt(inv.invoiceNo.substring(5), 10);
+          const idNumber = parseInt(inv.invoiceNo.replace(/\D/g, ''), 10);
 
           this.LTeamPrefix = this.extractLetters(inv.invoiceNo);
 
@@ -716,11 +737,13 @@ export class EntryComponent implements OnInit, OnDestroy {
     }
     this.unloadingStatus = true;
     console.log(this.unloadingForm.value);
-
+    console.log(this.peId)
     let data = {
       ...this.unloadingForm.value
     }
     data.entryId = this.peId
+    console.log(data);
+
     this.brokAccSub = this.purchaseService.addPurchaseUnloading(data).subscribe(res=>{
       console.log(res);
       let op: any = res
@@ -843,7 +866,7 @@ export class EntryComponent implements OnInit, OnDestroy {
         const maxId = purchases.reduce((prevMax, inv) => {
           console.log(inv);
           // Extract the numeric part of the employee ID and convert it to a number
-          const idNumber = parseInt(inv.invoiceNo.substring(5), 10);
+          const idNumber = parseInt(inv.invoiceNo.replace(/\D/g, ''), 10);
           console.log(idNumber);
 
           this.prefix = this.extractLetters(inv.invoiceNo);
@@ -865,8 +888,8 @@ export class EntryComponent implements OnInit, OnDestroy {
         this.slipForm.get('invoiceNo')?.setValue(ivNum);
       } else {
         // If there are no employees in the array, set the employeeId to 'EMP001'
-        this.nextId = 0o0;
-        this.prefix = "INV-PRS-001";
+        this.nextId = 0o1;
+        this.prefix = "INV-PRS-";
 
         const paddedId = `${this.prefix}${this.nextId.toString().padStart(3, "0")}`;
 
@@ -880,7 +903,13 @@ export class EntryComponent implements OnInit, OnDestroy {
   }
 
   extractLetters(input: string): string {
-    return input.replace(/[^a-zA-Z]/g, "");
+    // return input.replace(/[^a-zA-Z]/g, "");
+    var extractedChars = input.match(/[A-Za-z-]/g);
+
+    // Combine the matched characters into a string
+    var result = extractedChars ? extractedChars.join('') : '';
+
+    return result;
   }
 
   slipSub!: Subscription;
@@ -915,13 +944,13 @@ export class EntryComponent implements OnInit, OnDestroy {
     com: [false],
     commission:[0],
     paymentMode:[''],
-    invoiceDate:[''],
     remarks:['']
   });
 
   getPurchaseTransporter(data: any){
     console.log(data);
-    this.purchaseService.getPurchaseTransporterByEntryId(data.id).subscribe(res=>{
+    this.purchaseService.getPurchaseTransporterByEntryId(data.entryId).subscribe(res=>{
+      console.log(res);
       if(res){
         let transportFee= res.amount;
         this.finalForm.get('trans')?.setValue(true);
@@ -948,6 +977,7 @@ export class EntryComponent implements OnInit, OnDestroy {
   getBrockerage(data: any){
     console.log(data);
     this.purchaseService.getPurchaseTransporterByEntryId(data.entryId).subscribe(res=>{
+      console.log(res);
       if(res){
         let brokerFee= res.amount;
         this.finalForm.get('com')?.setValue(true);
@@ -982,7 +1012,6 @@ export class EntryComponent implements OnInit, OnDestroy {
   }
 
   getPe(data: any){
-    console.log(data);
     this.peId = data.id
     this.addProduct();
   }

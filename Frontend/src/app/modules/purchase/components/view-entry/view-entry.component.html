@@ -24,7 +24,7 @@
   </div>
 
   <mat-stepper linear #stepper>
-    <mat-step label="Advance Issued">
+    <mat-step label="Advance Issued" optional>
       <table class="styled-table">
         <thead>
             <tr>
@@ -34,25 +34,28 @@
                 <th>updated Date</th>
                 <th>ChequeNo</th>
                 <th>Cheque Issued</th>
-                <th>Manage</th>
+                <th>Purchase Entry</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let element of advancedPe">
-                <td>{{element.id}}</td>
-                <td>{{element.distributor.distributorName}}</td>
-                <td>{{element.purchaseAmount}}</td>
-                <td>{{element.updatedDate| date: 'dd/MM/yyyy'}}</td>
-                <td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">{{element.id}}</td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">{{element.distributor.distributorName}}</td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">{{element.purchaseAmount}}</td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">{{element.updatedDate| date: 'dd/MM/yyyy'}}</td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">
                   <a let *ngFor="let cheque of element.entryCheques">
-                    <p *ngIf="!cheque.status">{{cheque.chequeNo}}</p>
+                    <p *ngIf="cheque.type === 'advance'">{{cheque.chequeNo}}</p>
                   </a>
                 </td>
-                <td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">
                   <mat-slide-toggle (change)="onToggleChange(element.id)"></mat-slide-toggle>
                 </td>
-                <td>
-                  <span class="material-icons" style=" margin-left: 8px;" (click)="editPurchaseEntry(element.id)">edit</span>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">
+                  <span class="material-icons" style="margin-left: 8px;" (click)="addPurchaseEntry(element.id)">post_add</span>
+                </td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">
                   <span class="material-icons" style="margin-left: 8px;" (click)="deletePurchaseEntry(element.id)">delete</span>
                 </td>
             </tr>
@@ -60,7 +63,7 @@
       </table>
     </mat-step>
 
-    <mat-step label="Slip Issued">
+    <mat-step label="Slip Issued" optional>
       <table class="styled-table">
         <thead>
             <tr>
@@ -70,32 +73,32 @@
                 <th>Amount</th>
                 <th>Updated Date</th>
                 <th>Cheque Issued</th>
-                <!-- <th>purchase Entry</th> -->
+                <th>Purchase Entry</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let element of pendingPeSlip">
-                <td>{{element.id}}</td>
-                <td>{{element.purchaseInvoiceNo}}</td>
-                <td>{{element.distributor.distributorName}}</td>
-                <td>{{element.purchaseAmount}}</td>
-                <td>{{element.updatedDate| date: 'dd/MM/yyyy'}}</td>
-                <td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">{{element.id}}</td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">{{element.purchaseInvoiceNo}}</td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">{{element.distributor.distributorName}}</td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">{{element.purchaseAmount}}</td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">{{element.updatedDate| date: 'dd/MM/yyyy'}}</td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">
                   <mat-slide-toggle (change)="onToggleChange(element.id)"></mat-slide-toggle>
                 </td>
-                <!-- <td>
-                  <span class="material-icons" style=" margin-left: 8px;" (click)="viewPE(element.id)">open_in_new</span>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">
+                  <span class="material-icons" style="margin-left: 8px;" (click)="addPurchaseEntry(element.id)">post_add</span>
                 </td>
-                <td>
-                  <span class="material-icons" style=" margin-left: 8px;" (click)="editPurchaseEntry(element.id)">open_in_new</span>
-                  <span class="material-icons" style="margin-left: 8px;" (click)="deletePurchaseEntry(element.id)">post_add</span>
-                </td> -->
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">
+                  <span class="material-icons" style="margin-left: 8px;" (click)="deletePurchaseEntry(element.id)">delete</span>
+                </td>
             </tr>
         </tbody>
       </table>
     </mat-step>
 
-    <mat-step label="Cheque Issued">
+    <mat-step label="Cheque Issued" optional>
       <table class="styled-table">
         <thead>
             <tr>
@@ -106,75 +109,36 @@
                 <th>Updated Date</th>
                 <th>Cheque No</th>
                 <th>Cheque Issued Date</th>
-                <!-- <th>purchase Entry</th> -->
+                <th>Purchase Entry</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let element of pendingPeCheque">
-                <td>{{element.id}}</td>
-                <td>{{element.purchaseInvoiceNo}}</td>
-                <td>{{element.distributor.distributorName}}</td>
-                <td>{{element.purchaseAmount}}</td>
-                <td>{{element.updatedDate| date: 'dd/MM/yyyy'}}</td>
-                <td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">{{element.id}}</td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">{{element.purchaseInvoiceNo}}</td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">{{element.distributor.distributorName}}</td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">{{element.purchaseAmount}}</td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">{{element.updatedDate| date: 'dd/MM/yyyy'}}</td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">
                   <a let *ngFor="let cheque of element.entryCheques">
-                    <p *ngIf="cheque.status">{{cheque.chequeNo}}</p>
+                    <p *ngIf="cheque.type === 'purchase'">{{cheque.chequeNo}}</p>
                   </a>
                 </td>
-                <td>{{element.chequeIssuedDate | date: 'dd/MM/yyyy'}}</td>
-                <!-- <td>
-                  <span class="material-icons" style=" margin-left: 8px;">open_in_new</span>
-                </td> -->
-                <!-- <td>
-                  <span *ngIf="element.purchaseEntry" class="material-icons" style=" margin-left: 8px;" (click)="viewPurchaseEntry(element.id)">open_in_new</span>
-                  <span *ngIf="!element.purchaseEntry" class="material-icons" style="margin-left: 8px;" (click)="addPurchaseEntry(element.id)">post_add</span>
-                </td> -->
-            </tr>
-        </tbody>
-      </table>
-    </mat-step>
-
-    <mat-step label="Completed">
-      <table class="styled-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Purchase Invoice</th>
-                <th>Distributor</th>
-                <th>Amount</th>
-                <th>Updated Date</th>
-                <th>ChequeNo</th>
-                <th>Cheque Issued Date</th>
-                <!-- <th>purchase Entry</th> -->
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let element of compPe">
-                <td>{{element.id}}</td>
-                <td>{{element.purchaseInvoiceNo}}</td>
-                <td>{{element.distributor.distributorName}}</td>
-                <td>{{element.purchaseAmount}}</td>
-                <td>{{element.updatedDate | date: 'dd/MM/yyyy'}}</td>
-                <!-- <td let *ngFor="let cheque of element.entryCheques">
-                  <a *ngIf="!cheque.status">{{cheque.chequeNo}}</a>
-                </td> -->
-                <td>{{element.chequeIssuedDate | date: 'dd/MM/yyyy'}}</td>
-                <!-- <td>
-                  <span class="material-icons" style=" margin-left: 8px;" (click)="viewPurchaseOrderDetails(element.id)">open_in_new</span>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null"><a let *ngFor="let cheque of element.entryCheques">
+                  <p *ngIf="cheque.type === 'purchase'">{{cheque.chequeIssuedDate | date:'dd/MM/yyyy'}}</p>
+                </a></td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">
+                  <span class="material-icons" style="margin-left: 8px;" (click)="addPurchaseEntry(element.id)">post_add</span>
                 </td>
-                <td>
-                  <span *ngIf="element.purchaseEntry" class="material-icons" style=" margin-left: 8px;" (click)="viewPurchaseEntry(element.id)">open_in_new</span>
-                  <span *ngIf="!element.purchaseEntry" class="material-icons" style="margin-left: 8px;" (click)="addPurchaseEntry(element.id)">post_add</span>
-                </td> -->
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">
+                  <span class="material-icons" style="margin-left: 8px;" (click)="deletePurchaseEntry(element.id)">delete</span>
+                </td>
             </tr>
         </tbody>
       </table>
     </mat-step>
 
   </mat-stepper>
-
-    <!-- <div>
-      <span class="material-icons" style="font-size: 40px; color: green;" (click)="addPO()">playlist_add</span>
-    </div> -->
   </mat-card>
 

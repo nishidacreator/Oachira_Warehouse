@@ -10,18 +10,23 @@ const authenticateToken = require('../../middleware/authorization');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
-            const { transporterId, amount, date, vehicleNo, from, noOfBags, advance, entryId, status, chequeNo, invoiceNo } = req.body;
+            const { transporterId, amount, date, vehicleNo, from, noOfBags, advance, entryId, status, chequeNo, invoiceNo, chequeClearenceDate } = req.body;
 
             const exist = await PurchaseTransporter.findOne({where: {entryId: entryId}})
             if(exist){
               res.send("Transporter Slip already exists for this purchase entry");
             }
+            console.log(req.body);
+            // if(chequeNo != ''){
+            //   const cheque = new EntryCheque({ entryId, chequeNo, amount: advance, chequeIssuedDate: new Date(), description: 'Advance to transporter', chequeClearenceDate: chequeClearenceDate, status: false});
+            //   await cheque.save();
+            // }
 
             const purchasetransporter = new PurchaseTransporter({transporterId, amount, date, vehicleNo, from, 
                 noOfBags, advance, entryId, status, chequeNo, invoiceNo});
 
             await purchasetransporter.save();
-
+              console.log(purchasetransporter);
             res.send(purchasetransporter);
 
     } catch (error) {

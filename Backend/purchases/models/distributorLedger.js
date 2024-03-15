@@ -7,9 +7,7 @@ const distributorLedger = sequelize.define('distributorLedger',{
     date:{type: DataTypes.DATEONLY, defaultValue: Date.now()},
     description:{type: DataTypes.STRING},
     amount:{type:DataTypes.FLOAT,allowNull: false},
-    transactionType: {type: DataTypes.STRING,allowNull: false},
-  
-
+    transactionType: {type: DataTypes.STRING,allowNull: false}
 },{
     freezeTableName:true,
     timestamps:true

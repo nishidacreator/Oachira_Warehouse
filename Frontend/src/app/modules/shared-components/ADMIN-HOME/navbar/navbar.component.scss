@@ -669,6 +669,11 @@ body{
 .navigation ul li:hover a .icon{
   transform: translateY(-20px);
   cursor: pointer;
+  //color:#ca7f46;
+}
+
+.navigation ul li:hover a .icon:active{
+  color:#ca7f46;
 }
 
 .navigation ul li a .text{
