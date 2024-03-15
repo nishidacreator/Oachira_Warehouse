@@ -25,11 +25,11 @@ export class PurchaseService {
   constructor(private _http:HttpClient) { }
 
 
-  updateTransporter(id:Number, data:any){
+  updateTransporter(id:number, data:any){
     return this._http.patch<Transporter>(this.url+'transporter/' + id, data);
   }
 
-  deleteTransporter(id:Number){
+  deleteTransporter(id:number){
     return this._http.delete(this.url+'transporter/' +id);
   }
 
@@ -57,11 +57,11 @@ export class PurchaseService {
     return this._http.get<PurchaseTransporter>(this.url+'purchasetransporter/byentryid/'+id);
   }
 
-  updatePurchaseTransporter(id:Number, data:any){
+  updatePurchaseTransporter(id:number, data:any){
     return this._http.patch<PurchaseTransporter>(this.url+'purchasetransporter/' + id, data);
   }
 
-  deletePurchaseTransporter(id:Number){
+  deletePurchaseTransporter(id:number){
     return this._http.delete(this.url+'purchasetransporter/' +id);
   }
 
@@ -70,11 +70,11 @@ export class PurchaseService {
   }
 
   // BROKER
-  updateBroker(id:Number, data:any){
+  updateBroker(id:number, data:any){
     return this._http.patch<Broker>(this.url+'broker/' + id, data);
   }
 
-  deleteBroker(id:Number){
+  deleteBroker(id:number){
     return this._http.delete(this.url+'broker/' +id);
   }
 
@@ -94,11 +94,11 @@ export class PurchaseService {
     return this._http.get<BrokerAccount>(this.url+'brokeraccount/byentryid/'+id);
   }
 
-  updateBrokerAccount(id:Number, data:any){
+  updateBrokerAccount(id:number, data:any){
     return this._http.patch<BrokerAccount>(this.url+'brokeraccount/' + id, data);
   }
 
-  deleteBrokerAccount(id:Number){
+  deleteBrokerAccount(id:number){
     return this._http.delete(this.url+'brokeraccount/' +id);
   }
 
@@ -119,11 +119,11 @@ export class PurchaseService {
   }
 
   // UNLOADING TEAM
-  updateUnloadingTeam(id:Number, data:any){
+  updateUnloadingTeam(id:number, data:any){
     return this._http.patch<LoadingTeam>(this.url+'loadingteam/' + id, data);
   }
 
-  deleteUnloadingTeam(id:Number){
+  deleteUnloadingTeam(id:number){
     return this._http.delete(this.url+'loadingteam/' +id);
   }
 
@@ -139,18 +139,18 @@ export class PurchaseService {
     return this._http.get<LoadingTeam>(this.url+'loadingteam/'+id);
   }
 
-  updatePurchaseUnloading(id:Number, data:any){
+  updatePurchaseUnloading(id:number, data:any){
     return this._http.patch<BrokerAccount>(this.url+'purchaseloading/' + id, data);
   }
 
-  deletePurchaseUnloading(id:Number){
+  deletePurchaseUnloading(id:number){
     return this._http.delete(this.url+'purchaseloading/' +id);
   }
 
   getPurchaseUnloading(): Observable<PurchaseLoading[]>{
     return this._http.get<PurchaseLoading[]>(this.url+'purchaseloading');
   }
-  
+
   getPurchaseUnloadingByEntryId(id: number): Observable<PurchaseLoading>{
     return this._http.get<PurchaseLoading>(this.url+'purchaseloading/byentryid/'+id);
   }
@@ -181,11 +181,11 @@ export class PurchaseService {
     return this._http.get<PurchaseRequest>(this.url+'request/byid/'+id);
   }
 
-  deletePR(id:Number){
+  deletePR(id:number){
     return this._http.delete(this.url+'request/'+id);
   }
 
-  updatePR(id:Number, data:any){
+  updatePR(id:number, data:any){
     return this._http.patch<PurchaseRequest>(this.url+'request/'+id, data);
   }
 
@@ -202,11 +202,11 @@ export class PurchaseService {
     return this._http.get<Order>(this.url+'order/'+ id);
   }
 
-  deletePO(id:Number){
+  deletePO(id:number){
     return this._http.delete(this.url+'order/'+id);
   }
 
-  updatePO(id:Number, data:any){
+  updatePO(id:number, data:any){
     return this._http.patch<Order>(this.url+'order/'+id, data);
   }
 
@@ -215,7 +215,7 @@ export class PurchaseService {
     return this._http.post(this.url + 'entry', data)
   }
 
-  updatePE(id:Number, data:any){
+  updatePE(id:number, data:any){
     return this._http.patch<Entry>(this.url+'entry/'+id, data);
   }
 
@@ -227,12 +227,24 @@ export class PurchaseService {
     return this._http.get<Entry>(this.url+'entry/' + id);
   }
 
-  updatePEStatus(id:Number, data:any){
+  updatePEStatus(id:number, data:any){
     return this._http.patch<Entry>(this.url+'entry/statusupdate/'+id, data);
   }
 
   addPEDetails(data : any){
     return this._http.post(this.url + 'pentrydetails', data)
+  }
+
+  updatePurchaseEntry(id:number, data:any){
+    return this._http.patch<Entry>(this.url+'entry/editentry/'+id, data);
+  }
+
+  updatePEDetails(data : any, id: number){
+    return this._http.patch(this.url + 'pentrydetails/' + id, data)
+  }
+
+  deletePE(id: number){
+    return this._http.delete(this.url + 'entry/' + id)
   }
 
   //SLIP
@@ -248,11 +260,11 @@ export class PurchaseService {
     return this._http.get<Slip>(this.url+'slip/'+id);
   }
 
-  deleteSlip(id:Number){
+  deleteSlip(id:number){
     return this._http.delete(this.url+'slip/'+id);
   }
 
-  updateSlip(id:Number, data:any){
+  updateSlip(id:number, data:any){
     return this._http.patch<Slip>(this.url+'slip/'+id, data);
   }
 
@@ -263,6 +275,14 @@ export class PurchaseService {
 
   getEntryCheque(): Observable<EntryCheque[]> {
     return this._http.get<EntryCheque[]>(this.url+'entrycheque');
+  }
+
+  getEntryChequeByStatus(search:String, page: number, pageSize: number): Observable<EntryCheque[]> {
+    return this._http.get<EntryCheque[]>(this.url+`entrycheque/bystatus?search=${search}&page=${page}&pageSize=${pageSize}`);
+  }
+
+  updateChequeStatus(id:number, data:any){
+    return this._http.patch<EntryCheque>(this.url+'entrycheque/statusupdate/' + id, data);
   }
 
 }

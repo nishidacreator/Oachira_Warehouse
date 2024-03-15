@@ -1,1 +1,386 @@
-<p>edit-pe works!</p>
+<mat-card class="background">
+  <div class="row">
+    <div class="col">
+      <mat-card-header>
+        <mat-card-title> PURCHASE ENTRY </mat-card-title>
+      </mat-card-header>
+    </div>
+
+    <div class="col">
+      <mat-card-header>
+        <button mat-mini-fab color="primary" type="button" style="margin-left: auto;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto" onclick="history.back()">
+          <mat-icon>exit_to_app</mat-icon>
+        </button>
+      </mat-card-header>
+    </div>
+  </div>
+
+  <mat-horizontal-stepper #stepper linear [selectedIndex]="selectedIndex">
+    <mat-step [stepControl]="purchaseEntryForm" label="PurchaseEntry" completed={{entryStatus}}>
+      <form [formGroup]="purchaseEntryForm">
+        <mat-card-content>
+          <div class="row box">
+
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>Distributor</mat-label>
+                <mat-select placeholder="" formControlName="distributorId">
+                  <mat-form-field class="full-width">
+                    <div class="row box">
+                      <input matInput (input)="filterDistributor($event)" placeholder="Search">
+                    </div>
+                  </mat-form-field>
+                  <mat-option *ngFor="let item of filteredDistributor" [value]="item.id">
+                    {{item.distributorName}}
+                  </mat-option>
+                  <mat-option  *ngIf="filteredDistributor.length === 0">
+                    <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addDistributor()">playlist_add</span>
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="purchaseEntryForm.controls['distributorId'].hasError('required')">
+                  User <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>PurchaseAmount</mat-label>
+                <input matInput placeholder="" formControlName="purchaseAmount">
+                  <mat-error *ngIf="purchaseEntryForm.controls['purchaseAmount'].hasError('required')">
+                    field <strong>required</strong>
+                  </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col" style="margin-top: 23px;">
+              <label>Status: &nbsp;&nbsp;&nbsp;&nbsp;</label>
+              <mat-radio-group formControlName="status" [disabled]="true">
+                <mat-radio-button value="ChequeIssued">Cheque Issued</mat-radio-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <mat-radio-button value="SlipIssued">Slip Issued</mat-radio-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <mat-radio-button value="AdvanceIssued" *ngIf="!addStatus">Advance Issued</mat-radio-button>&nbsp;&nbsp;&nbsp;&nbsp;
+              </mat-radio-group>
+            </div>
+          </div>
+
+          <div class="row box">
+            <div class="col" *ngIf="purchaseEntryForm.controls['status'].value==='ChequeIssued' || purchaseEntryForm.controls['status'].value==='SlipIssued'">
+              <mat-form-field class="full-width">
+                <mat-label>InvoiceNo</mat-label>
+                <input matInput placeholder="" formControlName="purchaseInvoiceNo">
+                  <mat-error *ngIf="purchaseEntryForm.controls['purchaseInvoiceNo'].hasError('required')">
+                    Invoice <strong>required</strong>
+                  </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col" *ngIf="purchaseEntryForm.controls['status'].value==='ChequeIssued' || purchaseEntryForm.controls['status'].value==='SlipIssued'">
+              <mat-form-field class="full-width">
+                <mat-label>Invocie Date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="invoiceDate">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div class="col" *ngIf="purchaseEntryForm.controls['status'].value==='ChequeIssued' || purchaseEntryForm.controls['status'].value==='SlipIssued'">
+              <mat-form-field class="full-width">
+                <mat-label>Purchase Date</mat-label>
+                <input matInput [matDatepicker]="picker8" formControlName="purchaseDate">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker8"></mat-datepicker-toggle>
+                <mat-datepicker #picker8></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div class="col" *ngIf="purchaseEntryForm.controls['status'].value==='ChequeIssued'">
+              <mat-form-field class="full-width">
+                <mat-label>Amount</mat-label>
+                <input matInput placeholder="" formControlName="amount">
+                  <mat-error *ngIf="purchaseEntryForm.controls['amount'].hasError('required')">
+                    Invoice <strong>required</strong>
+                  </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div *ngIf="purchaseEntryForm.controls['status'].value==='ChequeIssued' || purchaseEntryForm.controls['status'].value==='AdvanceIssued'" class="col">
+              <mat-form-field class="full-width">
+                <mat-label>ChequeNo</mat-label>
+                <input matInput formControlName="chequeNo">
+              </mat-form-field>
+            </div>
+
+            <div *ngIf="purchaseEntryForm.controls['status'].value==='ChequeIssued' || purchaseEntryForm.controls['status'].value==='AdvanceIssued'" class="col">
+              <mat-form-field class="full-width">
+                <mat-label>Cheque Date</mat-label>
+                <input matInput [matDatepicker]="picker7" formControlName="chequeClearenceDate">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker7"></mat-datepicker-toggle>
+                <mat-datepicker #picker7></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div *ngIf="purchaseEntryForm.controls['status'].value==='AdvanceIssued'" class="col">
+              <mat-form-field class="full-width">
+                <mat-label>Advance Amount</mat-label>
+                <input matInput formControlName="advanceAmount">
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <div class="row box">
+
+            <button (mouseover)="showName('save')" (mouseout)="hideName()" mat-raised-button type="button" (click)="updatePe()" [disabled]="!purchaseEntryForm.valid"
+              style="margin-right: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto">
+              <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'save')">edit_note</mat-icon>
+              <div class="icon_name" *ngIf="isHovered && hoveredButton === 'save'">Update</div>
+            </button>
+
+            <button mat-stepper-next (mouseover)="showName('next')" (mouseout)="hideName()" mat-raised-button type="button" [disabled]="!purchaseEntryForm.valid"
+            (click)="navigateToNextStep('entry')" style="margin-right: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto">
+              <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'next')">next_plan</mat-icon>
+              <div class="icon_name" *ngIf="isHovered && hoveredButton === 'next'">Next</div>
+            </button>
+
+            <!-- <button mat-raised-button *ngIf="addStatus" type="button" class="cancel-button" (click)="onCancelClick()">
+              <mat-icon style="font-size: 25px;">cancel_presentation</mat-icon>
+            </button> -->
+          </div>
+        </mat-card-actions>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="finalForm" label="Final" completed={{finalStatus}} optional>
+      <form [formGroup]="finalForm">
+        <mat-card-content>
+          <div class="row box">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>EWayBillNo</mat-label>
+                <input matInput placeholder="" formControlName="eWayBillNo">
+              </mat-form-field>
+            </div>
+
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>Payment Mode</mat-label>
+                <mat-select placeholder="" formControlName="paymentMode">
+                  <mat-option *ngFor="let item of modes" [value]="item.value">
+                    {{item.value}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>Remarks</mat-label>
+                <input matInput placeholder="" formControlName="remarks">
+              </mat-form-field>
+            </div>
+          </div><br>
+
+          <div class="row box">
+            <div class="col">
+              <mat-checkbox style="margin-top: 19px;" class="example-margin" formControlName="trans">Transportation</mat-checkbox>
+            </div>
+            <div class="col"  *ngIf="finalForm.controls['trans'].value">
+              <mat-form-field class="full-width">
+                <mat-label>Transportation</mat-label>
+                <input matInput placeholder="" formControlName="transportation">
+              </mat-form-field>
+            </div>
+
+            <div class="col" >
+              <mat-checkbox  style="margin-top: 19px;" class="example-margin" formControlName="com">Commision</mat-checkbox>
+            </div>
+            <div class="col"  *ngIf="finalForm.controls['com'].value">
+              <mat-form-field class="full-width">
+                <mat-label>Commision</mat-label>
+                <input matInput placeholder="" formControlName="commission">
+              </mat-form-field>
+            </div>
+
+            <div class="col">
+              <mat-checkbox style="margin-top: 19px;"  class="example-margin" formControlName="unload">Unloading</mat-checkbox>
+            </div>
+            <div class="col"  *ngIf="finalForm.controls['unload'].value">
+              <mat-form-field class="full-width">
+                <mat-label>Unloading</mat-label>
+                <input matInput placeholder="" formControlName="unloading">
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card-content>
+
+        <button (mouseover)="showName('save')" (mouseout)="hideName()" mat-raised-button type="button" (click)="updatePE()" [disabled]="!finalForm.valid"
+          style="margin-right: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto">
+          <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'save')">edit_note</mat-icon>
+          <div class="icon_name" *ngIf="isHovered && hoveredButton === 'save'">Update</div>
+        </button>
+
+        <button mat-stepper-next (mouseover)="showName('next')" (mouseout)="hideName()" mat-raised-button type="button" [disabled]="!finalForm.valid"
+        (click)="navigateToNextStep('entrydetails')" style="margin-right: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto">
+          <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'next')">next_plan</mat-icon>
+          <div class="icon_name" *ngIf="isHovered && hoveredButton === 'next'">Next</div>
+        </button>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="entryDetailsForm" label="Details" completed={{finalStatus}} optional>
+      <form [formGroup]="entryDetailsForm">
+        <mat-card>
+          <mat-card-content>
+            <div style="overflow-x: auto;">
+              <table formArrayName="products">
+                <table *ngFor="let quantity of products().controls; let i=index" [formGroupName]="i">
+                  <tr class="box">
+                    <td>
+
+                      <!-- Search in MAT SELECT -->
+                      <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Product</mat-label>
+                        <mat-select formControlName="productId">
+                          <mat-form-field class="full-width">
+                            <div class="row box">
+                              <input matInput (input)="filterProduct($event)" placeholder="Search">
+                            </div>
+                          </mat-form-field>
+                          <mat-option *ngFor="let option of filteredProduct" [value]="option.id">
+                            {{ option.productName }}
+                          </mat-option>
+                          <mat-option *ngIf="filteredProduct.length === 0" [value]="'add'">
+                            <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addProducts()">playlist_add</span>
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </td>
+                      <!-- END -->
+                    <td>
+                      <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Unit</mat-label>
+                        <mat-select placeholder="Secondary Unit" formControlName="secondaryUnitId">
+                          <mat-form-field class="full-width">
+                            <div class="row box">
+                              <input matInput (input)="filterProduct($event)" placeholder="Search">
+                            </div>
+                          </mat-form-field>
+                          <mat-option *ngFor="let item of filteredUnit" [value]="item.id">
+                            {{item.secondaryUnitName | titlecase}}
+                          </mat-option>
+                          <mat-option *ngIf="filteredUnit.length === 0" [value]="'add'">
+                            <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addUnit()">playlist_add</span>
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </td>
+
+                    <td colspan="2">
+                      <mat-form-field appearance="fill"class="full-width">
+                        <mat-label>Mrp</mat-label>
+                        <input matInput placeholder="" formControlName="mrp">
+                      </mat-form-field>
+                    </td>
+
+                    <td colspan="2">
+                      <mat-form-field appearance="fill"class="full-width">
+                        <mat-label>Rate</mat-label>
+                        <input matInput placeholder="" formControlName="rate">
+                      </mat-form-field>
+                    </td>
+
+                    <td colspan="2">
+                      <mat-form-field appearance="fill"class="full-width">
+                        <mat-label>Quantity</mat-label>
+                        <input matInput placeholder="" formControlName="quantity">
+                      </mat-form-field>
+                    </td>
+
+                    <td colspan="2">
+                      <mat-form-field appearance="fill"class="full-width">
+                        <mat-label>Discount</mat-label>
+                        <input matInput placeholder="" formControlName="discount">
+                      </mat-form-field>
+                    </td>
+
+                    <td colspan="2">
+                      <mat-form-field appearance="fill"class="full-width">
+                        <mat-label>TaxableAmount</mat-label>
+                        <input matInput placeholder="" formControlName="taxableAmount">
+                      </mat-form-field>
+                    </td>
+
+                    <td>
+                      <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>GST</mat-label>
+                        <mat-select placeholder="" formControlName="gstId">
+                          <mat-form-field class="full-width">
+                            <div class="row box">
+                              <input matInput (input)="filterGst($event)" placeholder="Search">
+                            </div>
+                          </mat-form-field>
+                          <mat-option *ngFor="let item of filteredGst" [value]="item.id">
+                            {{item.gstName| titlecase}}
+                          </mat-option>
+                          <mat-option *ngIf="filteredGst.length === 0" [value]="'add'">
+                            <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);"
+                            (click)="addGst(i)">playlist_add</span>
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </td>
+
+                    <td colspan="2">
+                      <mat-form-field appearance="fill"class="full-width">
+                        <mat-label>GrossAmount</mat-label>
+                        <input matInput placeholder="" formControlName="grossAmount">
+                      </mat-form-field>
+                    </td>
+
+                    <td colspan="2">
+                      <mat-form-field appearance="fill"class="full-width">
+                        <mat-label>NetAmount</mat-label>
+                        <input matInput placeholder="" formControlName="netAmount">
+                      </mat-form-field>
+                    </td>
+
+                    <td>
+                      <span class="material-icons" style="color: rgb(255, 0, 0); font-size: 25px; margin-left: 10px;" (click)="removeProduct(i)">cancel</span>
+                    </td>
+                  </tr>
+                </table>
+                <tr>
+                  <td>
+                    <div>
+                      <span class="material-icons" style="font-size: 35px; color: green;"(click)="addProduct()">add_box</span>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </mat-card-content>
+
+          <mat-card-actions>
+          <button *ngIf="!value" mat-raised-button type="submit" class="btn btn-success" (click)="saveDetails()"
+          [disabled]="!entryDetailsForm.valid">
+            <span class="material-icons" style="font-size: 25px;">save</span>
+          </button>
+
+          <button *ngIf="value" mat-raised-button type="submit" class="btn btn-success" (click)="updateDetails()"
+          [disabled]="!entryDetailsForm.valid">
+            <span class="material-icons" style="font-size: 25px;">edit_note</span>
+          </button>
+
+          <!-- <button mat-raised-button  type="button">
+            <span class="material-icons" style="font-size: 30px;">edit_note</span>
+          </button>&nbsp;&nbsp; -->
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
+
+</mat-card>

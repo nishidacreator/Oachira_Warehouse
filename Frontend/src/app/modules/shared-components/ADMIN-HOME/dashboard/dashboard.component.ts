@@ -1,8 +1,11 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
+import { MatPaginator, PageEvent } from "@angular/material/paginator";
 // import { AdminService } from "../../../admin.service";
 // import { MasterSearchComponent } from "../../master-search/master-search.component";
 import Chart from 'chart.js/auto';
+import { EntryCheque } from "src/app/modules/purchase/models/entry-cheque";
+import { PurchaseService } from "src/app/modules/purchase/purchase.service";
 export interface GroceryProduct {
   serialNumber: number;
   name: string;
@@ -10,45 +13,24 @@ export interface GroceryProduct {
   purchase: number;
 }
 
-const GROCERY_DATA: GroceryProduct[] = [
-  { serialNumber: 1, name: 'Apple', sale: 2, purchase: 1 },
-  { serialNumber: 2, name: 'Banana', sale: 1, purchase: 1 },
-  { serialNumber: 3, name: 'Carrot', sale: 1, purchase: 1 },
-  { serialNumber: 4, name: 'Tomato', sale: 3, purchase: 2 },
-  { serialNumber: 5, name: 'Potato', sale: 2, purchase: 1 },
-  { serialNumber: 6, name: 'Milk', sale: 4, purchase: 3 },
-  { serialNumber: 7, name: 'Bread', sale: 2, purchase: 1 },
-  { serialNumber: 8, name: 'Eggs', sale: 1, purchase: 1 },
-  { serialNumber: 9, name: 'Cheese', sale: 5, purchase: 4 },
-];
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.component.html",
   styleUrls: ["./dashboard.component.scss"],
 })
 export class DashboardComponent {
-  pendingRfqs!: number;
-  saleCount!: any;
-  quotCount:any;
-  sales: any;
-  topSellingParts: any;
-  stockCount!: number;
-  constructor( public dialog: MatDialog) {}
+
+  constructor( public dialog: MatDialog, private purchaseService: PurchaseService) {}
 
 
   ngOnInit() {
 
     this.createPurchaseGraph();
     this.createSalesGraph();
-    // this.getPendingRfqs();
-    // this.getSaleCount();
-    // this.getSales();
-    // this.getTopSellingParts();
-    // this.getQuotCount();
-    // this.getStockCount();
+    this.getEntryCheque();
   }
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = GROCERY_DATA;
+
+  // dataSource = GROCERY_DATA;
   // openFullScreenDialog(searchValue: string) {
   //   console.log(searchValue);
   //   const dialogRef = this.dialog.open(MasterSearchComponent, {
@@ -140,5 +122,57 @@ export class DashboardComponent {
   //     this.topSellingParts = res;
   //   });
   // }
+
+  cheques: EntryCheque[] = [];
+  filtered: EntryCheque[] = [];
+  pageSize = 5;
+  currentPage = 1;
+  totalItems = 0;
+  filterValue = "";
+  getEntryCheque(){
+    this.purchaseService.getEntryChequeByStatus(this.filterValue, this.currentPage, this.pageSize).subscribe((res: any) => {
+      console.log(res);
+
+      this.cheques = res.items;
+      this.filtered = res.items;
+      this.totalItems = res.count;
+      console.log(this.filtered);
+    });
+  }
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  onPageChange(event: PageEvent): void {
+    this.currentPage = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
+    console.log('Current Page:', this.currentPage);
+    console.log('Total Items:', this.totalItems);
+    this.getEntryCheque();
+  }
+
+  applyFilter(event: Event): void {
+    if((event.target as HTMLInputElement).value.trim() === '') {
+      this.getEntryCheque();
+    }else{
+
+      const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+      this.filtered = this.cheques.filter(element =>
+        element.chequeNo.toLowerCase().includes(filterValue)
+        || element.chequeClearenceDate.toString().includes(filterValue)
+        || element.type.toString().includes(filterValue)
+    );
+    }
+  }
+
+  onToggleChange(event: any, id: number) {
+    const newValue = event.checked;
+
+    let data = {
+      status : newValue
+    }
+    this.purchaseService.updateChequeStatus(id, data).subscribe(data=>{
+      console.log(data);
+    });
+  }
 
 }

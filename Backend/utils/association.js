@@ -217,8 +217,8 @@ async function syncModel(){
     Entry.hasMany(EntryCheque, {foreignKey : 'entryId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     EntryCheque.belongsTo(Entry, {foreignKey : 'entryId'})
 
-    // Distributor.hasMany(Order, {foreignKey : 'distributorId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
-    // Order.belongsTo(Store)
+    Distributor.hasMany(EntryCheque, {foreignKey : 'distributorId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    EntryCheque.belongsTo(Distributor)
 
     // User.hasMany(Order, {foreignKey : 'userId', onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     // Order.belongsTo(User)

@@ -40,19 +40,14 @@ export class ViewEntryComponent implements OnInit {
     this.entrySub = this.purchaseService.getPe().subscribe(x=>{
       console.log(x);
 
-      this.pendingPeSlip = x.filter(x=>x.status === 'SlipIssued' && x.entryStatus === "pending");
-      this.pendingPeCheque = x.filter(x=>x.status === 'ChequeIssued' && x.entryStatus === "pending");
-      this.advancedPe = x.filter(x=>x.status === 'AdvanceIssued'&& x.entryStatus === "pending");
-      this.compPe = x.filter(x=>x.entryStatus === 'completed');
+      this.pendingPeSlip = x.filter(x=>x.status === 'SlipIssued');
+      this.pendingPeCheque = x.filter(x=>x.status === 'ChequeIssued');
+      this.advancedPe = x.filter(x=>x.status === 'AdvanceIssued');
     })
   }
-  
+
   addPE(){
     this.router.navigateByUrl('/login/purachases/purchaseentry')
-  }
-
-  viewPE(id: number){
-
   }
 
   onToggleChange( id: number) {
@@ -71,7 +66,14 @@ export class ViewEntryComponent implements OnInit {
   }
 
   deletePurchaseEntry(id: number){
+    this.purchaseService.deletePE(id).subscribe(res=>{
+      console.log(res);
 
+    })
+  }
+
+  addPurchaseEntry(id: number){
+    this.router.navigateByUrl('/login/purachases/editpurchaseentry/'+id)
   }
 
 }

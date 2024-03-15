@@ -384,6 +384,14 @@
 
               <div class="col">
                 <mat-form-field class="full-width">
+                  <mat-label>Cheque Date</mat-label>
+                  <input matInput type="date" formControlName="chequeClearenceDate">
+                  <!-- <input type="text" class="placeholder-text" readonly placeholder="dd/mm/yyyy"> -->
+                </mat-form-field>
+              </div>
+
+              <div class="col">
+                <mat-form-field class="full-width">
                   <mat-label>VehicleNo</mat-label>
                   <input matInput placeholder="" formControlName="vehicleNo">
                     <mat-error *ngIf="purchaseTransportForm.controls['vehicleNo'].hasError('required')">
@@ -405,14 +413,14 @@
           </mat-card-content>
 
           <mat-card-actions>
-            <div class="row box">
+            <div class="row box" *ngIf="purchaseEntryForm.controls['status'].value ==='ChequeIssued' && !addStatus">
               <button (mouseover)="showName('print')" (mouseout)="hideName()" mat-raised-button type="button" (click)="generateTransSlip('print')"
                 *ngIf="!addStatus" [disabled]="!purchaseTransportForm.valid" style="margin-right: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto">
                 <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'print')">print</mat-icon>
                 <div class="icon_name" *ngIf="isHovered && hoveredButton === 'print'">Save&Print</div>
               </button>
 
-              <div *ngIf="purchaseEntryForm.controls['status'].value !='SlipIssued' && !addStatus">
+              <div *ngIf="!addStatus">
                 <button (mouseover)="showName('Close')" (mouseout)="hideName()" mat-raised-button type="submit" class="btn btn-success"
                 [disabled]="!purchaseEntryForm.valid" style="margin-right: 10px;" (click)="generateTransSlip('close')">
                 <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'Close')">cancel_schedule_send</mat-icon>
@@ -420,7 +428,7 @@
                 </button>
               </div>
 
-              <div *ngIf="purchaseEntryForm.controls['status'].value !='SlipIssued' && !addStatus">
+              <div *ngIf="purchaseEntryForm.controls['status'].value ==='ChequeIssued' && !addStatus">
                 <button (mouseover)="showName('Next')" (mouseout)="hideName()" mat-raised-button type="submit" class="btn btn-success"
                 [disabled]="!purchaseEntryForm.valid" (click)="generateTransSlip('next')">
                 <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'Next')">next_plan</mat-icon>
@@ -672,16 +680,6 @@
         <form [formGroup]="finalForm">
           <mat-card-content>
             <div class="row box">
-              <div class="col">
-                <mat-form-field class="full-width">
-                  <mat-label>InvoiceDate</mat-label>
-                  <input matInput [matDatepicker]="picker3" formControlName="invoiceDate">
-                  <mat-hint>MM/DD/YYYY</mat-hint>
-                  <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-                  <mat-datepicker #picker3></mat-datepicker>
-                </mat-form-field>
-              </div>
-
               <div class="col">
                 <mat-form-field class="full-width">
                   <mat-label>EWayBillNo</mat-label>

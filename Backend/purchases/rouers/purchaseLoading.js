@@ -11,13 +11,13 @@ const Loading = require('../models/loading');
 const authenticateToken = require('../../middleware/authorization');
 
 router.post('/', async (req, res) => {
-    try {
-        const exist = await PurchaseLoading.findOne({where: {entryId: entryId}})
+    try {  
+            const { invoiceNo, entryId, brockerId, loadingId, noOfBags, noOfBox, amount, date, status, closedDate  } = req.body;
+
+            const exist = await PurchaseLoading.findOne({where: {entryId: entryId}})
             if(exist){
-              res.send("Loading Slip already exists for this purchase entry");
+            res.send("Loading Slip already exists for this purchase entry");
             }
-    
-    const { invoiceNo, entryId, brockerId, loadingId, noOfBags, noOfBox, amount, date, status, closedDate  } = req.body;
 
             const purchaseloading = new PurchaseLoading({  invoiceNo, entryId, brockerId, loadingId, noOfBags, noOfBox, amount, date, status, closedDate });
 

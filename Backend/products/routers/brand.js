@@ -27,11 +27,6 @@ router.post('/', authenticateToken, async (req, res) => {
 router.get("/", authenticateToken, async (req, res) => {
   try {
     let whereClause = {};
-    if (req.query.search) {
-      whereClause = {
-        [Op.or]: [{ brandName: { [Op.iLike]: `%${req.query.search}%` } }],
-      };
-    }
     
     let limit;
     let offset;

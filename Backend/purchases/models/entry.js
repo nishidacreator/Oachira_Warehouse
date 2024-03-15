@@ -20,7 +20,7 @@ const Entry = sequelize.define('entry',{
     commission: {type : DataTypes.FLOAT, defaultValue: 0},
 
     purchaseDate: {type : DataTypes.DATEONLY},
-    chequeIssuedDate: {type : DataTypes.DATEONLY},
+    // chequeIssuedDate: {type : DataTypes.DATEONLY},
     invoiceDate: {type : DataTypes.DATEONLY},
     updatedDate: {type : DataTypes.DATEONLY},
 },

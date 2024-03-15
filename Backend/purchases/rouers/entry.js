@@ -14,9 +14,8 @@ const EntryCheque = require('../models/entryCheque');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
-
-        const { distributorId, purchaseAmount, status, userId, entryStatus, chequeNo, advanceAmount, purchaseInvoiceNo, chequeClearenceDate, invoiceDate, purchaseDate } = req.body;
-
+        const { distributorId, purchaseAmount, status, userId, entryStatus, chequeNo, advanceAmount, purchaseInvoiceNo, 
+            chequeClearenceDate, invoiceDate, purchaseDate } = req.body;
 
         // Check if the chequeNo already exists
         // const entryExist = await Entry.findOne({ chequeNo });
@@ -45,13 +44,15 @@ router.post('/', authenticateToken, async (req, res) => {
 
         if(status === 'AdvanceIssued'){
             let entryId = entry.id;
-            const cheque = new EntryCheque({ entryId, chequeNo, amount: advanceAmount, chequeIssuedDate: new Date(), description: 'Advance to distributor', chequeClearenceDate:  chequeClearenceDate, status: false});
-
+            const cheque = new EntryCheque({ entryId, chequeNo, amount: advanceAmount, chequeIssuedDate: new Date(), distributorId,
+                description: 'Advance to distributor', chequeClearenceDate:  chequeClearenceDate, status: false, type: 'advance'});
+            console.log(cheque);
             await cheque.save();
         }else if(status === 'ChequeIssued'){
             let entryId = entry.id;
-            const cheque = new EntryCheque({ entryId, chequeNo, amount: purchaseAmount, chequeIssuedDate: new Date(), description: 'Purchase amount to distributor', chequeClearenceDate: chequeClearenceDate, status: true});
-
+            const cheque = new EntryCheque({ entryId, chequeNo, amount: purchaseAmount, chequeIssuedDate: new Date(), distributorId,
+                description: 'Purchase amount to distributor', chequeClearenceDate: chequeClearenceDate, status: false, type: 'purchase'});
+                console.log(cheque);
             await cheque.save();
         }
 
@@ -69,16 +70,14 @@ router.post('/', authenticateToken, async (req, res) => {
     }
 });
 
-
 router.patch('/:id',authenticateToken ,async (req,res)=>{
    
-    let {eWayBillNo,chequeIssuedDate,invoiceDate,transportation,unloading,commission,paymentMode,orderId,remarks}= req.body
+    let { eWayBillNo, chequeIssuedDate, invoiceDate, transportation,unloading,commission,paymentMode,orderId,remarks}= req.body
     const entry = await Entry.findOne({ where :{ id : req.params.id}});
     if(!entry){
         return res.status(400).json({msg:"Entry not found"})
     }
     entry.eWayBillNo = eWayBillNo,
-    entry.invoiceDate = invoiceDate,
     entry.transportation = transportation,
     entry.unloading = unloading,
     entry.commission = commission,
@@ -105,8 +104,8 @@ router.get('/', async (req, res) => {
 
         const entry = await Entry.findAll({
             where: whereClause,
-            include: [Distributor, Order, {model: EntryCheque, attributes:['chequeNo', 'status']}],
-            order:[['purchaseDate', 'DESC']],
+            include: [Distributor, Order, {model: EntryCheque, attributes:['chequeNo', 'status', 'chequeIssuedDate', 'type']}],
+            order:[['updatedDate', 'DESC']],
             limit, 
             offset
            })
@@ -123,7 +122,7 @@ router.get('/:id', async (req, res) => {
     try {
         const entry = await Entry.findOne({
             where: {id: req.params.id},
-            include: [Distributor, Order, {model: EntryCheque, attributes:['chequeNo', 'status', 'amount']}],
+            include: [EntryDetails, Distributor, Order, {model: EntryCheque, attributes:['chequeNo', 'type', 'amount', 'chequeClearenceDate']}],
            })
        
            res.send(entry);
@@ -163,4 +162,78 @@ router.patch('/statusupdate/:id', authenticateToken, async(req,res)=>{
         res.send(error.message);
       }
 })
+
+router.patch('/editentry/:id',authenticateToken ,async (req,res)=>{
+   try {
+            console.log(req.body);
+            let { distributorId, purchaseAmount, status, userId, entryStatus, chequeNo, amount, purchaseInvoiceNo, 
+                chequeClearenceDate, invoiceDate, purchaseDate} = req.body
+            const entry = await Entry.findByPk(req.params.id);
+            console.log(entry);
+            if(!entry){
+                return res.status(400).json({msg:"Entry not found"})
+            }
+
+            entry.distributorId = distributorId,
+            entry.purchaseAmount = purchaseAmount,
+            entry.status = status,
+            entry.advanceAmount = amount,
+            entry.purchaseInvoiceNo = purchaseInvoiceNo,
+            entry.invoiceDate = invoiceDate,
+            entry.purchaseDate = purchaseDate,
+            entry.updatedDate = new Date()
+            
+            console.log(entry);
+            await entry.save();
+            // let dl = await DistributorLedger.findOne({});
+            // dl.
+
+            // if(status === 'AdvanceIssued'){
+                let entryId = entry.id;
+                const cheque = await EntryCheque.findOne({entryId: entryId});
+                console.log(cheque);
+                cheque.chequeClearenceDate = chequeClearenceDate;
+                cheque.chequeNo = chequeNo;
+                cheque.amount = amount;
+                cheque.distributorId = distributorId;
+                await cheque.save();
+            // }else if(status === 'ChequeIssued'){
+            //     let entryId = entry.id;
+            //     const cheque = new EntryCheque({ entryId, chequeNo, amount: purchaseAmount, chequeIssuedDate: new Date(), distributorId,
+            //         description: 'Purchase amount to distributor', chequeClearenceDate: chequeClearenceDate, status: false, type: 'purchase'});
+            //         console.log(cheque);
+            //     await cheque.save();
+            // }
+
+            res.send(entry);
+
+   } catch (error) {
+    res.send(error.message);
+   }
+    
+});
+
+router.delete('/:id', authenticateToken, async(req,res)=>{
+    try {
+        const entry = await Entry.findOne({
+            where: {id: req.params.id}
+        });
+  
+        const result = await entry.destroy({
+            force: true
+        });
+  
+        if (result === 0) {
+            return res.status(404).json({
+              status: "fail",
+              message: "Entry with that ID not found",
+            });
+        }
+      
+        res.status(204).json();
+        }  catch (error) {
+          res.send(error.message);
+    }
+    
+  })
 module.exports = router;

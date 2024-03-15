@@ -9,5 +9,6 @@ export interface EntryCheque {
   chequeClearenceDate : Date
   description : string
   status: boolean
+  type: string
   entry: Entry
 }
