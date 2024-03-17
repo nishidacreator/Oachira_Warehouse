@@ -1,0 +1,142 @@
+
+  <form [formGroup]="purchaseTransportForm">
+    <mat-card class="background">
+      <div class="row">
+        <div class="col">
+          <mat-card-header>
+            <mat-card-title> TRANSPORTER SLIP</mat-card-title>
+          </mat-card-header>
+        </div>
+        <div class="col">
+          <mat-card-header>
+            <button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon"
+            class="d-block mr-0 ml-auto" onClick="history.back()" style="margin-left: auto;">
+              <mat-icon>exit_to_app</mat-icon>
+            </button>
+          </mat-card-header>
+        </div>
+      </div>
+      <mat-card-content>
+        <div class="row box">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput readonly placeholder="InvoiceNo" formControlName="invoiceNo">
+              <mat-error *ngIf="purchaseTransportForm.controls['invoiceNo'].hasError('required')">
+                Invoice <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Date</mat-label>
+              <input matInput type="date" formControlName="date">
+              <!-- <input type="text" class="placeholder-text" readonly placeholder="dd/mm/yyyy"> -->
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Transporter</mat-label>
+              <mat-select placeholder="" formControlName="transporterId">
+                <mat-form-field class="full-width">
+                  <div class="row box">
+                    <input matInput (input)="filterTransport($event)" placeholder="Search">
+                  </div>
+                </mat-form-field>
+                <mat-option *ngFor="let item of filteredTransporter" [value]="item.id">
+                  {{item.name}}
+                </mat-option>
+                <mat-option *ngIf="filteredTransporter.length === 0">
+                  <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addTransporter()">playlist_add</span>
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="purchaseTransportForm.controls['transporterId'].hasError('required')">
+                Field <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Amount</mat-label>
+              <input matInput placeholder="" formControlName="amount">
+                <mat-error *ngIf="purchaseTransportForm.controls['amount'].hasError('required')">
+                  field <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>NoOfBags</mat-label>
+              <input matInput placeholder="" formControlName="noOfBags">
+                <mat-error *ngIf="purchaseTransportForm.controls['noOfBags'].hasError('required')">
+                  field <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row box">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Advance</mat-label>
+              <input matInput placeholder="" formControlName="advance">
+                <mat-error *ngIf="purchaseTransportForm.controls['advance'].hasError('required')">
+                  field <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>ChequeNo</mat-label>
+              <input matInput placeholder="" formControlName="chequeNo">
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Cheque Date</mat-label>
+              <input matInput type="date" formControlName="chequeClearenceDate">
+              <!-- <input type="text" class="placeholder-text" readonly placeholder="dd/mm/yyyy"> -->
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>VehicleNo</mat-label>
+              <input matInput placeholder="" formControlName="vehicleNo">
+                <mat-error *ngIf="purchaseTransportForm.controls['vehicleNo'].hasError('required')">
+                  Invoice <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>From</mat-label>
+              <input matInput placeholder="" formControlName="from">
+                <mat-error *ngIf="purchaseTransportForm.controls['from'].hasError('required')">
+                  field <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button (mouseover)="showName('save')" (mouseout)="hideName()" mat-raised-button type="button" (click)="generateTransSlip('close')" [disabled]="!purchaseTransportForm.valid"
+        style="margin-right: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto">
+        <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'save')">edit_note</mat-icon>
+        <div class="icon_name" *ngIf="isHovered && hoveredButton === 'save'">Update</div>
+      </button>
+
+      <button (mouseover)="showName('print')" (mouseout)="hideName()" mat-raised-button type="button" (click)="generateTransSlip('print')"
+        [disabled]="!purchaseTransportForm.valid" style="margin-right: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto">
+        <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'print')">print</mat-icon>
+        <div class="icon_name" *ngIf="isHovered && hoveredButton === 'print'">Save&Print</div>
+      </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>

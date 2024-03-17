@@ -461,7 +461,7 @@
               <div class="col">
                 <mat-form-field class="full-width">
                   <input matInput readonly placeholder="InvoiceNo" formControlName="invoiceNo">
-                    <mat-error *ngIf="slipForm.controls['invoiceNo'].hasError('required')">
+                    <mat-error *ngIf="brokerageForm.controls['invoiceNo'].hasError('required')">
                       Invoice <strong>required</strong>
                     </mat-error>
                 </mat-form-field>
@@ -543,7 +543,7 @@
               </div>
 
               <div *ngIf="addStatus">
-                <button *ngIf="addStatus" (mouseover)="showName('save')" (mouseout)="hideName()" mat-raised-button type="button" (click)="updateTrans()"
+                <button *ngIf="addStatus" (mouseover)="showName('save')" (mouseout)="hideName()" mat-raised-button type="button" (click)="updateBroker()"
                   [disabled]="!finalForm.valid" style="margin-right: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto">
                   <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'save')">edit_note</mat-icon>
                   <div class="icon_name" *ngIf="isHovered && hoveredButton === 'save'">Update</div>
@@ -567,7 +567,7 @@
               <div class="col">
                 <mat-form-field class="full-width">
                   <input matInput readonly placeholder="InvoiceNo" formControlName="invoiceNo">
-                    <mat-error *ngIf="slipForm.controls['invoiceNo'].hasError('required')">
+                    <mat-error *ngIf="unloadingForm.controls['invoiceNo'].hasError('required')">
                       Invoice <strong>required</strong>
                     </mat-error>
                 </mat-form-field>
@@ -599,7 +599,7 @@
                 <mat-form-field class="full-width">
                   <mat-label>NoOfBags</mat-label>
                   <input matInput placeholder="" formControlName="noOfBags">
-                    <mat-error *ngIf="purchaseTransportForm.controls['noOfBags'].hasError('required')">
+                    <mat-error *ngIf="unloadingForm.controls['noOfBags'].hasError('required')">
                       field <strong>required</strong>
                     </mat-error>
                 </mat-form-field>
@@ -637,14 +637,14 @@
           <mat-card-actions>
             <div class="row box">
               <button (mouseover)="showName('print')" (mouseout)="hideName()" mat-raised-button type="button" (click)="generateUnloadingSlip('print')"
-                *ngIf="!addStatus" [disabled]="!purchaseTransportForm.valid" style="margin-right: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto">
+                *ngIf="!addStatus" [disabled]="!unloadingForm.valid" style="margin-right: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto">
                 <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'print')">print</mat-icon>
                 <div class="icon_name" *ngIf="isHovered && hoveredButton === 'print'">Save&Print</div>
               </button>
 
               <div *ngIf="purchaseEntryForm.controls['status'].value !='SlipIssued' && !addStatus">
                 <button (mouseover)="showName('Close')" (mouseout)="hideName()" mat-raised-button type="submit" class="btn btn-success"
-                [disabled]="!purchaseEntryForm.valid" style="margin-right: 10px;" (click)="generateUnloadingSlip('close')">
+                [disabled]="!unloadingForm.valid" style="margin-right: 10px;" (click)="generateUnloadingSlip('close')">
                 <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'Close')">cancel_schedule_send</mat-icon>
                   <div class="icon_name" *ngIf="isHovered && hoveredButton === 'Close'">Save&Close</div>
                 </button>
@@ -652,7 +652,7 @@
 
               <div *ngIf="purchaseEntryForm.controls['status'].value !='SlipIssued' && !addStatus">
                 <button (mouseover)="showName('Next')" (mouseout)="hideName()" mat-raised-button type="submit" class="btn btn-success"
-                [disabled]="!purchaseEntryForm.valid" (click)="generateUnloadingSlip('next')">
+                [disabled]="!unloadingForm.valid" (click)="generateUnloadingSlip('next')">
                 <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'Next')">next_plan</mat-icon>
                   <div class="icon_name" *ngIf="isHovered && hoveredButton === 'Next'">Save&Next</div>
                 </button>
@@ -660,7 +660,7 @@
 
               <div *ngIf="addStatus">
                 <button *ngIf="addStatus" (mouseover)="showName('save')" (mouseout)="hideName()" mat-raised-button type="button" (click)="updateUnloading()"
-                  [disabled]="!finalForm.valid" style="margin-right: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto">
+                  [disabled]="!unloadingForm.valid" style="margin-right: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto">
                   <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'save')">edit_note</mat-icon>
                   <div class="icon_name" *ngIf="isHovered && hoveredButton === 'save'">Update</div>
                 </button>

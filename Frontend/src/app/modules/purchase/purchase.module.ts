@@ -28,6 +28,9 @@ import { PrintUnloadingSlipComponent } from './components/print-unloading-slip/p
 import { PeInvoiceComponent } from './components/pe-invoice/pe-invoice.component';
 import { EntryChequeComponent } from './components/entry-cheque/entry-cheque.component';
 import { EditPeComponent } from './components/edit-pe/edit-pe.component';
+import { AddPurchaseTransporterComponent } from './components/add-purchase-transporter/add-purchase-transporter.component';
+import { AddBrokerageComponent } from './components/add-brokerage/add-brokerage.component';
+import { AddUnloadingSlipComponent } from './components/add-unloading-slip/add-unloading-slip.component';
 
 
 
@@ -57,7 +60,10 @@ import { EditPeComponent } from './components/edit-pe/edit-pe.component';
     PrintUnloadingSlipComponent,
     PeInvoiceComponent,
     EntryChequeComponent,
-    EditPeComponent
+    EditPeComponent,
+    AddPurchaseTransporterComponent,
+    AddBrokerageComponent,
+    AddUnloadingSlipComponent
   ],
   imports: [
     CommonModule,

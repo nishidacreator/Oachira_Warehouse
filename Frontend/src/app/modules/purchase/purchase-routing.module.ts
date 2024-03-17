@@ -23,6 +23,9 @@ import { UnloadingSlipComponent } from './components/unloading-slip/unloading-sl
 import { PrintUnloadingSlipComponent } from './components/print-unloading-slip/print-unloading-slip.component';
 import { EntryChequeComponent } from './components/entry-cheque/entry-cheque.component';
 import { EditPeComponent } from './components/edit-pe/edit-pe.component';
+import { AddPurchaseTransporterComponent } from './components/add-purchase-transporter/add-purchase-transporter.component';
+import { AddBrokerageComponent } from './components/add-brokerage/add-brokerage.component';
+import { AddUnloadingSlipComponent } from './components/add-unloading-slip/add-unloading-slip.component';
 
 
 const routes: Routes = [
@@ -50,6 +53,9 @@ const routes: Routes = [
   {path: 'printunloadingslip/:id', component: PrintUnloadingSlipComponent},
   {path: 'editpurchaseentry/:id', component: EditPeComponent},
   {path: 'entrycheque', component: EntryChequeComponent},
+  {path: 'addtransporterslip/:id', component: AddPurchaseTransporterComponent},
+  {path: 'addbrokerslip/:id', component: AddBrokerageComponent},
+  {path: 'addunloadingslip/:id', component: AddUnloadingSlipComponent},
 
 ];
 
