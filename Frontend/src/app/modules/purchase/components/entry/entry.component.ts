@@ -67,6 +67,21 @@ export class EntryComponent implements OnInit, OnDestroy {
     this.transInvSub?.unsubscribe();
     this.slipInvSub?.unsubscribe();
     this.loadSub?.unsubscribe();
+    this.peByIdSub?.unsubscribe();
+    this.statusUpdateSub?.unsubscribe();
+    this.brokerInvSub?.unsubscribe();
+    this.brokerSub?.unsubscribe();
+    this.brokerByIdSub?.unsubscribe();
+    this.brokerAccountSub?.unsubscribe();
+    this.LTeamInvSub?.unsubscribe();
+    this.unloadingSub?.unsubscribe();
+    this.unloadByIdSub?.unsubscribe();
+    this.slipById?.unsubscribe();
+    this.ptSub?.unsubscribe();
+    this.plSub?.unsubscribe();
+    this.brokSub?.unsubscribe();
+    this.peSub?.unsubscribe();
+    this.peDetailsSub?.unsubscribe();
   }
 
   entryStatus: boolean = true;
@@ -108,6 +123,7 @@ export class EntryComponent implements OnInit, OnDestroy {
     }
   }
 
+  peByIdSub!: Subscription;
   patchData(id: number){
     this.purchaseService.getPeById(id).subscribe(data =>{
       console.log(data);
@@ -127,17 +143,7 @@ export class EntryComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateEntry(type: string){
-    if(type === "close"){
-      history.back();
-    }else if(type === "next"){
-      this.stepper.selectedIndex = 2;
-      this.generateTransInvoiceNumber();
-      this.getTransporter();
-      // this.patchTrans(data);
-    }
-  }
-
+  statusUpdateSub!: Subscription;
   updateStatus(){
     let data = {
       chequeNo: this.purchaseEntryForm.get('chequeNo')?.value,
@@ -147,7 +153,7 @@ export class EntryComponent implements OnInit, OnDestroy {
       amount: this.purchaseEntryForm.get('amount')?.value,
       invoiceDate: this.purchaseEntryForm.get('invoiceDate')?.value
     }
-    this.purchaseService.updatePEStatus(this.dialogData.id, data).subscribe(data =>{
+    this.statusUpdateSub = this.purchaseService.updatePEStatus(this.dialogData.id, data).subscribe(data =>{
       this._snackBar.open("Entry status update successfully...","" ,{duration:3000})
       this.dialogRef?.close()
     });
@@ -453,7 +459,7 @@ export class EntryComponent implements OnInit, OnDestroy {
   brokerInvSub!: Subscription;
   brokerPrefix!: string;
   generateBrokerInvoiceNumber() {
-    this.transInvSub = this.purchaseService.getBrokerAccount().subscribe((res) => {
+    this.brokerInvSub = this.purchaseService.getBrokerAccount().subscribe((res) => {
       let purchases = res;
       console.log(purchases);
 
@@ -501,7 +507,7 @@ export class EntryComponent implements OnInit, OnDestroy {
   broker: Broker[] = [];
   brokerSub!: Subscription;
   getBroker(value?: number){
-    this.transportSub = this.purchaseService.getBroker().subscribe(res=>{
+    this.brokerSub = this.purchaseService.getBroker().subscribe(res=>{
       this.broker = res;
       this.filteredBroker = res;
       if(value){
@@ -529,10 +535,10 @@ export class EntryComponent implements OnInit, OnDestroy {
     } else if (event instanceof Event) {
       value = (event.target as HTMLInputElement).value;
     }
-    this.filteredTransporter = this.transporter.filter((option) => {
+    this.filteredBroker = this.broker.filter((option) => {
       if (
-        (option.name &&
-          option.name.toLowerCase().includes(value?.toLowerCase()))
+        (option.brokerName &&
+          option.brokerName.toLowerCase().includes(value?.toLowerCase()))
       ) {
         return true;
       } else {
@@ -542,9 +548,10 @@ export class EntryComponent implements OnInit, OnDestroy {
   }
 
   brokerRate!: number;
+  brokerByIdSub!: Subscription;
   getAmount(id: number){
     if(id){
-      this.purchaseService.getBrokerById(id).subscribe(res=>{
+      this.brokerByIdSub = this.purchaseService.getBrokerById(id).subscribe(res=>{
         console.log(res);
         this.brokerRate = res.rate;
         console.log(this.brokerRate);
@@ -592,8 +599,9 @@ export class EntryComponent implements OnInit, OnDestroy {
   }
 
   brokerId!: number;
+  brokerAccountSub!: Subscription;
   getBrokerAndPatch(id: number){
-    this.purchaseService.getBrokerAccountById(id).subscribe(data =>{
+    this.brokerAccountSub = this.purchaseService.getBrokerAccountById(id).subscribe(data =>{
       console.log(data);
       this.getBroker()
 
@@ -744,7 +752,7 @@ export class EntryComponent implements OnInit, OnDestroy {
     data.entryId = this.peId
     console.log(data);
 
-    this.brokAccSub = this.purchaseService.addPurchaseUnloading(data).subscribe(res=>{
+    this.unloadingSub = this.purchaseService.addPurchaseUnloading(data).subscribe(res=>{
       console.log(res);
       let op: any = res
       this._snackBar.open("Unloading Slip added successfully...","" ,{duration:3000})
@@ -762,8 +770,9 @@ export class EntryComponent implements OnInit, OnDestroy {
   }
 
   unLoadId!: number;
+  unloadByIdSub!: Subscription;
   getUnloadingAndPatch(id: number){
-    this.purchaseService.getPurchaseUnloadingById(id).subscribe(data =>{
+    this.unloadByIdSub = this.purchaseService.getPurchaseUnloadingById(id).subscribe(data =>{
       console.log(data);
       this.getLoadingTeam()
       this.unLoadId = data.id;
@@ -823,8 +832,9 @@ export class EntryComponent implements OnInit, OnDestroy {
   }
 
   slipId!: number;
+  slipById!: Subscription;
   getSlipAndPatch(id: number){
-    this.purchaseService.getSlipById(id).subscribe(data =>{
+    this.slipById = this.purchaseService.getSlipById(id).subscribe(data =>{
       console.log(data);
 
       this.slipId = data.id;
@@ -947,8 +957,8 @@ export class EntryComponent implements OnInit, OnDestroy {
     remarks:['']
   });
 
+  ptSub!: Subscription;
   getPurchaseTransporter(data: any){
-    console.log(data);
     this.purchaseService.getPurchaseTransporterByEntryId(data.entryId).subscribe(res=>{
       console.log(res);
       if(res){
@@ -959,9 +969,9 @@ export class EntryComponent implements OnInit, OnDestroy {
     });
   }
 
+  plSub!: Subscription;
   getPurchaseLoading(data: any){
-    console.log(data);
-    this.purchaseService.getPurchaseUnloadingByEntryId(data.entryId).subscribe(res=>{
+    this.plSub = this.purchaseService.getPurchaseUnloadingByEntryId(data.entryId).subscribe(res=>{
       console.log(res);
 
       if(res){
@@ -974,10 +984,9 @@ export class EntryComponent implements OnInit, OnDestroy {
     });
   }
 
+  brokSub!: Subscription;
   getBrockerage(data: any){
-    console.log(data);
-    this.purchaseService.getPurchaseTransporterByEntryId(data.entryId).subscribe(res=>{
-      console.log(res);
+    this.purchaseService.getBrockerAccountByEntryId(data.entryId).subscribe(res=>{
       if(res){
         let brokerFee= res.amount;
         this.finalForm.get('com')?.setValue(true);
@@ -987,6 +996,7 @@ export class EntryComponent implements OnInit, OnDestroy {
   }
 
   finalStatus: boolean = false;
+  peSub!: Subscription;
   updatePE(){
     if(!this.finalForm.valid){
       return alert("Please enter details completely!");
@@ -1001,7 +1011,7 @@ export class EntryComponent implements OnInit, OnDestroy {
       eWayBillNo: this.finalForm.get('eWayBillNo')?.value,
       remarks : this.finalForm.get('remarks')?.value,
     }
-    this.purchaseService.updatePE(this.peId, data).subscribe(data => {
+    this.peSub = this.purchaseService.updatePE(this.peId, data).subscribe(data => {
       this._snackBar.open("Entry updated successfully...","" ,{duration:3000})
       this.selectedIndex = 6
       this.getPe(data)
@@ -1056,8 +1066,9 @@ export class EntryComponent implements OnInit, OnDestroy {
   }
 
   detailsSub!: Subscription;
+  peDetailsSub!: Subscription;
   saveDetails(){
-    this.purchaseService.addPEDetails(this.entryDetailsForm.getRawValue()).subscribe(data => {
+    this.peDetailsSub = this.purchaseService.addPEDetails(this.entryDetailsForm.getRawValue()).subscribe(data => {
       this._snackBar.open("Entry Details updated successfully...","" ,{duration:3000})
       history.back();
     })

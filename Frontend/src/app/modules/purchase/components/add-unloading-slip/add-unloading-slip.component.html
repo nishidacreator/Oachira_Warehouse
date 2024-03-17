@@ -1,0 +1,108 @@
+<form [formGroup]="unloadingForm">
+  <mat-card class="background">
+    <div class="row">
+      <div class="col">
+        <mat-card-header>
+          <mat-card-title> UNLOADING SLIP</mat-card-title>
+        </mat-card-header>
+      </div>
+      <div class="col">
+        <mat-card-header>
+          <button mat-mini-fab color="primary" type="button" aria-label="Example icon button with a home icon"
+          class="d-block mr-0 ml-auto" onClick="history.back()" style="margin-left: auto;">
+            <mat-icon>exit_to_app</mat-icon>
+          </button>
+        </mat-card-header>
+      </div>
+    </div>
+    <mat-card-content>
+      <div class="row box">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput readonly placeholder="InvoiceNo" formControlName="invoiceNo">
+              <mat-error *ngIf="unloadingForm.controls['invoiceNo'].hasError('required')">
+                Invoice <strong>required</strong>
+              </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>UnLoadingTeam</mat-label>
+            <mat-select placeholder="" formControlName="loadingId">
+              <mat-form-field class="full-width">
+                <div class="row box">
+                  <input matInput (input)="filterLTeam($event)" placeholder="Search">
+                </div>
+              </mat-form-field>
+              <mat-option *ngFor="let item of filteredLTeam" [value]="item.id">
+                {{item.teamname}}
+              </mat-option>
+              <mat-option *ngIf="filteredLTeam.length === 0">
+                <span class="material-icons" style="font-size: 25px; color: rgb(0, 128, 55);" (click)="addLTeam()">playlist_add</span>
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="unloadingForm.controls['loadingId'].hasError('required')">
+              Field <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>NoOfBags</mat-label>
+            <input matInput placeholder="" formControlName="noOfBags">
+              <mat-error *ngIf="unloadingForm.controls['noOfBags'].hasError('required')">
+                field <strong>required</strong>
+              </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>NoOfBoxes</mat-label>
+            <input matInput placeholder="" formControlName="noOfBox">
+              <mat-error *ngIf="unloadingForm.controls['noOfBox'].hasError('required')">
+                field <strong>required</strong>
+              </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Amount</mat-label>
+            <input matInput placeholder="" formControlName="amount">
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="picker6" formControlName="date">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+            <mat-datepicker #picker6></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <div class="row box">
+        <button (mouseover)="showName('print')" (mouseout)="hideName()" mat-raised-button type="button" (click)="generateUnloadingSlip('print')"
+          [disabled]="!unloadingForm.valid" style="margin-right: 10px;" aria-label="Example icon button with a home icon" class="d-block mr-0 ml-auto">
+          <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'print')">print</mat-icon>
+          <div class="icon_name" *ngIf="isHovered && hoveredButton === 'print'">Save&Print</div>
+        </button>
+
+        <div>
+          <button (mouseover)="showName('Close')" (mouseout)="hideName()" mat-raised-button type="submit" class="btn btn-success"
+          [disabled]="!unloadingForm.valid" style="margin-right: 10px;" (click)="generateUnloadingSlip('close')">
+          <mat-icon *ngIf="!isHovered|| (isHovered && hoveredButton != 'Close')">cancel_schedule_send</mat-icon>
+            <div class="icon_name" *ngIf="isHovered && hoveredButton === 'Close'">Save&Close</div>
+          </button>
+        </div>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</form>

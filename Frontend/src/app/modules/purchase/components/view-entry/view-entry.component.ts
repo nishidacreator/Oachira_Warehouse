@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PurchaseService } from '../../purchase.service';
 import { Entry } from '../../models/entry';
@@ -11,9 +11,14 @@ import { EntryComponent } from '../entry/entry.component';
   templateUrl: './view-entry.component.html',
   styleUrls: ['./view-entry.component.scss']
 })
-export class ViewEntryComponent implements OnInit {
+export class ViewEntryComponent implements OnInit, OnDestroy {
 
   constructor(private purchaseService: PurchaseService, private router: Router, private dialog: MatDialog) { }
+
+  ngOnDestroy(): void {
+    this.delete?.unsubscribe();
+    this.entrySub?.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.getEntry();
@@ -65,8 +70,9 @@ export class ViewEntryComponent implements OnInit {
     this.router.navigateByUrl('/login/purachases/editpurchaseentry/'+id)
   }
 
+  delete!: Subscription;
   deletePurchaseEntry(id: number){
-    this.purchaseService.deletePE(id).subscribe(res=>{
+    this.delete = this.purchaseService.deletePE(id).subscribe(res=>{
       console.log(res);
 
     })
@@ -74,6 +80,42 @@ export class ViewEntryComponent implements OnInit {
 
   addPurchaseEntry(id: number){
     this.router.navigateByUrl('/login/purachases/editpurchaseentry/'+id)
+  }
+
+  generateTS(id: number){
+    this.purchaseService.getPurchaseTransporterByEntryId(id).subscribe(res=>{
+      console.log(res);
+      if(res){
+        return alert("Transporter Slip is already generated for selected purchase entry");
+      }else{
+        this.router.navigateByUrl('/login/purachases/addtransporterslip/'+id);
+      }
+
+    });
+  }
+
+  generateCommision(id: number){
+    this.purchaseService.getBrockerAccountByEntryId(id).subscribe(res=>{
+      console.log(res);
+      if(res){
+        return alert("Broker Slip is already generated for selected purchase entry");
+      }else{
+        this.router.navigateByUrl('/login/purachases/addbrokerslip/'+id);
+      }
+
+    });
+  }
+
+  generateUS(id: number){
+    this.purchaseService.getPurchaseUnloadingByEntryId(id).subscribe(res=>{
+      console.log(res);
+      if(res){
+        return alert("Unloading Slip is already generated for selected purchase entry");
+      }else{
+        this.router.navigateByUrl('/login/purachases/addunloadingslip/'+id);
+      }
+
+    });
   }
 
 }

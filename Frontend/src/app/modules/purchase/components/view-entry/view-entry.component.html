@@ -36,6 +36,7 @@
                 <th>Cheque Issued</th>
                 <th>Purchase Entry</th>
                 <th>Delete</th>
+                <th>Others</th>
             </tr>
         </thead>
         <tbody>
@@ -58,6 +59,11 @@
                 <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">
                   <span class="material-icons" style="margin-left: 8px;" (click)="deletePurchaseEntry(element.id)">delete</span>
                 </td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">
+                  <span class="material-icons" style="margin-left: 8px;" (click)="generateTS(element.id)">local_shipping</span>
+                  <span class="material-icons" style="margin-left: 8px;" (click)="generateCommision(element.id)">price_change</span>
+                  <span class="material-icons" style="margin-left: 8px;" (click)="generateUS(element.id)">emoji_people</span>
+                </td>
             </tr>
         </tbody>
       </table>
@@ -75,6 +81,7 @@
                 <th>Cheque Issued</th>
                 <th>Purchase Entry</th>
                 <th>Delete</th>
+                <th>Others</th>
             </tr>
         </thead>
         <tbody>
@@ -92,6 +99,11 @@
                 </td>
                 <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">
                   <span class="material-icons" style="margin-left: 8px;" (click)="deletePurchaseEntry(element.id)">delete</span>
+                </td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">
+                  <span class="material-icons" style="margin-left: 8px;" (click)="generateTS(element.id)">local_shipping</span>
+                  <span class="material-icons" style="margin-left: 8px;" (click)="generateCommision(element.id)">price_change</span>
+                  <span class="material-icons" style="margin-left: 8px;" (click)="generateUS(element.id)">emoji_people</span>
                 </td>
             </tr>
         </tbody>
@@ -111,6 +123,7 @@
                 <th>Cheque Issued Date</th>
                 <th>Purchase Entry</th>
                 <th>Delete</th>
+                <th>Others</th>
             </tr>
         </thead>
         <tbody>
@@ -133,6 +146,11 @@
                 </td>
                 <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">
                   <span class="material-icons" style="margin-left: 8px;" (click)="deletePurchaseEntry(element.id)">delete</span>
+                </td>
+                <td [style.background-color]="element.entryStatus == 'pending' ? 'gray' : null">
+                  <span class="material-icons" style="margin-left: 8px;" (click)="generateTS(element.id)">local_shipping</span>
+                  <span class="material-icons" style="margin-left: 8px;" (click)="generateCommision(element.id)">price_change</span>
+                  <span class="material-icons" style="margin-left: 8px;" (click)="generateUS(element.id)">emoji_people</span>
                 </td>
             </tr>
         </tbody>
