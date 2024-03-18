@@ -1,3 +1,5 @@
+import { Team } from "../../company/models/team";
+
 export interface Distributor {
   id: number;
   distributorName : string,
@@ -9,7 +11,10 @@ export interface Distributor {
   panNo : string,
   contactPerson : string,
   fssaiNo : string,
-
+  brokerage: boolean;
+  advance: boolean;
+  unloading: boolean;
+  team: Team
   status: string,
 
   cloudinaryId : string

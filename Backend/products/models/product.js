@@ -20,7 +20,6 @@ const Product = sequelize.define('product',{
     brokerageItem : {type:DataTypes.BOOLEAN},
     openingStock : {type:DataTypes.BOOLEAN},
     primaryUnitId : {type : DataTypes.INTEGER},
-    brokerageItem : {type : DataTypes.BOOLEAN},
     status: {type : DataTypes.BOOLEAN, defaultValue : true},
 
     cloudinaryId : {type:DataTypes.STRING},

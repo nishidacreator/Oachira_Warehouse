@@ -119,6 +119,9 @@ async function syncModel(){
     PrimaryUnit.hasMany(Product,{foreignKey : 'baseUnitId', as: 'baseUnit',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     Product.belongsTo(PrimaryUnit, {foreignKey : 'baseUnitId', as: 'baseUnit'})
 
+    Team.hasMany(Distributor,{foreignKey : 'teamId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
+    Distributor.belongsTo(Team)
+
     Product.hasMany(ProductDistributor,{foreignKey : 'productId',  onDelete : 'CASCADE', onUpdate : 'CASCADE'})
     ProductDistributor.belongsTo(Product)
 

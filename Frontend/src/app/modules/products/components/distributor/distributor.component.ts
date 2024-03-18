@@ -14,6 +14,7 @@ import { ProductComponent } from '../product/product.component';
 import { Team } from 'src/app/modules/company/models/team';
 import { CompanyService } from 'src/app/modules/company/company.service';
 import { TeamComponent } from 'src/app/modules/company/components/team/team.component';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-distributor',
@@ -41,6 +42,7 @@ export class DistributorComponent implements OnInit {
       console.log('teams',res);
     })
   }
+
   distributorForm = this.fb.group({
     distributorName: ['', Validators.required],
     phoneNumber: ['', Validators.required],
@@ -55,7 +57,11 @@ export class DistributorComponent implements OnInit {
     cloudinaryId : [''],
     fileUrl : [''],
     teamId : [''],
-    products : ['']
+    products : [''],
+    brokerage: [false],
+    advance: [false],
+    unloading: [false],
+    transportation: [false]
   });
 
   displayedColumns : string[] = ['id','distributorName', 'manage']
@@ -76,6 +82,7 @@ export class DistributorComponent implements OnInit {
     this.getComplete()
     this.getProduct()
   }
+
   addTeam(){
     const dialogRef = this.dialog.open(TeamComponent, {
       data: { status: "add"},
@@ -88,6 +95,7 @@ export class DistributorComponent implements OnInit {
       // this.routeSEDetails().at(i).get('hsn')?.setValue(result.hsn.hsnName);
     });
   }
+
   file!: any;
   url!: any;
   uploadStatus = false
@@ -193,6 +201,7 @@ export class DistributorComponent implements OnInit {
       status : this.distributorForm.get('status')?.value,
       cloudinaryId : this.distributorForm.get('cloudinaryId')?.value,
       fileUrl : this.distributorForm.get('fileUrl')?.value,
+      teamId : this.distributorForm.get('teamId')?.value,
       products : products
     }
 
@@ -217,7 +226,11 @@ export class DistributorComponent implements OnInit {
     //   })
 
     // }else{
+      console.log(data);
+
       this.submit = this.productService.addDistributor(data).subscribe((response)=>{
+        console.log(response);
+
         let data = {
           distributor: response
         }
@@ -300,6 +313,45 @@ export class DistributorComponent implements OnInit {
     }
   }
 
+  brokerageApplicable(event: any, id: number) {
+    if (event instanceof MatSlideToggleChange) {
+      const newStatus = event.checked;
+      let data = {
+        brokerage: newStatus
+      }
+      this.productService.brokerageApplicable(id, data).subscribe(res=>{
+        this._snackBar.open("Brokerage updated successfully...","" ,{duration:3000})
+        this.getDistributor()
+      })
+    }
+  }
+
+  advanceApplicable(event: any, id: number) {
+    if (event instanceof MatSlideToggleChange) {
+      const newStatus = event.checked;
+      let data = {
+        advance: newStatus
+      }
+      this.productService.advanceApplicable(id, data).subscribe(res=>{
+        this._snackBar.open("Advance updated successfully...","" ,{duration:3000})
+        this.getDistributor()
+      })
+    }
+  }
+
+  unloadingApplicable(event: any, id: number) {
+    if (event instanceof MatSlideToggleChange) {
+      const newStatus = event.checked;
+      let data = {
+        unloading: newStatus
+      }
+      this.productService.unloadingApplicable(id, data).subscribe(res=>{
+        this._snackBar.open("Unloading updated successfully...","" ,{duration:3000})
+        this.getDistributor()
+      })
+    }
+  }
+
   delete!: Subscription;
   deleteDistributor(id : any){
     const dialogRef = this.dialog.open(DeleteDialogueComponent, {
@@ -348,6 +400,7 @@ export class DistributorComponent implements OnInit {
         let panNo = distributor.panNo;
         let fssaiNo = distributor.fssaiNo;
         let status = distributor.status;
+        let team = distributor.teamId;
         this.imageUrl = distributor.fileUrl;
         console.log(this.imageUrl)
 
@@ -362,6 +415,7 @@ export class DistributorComponent implements OnInit {
           panNo : panNo,
           fssaiNo : fssaiNo,
           status : status,
+          teamId : team,
         })
         this.distributorId = this.dialogData?.id;
       }
@@ -417,10 +471,17 @@ export class DistributorComponent implements OnInit {
           panNo : this.distributorForm.get('panNo')?.value,
           fssaiNo : this.distributorForm.get('fssaiNo')?.value,
           status : this.distributorForm.get('status')?.value,
+          brokerage : this.distributorForm.get('brokerage')?.value,
+          advance : this.distributorForm.get('advance')?.value,
+          unloading : this.distributorForm.get('unloading')?.value,
           cloudinaryId : this.distributorForm.get('cloudinaryId')?.value,
           fileUrl : this.distributorForm.get('fileUrl')?.value
       }
+      console.log(data);
+
       this.submit = this.productService.updateDistributor(this.distributorId, data).subscribe((res)=>{
+        console.log(res);
+
         this._snackBar.open("Distributor updated successfully...","" ,{duration:3000})
         this.dialogRef.close();
         this.clearControls();

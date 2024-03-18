@@ -16,11 +16,11 @@ const Location = require('../models/location');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
-            const { productName, code, barCode, subCategoryId, categoryId, brandId, reorderQuantity, 
-              warehouseLoyalityPoint,  retailLoyalityPoint,isSpecial,isRouteItem,openingStock,brokerageItem, primaryUnitId,  baseUnitId, cloudinaryId, fileUrl, brockerage} = req.body;
+            const { productName, code, barCode, subCategoryId, categoryId, brandId, reorderQuantity, warehouseLoyalityPoint,  retailLoyalityPoint,
+              isSpecial,isRouteItem,openingStock, primaryUnitId,  baseUnitId, cloudinaryId, fileUrl, brockerage } = req.body;
 
-            const result = new Product({productName, code, barCode, subCategoryId, categoryId, brandId, reorderQuantity, 
-              warehouseLoyalityPoint,  retailLoyalityPoint,isSpecial,isRouteItem,openingStock,brokerageItem, primaryUnitId, baseUnitId, cloudinaryId, fileUrl, brockerage});
+            const result = new Product({ productName, code, barCode, subCategoryId, categoryId, brandId, reorderQuantity, warehouseLoyalityPoint, 
+              retailLoyalityPoint,isSpecial,isRouteItem,openingStock, primaryUnitId, baseUnitId, cloudinaryId, fileUrl, brockerage });
               
             await result.save();
             res.send(result);

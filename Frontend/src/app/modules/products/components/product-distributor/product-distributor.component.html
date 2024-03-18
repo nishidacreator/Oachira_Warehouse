@@ -11,6 +11,8 @@
           <tr>
               <th>Id</th>
               <th>Product</th>
+              <th>Brokerage</th>
+              <th>Advance</th>
               <th>Status</th>
               <th>Manage</th>
           </tr>
@@ -19,6 +21,16 @@
           <tr *ngFor="let element of products let i=index">
               <td [style.background-color]="element.status == false ? 'pink' : null">{{element.id}}</td>
               <td [style.background-color]="element.status == false ? 'pink' : null">{{element.product.productName}}</td>
+              <!-- <td [style.background-color]="element.status == false ? 'pink' : null">
+                <mat-slide-toggle [checked]="element.brokerage" (change)="brokerageApplicable($event, element.id)">
+                  Brokerage
+                </mat-slide-toggle>
+              </td>
+              <td [style.background-color]="element.status == false ? 'pink' : null">
+                <mat-slide-toggle [checked]="element.advance" (change)="advanceApplicable($event, element.id)">
+                  Advance
+                </mat-slide-toggle>
+              </td> -->
               <td [style.background-color]="element.status == false ? 'pink' : null">
                 <mat-slide-toggle [checked]="element.status" (change)="onSlideToggleChange($event, element.id)">
                   Status

@@ -11,7 +11,10 @@ const Distributor = sequelize.define('distributor',{
     panNo : {type : DataTypes.STRING},
     contactPerson : {type : DataTypes.STRING, allowNull : false},
     fssaiNo : {type : DataTypes.STRING},
-    
+    brokerage: {type : DataTypes.BOOLEAN, allowNull : false, defaultValue : false},
+    advance: {type : DataTypes.BOOLEAN, allowNull : false, defaultValue : false},
+    unloading: {type : DataTypes.BOOLEAN, allowNull : false, defaultValue : false},
+    transportation: {type : DataTypes.BOOLEAN, allowNull : false,  defaultValue : false},
     status: {type : DataTypes.BOOLEAN, defaultValue : true},
 
     cloudinaryId : {type:DataTypes.STRING},

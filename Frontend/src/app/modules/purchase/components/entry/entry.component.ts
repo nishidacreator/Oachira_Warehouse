@@ -186,6 +186,10 @@ export class EntryComponent implements OnInit, OnDestroy {
     });
   }
 
+  getDisributorDetails(id: number){
+    this.productService.getDistributor
+  }
+
   filteredDistributor: Distributor[] = [];
   filterDistributor(event: any){
     let value: string = "";

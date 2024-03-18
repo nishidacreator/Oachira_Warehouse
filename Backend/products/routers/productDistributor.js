@@ -7,8 +7,7 @@ const Product = require('../models/product');
 const Distributor = require('../models/distributor');
 
 router.post('/', authenticateToken, async (req, res) => {
-    try {              
-            console.log(req.body);                     
+    try {                                  
             const products = req.body;
             console.log(products);
 
@@ -169,4 +168,6 @@ router.patch('/statusupdate/:id', authenticateToken, async(req,res)=>{
       res.send(error.message);
     }
 })
+
+
 module.exports = router;

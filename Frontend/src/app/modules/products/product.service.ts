@@ -397,12 +397,24 @@ export class ProductService {
     return this._http.delete(this.url+'distributor/'+id);
   }
 
+  advanceApplicable(id:number, data:any){
+    return this._http.patch<Distributor>(this.url+'distributor/advanceapplicable/' + id, data);
+  }
+
+  brokerageApplicable(id:number, data:any){
+    return this._http.patch<Distributor>(this.url+'distributor/brokerageapplicable/' + id, data);
+  }
+
+  unloadingApplicable(id:number, data:any){
+    return this._http.patch<Distributor>(this.url+'distributor/unloadingapplicable/' + id, data);
+  }
+
   getProductsByDistributor(id: number): Observable<ProductDistributor[]>{
     return this._http.get<ProductDistributor[]>(this.url+'productdistributor/byditsributorid/' + id);
   }
 
   updateDistributorStatus(id:number, data:any){
-    return this._http.patch<Distributor>(this.url+'productdistributor/statusupdate/' + id, data);
+    return this._http.patch<ProductDistributor>(this.url+'productdistributor/statusupdate/' + id, data);
   }
 
   // PRODUCT DISTRIBUTOR
@@ -418,6 +430,9 @@ export class ProductService {
     return this._http.patch(this.url + 'productdistributor/status/'+ id, data )
   }
 
+  // getProductDistributorByDistributorId(id : number):Observable<ProductDistributor>{
+  //   return this._http.get(this.url + 'productdistributor/' + id)
+  // }
   // updateProductDistributorStatus(id:number, data:any){
   //   return this._http.patch<Distributor>(this.url+'productdistributor/statusupdate/' + id, data);
   // }

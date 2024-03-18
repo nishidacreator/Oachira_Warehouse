@@ -56,6 +56,32 @@ export class ProductDistributorComponent implements OnInit {
     }
   }
 
+  // brokerageApplicable(event: any, id: number) {
+  //   if (event instanceof MatSlideToggleChange) {
+  //     const newStatus = event.checked;
+  //     let data = {
+  //       brokerage: newStatus
+  //     }
+  //     this.productService.brokerageApplicable(id, data).subscribe(res=>{
+  //       this._snackBar.open("Brokerage updated successfully...","" ,{duration:3000})
+  //       this.getProductsDistributor
+  //     })
+  //   }
+  // }
+
+  // advanceApplicable(event: any, id: number) {
+  //   if (event instanceof MatSlideToggleChange) {
+  //     const newStatus = event.checked;
+  //     let data = {
+  //       advance: newStatus
+  //     }
+  //     this.productService.advanceApplicable(id, data).subscribe(res=>{
+  //       this._snackBar.open("Advance updated successfully...","" ,{duration:3000})
+  //       this.getProductsDistributor
+  //     })
+  //   }
+  // }
+
   element = {
     status: false, // Initial status value
   };

@@ -9,14 +9,15 @@ const authenticateToken = require('../../middleware/authorization');
 
 const Distributor = require('../models/distributor');
 const ProductDistributor = require('../models/productDistributor');
+const Team = require('../../company/team');
 
 router.post('/', authenticateToken, async (req, res) => {
     try {
-            const {distributorName, address1, address2,state, phoneNumber, gstNo, panNo, fssaiNo, 
-              contactPerson, status, fileUrl, cloudinaryId, products} = req.body;
+            const {distributorName, address1, address2,state, phoneNumber, gstNo, panNo, fssaiNo, contactPerson, status,
+               fileUrl, cloudinaryId, products, brokerage, advance, unloading, transportation, teamId} = req.body;
 
-            const distributor = new Distributor({distributorName, address1, address2,state, phoneNumber, gstNo, panNo,
-               fssaiNo, contactPerson, status, fileUrl, cloudinaryId});
+            const distributor = new Distributor({distributorName, address1, address2,state, phoneNumber, gstNo, panNo, fssaiNo, 
+              contactPerson, status, fileUrl, cloudinaryId, brokerage, advance, unloading, transportation, teamId});
 
             await distributor.save();
 
@@ -55,6 +56,7 @@ router.get("/", authenticateToken, async (req, res) => {
       order: ["id"],
       limit,
       offset,
+      include: [{model: Team, attributes: ['teamName']}]
     });
 
     let totalCount;
@@ -183,6 +185,48 @@ router.patch('/statusupdate/:id', authenticateToken, async(req,res)=>{
     let status = req.body.status;
     let result = await Distributor.findByPk(req.params.id);
     result.status = status
+
+    await result.save();
+    res.send(result);
+    } catch (error) {
+      res.send(error.message);
+    }
+})
+
+router.patch('/advanceapplicable/:id', authenticateToken, async(req,res)=>{
+  try {
+
+    let advance = req.body.advance;
+    let result = await Distributor.findByPk(req.params.id);
+    result.advance = advance
+
+    await result.save();
+    res.send(result);
+    } catch (error) {
+      res.send(error.message);
+    }
+})
+
+router.patch('/brokerageapplicable/:id', authenticateToken, async(req,res)=>{
+  try {
+
+    let { brokerage } = req.body;
+    let result = await Distributor.findByPk(req.params.id);
+    result.brokerage = brokerage;
+
+    await result.save();
+    res.send(result);
+    } catch (error) {
+      res.send(error.message);
+    }
+})
+
+router.patch('/unloadingapplicable/:id', authenticateToken, async(req,res)=>{
+  try {
+
+    let { unloading } = req.body;
+    let result = await Distributor.findByPk(req.params.id);
+    result.unloading = unloading;
 
     await result.save();
     res.send(result);
